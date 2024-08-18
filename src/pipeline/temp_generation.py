@@ -58,7 +58,7 @@ def temp_generation(db_name: str, config: Dict[str, Any]):
             evidence_prompts = [f'\n\nEvidence you should use:\n{evidence_prompt}' for evidence_prompt in evidence_prompts]
     except Exception as e:
         logging.error(f"No evidence found. Try generation without evidence.")
-        evidence_prompt = ['\n\nYou should generate evidence on your own.\n']
+        evidence_prompts = ['\n\nYou should generate evidence on your own.\n']
 
     schema_prompt_total = 'Schema of database used:\n' + '\n'.join(schema_prompt[table_name] for table_name in schema_prompt)
 

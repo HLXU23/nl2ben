@@ -5,5 +5,6 @@ CREATE TABLE doctors (
     specialization VARCHAR,
     phone_number VARCHAR,
     email VARCHAR,
+    biography TEXT,
     PRIMARY KEY (doctor_id)
 );

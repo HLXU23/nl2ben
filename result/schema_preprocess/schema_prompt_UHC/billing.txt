@@ -4,6 +4,7 @@ CREATE TABLE billing (
     amount FLOAT,
     billing_date DATE,
     status VARCHAR,
+    description TEXT,
     PRIMARY KEY (billing_id),
     FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
 );

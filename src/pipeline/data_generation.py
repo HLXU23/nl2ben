@@ -5,6 +5,7 @@ from typing import Dict, List, Any
 import re
 import os
 import json
+import random
 import shutil
 import sqlite3
 
@@ -69,35 +70,42 @@ def data_generation(db_name: str, config: Dict[str, Any]):
     logging.debug(topo_order)
 
     foreign_key_value = dict.fromkeys(schema, [])
+    value_generated = dict.fromkeys(schema, [])
+    for idx in range(epoch):
+        for table_name in topo_order:
+            foreign_key_value_prompt = get_foreign_key_value_prompt(schema[table_name]['foreign_keys'], foreign_key_value, row_num)
+            example_row_prompt = get_generated_row_prompt(value_generated[table_name], example_value_num) if value_generated[table_name] else get_example_row_prompt(db_new_path, table_name, example_value_num)
+            prompt = template.replace('{ROW_NUM}', str(row_num)) \
+                            .replace('{SCHEMA}', schema_prompt[table_name]) \
+                            .replace('{FOREIGN_KEY_VALUE}', foreign_key_value_prompt) \
+                            .replace('{EXAMPLE_ROW}', example_row_prompt) \
+                            .replace('{EXAMPLE_FORMAT}', "\n".join([f'{col_name}: {{row1.{col_name}}}' for col_name in schema[table_name]['attributes']]))
+            request_kwargs = f'[Data Generation]{db_name}{table_name}'
 
-    for table_name in topo_order:
-        foreign_key_value_prompt = get_foreign_key_value_prompt(schema[table_name]['foreign_keys'], foreign_key_value)
-        example_row_prompt = get_example_row_prompt(db_path, table_name, example_value_num)
-        prompt = template.replace('{ROW_NUM}', str(row_num)) \
-                         .replace('{SCHEMA}', schema_prompt[table_name]) \
-                         .replace('{FOREIGN_KEY_VALUE}', foreign_key_value_prompt) \
-                         .replace('{EXAMPLE_ROW}', example_row_prompt) \
-                         .replace('{EXAMPLE_FORMAT}', "\n".join([f'{col_name}: {{row1.{col_name}}}' for col_name in schema[table_name]['attributes']]))
-        request_kwargs = f'[Data Generation]{db_name}{table_name}'
+            response = async_llm_call(
+                prompt=prompt,
+                config=config,
+                request_list=[request_kwargs],
+                step="data_generation",
+                sampling_count=1
+            )[0][0]
 
-        response = async_llm_call(
-            prompt=prompt,
-            config=config,
-            request_list=[request_kwargs],
-            step="data_generation",
-            sampling_count=1
-        )[0][0]
+            with open(os.path.join(output_path, f'{db_name}_{idx}_{table_name}.txt'), "w") as file:
+                file.write(prompt)
+                file.write('\n====================\n')
+                file.write(response)
 
-        with open(os.path.join(output_path, f'{db_name}_{table_name}.txt'), "w") as file:
-            file.write(prompt)
-            file.write('\n====================\n')
-            file.write(response)
+            executed_sql, new_row_cnt, new_value_generated = write_response_into_db(table_name, response, db_new_path)
 
-        write_response_into_db(table_name, response, db_new_path)
-        logging.info(f'Table {table_name} new data added')
-        if table_name in referenced_cols: # If table is referenced, record value of referenced cols
-            foreign_key_value[table_name] = write_referenced_col_value(response, referenced_cols[table_name])
-        logging.debug(f'Foreign key value: \n{foreign_key_value}')
+            with open(os.path.join(output_path, f'sql_{db_name}_{table_name}.txt'), "a") as file:
+                file.write(executed_sql)
+            logging.info(f'Table {table_name} new {new_row_cnt} rows data added')
+
+            value_generated[table_name] += new_value_generated
+
+            if table_name in referenced_cols: # If table is referenced, record value of referenced cols
+                foreign_key_value[table_name] = write_referenced_col_value(response, referenced_cols[table_name])
+            logging.debug(f'Foreign key value: \n{foreign_key_value}')
         
 
 def load_schema_prompt(schema, schema_prompt_path):
@@ -139,7 +147,7 @@ def get_topo_order(schema):
     
     return topo_order
 
-def get_foreign_key_value_prompt(foreign_keys, foreign_key_values):
+def get_foreign_key_value_prompt(foreign_keys, foreign_key_values, row_num):
     if not foreign_keys: # No foreign keys in this table
         return ''
     foreign_key_value_prompt = "\n\nFor foreign key, you can ONLY use values given in referenced tables as follow:\n"
@@ -148,8 +156,24 @@ def get_foreign_key_value_prompt(foreign_keys, foreign_key_values):
         referenced_table = fk.get('referenced_table')
         referenced_column = fk.get('referenced_column')
         key_list = foreign_key_values[referenced_table][referenced_column]
-        foreign_key_value_prompt += f'{referenced_table}.{referenced_column}: {', '.join(key_list)}\n'
+        key_list_subset = random_select(key_list, row_num)
+        foreign_key_value_prompt += f'{referenced_table}.{referenced_column}: {', '.join(key_list_subset)}\n'
     return foreign_key_value_prompt
+
+def random_select(list, n):
+    return random.sample(list, n) if n < len(list) else list
+
+def get_generated_row_prompt(value_generated, example_value_num):
+    generated_row_prompt = '\n\nHere are some newest data in database, you can check their formats and values for reference.\n'
+    generated_value_num = min(len(value_generated), example_value_num)
+    for i in range(generated_value_num):
+        generated_row_prompt += f"{i + 1}\n"
+        for col_value in value_generated[(i - example_value_num)]:
+            generated_row_prompt += f'{col_value[0]}: {col_value[1]}\n'
+        generated_row_prompt += '\n'
+    
+    return generated_row_prompt
+    
 
 def get_example_row_prompt(db_path, table_name, example_value_num):
     conn = sqlite3.connect(db_path)
@@ -180,22 +204,35 @@ def write_response_into_db(table_name, response, db_new_path):
     cursor = conn.cursor()
 
     rows = response.strip().split("\n\n")
-    
-    first_row_data = rows[0].split("\n")[1:]
-    columns = [re.split(r":\s*", line)[0] for line in first_row_data]
 
+    executed_sql = ''
+    new_row_cnt = 0
+    new_value_generated = []
     for row in rows:
         row_data = row.split("\n")[1:]
-        values = [re.split(r":\s*", line, 1)[1] for line in row_data]
-        values = [v.strip(' "') for v in values]
         
-        placeholders = ", ".join(["?" for _ in columns])
-        sql = f'INSERT INTO "{table_name}" ({', '.join([f'"{column}"' for column in columns])}) VALUES ({placeholders})'
-        
-        cursor.execute(sql, values)
+        try:
+            col_values = [line.split(': ', 1) for line in row_data]
+            placeholders = ", ".join(["?" for _ in col_values])
+            sql = f'INSERT INTO `{table_name}` ({', '.join([f'`{col_value[0]}`' for col_value in col_values])}) VALUES ({placeholders})'
+            values = [col_value[1] for col_value in col_values]
+        except: 
+            continue
+        executed_sql += f'{sql}\n'
+        executed_sql += f'VALUE: {', '.join(values)}\n'
+        try:
+            logging.debug(f'Run data insertion SQL command:\n{sql}\nVALUE: {values}')
+            cursor.execute(sql, values)
+            new_row_cnt += 1
+            executed_sql += f'Exec success\n'
+            new_value_generated.append(col_values)
+        except:
+            executed_sql += f'Exec failed\n'
+            pass
     
     conn.commit()
     conn.close()
+    return executed_sql, new_row_cnt, new_value_generated
 
 def write_referenced_col_value(response, referenced_cols):
     referenced_col_value = dict.fromkeys(referenced_cols, [])

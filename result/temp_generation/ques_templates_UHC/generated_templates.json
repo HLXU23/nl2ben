@@ -1,0 +1,102 @@
+[
+    {
+        "question": "Find the full name and phone number of the patient with ID {patients.patient_id}.",
+        "evidence": "The patient's ID is provided as evidence.",
+        "ans": "SELECT `first_name`, `last_name`, `phone_number` \nFROM `patients` \nWHERE `patient_id` = {patients.patient_id};"
+    },
+    {
+        "question": "List all appointments scheduled for the doctor with ID {doctors.doctor_id} on {appointments.appointment_date}.",
+        "evidence": "The doctor's ID and the appointment date are provided as evidence.",
+        "ans": "SELECT * \nFROM `appointments` \nWHERE `doctor_id` = {doctors.doctor_id} \nAND `appointment_date` = '{appointments.appointment_date}';"
+    },
+    {
+        "question": "Retrieve the diagnosis and treatment for the medical record with ID {medical_records.record_id}.",
+        "evidence": "The medical record ID is provided as evidence.",
+        "ans": "SELECT `diagnosis`, `treatment` \nFROM `medical_records` \nWHERE `record_id` = {medical_records.record_id};"
+    },
+    {
+        "question": "Find the total amount billed for the patient with ID {patients.patient_id}.",
+        "evidence": "The patient's ID is provided as evidence.",
+        "ans": "SELECT SUM(`amount`) AS total_amount \nFROM `billing` \nWHERE `patient_id` = {patients.patient_id};"
+    },
+    {
+        "question": "List all medications prescribed to the patient with ID {patients.patient_id}.",
+        "evidence": "The patient's ID is provided as evidence.",
+        "ans": "SELECT `medication` \nFROM `prescriptions` \nWHERE `patient_id` = {patients.patient_id};"
+    },
+    {
+        "question": "Retrieve the full name and specialization of the doctor with ID {doctors.doctor_id}.",
+        "evidence": "The doctor's ID is provided as evidence.",
+        "ans": "SELECT `first_name`, `last_name`, `specialization` \nFROM `doctors` \nWHERE `doctor_id` = {doctors.doctor_id};"
+    },
+    {
+        "question": "Find the insurance provider and policy number for the patient with ID {patients.patient_id}.",
+        "evidence": "The patient's ID is provided as evidence.",
+        "ans": "SELECT `provider`, `policy_number` \nFROM `insurance` \nWHERE `patient_id` = {patients.patient_id};"
+    },
+    {
+        "question": "List all staff members with the role of {staff.role}.",
+        "evidence": "The staff role is provided as evidence.",
+        "ans": "SELECT `first_name`, `last_name` \nFROM `staff` \nWHERE `role` = '{staff.role}';"
+    },
+    {
+        "question": "Retrieve the appointment date and status for the appointment with ID {appointments.appointment_id}.",
+        "evidence": "The appointment ID is provided as evidence.",
+        "ans": "SELECT `appointment_date`, `status` \nFROM `appointments` \nWHERE `appointment_id` = {appointments.appointment_id};"
+    },
+    {
+        "question": "Find the total number of patients born after {patients.date_of_birth}.",
+        "evidence": "The date of birth is provided as evidence.",
+        "ans": "SELECT COUNT(*) AS total_patients \nFROM `patients` \nWHERE `date_of_birth` > '{patients.date_of_birth}';"
+    },
+    {
+        "question": "List all appointments that were scheduled for the patient with ID {patients.patient_id} in the year {appointments.appointment_date}.",
+        "evidence": "The patient's ID and the year are provided as evidence.",
+        "ans": "SELECT * \nFROM `appointments` \nWHERE `patient_id` = {patients.patient_id} \nAND YEAR(`appointment_date`) = {appointments.appointment_date};"
+    },
+    {
+        "question": "Retrieve the full name and email of the staff member with ID {staff.staff_id}.",
+        "evidence": "The staff member's ID is provided as evidence.",
+        "ans": "SELECT `first_name`, `last_name`, `email` \nFROM `staff` \nWHERE `staff_id` = {staff.staff_id};"
+    },
+    {
+        "question": "Find the total number of doctors specialized in {doctors.specialization}.",
+        "evidence": "The specialization is provided as evidence.",
+        "ans": "SELECT COUNT(*) AS total_doctors \nFROM `doctors` \nWHERE `specialization` = '{doctors.specialization}';"
+    },
+    {
+        "question": "List all medical records created by the doctor with ID {doctors.doctor_id}.",
+        "evidence": "The doctor's ID is provided as evidence.",
+        "ans": "SELECT * \nFROM `medical_records` \nWHERE `doctor_id` = {doctors.doctor_id};"
+    },
+    {
+        "question": "Retrieve the full name and address of the patient who has the billing record with ID {billing.billing_id}.",
+        "evidence": "The billing record ID is provided as evidence.",
+        "ans": "SELECT `first_name`, `last_name`, `address` \nFROM `patients` \nJOIN `billing` ON `patients`.`patient_id` = `billing`.`patient_id` \nWHERE `billing`.`billing_id` = {billing.billing_id};"
+    },
+    {
+        "question": "Find the total number of appointments that were canceled.",
+        "evidence": "The status of appointments is provided as evidence.",
+        "ans": "SELECT COUNT(*) AS total_canceled_appointments \nFROM `appointments` \nWHERE `status` = 'Canceled';"
+    },
+    {
+        "question": "List all prescriptions issued by the doctor with ID {doctors.doctor_id}.",
+        "evidence": "The doctor's ID is provided as evidence.",
+        "ans": "SELECT * \nFROM `prescriptions` \nWHERE `doctor_id` = {doctors.doctor_id};"
+    },
+    {
+        "question": "Retrieve the full name and phone number of the patient who has the insurance record with ID {insurance.insurance_id}.",
+        "evidence": "The insurance record ID is provided as evidence.",
+        "ans": "SELECT `first_name`, `last_name`, `phone_number` \nFROM `patients` \nJOIN `insurance` ON `patients`.`patient_id` = `insurance`.`patient_id` \nWHERE `insurance`.`insurance_id` = {insurance.insurance_id};"
+    },
+    {
+        "question": "Find the total number of medical records for the patient with ID {patients.patient_id}.",
+        "evidence": "The patient's ID is provided as evidence.",
+        "ans": "SELECT COUNT(*) AS total_medical_records \nFROM `medical_records` \nWHERE `patient_id` = {patients.patient_id};"
+    },
+    {
+        "question": "List all appointments that were scheduled for the doctor with ID {doctors.doctor_id} in the month of {appointments.appointment_date}.",
+        "evidence": "The doctor's ID and the month are provided as evidence.",
+        "ans": "SELECT * \nFROM `appointments` \nWHERE `doctor_id` = {doctors.doctor_id} \nAND MONTH(`appointment_date`) = {appointments.appointment_date};"
+    }
+]

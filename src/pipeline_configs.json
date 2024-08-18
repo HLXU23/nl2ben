@@ -13,14 +13,14 @@
     },
     "data_generation": {
         "engine": "deepseek-coder",
-        "temperature": 0.5,
+        "temperature": 1,
         "input_path": "../result/",
         "template_path": "../templates/data_generation.txt",
         "output_path": "../output/data_generation/",
         "result_path": "../result/data_generation/",
-        "epoch": 1,
-        "row_num": 3,
-        "example_value_num": 3
+        "epoch": 3,
+        "row_num": 10,
+        "example_value_num": 5
     },
     "temp_generation": {
         "engine": "deepseek-coder",
@@ -30,7 +30,7 @@
         "evidence_path": "../params/",
         "output_path": "../output/temp_generation/",
         "result_path": "../result/temp_generation/",
-        "ques_template_num": 5,
+        "ques_template_num": 20,
         "example_value_num": 3
     },
     "ques_generation": {

@@ -12,36 +12,46 @@
     {
         "question": "List the names and district names of schools that have an average SAT math score above 600 and are located in the county '{schools.County}'.",
         "evidence": "The average SAT math score is stored in the `AvgScrMath` column of the `satscores` table, and the county name is stored in the `County` column of the `schools` table.",
+        "ans": "SELECT s.`School`, s.`District`\nFROM `schools` s\nJOIN `satscores` ss ON s.`CDSCode` = ss.`cds`\nWHERE ss.`AvgScrMath` > 600\nAND s.`County` = 'Sacramento';"
+    },
+    {
+        "question": "List the names and district names of schools that have an average SAT math score above 600 and are located in the county '{schools.County}'.",
+        "evidence": "The average SAT math score is stored in the `AvgScrMath` column of the `satscores` table, and the county name is stored in the `County` column of the `schools` table.",
         "ans": "SELECT s.`School`, s.`District`\nFROM `schools` s\nJOIN `satscores` ss ON s.`CDSCode` = ss.`cds`\nWHERE ss.`AvgScrMath` > 600\nAND s.`County` = 'San Mateo';"
     },
     {
-        "question": "Calculate the average SAT Math score for schools in a specific district (use `{satscores.dname}` as the district name).",
-        "evidence": "The average SAT Math score is stored in the `AvgScrMath` column of the `satscores` table.",
-        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = 'SBE - Livermore Valley Charter Preparatory High';"
+        "question": "List the names and district names of schools that have an average SAT math score above 600 and are located in the county '{schools.County}'.",
+        "evidence": "The average SAT math score is stored in the `AvgScrMath` column of the `satscores` table, and the county name is stored in the `County` column of the `schools` table.",
+        "ans": "SELECT s.`School`, s.`District`\nFROM `schools` s\nJOIN `satscores` ss ON s.`CDSCode` = ss.`cds`\nWHERE ss.`AvgScrMath` > 600\nAND s.`County` = 'San Diego';"
     },
     {
         "question": "Calculate the average SAT Math score for schools in a specific district (use `{satscores.dname}` as the district name).",
         "evidence": "The average SAT Math score is stored in the `AvgScrMath` column of the `satscores` table.",
-        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = 'Montebello Unified';"
+        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = 'Vallejo City Unified';"
     },
     {
         "question": "Calculate the average SAT Math score for schools in a specific district (use `{satscores.dname}` as the district name).",
         "evidence": "The average SAT Math score is stored in the `AvgScrMath` column of the `satscores` table.",
-        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = 'Trinity Alps Unified';"
+        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = 'Coachella Valley Unified';"
+    },
+    {
+        "question": "Calculate the average SAT Math score for schools in a specific district (use `{satscores.dname}` as the district name).",
+        "evidence": "The average SAT Math score is stored in the `AvgScrMath` column of the `satscores` table.",
+        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = 'San Bernardino City Unified';"
     },
     {
         "question": "List the names of schools that have an average SAT Reading score above a certain threshold (use `{satscores.AvgScrRead}` as the threshold).",
         "evidence": "The average SAT Reading score is stored in the `AvgScrRead` column of the `satscores` table.",
-        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > 479;"
+        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > 449;"
     },
     {
         "question": "List the names of schools that have an average SAT Reading score above a certain threshold (use `{satscores.AvgScrRead}` as the threshold).",
         "evidence": "The average SAT Reading score is stored in the `AvgScrRead` column of the `satscores` table.",
-        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > 551;"
+        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > 482;"
     },
     {
         "question": "List the names of schools that have an average SAT Reading score above a certain threshold (use `{satscores.AvgScrRead}` as the threshold).",
         "evidence": "The average SAT Reading score is stored in the `AvgScrRead` column of the `satscores` table.",
-        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > 452;"
+        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > 574;"
     }
 ]

@@ -38,9 +38,9 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "emergency_contact": {
+            "medical_history": {
                 "description": "",
-                "type": "VARCHAR"
+                "type": "TEXT"
             }
         },
         "primary_keys": [
@@ -74,6 +74,10 @@
             "email": {
                 "description": "",
                 "type": "VARCHAR"
+            },
+            "biography": {
+                "description": "",
+                "type": "TEXT"
             }
         },
         "primary_keys": [
@@ -100,9 +104,13 @@
                 "description": "",
                 "type": "DATETIME"
             },
-            "notes": {
+            "reason": {
                 "description": "",
                 "type": "TEXT"
+            },
+            "status": {
+                "description": "",
+                "type": "VARCHAR"
             }
         },
         "primary_keys": [
@@ -138,7 +146,7 @@
             },
             "record_date": {
                 "description": "",
-                "type": "DATE"
+                "type": "DATETIME"
             },
             "diagnosis": {
                 "description": "",
@@ -147,10 +155,62 @@
             "treatment": {
                 "description": "",
                 "type": "TEXT"
+            },
+            "notes": {
+                "description": "",
+                "type": "TEXT"
             }
         },
         "primary_keys": [
             "record_id"
+        ],
+        "foreign_keys": [
+            {
+                "column": "doctor_id",
+                "referenced_table": "doctors",
+                "referenced_column": "doctor_id"
+            },
+            {
+                "column": "patient_id",
+                "referenced_table": "patients",
+                "referenced_column": "patient_id"
+            }
+        ]
+    },
+    "prescriptions": {
+        "description": "",
+        "attributes": {
+            "prescription_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "patient_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "doctor_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "prescription_date": {
+                "description": "",
+                "type": "DATETIME"
+            },
+            "medication": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "dosage": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "instructions": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "prescription_id"
         ],
         "foreign_keys": [
             {
@@ -187,6 +247,10 @@
             "status": {
                 "description": "",
                 "type": "VARCHAR"
+            },
+            "description": {
+                "description": "",
+                "type": "TEXT"
             }
         },
         "primary_keys": [
@@ -199,5 +263,85 @@
                 "referenced_column": "patient_id"
             }
         ]
+    },
+    "insurance": {
+        "description": "",
+        "attributes": {
+            "insurance_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "patient_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "provider": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "policy_number": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "effective_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "expiration_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "coverage_details": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "insurance_id"
+        ],
+        "foreign_keys": [
+            {
+                "column": "patient_id",
+                "referenced_table": "patients",
+                "referenced_column": "patient_id"
+            }
+        ]
+    },
+    "staff": {
+        "description": "",
+        "attributes": {
+            "staff_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "first_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "last_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "role": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "phone_number": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "email": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "responsibilities": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "staff_id"
+        ],
+        "foreign_keys": []
     }
 }

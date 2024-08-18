@@ -8,6 +8,6 @@ CREATE TABLE patients (
     address VARCHAR,
     phone_number VARCHAR,
     email VARCHAR,
-    emergency_contact VARCHAR,
+    medical_history TEXT,
     PRIMARY KEY (patient_id)
 );

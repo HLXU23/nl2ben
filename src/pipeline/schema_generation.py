@@ -83,8 +83,11 @@ def schema_generation(db_name: str, config: Dict[str, Any]):
     schema_result = parse_response_to_schema(response)
 
     result_sqlite_path = os.path.join(result_path, f'{db_name}.sqlite')
-    create_db_from_schema(schema_result, result_sqlite_path)
+    executed_sql = create_db_from_schema(schema_result, result_sqlite_path)
 
+    with open(os.path.join(output_path, f'sql_{db_name}.txt'), "w") as file:
+        file.write(executed_sql)
+    
     logging.info('Schema generation success')
     return
 
@@ -173,6 +176,8 @@ def create_db_from_schema(schema_result, result_sqlite_path):
 
     conn = sqlite3.connect(result_sqlite_path)
     cursor = conn.cursor()
+
+    executed_sql = ''
     
     for table_name, table_info in schema_result.items():
         attributes = table_info.get('attributes', {})
@@ -192,10 +197,13 @@ def create_db_from_schema(schema_result, result_sqlite_path):
             referenced_table = fk.get('referenced_table')
             referenced_column = fk.get('referenced_column')
             if column and referenced_table and referenced_column:
-                columns.append(f'FOREIGN KEY ("{column}"") REFERENCES "{referenced_table}" ("{referenced_column}")')
+                columns.append(f'FOREIGN KEY (`{column}`) REFERENCES `{referenced_table}` (`{referenced_column}`)')
         
-        create_table_sql = f'CREATE TABLE "{table_name}" ({', '.join(columns)})'
-        cursor.execute(create_table_sql)
-    
+        sql = f'CREATE TABLE `{table_name}` ({', '.join(columns)})'
+        logging.debug(f'Run database creation SQL command:\n{sql}')
+        cursor.execute(sql)
+        executed_sql += f'{sql}\n'
+        
     conn.commit()
     conn.close()
+    return executed_sql

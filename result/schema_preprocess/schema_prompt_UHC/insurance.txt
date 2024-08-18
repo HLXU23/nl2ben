@@ -1,0 +1,11 @@
+CREATE TABLE insurance (
+    insurance_id INT,
+    patient_id INT,
+    provider VARCHAR,
+    policy_number VARCHAR,
+    effective_date DATE,
+    expiration_date DATE,
+    coverage_details TEXT,
+    PRIMARY KEY (insurance_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);

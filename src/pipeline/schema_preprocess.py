@@ -57,7 +57,7 @@ def get_schema_from_sqlite(db_path):
     for table in tables:
         table_name = table[0]
         schema[table_name] = {
-            "description": "",  # 可以置空
+            "description": "",
             "attributes": {},
             "primary_keys": [],
             "foreign_keys": []

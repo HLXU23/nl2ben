@@ -1,3 +1,36 @@
+As a database engineer, design schema for a database called UHC.
+Requirements:
+The database is used for health care domain.
+The database is used for university health center, collecting data of patients, doctors, etc.
+Contains at least 8 tables.
+Contains at least 50 columns in total.
+Contains table patients(description: information of patients).
+Table patients contains at least 10 columns.
+Table patients contains column age(description: age of patients).
+Contains table doctors.
+
+
+For tables, give name and description in format:
+{Table_name}: {Table_description}
+
+For columns, give name, type and description in format:
+({Column_type}){Column_name}: {Column_description}
+Optional column type: BOOLEAN, INT, FLOAT, TEXT, VARCHAR, DATE, TIME, DATETIME, TIMESTAMP
+
+For primary keys, column name should be followed by *
+For foreign keys, referencing column should be followed by ({referenced table}.{referenced column})
+When one column is primary key and foreign key at the same time, () should be followed by *, so * should always be followed by :
+
+Output format (NO ANY OTHER OUTPUT):
+
+{Table1_name}: {Table1_description}
+-({Column1.1_type}){Column1.1_name}*: {Column1.1_description}
+-({Column1.2_type}){Column1.2_name}({Table2_name}.{Column2.1_name}): {Column1.2_description}
+
+{Table2_name}: {Table2_description}
+-({Column2.1_type}){Column2.1_name}*: {Column2.1_description}
+-({Column2.2_type}){Column2.2_name}: {Column2.2_description}
+====================
 patients: Information of patients
 -(INT)patient_id*: Unique identifier for each patient
 -(VARCHAR)first_name: First name of the patient
@@ -8,7 +41,7 @@ patients: Information of patients
 -(VARCHAR)address: Address of the patient
 -(VARCHAR)phone_number: Phone number of the patient
 -(VARCHAR)email: Email address of the patient
--(VARCHAR)emergency_contact: Emergency contact information of the patient
+-(TEXT)medical_history: Summary of the patient's medical history
 
 doctors: Information of doctors
 -(INT)doctor_id*: Unique identifier for each doctor
@@ -17,25 +50,56 @@ doctors: Information of doctors
 -(VARCHAR)specialization: Medical specialization of the doctor
 -(VARCHAR)phone_number: Phone number of the doctor
 -(VARCHAR)email: Email address of the doctor
+-(TEXT)biography: Brief biography of the doctor
 
 appointments: Information of appointments
 -(INT)appointment_id*: Unique identifier for each appointment
 -(INT)patient_id(patients.patient_id): Reference to the patient
 -(INT)doctor_id(doctors.doctor_id): Reference to the doctor
 -(DATETIME)appointment_date: Date and time of the appointment
--(TEXT)notes: Notes about the appointment
+-(TEXT)reason: Reason for the appointment
+-(VARCHAR)status: Status of the appointment (e.g., scheduled, completed, canceled)
 
 medical_records: Information of medical records
 -(INT)record_id*: Unique identifier for each medical record
 -(INT)patient_id(patients.patient_id): Reference to the patient
 -(INT)doctor_id(doctors.doctor_id): Reference to the doctor
--(DATE)record_date: Date when the record was created
+-(DATETIME)record_date: Date and time when the record was created
 -(TEXT)diagnosis: Diagnosis details
 -(TEXT)treatment: Treatment details
+-(TEXT)notes: Additional notes
 
-billing: Information of billing details
+prescriptions: Information of prescriptions
+-(INT)prescription_id*: Unique identifier for each prescription
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)prescription_date: Date and time when the prescription was issued
+-(TEXT)medication: Medication details
+-(TEXT)dosage: Dosage instructions
+-(TEXT)instructions: Additional instructions
+
+billing: Information of billing
 -(INT)billing_id*: Unique identifier for each billing record
 -(INT)patient_id(patients.patient_id): Reference to the patient
 -(FLOAT)amount: Amount to be billed
 -(DATE)billing_date: Date of billing
 -(VARCHAR)status: Status of the billing (e.g., paid, pending)
+-(TEXT)description: Description of the billing
+
+insurance: Information of insurance
+-(INT)insurance_id*: Unique identifier for each insurance record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(VARCHAR)provider: Insurance provider name
+-(VARCHAR)policy_number: Policy number
+-(DATE)effective_date: Effective date of the insurance
+-(DATE)expiration_date: Expiration date of the insurance
+-(TEXT)coverage_details: Details of the coverage
+
+staff: Information of staff
+-(INT)staff_id*: Unique identifier for each staff member
+-(VARCHAR)first_name: First name of the staff member
+-(VARCHAR)last_name: Last name of the staff member
+-(VARCHAR)role: Role of the staff member
+-(VARCHAR)phone_number: Phone number of the staff member
+-(VARCHAR)email: Email address of the staff member
+-(TEXT)responsibilities: Responsibilities of the staff member

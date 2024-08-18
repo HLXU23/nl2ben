@@ -1,3 +1,10 @@
 Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`
 Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`
 Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm
+Exclusively virtual refers to Virtual = 'F'
+Magnet schools or offer a magnet program means that Magnet = 1
+Total enrollment can be represented by `Enrollment (K-12)` + `Enrollment (Ages 5-17)`
+Excellence rate = NumGE1500 / NumTstTakr
+Diffrence in enrollement = `Enrollment (K-12)` - `Enrollment (Ages 5-17)`
+between 1/1/1980 and 12/31/1980 means the year = 1980
+Fresno Unified is a name of district
