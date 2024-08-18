@@ -1,13 +1,16 @@
+import os
 import json
 import logging
 import requests
 from typing import Dict, Any
+from dotenv import load_dotenv
 
+load_dotenv()
 ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
     "deepseek-coder": {
         "type": "llm",
         "uri": "https://api.deepseek.com/chat/completions",
-        "api_key": ""
+        "api_key": os.getenv('DEEPSEEK_API_KEY')
     }
 }
 
