@@ -1,0 +1,153 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    medical_history TEXT,
+    PRIMARY KEY (patient_id)
+);
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+patient_id: {row1.patient_id}
+first_name: {row1.first_name}
+last_name: {row1.last_name}
+date_of_birth: {row1.date_of_birth}
+age: {row1.age}
+gender: {row1.gender}
+address: {row1.address}
+phone_number: {row1.phone_number}
+email: {row1.email}
+medical_history: {row1.medical_history}
+
+2
+...
+
+etc.
+====================
+1
+patient_id: 1
+first_name: John
+last_name: Doe
+date_of_birth: 1985-07-15
+age: 36
+gender: Male
+address: 1234 Elm St, Springfield, IL 62704
+phone_number: 217-555-1234
+email: john.doe@example.com
+medical_history: Hypertension, Type 2 Diabetes
+
+2
+patient_id: 2
+first_name: Jane
+last_name: Smith
+date_of_birth: 1992-03-22
+age: 29
+gender: Female
+address: 5678 Oak St, Portland, OR 97205
+phone_number: 503-555-5678
+email: jane.smith@example.com
+medical_history: Asthma, Allergies
+
+3
+patient_id: 3
+first_name: Michael
+last_name: Johnson
+date_of_birth: 1978-11-08
+age: 43
+gender: Male
+address: 9101 Pine St, Denver, CO 80202
+phone_number: 303-555-9101
+email: michael.johnson@example.com
+medical_history: None
+
+4
+patient_id: 4
+first_name: Emily
+last_name: Williams
+date_of_birth: 2000-05-14
+age: 21
+gender: Female
+address: 1122 Maple St, Boston, MA 02108
+phone_number: 617-555-1122
+email: emily.williams@example.com
+medical_history: Depression, Anxiety
+
+5
+patient_id: 5
+first_name: Daniel
+last_name: Brown
+date_of_birth: 1995-09-30
+age: 26
+gender: Male
+address: 3344 Birch St, Seattle, WA 98101
+phone_number: 206-555-3344
+email: daniel.brown@example.com
+medical_history: Migraines
+
+6
+patient_id: 6
+first_name: Olivia
+last_name: Davis
+date_of_birth: 1989-06-18
+age: 32
+gender: Female
+address: 5566 Cedar St, Miami, FL 33101
+phone_number: 305-555-5566
+email: olivia.davis@example.com
+medical_history: Hypothyroidism
+
+7
+patient_id: 7
+first_name: William
+last_name: Miller
+date_of_birth: 1973-04-02
+age: 48
+gender: Male
+address: 7788 Walnut St, Austin, TX 78701
+phone_number: 512-555-7788
+email: william.miller@example.com
+medical_history: High Cholesterol
+
+8
+patient_id: 8
+first_name: Ava
+last_name: Wilson
+date_of_birth: 1998-12-25
+age: 23
+gender: Female
+address: 9900 Chestnut St, San Francisco, CA 94101
+phone_number: 415-555-9900
+email: ava.wilson@example.com
+medical_history: None
+
+9
+patient_id: 9
+first_name: James
+last_name: Moore
+date_of_birth: 1965-08-09
+age: 56
+gender: Male
+address: 1212 Cherry St, New York, NY 10001
+phone_number: 212-555-1212
+email: james.moore@example.com
+medical_history: Arthritis, Gout
+
+10
+patient_id: 10
+first_name: Sophia
+last_name: Taylor
+date_of_birth: 1990-02-14
+age: 31
+gender: Female
+address: 3434 Peach St, Atlanta, GA 30301
+phone_number: 404-555-3434
+email: sophia.taylor@example.com
+medical_history: Epilepsy

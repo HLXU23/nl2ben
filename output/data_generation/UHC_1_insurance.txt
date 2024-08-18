@@ -1,0 +1,170 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE insurance (
+    insurance_id INT,
+    patient_id INT,
+    provider VARCHAR,
+    policy_number VARCHAR,
+    effective_date DATE,
+    expiration_date DATE,
+    coverage_details TEXT,
+    PRIMARY KEY (insurance_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+patients.patient_id: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+prescription_id: 6
+patient_id: 16
+doctor_id: 6
+prescription_date: "2023-10-21 08:30:00"
+medication: "Amlodipine"
+dosage: "5mg"
+instructions: "Take once daily in the morning."
+
+2
+prescription_id: 7
+patient_id: 17
+doctor_id: 7
+prescription_date: "2023-10-22 13:00:00"
+medication: "Hydrochlorothiazide"
+dosage: "25mg"
+instructions: "Take once daily in the morning."
+
+3
+prescription_id: 8
+patient_id: 18
+doctor_id: 8
+prescription_date: "2023-10-23 16:15:00"
+medication: "Sertraline"
+dosage: "50mg"
+instructions: "Take once daily in the morning."
+
+4
+prescription_id: 9
+patient_id: 19
+doctor_id: 9
+prescription_date: "2023-10-24 09:00:00"
+medication: "Montelukast"
+dosage: "10mg"
+instructions: "Take once daily in the evening."
+
+5
+prescription_id: 10
+patient_id: 20
+doctor_id: 10
+prescription_date: "2023-10-25 11:30:00"
+medication: "Prednisone"
+dosage: "5mg"
+instructions: "Take as directed by the doctor."
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+insurance_id: {row1.insurance_id}
+patient_id: {row1.patient_id}
+provider: {row1.provider}
+policy_number: {row1.policy_number}
+effective_date: {row1.effective_date}
+expiration_date: {row1.expiration_date}
+coverage_details: {row1.coverage_details}
+
+2
+...
+
+etc.
+====================
+1
+insurance_id: 1
+patient_id: 11
+provider: "UnitedHealthcare"
+policy_number: "UHC123456"
+effective_date: "2023-01-01"
+expiration_date: "2024-01-01"
+coverage_details: "Comprehensive coverage including hospitalization, surgery, and outpatient services."
+
+2
+insurance_id: 2
+patient_id: 12
+provider: "Aetna"
+policy_number: "AET987654"
+effective_date: "2023-02-15"
+expiration_date: "2024-02-15"
+coverage_details: "Major medical coverage with a $1,000 deductible."
+
+3
+insurance_id: 3
+patient_id: 13
+provider: "Cigna"
+policy_number: "CIG456789"
+effective_date: "2023-03-10"
+expiration_date: "2024-03-10"
+coverage_details: "Health maintenance organization (HMO) plan with network restrictions."
+
+4
+insurance_id: 4
+patient_id: 14
+provider: "BlueCross BlueShield"
+policy_number: "BCBS321654"
+effective_date: "2023-04-05"
+expiration_date: "2024-04-05"
+coverage_details: "Preferred provider organization (PPO) plan with out-of-network benefits."
+
+5
+insurance_id: 5
+patient_id: 15
+provider: "Kaiser Permanente"
+policy_number: "KAI789123"
+effective_date: "2023-05-20"
+expiration_date: "2024-05-20"
+coverage_details: "Exclusive provider organization (EPO) plan with no out-of-network coverage."
+
+6
+insurance_id: 6
+patient_id: 16
+provider: "Humana"
+policy_number: "HUM654987"
+effective_date: "2023-06-15"
+expiration_date: "2024-06-15"
+coverage_details: "High-deductible health plan (HDHP) with a health savings account (HSA)."
+
+7
+insurance_id: 7
+patient_id: 17
+provider: "Molina Healthcare"
+policy_number: "MOL123789"
+effective_date: "2023-07-10"
+expiration_date: "2024-07-10"
+coverage_details: "Medicaid managed care plan with additional benefits for low-income individuals."
+
+8
+insurance_id: 8
+patient_id: 18
+provider: "Oscar Health"
+policy_number: "OSC456123"
+effective_date: "2023-08-01"
+expiration_date: "2024-08-01"
+coverage_details: "Individual and family plans with telemedicine and wellness benefits."
+
+9
+insurance_id: 9
+patient_id: 19
+provider: "Centene Corporation"
+policy_number: "CEN789456"
+effective_date: "2023-09-15"
+expiration_date: "2024-09-15"
+coverage_details: "Managed care plans for government-sponsored health care programs."
+
+10
+insurance_id: 10
+patient_id: 20
+provider: "HealthPartners"
+policy_number: "HEP321987"
+effective_date: "2023-10-01"
+expiration_date: "2024-10-01"
+coverage_details: "Non-profit health insurance plans with a focus on preventive care and wellness."

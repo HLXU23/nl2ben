@@ -1,0 +1,180 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    specialization VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    biography TEXT,
+    PRIMARY KEY (doctor_id)
+);
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+patient_id: 26
+first_name: "Olivia"
+last_name: "Jones"
+date_of_birth: "1998-04-14"
+age: 23
+gender: "Female"
+address: "5566 Cedar St, Naperville, IL 60540"
+phone_number: "630-555-5566"
+email: "olivia.jones@example.com"
+medical_history: "None"
+
+2
+patient_id: 27
+first_name: "William"
+last_name: "Garcia"
+date_of_birth: "1973-12-25"
+age: 48
+gender: "Male"
+address: "7788 Walnut St, Joliet, IL 60435"
+phone_number: "815-555-7788"
+email: "william.garcia@example.com"
+medical_history: "Heart Disease, Sleep Apnea"
+
+3
+patient_id: 28
+first_name: "Sophia"
+last_name: "Miller"
+date_of_birth: "1992-08-08"
+age: 30
+gender: "Female"
+address: "9900 Chestnut St, Aurora, IL 60504"
+phone_number: "630-555-9900"
+email: "sophia.miller@example.com"
+medical_history: "Thyroid Issues"
+
+4
+patient_id: 29
+first_name: "James"
+last_name: "Davis"
+date_of_birth: "1987-02-18"
+age: 34
+gender: "Male"
+address: "1122 Hickory St, Champaign, IL 61820"
+phone_number: "217-555-1122"
+email: "james.davis@example.com"
+medical_history: "Gastroesophageal Reflux Disease (GERD)"
+
+5
+patient_id: 30
+first_name: "Ava"
+last_name: "Martinez"
+date_of_birth: "2000-01-01"
+age: 21
+gender: "Female"
+address: "3344 Poplar St, Waukegan, IL 60085"
+phone_number: "847-555-3344"
+email: "ava.martinez@example.com"
+medical_history: "None"
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+doctor_id: {row1.doctor_id}
+first_name: {row1.first_name}
+last_name: {row1.last_name}
+specialization: {row1.specialization}
+phone_number: {row1.phone_number}
+email: {row1.email}
+biography: {row1.biography}
+
+2
+...
+
+etc.
+====================
+1
+doctor_id: 1
+first_name: "John"
+last_name: "Doe"
+specialization: "Cardiologist"
+phone_number: "312-555-1234"
+email: "john.doe@example.com"
+biography: "Dr. John Doe is a renowned cardiologist with over 15 years of experience. He specializes in heart health and has successfully treated numerous patients with cardiac conditions."
+
+2
+doctor_id: 2
+first_name: "Emily"
+last_name: "Smith"
+specialization: "Dermatologist"
+phone_number: "312-555-5678"
+email: "emily.smith@example.com"
+biography: "Dr. Emily Smith is a leading dermatologist known for her expertise in skin care and cosmetic treatments. She has been featured in several health magazines for her innovative approaches."
+
+3
+doctor_id: 3
+first_name: "Michael"
+last_name: "Brown"
+specialization: "Orthopedic Surgeon"
+phone_number: "312-555-9101"
+email: "michael.brown@example.com"
+biography: "Dr. Michael Brown is an orthopedic surgeon specializing in sports medicine and joint replacements. He has a passion for helping athletes recover from injuries and improve their performance."
+
+4
+doctor_id: 4
+first_name: "Sarah"
+last_name: "Wilson"
+specialization: "Pediatrician"
+phone_number: "312-555-1122"
+email: "sarah.wilson@example.com"
+biography: "Dr. Sarah Wilson is a compassionate pediatrician dedicated to the health and well-being of children. She provides comprehensive care from infancy through adolescence."
+
+5
+doctor_id: 5
+first_name: "David"
+last_name: "Lee"
+specialization: "Neurologist"
+phone_number: "312-555-3344"
+email: "david.lee@example.com"
+biography: "Dr. David Lee is a respected neurologist with a focus on neurodegenerative diseases. He is actively involved in research to find treatments for conditions like Alzheimer's and Parkinson's."
+
+6
+doctor_id: 6
+first_name: "Laura"
+last_name: "Garcia"
+specialization: "Obstetrician/Gynecologist"
+phone_number: "312-555-5566"
+email: "laura.garcia@example.com"
+biography: "Dr. Laura Garcia is an OB/GYN committed to providing exceptional care to women throughout their reproductive years. She is known for her gentle approach and expertise in high-risk pregnancies."
+
+7
+doctor_id: 7
+first_name: "Christopher"
+last_name: "Taylor"
+specialization: "Psychiatrist"
+phone_number: "312-555-7788"
+email: "christopher.taylor@example.com"
+biography: "Dr. Christopher Taylor is a psychiatrist who specializes in treating mental health disorders. He is passionate about helping patients achieve mental wellness and leads support groups in the community."
+
+8
+doctor_id: 8
+first_name: "Maria"
+last_name: "Hernandez"
+specialization: "Endocrinologist"
+phone_number: "312-555-9900"
+email: "maria.hernandez@example.com"
+biography: "Dr. Maria Hernandez is an endocrinologist focusing on hormonal disorders and diabetes management. She is dedicated to educating patients about their conditions and promoting healthy lifestyles."
+
+9
+doctor_id: 9
+first_name: "Daniel"
+last_name: "Clark"
+specialization: "Gastroenterologist"
+phone_number: "312-555-1122"
+email: "daniel.clark@example.com"
+biography: "Dr. Daniel Clark is a gastroenterologist with expertise in digestive system disorders. He provides advanced diagnostic and treatment options for patients suffering from gastrointestinal issues."
+
+10
+doctor_id: 10
+first_name: "Olivia"
+last_name: "Lewis"
+specialization: "Radiologist"
+phone_number: "312-555-3344"
+email: "olivia.lewis@example.com"
+biography: "Dr. Olivia Lewis is a radiologist specializing in medical imaging and diagnostics. She plays a crucial role in detecting and monitoring diseases through various imaging techniques."

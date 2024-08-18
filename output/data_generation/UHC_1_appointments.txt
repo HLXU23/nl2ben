@@ -1,0 +1,160 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE appointments (
+    appointment_id INT,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATETIME,
+    reason TEXT,
+    status VARCHAR,
+    PRIMARY KEY (appointment_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+doctors.doctor_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+patients.patient_id: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+staff_id: 6
+first_name: "Sarah"
+last_name: "Clark"
+role: "Radiologist"
+phone_number: "305-555-1414"
+email: "sarah.clark@example.com"
+responsibilities: "Image interpretation, diagnostic reporting, radiology procedures"
+
+2
+staff_id: 7
+first_name: "Christopher"
+last_name: "Lopez"
+role: "Surgeon"
+phone_number: "206-555-1515"
+email: "christopher.lopez@example.com"
+responsibilities: "Surgical operations, post-operative care, patient follow-up"
+
+3
+staff_id: 8
+first_name: "Olivia"
+last_name: "Garcia"
+role: "Dietitian"
+phone_number: "617-555-1616"
+email: "olivia.garcia@example.com"
+responsibilities: "Nutritional assessment, meal planning, dietary counseling"
+
+4
+staff_id: 9
+first_name: "Matthew"
+last_name: "Harris"
+role: "Physical Therapist"
+phone_number: "512-555-1717"
+email: "matthew.harris@example.com"
+responsibilities: "Rehabilitation, mobility training, patient education"
+
+5
+staff_id: 10
+first_name: "Ava"
+last_name: "Young"
+role: "Social Worker"
+phone_number: "415-555-1818"
+email: "ava.young@example.com"
+responsibilities: "Counseling, crisis intervention, community resource coordination"
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+appointment_id: {row1.appointment_id}
+patient_id: {row1.patient_id}
+doctor_id: {row1.doctor_id}
+appointment_date: {row1.appointment_date}
+reason: {row1.reason}
+status: {row1.status}
+
+2
+...
+
+etc.
+====================
+1
+appointment_id: 1
+patient_id: 11
+doctor_id: 1
+appointment_date: "2023-10-15 10:30:00"
+reason: "Annual check-up"
+status: "Scheduled"
+
+2
+appointment_id: 2
+patient_id: 12
+doctor_id: 2
+appointment_date: "2023-10-16 14:00:00"
+reason: "Follow-up on lab results"
+status: "Confirmed"
+
+3
+appointment_id: 3
+patient_id: 13
+doctor_id: 3
+appointment_date: "2023-10-17 09:15:00"
+reason: "Consultation for persistent cough"
+status: "Pending"
+
+4
+appointment_id: 4
+patient_id: 14
+doctor_id: 4
+appointment_date: "2023-10-18 11:30:00"
+reason: "Routine physical therapy session"
+status: "Scheduled"
+
+5
+appointment_id: 5
+patient_id: 15
+doctor_id: 5
+appointment_date: "2023-10-19 15:45:00"
+reason: "Dietary consultation"
+status: "Confirmed"
+
+6
+appointment_id: 6
+patient_id: 16
+doctor_id: 6
+appointment_date: "2023-10-20 16:00:00"
+reason: "X-ray for suspected fracture"
+status: "Scheduled"
+
+7
+appointment_id: 7
+patient_id: 17
+doctor_id: 7
+appointment_date: "2023-10-21 08:30:00"
+reason: "Pre-operative consultation"
+status: "Confirmed"
+
+8
+appointment_id: 8
+patient_id: 18
+doctor_id: 8
+appointment_date: "2023-10-22 13:45:00"
+reason: "Nutrition plan review"
+status: "Pending"
+
+9
+appointment_id: 9
+patient_id: 19
+doctor_id: 9
+appointment_date: "2023-10-23 10:00:00"
+reason: "Post-injury therapy session"
+status: "Scheduled"
+
+10
+appointment_id: 10
+patient_id: 20
+doctor_id: 10
+appointment_date: "2023-10-24 14:30:00"
+reason: "Counseling session"
+status: "Confirmed"

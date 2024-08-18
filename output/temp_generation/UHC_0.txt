@@ -1,0 +1,336 @@
+As a professor teaching database courses, generate 20 question templates with corresponding SQL answer templates for examination.
+
+Requirements of question templates:
+
+1, As realistic as possible
+
+2, Evidence must be used when students answer the questions. In the other words, questions should be unsolvable without evidence information.
+
+3, Use `` around table / column names to prevent reserved word conflicts
+
+4, (Optional) You can use `{TABLE}` to indicate any tables, `{COLUMN}` to indicate any columns.
+For example, you can have 'find all entries of {COLUMN} from table {TABLE}.' in question and 'SELECT `{COLUMN}` FROM `{TABLE}`' in SQL answer.
+If you want to use this, ensure that any table / column can be placed in the designated location and does not affect the plausibility of the question
+
+5, (Optional) You can use {table_name.column_name} to indicate an arbitrary value in this column. 
+For example, suggest there is a column student_id in table student. 
+When you want to have 'student with id A0001' in question, use 'student with id {student.student_id}'
+When you want to have 'WHERE `student`.`student_id` == A0001' in SQL answer, use 'WHERE `student`.`student_id` == {student.student_id}'
+
+
+Schema of database used:
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    medical_history TEXT,
+    PRIMARY KEY (patient_id)
+);
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    specialization VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    biography TEXT,
+    PRIMARY KEY (doctor_id)
+);
+CREATE TABLE appointments (
+    appointment_id INT,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATETIME,
+    reason TEXT,
+    status VARCHAR,
+    PRIMARY KEY (appointment_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+CREATE TABLE medical_records (
+    record_id INT,
+    patient_id INT,
+    doctor_id INT,
+    record_date DATETIME,
+    diagnosis TEXT,
+    treatment TEXT,
+    notes TEXT,
+    PRIMARY KEY (record_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+CREATE TABLE prescriptions (
+    prescription_id INT,
+    patient_id INT,
+    doctor_id INT,
+    prescription_date DATETIME,
+    medication TEXT,
+    dosage TEXT,
+    instructions TEXT,
+    PRIMARY KEY (prescription_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+CREATE TABLE billing (
+    billing_id INT,
+    patient_id INT,
+    amount FLOAT,
+    billing_date DATE,
+    status VARCHAR,
+    description TEXT,
+    PRIMARY KEY (billing_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+CREATE TABLE insurance (
+    insurance_id INT,
+    patient_id INT,
+    provider VARCHAR,
+    policy_number VARCHAR,
+    effective_date DATE,
+    expiration_date DATE,
+    coverage_details TEXT,
+    PRIMARY KEY (insurance_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+CREATE TABLE staff (
+    staff_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    role VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    responsibilities TEXT,
+    PRIMARY KEY (staff_id)
+);
+
+You should generate evidence on your own.
+
+
+Output format (NO ANY OTHER OUTPUT):
+1
+Q: {Question template}
+E: {Evidence}
+A: 
+```sql
+{SQL answer template(executable)}
+```
+
+2
+Q: {Question template}
+E: {Evidence}
+A: 
+```sql
+{SQL answer template(executable)}
+```
+...
+====================
+1
+Q: Find the full name and phone number of the patient with ID {patients.patient_id}.
+E: The patient's ID is provided as evidence.
+A: 
+```sql
+SELECT `first_name`, `last_name`, `phone_number` 
+FROM `patients` 
+WHERE `patient_id` = {patients.patient_id};
+```
+
+2
+Q: List all appointments scheduled for the doctor with ID {doctors.doctor_id} on {appointments.appointment_date}.
+E: The doctor's ID and the appointment date are provided as evidence.
+A: 
+```sql
+SELECT * 
+FROM `appointments` 
+WHERE `doctor_id` = {doctors.doctor_id} 
+AND `appointment_date` = '{appointments.appointment_date}';
+```
+
+3
+Q: Retrieve the diagnosis and treatment for the medical record with ID {medical_records.record_id}.
+E: The medical record ID is provided as evidence.
+A: 
+```sql
+SELECT `diagnosis`, `treatment` 
+FROM `medical_records` 
+WHERE `record_id` = {medical_records.record_id};
+```
+
+4
+Q: Find the total amount billed for the patient with ID {patients.patient_id}.
+E: The patient's ID is provided as evidence.
+A: 
+```sql
+SELECT SUM(`amount`) AS total_amount 
+FROM `billing` 
+WHERE `patient_id` = {patients.patient_id};
+```
+
+5
+Q: List all medications prescribed to the patient with ID {patients.patient_id}.
+E: The patient's ID is provided as evidence.
+A: 
+```sql
+SELECT `medication` 
+FROM `prescriptions` 
+WHERE `patient_id` = {patients.patient_id};
+```
+
+6
+Q: Retrieve the full name and specialization of the doctor with ID {doctors.doctor_id}.
+E: The doctor's ID is provided as evidence.
+A: 
+```sql
+SELECT `first_name`, `last_name`, `specialization` 
+FROM `doctors` 
+WHERE `doctor_id` = {doctors.doctor_id};
+```
+
+7
+Q: Find the insurance provider and policy number for the patient with ID {patients.patient_id}.
+E: The patient's ID is provided as evidence.
+A: 
+```sql
+SELECT `provider`, `policy_number` 
+FROM `insurance` 
+WHERE `patient_id` = {patients.patient_id};
+```
+
+8
+Q: List all staff members with the role of {staff.role}.
+E: The staff role is provided as evidence.
+A: 
+```sql
+SELECT `first_name`, `last_name` 
+FROM `staff` 
+WHERE `role` = '{staff.role}';
+```
+
+9
+Q: Retrieve the appointment date and status for the appointment with ID {appointments.appointment_id}.
+E: The appointment ID is provided as evidence.
+A: 
+```sql
+SELECT `appointment_date`, `status` 
+FROM `appointments` 
+WHERE `appointment_id` = {appointments.appointment_id};
+```
+
+10
+Q: Find the total number of patients born after {patients.date_of_birth}.
+E: The date of birth is provided as evidence.
+A: 
+```sql
+SELECT COUNT(*) AS total_patients 
+FROM `patients` 
+WHERE `date_of_birth` > '{patients.date_of_birth}';
+```
+
+11
+Q: List all appointments that were scheduled for the patient with ID {patients.patient_id} in the year {appointments.appointment_date}.
+E: The patient's ID and the year are provided as evidence.
+A: 
+```sql
+SELECT * 
+FROM `appointments` 
+WHERE `patient_id` = {patients.patient_id} 
+AND YEAR(`appointment_date`) = {appointments.appointment_date};
+```
+
+12
+Q: Retrieve the full name and email of the staff member with ID {staff.staff_id}.
+E: The staff member's ID is provided as evidence.
+A: 
+```sql
+SELECT `first_name`, `last_name`, `email` 
+FROM `staff` 
+WHERE `staff_id` = {staff.staff_id};
+```
+
+13
+Q: Find the total number of doctors specialized in {doctors.specialization}.
+E: The specialization is provided as evidence.
+A: 
+```sql
+SELECT COUNT(*) AS total_doctors 
+FROM `doctors` 
+WHERE `specialization` = '{doctors.specialization}';
+```
+
+14
+Q: List all medical records created by the doctor with ID {doctors.doctor_id}.
+E: The doctor's ID is provided as evidence.
+A: 
+```sql
+SELECT * 
+FROM `medical_records` 
+WHERE `doctor_id` = {doctors.doctor_id};
+```
+
+15
+Q: Retrieve the full name and address of the patient who has the billing record with ID {billing.billing_id}.
+E: The billing record ID is provided as evidence.
+A: 
+```sql
+SELECT `first_name`, `last_name`, `address` 
+FROM `patients` 
+JOIN `billing` ON `patients`.`patient_id` = `billing`.`patient_id` 
+WHERE `billing`.`billing_id` = {billing.billing_id};
+```
+
+16
+Q: Find the total number of appointments that were canceled.
+E: The status of appointments is provided as evidence.
+A: 
+```sql
+SELECT COUNT(*) AS total_canceled_appointments 
+FROM `appointments` 
+WHERE `status` = 'Canceled';
+```
+
+17
+Q: List all prescriptions issued by the doctor with ID {doctors.doctor_id}.
+E: The doctor's ID is provided as evidence.
+A: 
+```sql
+SELECT * 
+FROM `prescriptions` 
+WHERE `doctor_id` = {doctors.doctor_id};
+```
+
+18
+Q: Retrieve the full name and phone number of the patient who has the insurance record with ID {insurance.insurance_id}.
+E: The insurance record ID is provided as evidence.
+A: 
+```sql
+SELECT `first_name`, `last_name`, `phone_number` 
+FROM `patients` 
+JOIN `insurance` ON `patients`.`patient_id` = `insurance`.`patient_id` 
+WHERE `insurance`.`insurance_id` = {insurance.insurance_id};
+```
+
+19
+Q: Find the total number of medical records for the patient with ID {patients.patient_id}.
+E: The patient's ID is provided as evidence.
+A: 
+```sql
+SELECT COUNT(*) AS total_medical_records 
+FROM `medical_records` 
+WHERE `patient_id` = {patients.patient_id};
+```
+
+20
+Q: List all appointments that were scheduled for the doctor with ID {doctors.doctor_id} in the month of {appointments.appointment_date}.
+E: The doctor's ID and the month are provided as evidence.
+A: 
+```sql
+SELECT * 
+FROM `appointments` 
+WHERE `doctor_id` = {doctors.doctor_id} 
+AND MONTH(`appointment_date`) = {appointments.appointment_date};
+```

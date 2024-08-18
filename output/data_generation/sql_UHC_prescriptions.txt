@@ -1,0 +1,90 @@
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 11, 1, 2, 2023-10-29 09:15:00, Amoxicillin, 500mg, Take 2 capsules every 12 hours with food.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 12, 3, 5, 2023-10-30 14:30:00, Loratadine, 10mg, Take 1 tablet daily in the morning.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 13, 4, 8, 2023-10-31 11:45:00, Ibuprofen, 200mg, Take 1-2 tablets every 6-8 hours as needed for pain.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 14, 7, 1, 2023-11-01 10:00:00, Metformin, 500mg, Take 1 tablet twice daily with meals.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 15, 2, 6, 2023-11-02 15:00:00, Albuterol, 2mg, Inhale 2 puffs every 4-6 hours as needed.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 16, 9, 3, 2023-11-03 08:45:00, Sertraline, 50mg, Take 1 tablet daily in the morning.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 17, 5, 10, 2023-11-04 13:15:00, Fexofenadine, 180mg, Take 1 tablet daily as needed during allergy season.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 18, 6, 4, 2023-11-05 09:30:00, Naproxen, 220mg, Take 1 tablet twice daily with food.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 19, 8, 7, 2023-11-06 16:45:00, Salmeterol, 50mcg, Inhale 2 puffs twice daily.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 20, 10, 9, 2023-11-07 12:00:00, Levothyroxine, 75mcg, Take 1 tablet daily on an empty stomach.
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1, 11, 1, "2023-10-16 09:45:00", "Atorvastatin", "20mg", "Take once daily in the evening."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 2, 12, 2, "2023-10-17 11:15:00", "Levothyroxine", "50mcg", "Take once daily on an empty stomach."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 3, 13, 3, "2023-10-18 14:30:00", "Metformin", "1000mg", "Take twice daily with meals."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 4, 14, 4, "2023-10-19 10:00:00", "Albuterol", "2 puffs", "Use as needed for breathing difficulties."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 5, 15, 5, "2023-10-20 15:45:00", "Omeprazole", "20mg", "Take once daily before breakfast."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 6, 16, 6, "2023-10-21 08:30:00", "Amlodipine", "5mg", "Take once daily in the morning."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 7, 17, 7, "2023-10-22 13:00:00", "Hydrochlorothiazide", "25mg", "Take once daily in the morning."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 8, 18, 8, "2023-10-23 16:15:00", "Sertraline", "50mg", "Take once daily in the morning."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 9, 19, 9, "2023-10-24 09:00:00", "Montelukast", "10mg", "Take once daily in the evening."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 10, 20, 10, "2023-10-25 11:30:00", "Prednisone", "5mg", "Take as directed by the doctor."
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1001, 21, 1, "2023-04-15 10:30:00", "Amoxicillin", "500mg", "Take 1 capsule every 8 hours for 7 days"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1002, 22, 2, "2023-04-16 11:45:00", "Lisinopril", "10mg", "Take 1 tablet daily in the morning"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1003, 23, 3, "2023-04-17 09:15:00", "Metformin", "500mg", "Take 1 tablet twice a day with meals"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1004, 24, 4, "2023-04-18 14:00:00", "Albuterol", "2mg", "Inhale as needed for breathing difficulties"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1005, 25, 5, "2023-04-19 15:30:00", "Omeprazole", "20mg", "Take 1 capsule daily before breakfast"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1006, 26, 6, "2023-04-20 10:00:00", "Atorvastatin", "40mg", "Take 1 tablet daily in the evening"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1007, 27, 7, "2023-04-21 12:30:00", "Levothyroxine", "75mcg", "Take 1 tablet daily on an empty stomach"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1008, 28, 8, "2023-04-22 08:45:00", "Gabapentin", "300mg", "Take 1 capsule three times a day with food"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1009, 29, 9, "2023-04-23 16:15:00", "Prednisone", "5mg", "Take 1 tablet daily in the morning for 5 days"
+Exec success
+INSERT INTO `prescriptions` (`prescription_id`, `patient_id`, `doctor_id`, `prescription_date`, `medication`, `dosage`, `instructions`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1010, 30, 10, "2023-04-24 09:30:00", "Fluoxetine", "20mg", "Take 1 capsule daily in the morning"
+Exec success

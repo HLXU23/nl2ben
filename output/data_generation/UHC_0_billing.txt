@@ -1,0 +1,158 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE billing (
+    billing_id INT,
+    patient_id INT,
+    amount FLOAT,
+    billing_date DATE,
+    status VARCHAR,
+    description TEXT,
+    PRIMARY KEY (billing_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+patients.patient_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+prescription_id: 16
+patient_id: 9
+doctor_id: 3
+prescription_date: 2023-11-03 08:45:00
+medication: Sertraline
+dosage: 50mg
+instructions: Take 1 tablet daily in the morning.
+
+2
+prescription_id: 17
+patient_id: 5
+doctor_id: 10
+prescription_date: 2023-11-04 13:15:00
+medication: Fexofenadine
+dosage: 180mg
+instructions: Take 1 tablet daily as needed during allergy season.
+
+3
+prescription_id: 18
+patient_id: 6
+doctor_id: 4
+prescription_date: 2023-11-05 09:30:00
+medication: Naproxen
+dosage: 220mg
+instructions: Take 1 tablet twice daily with food.
+
+4
+prescription_id: 19
+patient_id: 8
+doctor_id: 7
+prescription_date: 2023-11-06 16:45:00
+medication: Salmeterol
+dosage: 50mcg
+instructions: Inhale 2 puffs twice daily.
+
+5
+prescription_id: 20
+patient_id: 10
+doctor_id: 9
+prescription_date: 2023-11-07 12:00:00
+medication: Levothyroxine
+dosage: 75mcg
+instructions: Take 1 tablet daily on an empty stomach.
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+billing_id: {row1.billing_id}
+patient_id: {row1.patient_id}
+amount: {row1.amount}
+billing_date: {row1.billing_date}
+status: {row1.status}
+description: {row1.description}
+
+2
+...
+
+etc.
+====================
+1
+billing_id: 101
+patient_id: 1
+amount: 150.75
+billing_date: 2023-11-03
+status: "Paid"
+description: "Consultation fee for general check-up"
+
+2
+billing_id: 102
+patient_id: 2
+amount: 200.00
+billing_date: 2023-11-04
+status: "Pending"
+description: "X-ray and lab tests"
+
+3
+billing_id: 103
+patient_id: 3
+amount: 75.50
+billing_date: 2023-11-05
+status: "Paid"
+description: "Prescription refill"
+
+4
+billing_id: 104
+patient_id: 4
+amount: 300.25
+billing_date: 2023-11-06
+status: "Pending"
+description: "Surgery follow-up"
+
+5
+billing_id: 105
+patient_id: 5
+amount: 120.00
+billing_date: 2023-11-07
+status: "Paid"
+description: "Dental cleaning"
+
+6
+billing_id: 106
+patient_id: 6
+amount: 50.00
+billing_date: 2023-11-08
+status: "Pending"
+description: "Eye exam"
+
+7
+billing_id: 107
+patient_id: 7
+amount: 250.50
+billing_date: 2023-11-09
+status: "Paid"
+description: "Physical therapy session"
+
+8
+billing_id: 108
+patient_id: 8
+amount: 180.75
+billing_date: 2023-11-10
+status: "Pending"
+description: "MRI scan"
+
+9
+billing_id: 109
+patient_id: 9
+amount: 90.00
+billing_date: 2023-11-11
+status: "Paid"
+description: "Blood work"
+
+10
+billing_id: 110
+patient_id: 10
+amount: 350.00
+billing_date: 2023-11-12
+status: "Pending"
+description: "Orthopedic consultation"

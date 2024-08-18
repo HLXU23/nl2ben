@@ -1,0 +1,160 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE billing (
+    billing_id INT,
+    patient_id INT,
+    amount FLOAT,
+    billing_date DATE,
+    status VARCHAR,
+    description TEXT,
+    PRIMARY KEY (billing_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+patients.patient_id: 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
+
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+prescription_id: 1006
+patient_id: 26
+doctor_id: 6
+prescription_date: "2023-04-20 10:00:00"
+medication: "Atorvastatin"
+dosage: "40mg"
+instructions: "Take 1 tablet daily in the evening"
+
+2
+prescription_id: 1007
+patient_id: 27
+doctor_id: 7
+prescription_date: "2023-04-21 12:30:00"
+medication: "Levothyroxine"
+dosage: "75mcg"
+instructions: "Take 1 tablet daily on an empty stomach"
+
+3
+prescription_id: 1008
+patient_id: 28
+doctor_id: 8
+prescription_date: "2023-04-22 08:45:00"
+medication: "Gabapentin"
+dosage: "300mg"
+instructions: "Take 1 capsule three times a day with food"
+
+4
+prescription_id: 1009
+patient_id: 29
+doctor_id: 9
+prescription_date: "2023-04-23 16:15:00"
+medication: "Prednisone"
+dosage: "5mg"
+instructions: "Take 1 tablet daily in the morning for 5 days"
+
+5
+prescription_id: 1010
+patient_id: 30
+doctor_id: 10
+prescription_date: "2023-04-24 09:30:00"
+medication: "Fluoxetine"
+dosage: "20mg"
+instructions: "Take 1 capsule daily in the morning"
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+billing_id: {row1.billing_id}
+patient_id: {row1.patient_id}
+amount: {row1.amount}
+billing_date: {row1.billing_date}
+status: {row1.status}
+description: {row1.description}
+
+2
+...
+
+etc.
+====================
+```
+1
+billing_id: 1001
+patient_id: 21
+amount: 150.75
+billing_date: "2023-04-20"
+status: "Paid"
+description: "Consultation fee for general check-up"
+
+2
+billing_id: 1002
+patient_id: 22
+amount: 200.00
+billing_date: "2023-04-21"
+status: "Pending"
+description: "X-ray and lab tests"
+
+3
+billing_id: 1003
+patient_id: 23
+amount: 75.50
+billing_date: "2023-04-22"
+status: "Paid"
+description: "Medication refill"
+
+4
+billing_id: 1004
+patient_id: 24
+amount: 300.25
+billing_date: "2023-04-23"
+status: "Pending"
+description: "Specialist consultation and follow-up"
+
+5
+billing_id: 1005
+patient_id: 25
+amount: 50.00
+billing_date: "2023-04-24"
+status: "Paid"
+description: "Routine blood work"
+
+6
+billing_id: 1006
+patient_id: 26
+amount: 120.00
+billing_date: "2023-04-25"
+status: "Pending"
+description: "Ultrasound scan"
+
+7
+billing_id: 1007
+patient_id: 27
+amount: 95.75
+billing_date: "2023-04-26"
+status: "Paid"
+description: "Dental cleaning and check-up"
+
+8
+billing_id: 1008
+patient_id: 28
+amount: 250.00
+billing_date: "2023-04-27"
+status: "Pending"
+description: "MRI scan"
+
+9
+billing_id: 1009
+patient_id: 29
+amount: 45.00
+billing_date: "2023-04-28"
+status: "Paid"
+description: "Eye examination and prescription"
+
+10
+billing_id: 1010
+patient_id: 30
+amount: 180.50
+billing_date: "2023-04-29"
+status: "Pending"
+description: "Physical therapy session"
+```

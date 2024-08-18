@@ -1,0 +1,13 @@
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: Find the total number of medical records for the patient with ID {patients.patient_id}.
+Evidence: The patient's ID is provided as evidence.
+SQL answer: SELECT COUNT(*) AS total_medical_records 
+FROM `medical_records` 
+WHERE `patient_id` = 4;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+Find the total number of medical records for the patient with ID 4.

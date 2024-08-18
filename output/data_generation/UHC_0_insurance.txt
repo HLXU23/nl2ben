@@ -1,0 +1,165 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE insurance (
+    insurance_id INT,
+    patient_id INT,
+    provider VARCHAR,
+    policy_number VARCHAR,
+    effective_date DATE,
+    expiration_date DATE,
+    coverage_details TEXT,
+    PRIMARY KEY (insurance_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+patients.patient_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+billing_id: 106
+patient_id: 6
+amount: 50.00
+billing_date: 2023-11-08
+status: "Pending"
+description: "Eye exam"
+
+2
+billing_id: 107
+patient_id: 7
+amount: 250.50
+billing_date: 2023-11-09
+status: "Paid"
+description: "Physical therapy session"
+
+3
+billing_id: 108
+patient_id: 8
+amount: 180.75
+billing_date: 2023-11-10
+status: "Pending"
+description: "MRI scan"
+
+4
+billing_id: 109
+patient_id: 9
+amount: 90.00
+billing_date: 2023-11-11
+status: "Paid"
+description: "Blood work"
+
+5
+billing_id: 110
+patient_id: 10
+amount: 350.00
+billing_date: 2023-11-12
+status: "Pending"
+description: "Orthopedic consultation"
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+insurance_id: {row1.insurance_id}
+patient_id: {row1.patient_id}
+provider: {row1.provider}
+policy_number: {row1.policy_number}
+effective_date: {row1.effective_date}
+expiration_date: {row1.expiration_date}
+coverage_details: {row1.coverage_details}
+
+2
+...
+
+etc.
+====================
+1
+insurance_id: 1
+patient_id: 1
+provider: "UnitedHealthcare"
+policy_number: "UHC123456789"
+effective_date: 2023-01-01
+expiration_date: 2024-01-01
+coverage_details: "Comprehensive medical coverage including doctor visits, hospital stays, and prescription drugs."
+
+2
+insurance_id: 2
+patient_id: 2
+provider: "Aetna"
+policy_number: "AET987654321"
+effective_date: 2023-02-15
+expiration_date: 2024-02-15
+coverage_details: "Health maintenance organization (HMO) plan with network-based coverage."
+
+3
+insurance_id: 3
+patient_id: 3
+provider: "Cigna"
+policy_number: "CIG555555555"
+effective_date: 2023-03-10
+expiration_date: 2024-03-10
+coverage_details: "Preferred provider organization (PPO) plan with both in-network and out-of-network benefits."
+
+4
+insurance_id: 4
+patient_id: 4
+provider: "BlueCross BlueShield"
+policy_number: "BCBS111111111"
+effective_date: 2023-04-20
+expiration_date: 2024-04-20
+coverage_details: "High deductible health plan (HDHP) with a health savings account (HSA) option."
+
+5
+insurance_id: 5
+patient_id: 5
+provider: "Kaiser Permanente"
+policy_number: "KAI222222222"
+effective_date: 2023-05-05
+expiration_date: 2024-05-05
+coverage_details: "Integrated healthcare system offering comprehensive care within its network."
+
+6
+insurance_id: 6
+patient_id: 6
+provider: "Humana"
+policy_number: "HUM333333333"
+effective_date: 2023-06-15
+expiration_date: 2024-06-15
+coverage_details: "Medicare Advantage plan providing additional benefits beyond original Medicare."
+
+7
+insurance_id: 7
+patient_id: 7
+provider: "Oscar Health"
+policy_number: "OSC444444444"
+effective_date: 2023-07-25
+expiration_date: 2024-07-25
+coverage_details: "Digital-first health insurance offering telemedicine and personalized care."
+
+8
+insurance_id: 8
+patient_id: 8
+provider: "Molina Healthcare"
+policy_number: "MOL555555555"
+effective_date: 2023-08-10
+expiration_date: 2024-08-10
+coverage_details: "Medicaid managed care plan serving low-income individuals and families."
+
+9
+insurance_id: 9
+patient_id: 9
+provider: "Centene Corporation"
+policy_number: "CEN666666666"
+effective_date: 2023-09-01
+expiration_date: 2024-09-01
+coverage_details: "Multi-state health plans including Medicaid, Medicare, and commercial coverage."
+
+10
+insurance_id: 10
+patient_id: 10
+provider: "Health Net"
+policy_number: "HEN777777777"
+effective_date: 2023-10-15
+expiration_date: 2024-10-15
+coverage_details: "Wide range of health plans including HMO, PPO, and government-sponsored programs."

@@ -1,0 +1,180 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    specialization VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    biography TEXT,
+    PRIMARY KEY (doctor_id)
+);
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+patient_id: 16
+first_name: "Olivia"
+last_name: "Jones"
+date_of_birth: "1998-06-08"
+age: 23
+gender: "Female"
+address: "5566 Cedar St, Miami, FL 33101"
+phone_number: "305-555-5566"
+email: "olivia.jones@example.com"
+medical_history: "Allergic rhinitis, no known food allergies"
+
+2
+patient_id: 17
+first_name: "William"
+last_name: "Garcia"
+date_of_birth: "1973-12-14"
+age: 48
+gender: "Male"
+address: "7788 Walnut St, Seattle, WA 98101"
+phone_number: "206-555-7788"
+email: "william.garcia@example.com"
+medical_history: "High cholesterol, no known allergies"
+
+3
+patient_id: 18
+first_name: "Sophia"
+last_name: "Miller"
+date_of_birth: "2000-03-27"
+age: 21
+gender: "Female"
+address: "9900 Cherry St, Boston, MA 02108"
+phone_number: "617-555-9900"
+email: "sophia.miller@example.com"
+medical_history: "No significant medical history"
+
+4
+patient_id: 19
+first_name: "James"
+last_name: "Davis"
+date_of_birth: "1989-08-05"
+age: 32
+gender: "Male"
+address: "1122 Peach St, Austin, TX 78701"
+phone_number: "512-555-1122"
+email: "james.davis@example.com"
+medical_history: "Gout, shellfish allergy"
+
+5
+patient_id: 20
+first_name: "Ava"
+last_name: "Martinez"
+date_of_birth: "1993-05-19"
+age: 28
+gender: "Female"
+address: "3344 Plum St, San Francisco, CA 94101"
+phone_number: "415-555-3344"
+email: "ava.martinez@example.com"
+medical_history: "Depression, no known allergies"
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+doctor_id: {row1.doctor_id}
+first_name: {row1.first_name}
+last_name: {row1.last_name}
+specialization: {row1.specialization}
+phone_number: {row1.phone_number}
+email: {row1.email}
+biography: {row1.biography}
+
+2
+...
+
+etc.
+====================
+1
+doctor_id: 1
+first_name: "John"
+last_name: "Doe"
+specialization: "Cardiology"
+phone_number: "212-555-1234"
+email: "john.doe@example.com"
+biography: "Dr. John Doe is a renowned cardiologist with over 20 years of experience. He specializes in heart diseases and has published numerous articles in medical journals."
+
+2
+doctor_id: 2
+first_name: "Emily"
+last_name: "Smith"
+specialization: "Pediatrics"
+phone_number: "310-555-5678"
+email: "emily.smith@example.com"
+biography: "Dr. Emily Smith is a dedicated pediatrician who has been caring for children for over 15 years. She is known for her compassionate approach and expertise in childhood illnesses."
+
+3
+doctor_id: 3
+first_name: "Michael"
+last_name: "Brown"
+specialization: "Orthopedics"
+phone_number: "713-555-9101"
+email: "michael.brown@example.com"
+biography: "Dr. Michael Brown is an orthopedic surgeon specializing in sports medicine. He has helped numerous athletes recover from injuries and return to their sports."
+
+4
+doctor_id: 4
+first_name: "Sarah"
+last_name: "Wilson"
+specialization: "Dermatology"
+phone_number: "404-555-1212"
+email: "sarah.wilson@example.com"
+biography: "Dr. Sarah Wilson is a dermatologist with a passion for skin health. She provides comprehensive care for skin conditions and is known for her innovative treatments."
+
+5
+doctor_id: 5
+first_name: "David"
+last_name: "Lee"
+specialization: "Neurology"
+phone_number: "619-555-1313"
+email: "david.lee@example.com"
+biography: "Dr. David Lee is a neurologist who specializes in the diagnosis and treatment of neurological disorders. He is committed to advancing the field through research and education."
+
+6
+doctor_id: 6
+first_name: "Laura"
+last_name: "Garcia"
+specialization: "Obstetrics and Gynecology"
+phone_number: "503-555-1414"
+email: "laura.garcia@example.com"
+biography: "Dr. Laura Garcia is an OB/GYN who provides comprehensive care for women throughout their lives. She is dedicated to promoting women's health and wellness."
+
+7
+doctor_id: 7
+first_name: "Christopher"
+last_name: "Taylor"
+specialization: "Oncology"
+phone_number: "808-555-1515"
+email: "christopher.taylor@example.com"
+biography: "Dr. Christopher Taylor is an oncologist who specializes in the treatment of cancer. He is committed to providing compassionate care and utilizing the latest advancements in cancer treatment."
+
+8
+doctor_id: 8
+first_name: "Maria"
+last_name: "Hernandez"
+specialization: "Endocrinology"
+phone_number: "916-555-1616"
+email: "maria.hernandez@example.com"
+biography: "Dr. Maria Hernandez is an endocrinologist who focuses on the diagnosis and treatment of hormonal disorders. She is known for her expertise in diabetes management."
+
+9
+doctor_id: 9
+first_name: "Daniel"
+last_name: "Lopez"
+specialization: "Gastroenterology"
+phone_number: "602-555-1717"
+email: "daniel.lopez@example.com"
+biography: "Dr. Daniel Lopez is a gastroenterologist who specializes in the treatment of digestive diseases. He is dedicated to providing personalized care and improving patient outcomes."
+
+10
+doctor_id: 10
+first_name: "Jennifer"
+last_name: "Davis"
+specialization: "Psychiatry"
+phone_number: "303-555-1818"
+email: "jennifer.davis@example.com"
+biography: "Dr. Jennifer Davis is a psychiatrist who provides compassionate care for mental health disorders. She is committed to helping patients achieve mental wellness and improve their quality of life."

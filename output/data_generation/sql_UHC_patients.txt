@@ -1,0 +1,90 @@
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 1, John, Doe, 1985-07-15, 36, Male, 1234 Elm St, Springfield, IL 62704, 217-555-1234, john.doe@example.com, Hypertension, Type 2 Diabetes
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 2, Jane, Smith, 1992-03-22, 29, Female, 5678 Oak St, Portland, OR 97205, 503-555-5678, jane.smith@example.com, Asthma, Allergies
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 3, Michael, Johnson, 1978-11-08, 43, Male, 9101 Pine St, Denver, CO 80202, 303-555-9101, michael.johnson@example.com, None
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 4, Emily, Williams, 2000-05-14, 21, Female, 1122 Maple St, Boston, MA 02108, 617-555-1122, emily.williams@example.com, Depression, Anxiety
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 5, Daniel, Brown, 1995-09-30, 26, Male, 3344 Birch St, Seattle, WA 98101, 206-555-3344, daniel.brown@example.com, Migraines
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 6, Olivia, Davis, 1989-06-18, 32, Female, 5566 Cedar St, Miami, FL 33101, 305-555-5566, olivia.davis@example.com, Hypothyroidism
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 7, William, Miller, 1973-04-02, 48, Male, 7788 Walnut St, Austin, TX 78701, 512-555-7788, william.miller@example.com, High Cholesterol
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 8, Ava, Wilson, 1998-12-25, 23, Female, 9900 Chestnut St, San Francisco, CA 94101, 415-555-9900, ava.wilson@example.com, None
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 9, James, Moore, 1965-08-09, 56, Male, 1212 Cherry St, New York, NY 10001, 212-555-1212, james.moore@example.com, Arthritis, Gout
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 10, Sophia, Taylor, 1990-02-14, 31, Female, 3434 Peach St, Atlanta, GA 30301, 404-555-3434, sophia.taylor@example.com, Epilepsy
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 11, "John", "Doe", "1985-04-12", 36, "Male", "1234 Elm St, Springfield, IL 62704", "217-555-1234", "john.doe@example.com", "Hypertension, seasonal allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 12, "Jane", "Smith", "1990-07-22", 31, "Female", "5678 Oak St, Lincoln, NE 68508", "402-555-5678", "jane.smith@example.com", "Asthma, no known allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 13, "Michael", "Johnson", "1978-11-03", 43, "Male", "9101 Pine St, Denver, CO 80202", "303-555-9101", "michael.johnson@example.com", "Type 2 diabetes, no known allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 14, "Emily", "Williams", "1995-02-18", 26, "Female", "1122 Maple St, Portland, OR 97205", "503-555-1122", "emily.williams@example.com", "Migraines, lactose intolerance"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 15, "Daniel", "Brown", "1982-09-29", 39, "Male", "3344 Birch St, Atlanta, GA 30301", "404-555-3344", "daniel.brown@example.com", "No significant medical history"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 16, "Olivia", "Jones", "1998-06-08", 23, "Female", "5566 Cedar St, Miami, FL 33101", "305-555-5566", "olivia.jones@example.com", "Allergic rhinitis, no known food allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 17, "William", "Garcia", "1973-12-14", 48, "Male", "7788 Walnut St, Seattle, WA 98101", "206-555-7788", "william.garcia@example.com", "High cholesterol, no known allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 18, "Sophia", "Miller", "2000-03-27", 21, "Female", "9900 Cherry St, Boston, MA 02108", "617-555-9900", "sophia.miller@example.com", "No significant medical history"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 19, "James", "Davis", "1989-08-05", 32, "Male", "1122 Peach St, Austin, TX 78701", "512-555-1122", "james.davis@example.com", "Gout, shellfish allergy"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 20, "Ava", "Martinez", "1993-05-19", 28, "Female", "3344 Plum St, San Francisco, CA 94101", "415-555-3344", "ava.martinez@example.com", "Depression, no known allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 21, "John", "Doe", "1985-07-12", 36, "Male", "1234 Elm St, Springfield, IL 62704", "217-555-1234", "john.doe@example.com", "Hypertension, Type 2 Diabetes"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 22, "Jane", "Smith", "1990-03-28", 31, "Female", "5678 Oak St, Chicago, IL 60601", "312-555-5678", "jane.smith@example.com", "Asthma, Allergies"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 23, "Michael", "Johnson", "1978-11-05", 43, "Male", "9101 Maple St, Peoria, IL 61602", "309-555-9101", "michael.johnson@example.com", "Depression, Anxiety"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 24, "Emily", "Williams", "1995-06-19", 26, "Female", "1122 Pine St, Evanston, IL 60201", "847-555-1122", "emily.williams@example.com", "Migraines"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 25, "Daniel", "Brown", "1982-09-30", 39, "Male", "3344 Birch St, Rockford, IL 61101", "815-555-3344", "daniel.brown@example.com", "Arthritis, High Cholesterol"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 26, "Olivia", "Jones", "1998-04-14", 23, "Female", "5566 Cedar St, Naperville, IL 60540", "630-555-5566", "olivia.jones@example.com", "None"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 27, "William", "Garcia", "1973-12-25", 48, "Male", "7788 Walnut St, Joliet, IL 60435", "815-555-7788", "william.garcia@example.com", "Heart Disease, Sleep Apnea"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 28, "Sophia", "Miller", "1992-08-08", 30, "Female", "9900 Chestnut St, Aurora, IL 60504", "630-555-9900", "sophia.miller@example.com", "Thyroid Issues"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 29, "James", "Davis", "1987-02-18", 34, "Male", "1122 Hickory St, Champaign, IL 61820", "217-555-1122", "james.davis@example.com", "Gastroesophageal Reflux Disease (GERD)"
+Exec success
+INSERT INTO `patients` (`patient_id`, `first_name`, `last_name`, `date_of_birth`, `age`, `gender`, `address`, `phone_number`, `email`, `medical_history`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUE: 30, "Ava", "Martinez", "2000-01-01", 21, "Female", "3344 Poplar St, Waukegan, IL 60085", "847-555-3344", "ava.martinez@example.com", "None"
+Exec success

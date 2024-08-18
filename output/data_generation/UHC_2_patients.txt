@@ -1,0 +1,201 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    medical_history TEXT,
+    PRIMARY KEY (patient_id)
+);
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+prescription_id: 6
+patient_id: 16
+doctor_id: 6
+prescription_date: "2023-10-21 08:30:00"
+medication: "Amlodipine"
+dosage: "5mg"
+instructions: "Take once daily in the morning."
+
+2
+prescription_id: 7
+patient_id: 17
+doctor_id: 7
+prescription_date: "2023-10-22 13:00:00"
+medication: "Hydrochlorothiazide"
+dosage: "25mg"
+instructions: "Take once daily in the morning."
+
+3
+prescription_id: 8
+patient_id: 18
+doctor_id: 8
+prescription_date: "2023-10-23 16:15:00"
+medication: "Sertraline"
+dosage: "50mg"
+instructions: "Take once daily in the morning."
+
+4
+prescription_id: 9
+patient_id: 19
+doctor_id: 9
+prescription_date: "2023-10-24 09:00:00"
+medication: "Montelukast"
+dosage: "10mg"
+instructions: "Take once daily in the evening."
+
+5
+prescription_id: 10
+patient_id: 20
+doctor_id: 10
+prescription_date: "2023-10-25 11:30:00"
+medication: "Prednisone"
+dosage: "5mg"
+instructions: "Take as directed by the doctor."
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+patient_id: {row1.patient_id}
+first_name: {row1.first_name}
+last_name: {row1.last_name}
+date_of_birth: {row1.date_of_birth}
+age: {row1.age}
+gender: {row1.gender}
+address: {row1.address}
+phone_number: {row1.phone_number}
+email: {row1.email}
+medical_history: {row1.medical_history}
+
+2
+...
+
+etc.
+====================
+1
+patient_id: 21
+first_name: "John"
+last_name: "Doe"
+date_of_birth: "1985-07-12"
+age: 36
+gender: "Male"
+address: "1234 Elm St, Springfield, IL 62704"
+phone_number: "217-555-1234"
+email: "john.doe@example.com"
+medical_history: "Hypertension, Type 2 Diabetes"
+
+2
+patient_id: 22
+first_name: "Jane"
+last_name: "Smith"
+date_of_birth: "1990-03-28"
+age: 31
+gender: "Female"
+address: "5678 Oak St, Chicago, IL 60601"
+phone_number: "312-555-5678"
+email: "jane.smith@example.com"
+medical_history: "Asthma, Allergies"
+
+3
+patient_id: 23
+first_name: "Michael"
+last_name: "Johnson"
+date_of_birth: "1978-11-05"
+age: 43
+gender: "Male"
+address: "9101 Maple St, Peoria, IL 61602"
+phone_number: "309-555-9101"
+email: "michael.johnson@example.com"
+medical_history: "Depression, Anxiety"
+
+4
+patient_id: 24
+first_name: "Emily"
+last_name: "Williams"
+date_of_birth: "1995-06-19"
+age: 26
+gender: "Female"
+address: "1122 Pine St, Evanston, IL 60201"
+phone_number: "847-555-1122"
+email: "emily.williams@example.com"
+medical_history: "Migraines"
+
+5
+patient_id: 25
+first_name: "Daniel"
+last_name: "Brown"
+date_of_birth: "1982-09-30"
+age: 39
+gender: "Male"
+address: "3344 Birch St, Rockford, IL 61101"
+phone_number: "815-555-3344"
+email: "daniel.brown@example.com"
+medical_history: "Arthritis, High Cholesterol"
+
+6
+patient_id: 26
+first_name: "Olivia"
+last_name: "Jones"
+date_of_birth: "1998-04-14"
+age: 23
+gender: "Female"
+address: "5566 Cedar St, Naperville, IL 60540"
+phone_number: "630-555-5566"
+email: "olivia.jones@example.com"
+medical_history: "None"
+
+7
+patient_id: 27
+first_name: "William"
+last_name: "Garcia"
+date_of_birth: "1973-12-25"
+age: 48
+gender: "Male"
+address: "7788 Walnut St, Joliet, IL 60435"
+phone_number: "815-555-7788"
+email: "william.garcia@example.com"
+medical_history: "Heart Disease, Sleep Apnea"
+
+8
+patient_id: 28
+first_name: "Sophia"
+last_name: "Miller"
+date_of_birth: "1992-08-08"
+age: 30
+gender: "Female"
+address: "9900 Chestnut St, Aurora, IL 60504"
+phone_number: "630-555-9900"
+email: "sophia.miller@example.com"
+medical_history: "Thyroid Issues"
+
+9
+patient_id: 29
+first_name: "James"
+last_name: "Davis"
+date_of_birth: "1987-02-18"
+age: 34
+gender: "Male"
+address: "1122 Hickory St, Champaign, IL 61820"
+phone_number: "217-555-1122"
+email: "james.davis@example.com"
+medical_history: "Gastroesophageal Reflux Disease (GERD)"
+
+10
+patient_id: 30
+first_name: "Ava"
+last_name: "Martinez"
+date_of_birth: "2000-01-01"
+age: 21
+gender: "Female"
+address: "3344 Poplar St, Waukegan, IL 60085"
+phone_number: "847-555-3344"
+email: "ava.martinez@example.com"
+medical_history: "None"

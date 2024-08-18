@@ -1,0 +1,90 @@
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 11, James, Smith, Nurse, 415-555-1234, james.smith@hospital.com, Assists doctors in procedures, administers medications, and provides patient care on the surgical ward.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 12, Sarah, Johnson, Administrative Assistant, 512-555-2345, sarah.johnson@hospital.com, Manages appointment scheduling, handles patient inquiries, and assists with billing and insurance claims.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 13, Michael, Brown, Janitor, 305-555-3456, michael.brown@hospital.com, Ensures cleanliness and sanitation of hospital facilities, including patient rooms, common areas, and operating rooms.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 14, Emily, Davis, Pharmacist, 212-555-4567, emily.davis@hospital.com, Dispenses medications, provides drug information to healthcare professionals, and monitors patient drug therapies.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 15, Daniel, Wilson, IT Specialist, 415-555-5678, daniel.wilson@hospital.com, Manages hospital IT systems, troubleshoots technical issues, and ensures network security.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 16, Olivia, Martinez, Medical Technologist, 512-555-6789, olivia.martinez@hospital.com, Performs laboratory tests to assist in diagnosis and treatment of diseases, maintains equipment, and ensures quality control.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 17, William, Anderson, Physical Therapist, 305-555-7890, william.anderson@hospital.com, Develops and implements treatment plans to help patients recover from injuries and disabilities, focusing on mobility and function.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 18, Ava, Taylor, Dietitian, 212-555-8901, ava.taylor@hospital.com, Plans nutritional programs to help prevent and treat illnesses, provides education on healthy eating habits, and counsels patients on diet modifications.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 19, Joseph, Thomas, Security Officer, 415-555-9012, joseph.thomas@hospital.com, Ensures safety and security of hospital premises, staff, and patients, monitors access points, and responds to emergencies.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 20, Mia, Hernandez, Social Worker, 512-555-0123, mia.hernandez@hospital.com, Provides emotional support and counseling to patients and families, assists with discharge planning, and connects patients with community resources.
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1, "John", "Doe", "Nurse", "305-555-1234", "john.doe@example.com", "Patient care, medication administration, health assessments"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 2, "Jane", "Smith", "Physician", "206-555-5678", "jane.smith@example.com", "Diagnosis, treatment planning, patient consultations"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 3, "Michael", "Brown", "Administrator", "617-555-9101", "michael.brown@example.com", "Staff management, budget oversight, facility operations"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 4, "Emily", "Wilson", "Medical Assistant", "512-555-1212", "emily.wilson@example.com", "Scheduling appointments, patient intake, medical record maintenance"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 5, "David", "Lee", "Pharmacist", "415-555-1313", "david.lee@example.com", "Medication dispensing, drug therapy management, patient counseling"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 6, "Sarah", "Clark", "Radiologist", "305-555-1414", "sarah.clark@example.com", "Image interpretation, diagnostic reporting, radiology procedures"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 7, "Christopher", "Lopez", "Surgeon", "206-555-1515", "christopher.lopez@example.com", "Surgical operations, post-operative care, patient follow-up"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 8, "Olivia", "Garcia", "Dietitian", "617-555-1616", "olivia.garcia@example.com", "Nutritional assessment, meal planning, dietary counseling"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 9, "Matthew", "Harris", "Physical Therapist", "512-555-1717", "matthew.harris@example.com", "Rehabilitation, mobility training, patient education"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 10, "Ava", "Young", "Social Worker", "415-555-1818", "ava.young@example.com", "Counseling, crisis intervention, community resource coordination"
+Exec success
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 1, "John", "Doe", "Nurse", "312-555-1234", "john.doe@example.com", "Patient care, medication administration, health assessments"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 2, "Jane", "Smith", "Physician", "312-555-5678", "jane.smith@example.com", "Diagnosis, treatment planning, patient consultations"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 3, "Michael", "Brown", "Administrator", "312-555-9012", "michael.brown@example.com", "Staff management, budget oversight, facility operations"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 4, "Emily", "Wilson", "Medical Assistant", "312-555-3456", "emily.wilson@example.com", "Assisting physicians, patient intake, scheduling appointments"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 5, "David", "Lee", "Pharmacist", "312-555-7890", "david.lee@example.com", "Medication dispensing, drug therapy management, patient counseling"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 6, "Sarah", "Clark", "Radiologist", "312-555-2345", "sarah.clark@example.com", "Interpretation of medical images, diagnostic reporting"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 7, "Christopher", "Garcia", "Surgeon", "312-555-6789", "christopher.garcia@example.com", "Performing surgeries, post-operative care, surgical planning"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 8, "Olivia", "Lopez", "Dietitian", "312-555-1235", "olivia.lopez@example.com", "Nutritional assessment, meal planning, dietary counseling"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 9, "Matthew", "Harris", "Physical Therapist", "312-555-5679", "matthew.harris@example.com", "Rehabilitation, mobility training, pain management"
+Exec failed
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `role`, `phone_number`, `email`, `responsibilities`) VALUES (?, ?, ?, ?, ?, ?, ?)
+VALUE: 10, "Ava", "Young", "Social Worker", "312-555-9013", "ava.young@example.com", "Counseling, support services, discharge planning"
+Exec failed

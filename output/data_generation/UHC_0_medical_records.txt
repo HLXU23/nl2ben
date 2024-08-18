@@ -1,0 +1,167 @@
+As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE medical_records (
+    record_id INT,
+    patient_id INT,
+    doctor_id INT,
+    record_date DATETIME,
+    diagnosis TEXT,
+    treatment TEXT,
+    notes TEXT,
+    PRIMARY KEY (record_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+doctors.doctor_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+patients.patient_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+
+Here are some newest data in database, you can check their formats and values for reference.
+1
+appointment_id: 5
+patient_id: 9
+doctor_id: 4
+appointment_date: 2023-10-19 15:45:00
+reason: Post-operative check
+status: Scheduled
+
+2
+appointment_id: 6
+patient_id: 5
+doctor_id: 3
+appointment_date: 2023-10-20 13:00:00
+reason: Annual physical
+status: Confirmed
+
+3
+appointment_id: 7
+patient_id: 6
+doctor_id: 7
+appointment_date: 2023-10-21 16:30:00
+reason: Follow-up on medication side effects
+status: Arrived
+
+4
+appointment_id: 8
+patient_id: 4
+doctor_id: 9
+appointment_date: 2023-10-22 08:45:00
+reason: Consultation for back pain
+status: Scheduled
+
+5
+appointment_id: 9
+patient_id: 8
+doctor_id: 6
+appointment_date: 2023-10-23 12:15:00
+reason: Routine eye exam
+status: Confirmed
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+record_id: {row1.record_id}
+patient_id: {row1.patient_id}
+doctor_id: {row1.doctor_id}
+record_date: {row1.record_date}
+diagnosis: {row1.diagnosis}
+treatment: {row1.treatment}
+notes: {row1.notes}
+
+2
+...
+
+etc.
+====================
+1
+record_id: 1
+patient_id: 1
+doctor_id: 2
+record_date: 2023-10-19 10:30:00
+diagnosis: Hypertension
+treatment: Prescription for lisinopril, follow-up in 4 weeks
+notes: Patient reports mild dizziness, monitor blood pressure closely.
+
+2
+record_id: 2
+patient_id: 3
+doctor_id: 5
+record_date: 2023-10-20 14:15:00
+diagnosis: Type 2 Diabetes
+treatment: Adjustment in metformin dosage, dietary consultation recommended
+notes: HbA1c level improved, continue current management.
+
+3
+record_id: 3
+patient_id: 7
+doctor_id: 8
+record_date: 2023-10-21 09:45:00
+diagnosis: Acute Sinusitis
+treatment: Prescription for amoxicillin, nasal saline irrigation
+notes: Patient to return if no improvement in 7 days.
+
+4
+record_id: 4
+patient_id: 2
+doctor_id: 1
+record_date: 2023-10-22 11:00:00
+diagnosis: Migraine
+treatment: Prescription for sumatriptan, avoid triggers
+notes: Patient advised on lifestyle changes to manage stress.
+
+5
+record_id: 5
+patient_id: 4
+doctor_id: 6
+record_date: 2023-10-23 15:30:00
+diagnosis: Gastroesophageal Reflux Disease (GERD)
+treatment: Prescription for omeprazole, dietary modifications
+notes: Follow-up in 6 weeks to assess symptom improvement.
+
+6
+record_id: 6
+patient_id: 9
+doctor_id: 3
+record_date: 2023-10-24 10:00:00
+diagnosis: Mild Depression
+treatment: Referral to psychiatry, continuation of current antidepressant
+notes: Monitor mood and sleep patterns closely.
+
+7
+record_id: 7
+patient_id: 5
+doctor_id: 10
+record_date: 2023-10-25 13:45:00
+diagnosis: Allergic Rhinitis
+treatment: Prescription for fexofenadine, environmental control measures
+notes: Seasonal allergies, consider immunotherapy if symptoms persist.
+
+8
+record_id: 8
+patient_id: 6
+doctor_id: 4
+record_date: 2023-10-26 08:30:00
+diagnosis: Chronic Back Pain
+treatment: Physical therapy referral, NSAIDs as needed
+notes: Patient to start strengthening exercises at home.
+
+9
+record_id: 9
+patient_id: 8
+doctor_id: 7
+record_date: 2023-10-27 16:00:00
+diagnosis: Asthma
+treatment: Adjustment in inhaler regimen, peak flow monitoring
+notes: Patient reports good control, continue current management.
+
+10
+record_id: 10
+patient_id: 10
+doctor_id: 9
+record_date: 2023-10-28 12:30:00
+diagnosis: Hypothyroidism
+treatment: Adjustment in levothyroxine dosage
+notes: TSH levels within normal range, maintain current dose.
