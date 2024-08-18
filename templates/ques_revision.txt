@@ -1,0 +1,9 @@
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: {QUESTION}
+Evidence: {EVIDENCE}
+SQL answer: {ANS}
+
+Return rewroted question directly. NO ANY OTHER OUTPUT

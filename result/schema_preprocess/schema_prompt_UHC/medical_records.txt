@@ -1,0 +1,11 @@
+CREATE TABLE medical_records (
+    record_id INT,
+    patient_id INT,
+    doctor_id INT,
+    record_date DATE,
+    diagnosis TEXT,
+    treatment TEXT,
+    PRIMARY KEY (record_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);

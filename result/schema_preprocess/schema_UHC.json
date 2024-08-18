@@ -1,0 +1,203 @@
+{
+    "patients": {
+        "description": "",
+        "attributes": {
+            "patient_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "first_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "last_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "date_of_birth": {
+                "description": "",
+                "type": "DATE"
+            },
+            "age": {
+                "description": "",
+                "type": "INT"
+            },
+            "gender": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "address": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "phone_number": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "email": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "emergency_contact": {
+                "description": "",
+                "type": "VARCHAR"
+            }
+        },
+        "primary_keys": [
+            "patient_id"
+        ],
+        "foreign_keys": []
+    },
+    "doctors": {
+        "description": "",
+        "attributes": {
+            "doctor_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "first_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "last_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "specialization": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "phone_number": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "email": {
+                "description": "",
+                "type": "VARCHAR"
+            }
+        },
+        "primary_keys": [
+            "doctor_id"
+        ],
+        "foreign_keys": []
+    },
+    "appointments": {
+        "description": "",
+        "attributes": {
+            "appointment_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "patient_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "doctor_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "appointment_date": {
+                "description": "",
+                "type": "DATETIME"
+            },
+            "notes": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "appointment_id"
+        ],
+        "foreign_keys": [
+            {
+                "column": "doctor_id",
+                "referenced_table": "doctors",
+                "referenced_column": "doctor_id"
+            },
+            {
+                "column": "patient_id",
+                "referenced_table": "patients",
+                "referenced_column": "patient_id"
+            }
+        ]
+    },
+    "medical_records": {
+        "description": "",
+        "attributes": {
+            "record_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "patient_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "doctor_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "record_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "diagnosis": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "treatment": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "record_id"
+        ],
+        "foreign_keys": [
+            {
+                "column": "doctor_id",
+                "referenced_table": "doctors",
+                "referenced_column": "doctor_id"
+            },
+            {
+                "column": "patient_id",
+                "referenced_table": "patients",
+                "referenced_column": "patient_id"
+            }
+        ]
+    },
+    "billing": {
+        "description": "",
+        "attributes": {
+            "billing_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "patient_id": {
+                "description": "",
+                "type": "INT"
+            },
+            "amount": {
+                "description": "",
+                "type": "FLOAT"
+            },
+            "billing_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "status": {
+                "description": "",
+                "type": "VARCHAR"
+            }
+        },
+        "primary_keys": [
+            "billing_id"
+        ],
+        "foreign_keys": [
+            {
+                "column": "patient_id",
+                "referenced_table": "patients",
+                "referenced_column": "patient_id"
+            }
+        ]
+    }
+}

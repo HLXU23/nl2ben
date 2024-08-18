@@ -1,0 +1,13 @@
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number VARCHAR,
+    email VARCHAR,
+    emergency_contact VARCHAR,
+    PRIMARY KEY (patient_id)
+);

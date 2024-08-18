@@ -1,0 +1,39 @@
+As a professor teaching database courses, generate {TEMP_NUM} question templates with corresponding SQL answer templates for examination.
+
+Requirements of question templates:
+
+1, As realistic as possible
+
+2, Evidence must be used when students answer the questions. In the other words, questions should be unsolvable without evidence information.
+
+3, Use `` around table / column names to prevent reserved word conflicts
+
+4, (Optional) You can use `{TABLE}` to indicate any tables, `{COLUMN}` to indicate any columns.
+For example, you can have 'find all entries of {COLUMN} from table {TABLE}.' in question and 'SELECT `{COLUMN}` FROM `{TABLE}`' in SQL answer.
+If you want to use this, ensure that any table / column can be placed in the designated location and does not affect the plausibility of the question
+
+5, (Optional) You can use {table_name.column_name} to indicate an arbitrary value in this column. 
+For example, suggest there is a column student_id in table student. 
+When you want to have 'student with id A0001' in question, use 'student with id {student.student_id}'
+When you want to have 'WHERE `student`.`student_id` == A0001' in SQL answer, use 'WHERE `student`.`student_id` == {student.student_id}'
+
+
+{SCHEMA}{EVIDENCE}
+
+Output format (NO ANY OTHER OUTPUT):
+1
+Q: {Question template}
+E: {Evidence}
+A: 
+```sql
+{SQL answer template(executable)}
+```
+
+2
+Q: {Question template}
+E: {Evidence}
+A: 
+```sql
+{SQL answer template(executable)}
+```
+...

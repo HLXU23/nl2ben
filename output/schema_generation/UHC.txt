@@ -1,0 +1,41 @@
+patients: Information of patients
+-(INT)patient_id*: Unique identifier for each patient
+-(VARCHAR)first_name: First name of the patient
+-(VARCHAR)last_name: Last name of the patient
+-(DATE)date_of_birth: Date of birth of the patient
+-(INT)age: Age of the patient
+-(VARCHAR)gender: Gender of the patient
+-(VARCHAR)address: Address of the patient
+-(VARCHAR)phone_number: Phone number of the patient
+-(VARCHAR)email: Email address of the patient
+-(VARCHAR)emergency_contact: Emergency contact information of the patient
+
+doctors: Information of doctors
+-(INT)doctor_id*: Unique identifier for each doctor
+-(VARCHAR)first_name: First name of the doctor
+-(VARCHAR)last_name: Last name of the doctor
+-(VARCHAR)specialization: Medical specialization of the doctor
+-(VARCHAR)phone_number: Phone number of the doctor
+-(VARCHAR)email: Email address of the doctor
+
+appointments: Information of appointments
+-(INT)appointment_id*: Unique identifier for each appointment
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)appointment_date: Date and time of the appointment
+-(TEXT)notes: Notes about the appointment
+
+medical_records: Information of medical records
+-(INT)record_id*: Unique identifier for each medical record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATE)record_date: Date when the record was created
+-(TEXT)diagnosis: Diagnosis details
+-(TEXT)treatment: Treatment details
+
+billing: Information of billing details
+-(INT)billing_id*: Unique identifier for each billing record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(FLOAT)amount: Amount to be billed
+-(DATE)billing_date: Date of billing
+-(VARCHAR)status: Status of the billing (e.g., paid, pending)

@@ -1,0 +1,23 @@
+1
+doctor_id: 101
+first_name: John
+last_name: Doe
+specialization: Cardiology
+phone_number: 555-1234
+email: john.doe@hospital.com
+
+2
+doctor_id: 102
+first_name: Sarah
+last_name: Smith
+specialization: Neurology
+phone_number: 555-5678
+email: sarah.smith@hospital.com
+
+3
+doctor_id: 103
+first_name: Michael
+last_name: Brown
+specialization: Pediatrics
+phone_number: 555-9876
+email: michael.brown@hospital.com

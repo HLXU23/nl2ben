@@ -1,0 +1,49 @@
+{
+    "schema_generation": {
+        "engine": "deepseek-coder",
+        "temperature": 0.5,
+        "params_root": "../params/",
+        "template_path": "../templates/schema_generation.txt",
+        "output_path": "../output/schema_generation/",
+        "result_path": "../result/schema_generation/"
+    },
+    "schema_preprocess": {
+        "input_path": "../result/",
+        "result_path": "../result/schema_preprocess/"
+    },
+    "data_generation": {
+        "engine": "deepseek-coder",
+        "temperature": 0.5,
+        "input_path": "../result/",
+        "template_path": "../templates/data_generation.txt",
+        "output_path": "../output/data_generation/",
+        "result_path": "../result/data_generation/",
+        "epoch": 1,
+        "row_num": 3,
+        "example_value_num": 3
+    },
+    "temp_generation": {
+        "engine": "deepseek-coder",
+        "temperature": 0.5,
+        "input_path": "../result/",
+        "template_path": "../templates/temp_generation.txt",
+        "evidence_path": "../params/",
+        "output_path": "../output/temp_generation/",
+        "result_path": "../result/temp_generation/",
+        "ques_template_num": 5,
+        "example_value_num": 3
+    },
+    "ques_generation": {
+        "input_path": "../result/",
+        "result_path": "../result/ques_generation/",
+        "ques_per_template": 3
+    },
+    "ques_revision": {
+        "engine": "deepseek-coder",
+        "temperature": 0,
+        "input_path": "../result/",
+        "template_path": "../templates/ques_revision.txt",
+        "output_path": "../output/ques_revision/",
+        "result_path": "../result/ques_revision/"
+    }
+}

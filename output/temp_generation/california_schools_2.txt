@@ -1,0 +1,194 @@
+As a professor teaching database courses, generate 5 question templates with corresponding SQL answer templates for examination.
+
+Requirements of question templates:
+
+1, As realistic as possible
+
+2, Evidence must be used when students answer the questions. In the other words, questions should be unsolvable without evidence information.
+
+3, Use `` around table / column names to prevent reserved word conflicts
+
+4, (Optional) You can use `{TABLE}` to indicate any tables, `{COLUMN}` to indicate any columns.
+For example, you can have 'find all entries of {COLUMN} from table {TABLE}.' in question and 'SELECT `{COLUMN}` FROM `{TABLE}`' in SQL answer.
+If you want to use this, ensure that any table / column can be placed in the designated location and does not affect the plausibility of the question
+
+5, (Optional) You can use {table_name.column_name} to indicate an arbitrary value in this column. 
+For example, suggest there is a column student_id in table student. 
+When you want to have 'student with id A0001' in question, use 'student with id {student.student_id}'
+When you want to have 'WHERE `student`.`student_id` == A0001' in SQL answer, use 'WHERE `student`.`student_id` == {student.student_id}'
+
+
+Schema of database used:
+CREATE TABLE frpm (
+    CDSCode TEXT,
+    Academic Year TEXT,
+    County Code TEXT,
+    District Code INTEGER,
+    School Code TEXT,
+    County Name TEXT,
+    District Name TEXT,
+    School Name TEXT,
+    District Type TEXT,
+    School Type TEXT,
+    Educational Option Type TEXT,
+    NSLP Provision Status TEXT,
+    Charter School (Y/N) INTEGER,
+    Charter School Number TEXT,
+    Charter Funding Type TEXT,
+    IRC INTEGER,
+    Low Grade TEXT,
+    High Grade TEXT,
+    Enrollment (K-12) REAL,
+    Free Meal Count (K-12) REAL,
+    Percent (%) Eligible Free (K-12) REAL,
+    FRPM Count (K-12) REAL,
+    Percent (%) Eligible FRPM (K-12) REAL,
+    Enrollment (Ages 5-17) REAL,
+    Free Meal Count (Ages 5-17) REAL,
+    Percent (%) Eligible Free (Ages 5-17) REAL,
+    FRPM Count (Ages 5-17) REAL,
+    Percent (%) Eligible FRPM (Ages 5-17) REAL,
+    2013-14 CALPADS Fall 1 Certification Status INTEGER,
+    PRIMARY KEY (CDSCode),
+    FOREIGN KEY (CDSCode) REFERENCES schools (CDSCode)
+);
+CREATE TABLE satscores (
+    cds TEXT,
+    rtype TEXT,
+    sname TEXT,
+    dname TEXT,
+    cname TEXT,
+    enroll12 INTEGER,
+    NumTstTakr INTEGER,
+    AvgScrRead INTEGER,
+    AvgScrMath INTEGER,
+    AvgScrWrite INTEGER,
+    NumGE1500 INTEGER,
+    PRIMARY KEY (cds),
+    FOREIGN KEY (cds) REFERENCES schools (CDSCode)
+);
+CREATE TABLE schools (
+    CDSCode TEXT,
+    NCESDist TEXT,
+    NCESSchool TEXT,
+    StatusType TEXT,
+    County TEXT,
+    District TEXT,
+    School TEXT,
+    Street TEXT,
+    StreetAbr TEXT,
+    City TEXT,
+    Zip TEXT,
+    State TEXT,
+    MailStreet TEXT,
+    MailStrAbr TEXT,
+    MailCity TEXT,
+    MailZip TEXT,
+    MailState TEXT,
+    Phone TEXT,
+    Ext TEXT,
+    Website TEXT,
+    OpenDate DATE,
+    ClosedDate DATE,
+    Charter INTEGER,
+    CharterNum TEXT,
+    FundingType TEXT,
+    DOC TEXT,
+    DOCType TEXT,
+    SOC TEXT,
+    SOCType TEXT,
+    EdOpsCode TEXT,
+    EdOpsName TEXT,
+    EILCode TEXT,
+    EILName TEXT,
+    GSoffered TEXT,
+    GSserved TEXT,
+    Virtual TEXT,
+    Magnet INTEGER,
+    Latitude REAL,
+    Longitude REAL,
+    AdmFName1 TEXT,
+    AdmLName1 TEXT,
+    AdmEmail1 TEXT,
+    AdmFName2 TEXT,
+    AdmLName2 TEXT,
+    AdmEmail2 TEXT,
+    AdmFName3 TEXT,
+    AdmLName3 TEXT,
+    AdmEmail3 TEXT,
+    LastUpdate DATE,
+    PRIMARY KEY (CDSCode)
+);
+
+Evidence you should use:
+Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm
+
+Output format (NO ANY OTHER OUTPUT):
+1
+Q: {Question template}
+E: {Evidence}
+A: 
+```sql
+{SQL answer template(executable)}
+```
+
+2
+Q: {Question template}
+E: {Evidence}
+A: 
+```sql
+{SQL answer template(executable)}
+```
+...====================1
+Q: Find the names of all charter schools located in a specific county (use `{frpm.County Name}` as the county name).
+E: Charter schools refers to `Charter School (Y/N)` = 1 in the table frpm
+A: 
+```sql
+SELECT `School Name` 
+FROM `frpm` 
+WHERE `Charter School (Y/N)` = 1 
+AND `County Name` = '{frpm.County Name}';
+```
+
+2
+Q: Calculate the average SAT Math score for schools in a specific district (use `{satscores.dname}` as the district name).
+E: The average SAT Math score is stored in the `AvgScrMath` column of the `satscores` table.
+A: 
+```sql
+SELECT AVG(`AvgScrMath`) AS average_math_score 
+FROM `satscores` 
+WHERE `dname` = '{satscores.dname}';
+```
+
+3
+Q: List the names of schools that have an average SAT Reading score above a certain threshold (use `{satscores.AvgScrRead}` as the threshold).
+E: The average SAT Reading score is stored in the `AvgScrRead` column of the `satscores` table.
+A: 
+```sql
+SELECT `sname` 
+FROM `satscores` 
+WHERE `AvgScrRead` > {satscores.AvgScrRead};
+```
+
+4
+Q: Find the total number of students enrolled in grades K-12 in charter schools for a specific academic year (use `{frpm.Academic Year}` as the academic year).
+E: Charter schools refers to `Charter School (Y/N)` = 1 in the table frpm
+A: 
+```sql
+SELECT SUM(`Enrollment (K-12)`) AS total_enrollment 
+FROM `frpm` 
+WHERE `Charter School (Y/N)` = 1 
+AND `Academic Year` = '{frpm.Academic Year}';
+```
+
+5
+Q: Identify the top 5 schools with the highest percentage of students eligible for free meals (K-12) in a specific county (use `{frpm.County Name}` as the county name).
+E: The percentage of students eligible for free meals (K-12) is stored in the `Percent (%) Eligible Free (K-12)` column of the `frpm` table.
+A: 
+```sql
+SELECT `School Name` 
+FROM `frpm` 
+WHERE `County Name` = '{frpm.County Name}' 
+ORDER BY `Percent (%) Eligible Free (K-12)` DESC 
+LIMIT 5;
+```

@@ -1,0 +1,24 @@
+As a database engineer, design schema for a database called {NAME}.
+Requirements:
+{REQUIREMENTS}
+
+For tables, give name and description in format:
+{Table_name}: {Table_description}
+
+For columns, give name, type and description in format:
+({Column_type}){Column_name}: {Column_description}
+Optional column type: BOOLEAN, INT, FLOAT, TEXT, VARCHAR, DATE, TIME, DATETIME, TIMESTAMP
+
+For primary keys, column name should be followed by *
+For foreign keys, referencing column should be followed by ({referenced table}.{referenced column})
+When one column is primary key and foreign key at the same time, () should be followed by *, so * should always be followed by :
+
+Output format (NO ANY OTHER OUTPUT):
+
+{Table1_name}: {Table1_description}
+-({Column1.1_type}){Column1.1_name}*: {Column1.1_description}
+-({Column1.2_type}){Column1.2_name}({Table2_name}.{Column2.1_name}): {Column1.2_description}
+
+{Table2_name}: {Table2_description}
+-({Column2.1_type}){Column2.1_name}*: {Column2.1_description}
+-({Column2.2_type}){Column2.2_name}: {Column2.2_description}

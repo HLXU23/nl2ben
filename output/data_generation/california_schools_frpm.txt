@@ -1,0 +1,232 @@
+As a data scientist, generate 3 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE frpm (CDSCode TEXT, Academic Year TEXT, County Code TEXT, District Code INTEGER, School Code TEXT, County Name TEXT, District Name TEXT, School Name TEXT, District Type TEXT, School Type TEXT, Educational Option Type TEXT, NSLP Provision Status TEXT, Charter School (Y/N) INTEGER, Charter School Number TEXT, Charter Funding Type TEXT, IRC INTEGER, Low Grade TEXT, High Grade TEXT, Enrollment (K-12) REAL, Free Meal Count (K-12) REAL, Percent (%) Eligible Free (K-12) REAL, FRPM Count (K-12) REAL, Percent (%) Eligible FRPM (K-12) REAL, Enrollment (Ages 5-17) REAL, Free Meal Count (Ages 5-17) REAL, Percent (%) Eligible Free (Ages 5-17) REAL, FRPM Count (Ages 5-17) REAL, Percent (%) Eligible FRPM (Ages 5-17) REAL, 2013-14 CALPADS Fall 1 Certification Status INTEGER, PRIMARY KEY (CDSCode), FOREIGN KEY (CDSCode) REFERENCES schools (CDSCode))
+
+For foreign key, you can ONLY use values given in referenced tables as follow:
+schools.CDSCode: 01100170112608, 01100170112609, 01100170112610
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+CDSCode: 01100170109835
+Academic Year: 2014-2015
+County Code: 01
+District Code: 10017
+School Code: 0109835
+County Name: Alameda
+District Name: Alameda County Office of Education
+School Name: FAME Public Charter
+District Type: County Office of Education (COE)
+School Type: K-12 Schools (Public)
+Educational Option Type: Traditional
+NSLP Provision Status: None
+Charter School (Y/N): 1
+Charter School Number: 0728
+Charter Funding Type: Directly funded
+IRC: 1
+Low Grade: K
+High Grade: 12
+Enrollment (K-12): 1087.0
+Free Meal Count (K-12): 565.0
+Percent (%) Eligible Free (K-12): 0.519779208831647
+FRPM Count (K-12): 715.0
+Percent (%) Eligible FRPM (K-12): 0.657773689052438
+Enrollment (Ages 5-17): 1070.0
+Free Meal Count (Ages 5-17): 553.0
+Percent (%) Eligible Free (Ages 5-17): 0.516822429906542
+FRPM Count (Ages 5-17): 702.0
+Percent (%) Eligible FRPM (Ages 5-17): 0.65607476635514
+2013-14 CALPADS Fall 1 Certification Status: 1
+
+2
+CDSCode: 01100170112607
+Academic Year: 2014-2015
+County Code: 01
+District Code: 10017
+School Code: 0112607
+County Name: Alameda
+District Name: Alameda County Office of Education
+School Name: Envision Academy for Arts & Technology
+District Type: County Office of Education (COE)
+School Type: High Schools (Public)
+Educational Option Type: Traditional
+NSLP Provision Status: None
+Charter School (Y/N): 1
+Charter School Number: 0811
+Charter Funding Type: Directly funded
+IRC: 1
+Low Grade: 9
+High Grade: 12
+Enrollment (K-12): 395.0
+Free Meal Count (K-12): 186.0
+Percent (%) Eligible Free (K-12): 0.470886075949367
+FRPM Count (K-12): 186.0
+Percent (%) Eligible FRPM (K-12): 0.470886075949367
+Enrollment (Ages 5-17): 376.0
+Free Meal Count (Ages 5-17): 182.0
+Percent (%) Eligible Free (Ages 5-17): 0.484042553191489
+FRPM Count (Ages 5-17): 182.0
+Percent (%) Eligible FRPM (Ages 5-17): 0.484042553191489
+2013-14 CALPADS Fall 1 Certification Status: 1
+
+3
+CDSCode: 01100170118489
+Academic Year: 2014-2015
+County Code: 01
+District Code: 10017
+School Code: 0118489
+County Name: Alameda
+District Name: Alameda County Office of Education
+School Name: Aspire California College Preparatory Academy
+District Type: County Office of Education (COE)
+School Type: High Schools (Public)
+Educational Option Type: Traditional
+NSLP Provision Status: None
+Charter School (Y/N): 1
+Charter School Number: 1049
+Charter Funding Type: Directly funded
+IRC: 1
+Low Grade: 9
+High Grade: 12
+Enrollment (K-12): 244.0
+Free Meal Count (K-12): 134.0
+Percent (%) Eligible Free (K-12): 0.549180327868853
+FRPM Count (K-12): 175.0
+Percent (%) Eligible FRPM (K-12): 0.717213114754098
+Enrollment (Ages 5-17): 230.0
+Free Meal Count (Ages 5-17): 128.0
+Percent (%) Eligible Free (Ages 5-17): 0.556521739130435
+FRPM Count (Ages 5-17): 168.0
+Percent (%) Eligible FRPM (Ages 5-17): 0.730434782608696
+2013-14 CALPADS Fall 1 Certification Status: 1
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+CDSCode: {row1.CDSCode}
+Academic Year: {row1.Academic Year}
+County Code: {row1.County Code}
+District Code: {row1.District Code}
+School Code: {row1.School Code}
+County Name: {row1.County Name}
+District Name: {row1.District Name}
+School Name: {row1.School Name}
+District Type: {row1.District Type}
+School Type: {row1.School Type}
+Educational Option Type: {row1.Educational Option Type}
+NSLP Provision Status: {row1.NSLP Provision Status}
+Charter School (Y/N): {row1.Charter School (Y/N)}
+Charter School Number: {row1.Charter School Number}
+Charter Funding Type: {row1.Charter Funding Type}
+IRC: {row1.IRC}
+Low Grade: {row1.Low Grade}
+High Grade: {row1.High Grade}
+Enrollment (K-12): {row1.Enrollment (K-12)}
+Free Meal Count (K-12): {row1.Free Meal Count (K-12)}
+Percent (%) Eligible Free (K-12): {row1.Percent (%) Eligible Free (K-12)}
+FRPM Count (K-12): {row1.FRPM Count (K-12)}
+Percent (%) Eligible FRPM (K-12): {row1.Percent (%) Eligible FRPM (K-12)}
+Enrollment (Ages 5-17): {row1.Enrollment (Ages 5-17)}
+Free Meal Count (Ages 5-17): {row1.Free Meal Count (Ages 5-17)}
+Percent (%) Eligible Free (Ages 5-17): {row1.Percent (%) Eligible Free (Ages 5-17)}
+FRPM Count (Ages 5-17): {row1.FRPM Count (Ages 5-17)}
+Percent (%) Eligible FRPM (Ages 5-17): {row1.Percent (%) Eligible FRPM (Ages 5-17)}
+2013-14 CALPADS Fall 1 Certification Status: {row1.2013-14 CALPADS Fall 1 Certification Status}
+
+2
+...
+
+etc.
+1
+CDSCode: 01100170112608
+Academic Year: 2014-2015
+County Code: 01
+District Code: 10017
+School Code: 0112608
+County Name: Alameda
+District Name: Alameda County Office of Education
+School Name: Bright Star Charter School
+District Type: County Office of Education (COE)
+School Type: K-12 Schools (Public)
+Educational Option Type: Traditional
+NSLP Provision Status: None
+Charter School (Y/N): 1
+Charter School Number: 0922
+Charter Funding Type: Directly funded
+IRC: 1
+Low Grade: K
+High Grade: 12
+Enrollment (K-12): 520.0
+Free Meal Count (K-12): 286.0
+Percent (%) Eligible Free (K-12): 0.55
+FRPM Count (K-12): 348.0
+Percent (%) Eligible FRPM (K-12): 0.67
+Enrollment (Ages 5-17): 500.0
+Free Meal Count (Ages 5-17): 275.0
+Percent (%) Eligible Free (Ages 5-17): 0.55
+FRPM Count (Ages 5-17): 330.0
+Percent (%) Eligible FRPM (Ages 5-17): 0.66
+2013-14 CALPADS Fall 1 Certification Status: 1
+
+2
+CDSCode: 01100170112609
+Academic Year: 2014-2015
+County Code: 01
+District Code: 10017
+School Code: 0112609
+County Name: Alameda
+District Name: Alameda County Office of Education
+School Name: Horizon Science Academy
+District Type: County Office of Education (COE)
+School Type: K-12 Schools (Public)
+Educational Option Type: Traditional
+NSLP Provision Status: None
+Charter School (Y/N): 1
+Charter School Number: 1010
+Charter Funding Type: Directly funded
+IRC: 1
+Low Grade: K
+High Grade: 12
+Enrollment (K-12): 480.0
+Free Meal Count (K-12): 240.0
+Percent (%) Eligible Free (K-12): 0.50
+FRPM Count (K-12): 300.0
+Percent (%) Eligible FRPM (K-12): 0.625
+Enrollment (Ages 5-17): 460.0
+Free Meal Count (Ages 5-17): 230.0
+Percent (%) Eligible Free (Ages 5-17): 0.50
+FRPM Count (Ages 5-17): 285.0
+Percent (%) Eligible FRPM (Ages 5-17): 0.62
+2013-14 CALPADS Fall 1 Certification Status: 1
+
+3
+CDSCode: 01100170112610
+Academic Year: 2014-2015
+County Code: 01
+District Code: 10017
+School Code: 0112610
+County Name: Alameda
+District Name: Alameda County Office of Education
+School Name: Lighthouse Community Charter
+District Type: County Office of Education (COE)
+School Type: K-12 Schools (Public)
+Educational Option Type: Traditional
+NSLP Provision Status: None
+Charter School (Y/N): 1
+Charter School Number: 1123
+Charter Funding Type: Directly funded
+IRC: 1
+Low Grade: K
+High Grade: 12
+Enrollment (K-12): 600.0
+Free Meal Count (K-12): 330.0
+Percent (%) Eligible Free (K-12): 0.55
+FRPM Count (K-12): 420.0
+Percent (%) Eligible FRPM (K-12): 0.70
+Enrollment (Ages 5-17): 580.0
+Free Meal Count (Ages 5-17): 320.0
+Percent (%) Eligible Free (Ages 5-17): 0.55
+FRPM Count (Ages 5-17): 400.0
+Percent (%) Eligible FRPM (Ages 5-17): 0.69
+2013-14 CALPADS Fall 1 Certification Status: 1

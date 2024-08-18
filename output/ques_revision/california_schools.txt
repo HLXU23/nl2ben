@@ -1,0 +1,13 @@
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: List the names of schools that have an average SAT Reading score above a certain threshold (use `{satscores.AvgScrRead}` as the threshold).
+Evidence: The average SAT Reading score is stored in the `AvgScrRead` column of the `satscores` table.
+SQL answer: SELECT `sname` 
+FROM `satscores` 
+WHERE `AvgScrRead` > 452;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+List the names of schools with an average SAT Reading score above 452.

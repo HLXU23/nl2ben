@@ -1,0 +1,368 @@
+As a data scientist, generate 3 rows data with given schema. Make data as realistic as possible.
+
+CREATE TABLE schools (CDSCode TEXT, NCESDist TEXT, NCESSchool TEXT, StatusType TEXT, County TEXT, District TEXT, School TEXT, Street TEXT, StreetAbr TEXT, City TEXT, Zip TEXT, State TEXT, MailStreet TEXT, MailStrAbr TEXT, MailCity TEXT, MailZip TEXT, MailState TEXT, Phone TEXT, Ext TEXT, Website TEXT, OpenDate DATE, ClosedDate DATE, Charter INTEGER, CharterNum TEXT, FundingType TEXT, DOC TEXT, DOCType TEXT, SOC TEXT, SOCType TEXT, EdOpsCode TEXT, EdOpsName TEXT, EILCode TEXT, EILName TEXT, GSoffered TEXT, GSserved TEXT, Virtual TEXT, Magnet INTEGER, Latitude REAL, Longitude REAL, AdmFName1 TEXT, AdmLName1 TEXT, AdmEmail1 TEXT, AdmFName2 TEXT, AdmLName2 TEXT, AdmEmail2 TEXT, AdmFName3 TEXT, AdmLName3 TEXT, AdmEmail3 TEXT, LastUpdate DATE, PRIMARY KEY (CDSCode))
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+CDSCode: 01100170000000
+NCESDist: 0691051
+NCESSchool: None
+StatusType: Active
+County: Alameda
+District: Alameda County Office of Education
+School: None
+Street: 313 West Winton Avenue
+StreetAbr: 313 West Winton Ave.
+City: Hayward
+Zip: 94544-1136
+State: CA
+MailStreet: 313 West Winton Avenue
+MailStrAbr: 313 West Winton Ave.
+MailCity: Hayward
+MailZip: 94544-1136
+MailState: CA
+Phone: (510) 887-0152
+Ext: None
+Website: www.acoe.org
+OpenDate: None
+ClosedDate: None
+Charter: None
+CharterNum: None
+FundingType: None
+DOC: 00
+DOCType: County Office of Education (COE)
+SOC: None
+SOCType: None
+EdOpsCode: None
+EdOpsName: None
+EILCode: None
+EILName: None
+GSoffered: None
+GSserved: None
+Virtual: None
+Magnet: None
+Latitude: 37.658212
+Longitude: -122.09713
+AdmFName1: L Karen
+AdmLName1: Monroe
+AdmEmail1: lkmonroe@acoe.org
+AdmFName2: None
+AdmLName2: None
+AdmEmail2: None
+AdmFName3: None
+AdmLName3: None
+AdmEmail3: None
+LastUpdate: 2015-06-23
+
+2
+CDSCode: 01100170109835
+NCESDist: 0691051
+NCESSchool: 10546
+StatusType: Closed
+County: Alameda
+District: Alameda County Office of Education
+School: FAME Public Charter
+Street: 39899 Balentine Drive, Suite 335
+StreetAbr: 39899 Balentine Dr., Ste. 335
+City: Newark
+Zip: 94560-5359
+State: CA
+MailStreet: 39899 Balentine Drive, Suite 335
+MailStrAbr: 39899 Balentine Dr., Ste. 335
+MailCity: Newark
+MailZip: 94560-5359
+MailState: CA
+Phone: None
+Ext: None
+Website: None
+OpenDate: 2005-08-29
+ClosedDate: 2015-07-31
+Charter: 1
+CharterNum: 0728
+FundingType: Directly funded
+DOC: 00
+DOCType: County Office of Education (COE)
+SOC: 65
+SOCType: K-12 Schools (Public)
+EdOpsCode: TRAD
+EdOpsName: Traditional
+EILCode: ELEMHIGH
+EILName: Elementary-High Combination
+GSoffered: K-12
+GSserved: K-12
+Virtual: P
+Magnet: 0
+Latitude: 37.521436
+Longitude: -121.99391
+AdmFName1: None
+AdmLName1: None
+AdmEmail1: None
+AdmFName2: None
+AdmLName2: None
+AdmEmail2: None
+AdmFName3: None
+AdmLName3: None
+AdmEmail3: None
+LastUpdate: 2015-09-01
+
+3
+CDSCode: 01100170112607
+NCESDist: 0691051
+NCESSchool: 10947
+StatusType: Active
+County: Alameda
+District: Alameda County Office of Education
+School: Envision Academy for Arts & Technology
+Street: 1515 Webster Street
+StreetAbr: 1515 Webster St.
+City: Oakland
+Zip: 94612-3355
+State: CA
+MailStreet: 1515 Webster Street
+MailStrAbr: 1515 Webster St.
+MailCity: Oakland
+MailZip: 94612
+MailState: CA
+Phone: (510) 596-8901
+Ext: None
+Website: www.envisionacademy.org/
+OpenDate: 2006-08-28
+ClosedDate: None
+Charter: 1
+CharterNum: 0811
+FundingType: Directly funded
+DOC: 00
+DOCType: County Office of Education (COE)
+SOC: 66
+SOCType: High Schools (Public)
+EdOpsCode: TRAD
+EdOpsName: Traditional
+EILCode: HS
+EILName: High School
+GSoffered: 9-12
+GSserved: 9-12
+Virtual: N
+Magnet: 0
+Latitude: 37.80452
+Longitude: -122.26815
+AdmFName1: Laura
+AdmLName1: Robell
+AdmEmail1: laura@envisionacademy.org
+AdmFName2: None
+AdmLName2: None
+AdmEmail2: None
+AdmFName3: None
+AdmLName3: None
+AdmEmail3: None
+LastUpdate: 2015-06-18
+
+
+
+Output format (NO ANY OTHER OUTPUT): 
+1
+CDSCode: {row1.CDSCode}
+NCESDist: {row1.NCESDist}
+NCESSchool: {row1.NCESSchool}
+StatusType: {row1.StatusType}
+County: {row1.County}
+District: {row1.District}
+School: {row1.School}
+Street: {row1.Street}
+StreetAbr: {row1.StreetAbr}
+City: {row1.City}
+Zip: {row1.Zip}
+State: {row1.State}
+MailStreet: {row1.MailStreet}
+MailStrAbr: {row1.MailStrAbr}
+MailCity: {row1.MailCity}
+MailZip: {row1.MailZip}
+MailState: {row1.MailState}
+Phone: {row1.Phone}
+Ext: {row1.Ext}
+Website: {row1.Website}
+OpenDate: {row1.OpenDate}
+ClosedDate: {row1.ClosedDate}
+Charter: {row1.Charter}
+CharterNum: {row1.CharterNum}
+FundingType: {row1.FundingType}
+DOC: {row1.DOC}
+DOCType: {row1.DOCType}
+SOC: {row1.SOC}
+SOCType: {row1.SOCType}
+EdOpsCode: {row1.EdOpsCode}
+EdOpsName: {row1.EdOpsName}
+EILCode: {row1.EILCode}
+EILName: {row1.EILName}
+GSoffered: {row1.GSoffered}
+GSserved: {row1.GSserved}
+Virtual: {row1.Virtual}
+Magnet: {row1.Magnet}
+Latitude: {row1.Latitude}
+Longitude: {row1.Longitude}
+AdmFName1: {row1.AdmFName1}
+AdmLName1: {row1.AdmLName1}
+AdmEmail1: {row1.AdmEmail1}
+AdmFName2: {row1.AdmFName2}
+AdmLName2: {row1.AdmLName2}
+AdmEmail2: {row1.AdmEmail2}
+AdmFName3: {row1.AdmFName3}
+AdmLName3: {row1.AdmLName3}
+AdmEmail3: {row1.AdmEmail3}
+LastUpdate: {row1.LastUpdate}
+
+2
+...
+
+etc.
+1
+CDSCode: 01100170112608
+NCESDist: 0691051
+NCESSchool: 10948
+StatusType: Active
+County: Alameda
+District: Alameda County Office of Education
+School: Aspire Public Schools
+Street: 1800 Broadway
+StreetAbr: 1800 Broadway
+City: Oakland
+Zip: 94612-3356
+State: CA
+MailStreet: 1800 Broadway
+MailStrAbr: 1800 Broadway
+MailCity: Oakland
+MailZip: 94612
+MailState: CA
+Phone: (510) 596-8902
+Ext: None
+Website: www.aspirepublicschools.org
+OpenDate: 2007-08-27
+ClosedDate: None
+Charter: 1
+CharterNum: 0812
+FundingType: Directly funded
+DOC: 00
+DOCType: County Office of Education (COE)
+SOC: 67
+SOCType: K-12 Schools (Public)
+EdOpsCode: TRAD
+EdOpsName: Traditional
+EILCode: ELEM
+EILName: Elementary School
+GSoffered: K-5
+GSserved: K-5
+Virtual: N
+Magnet: 0
+Latitude: 37.80453
+Longitude: -122.26816
+AdmFName1: John
+AdmLName1: Doe
+AdmEmail1: john.doe@aspirepublicschools.org
+AdmFName2: None
+AdmLName2: None
+AdmEmail2: None
+AdmFName3: None
+AdmLName3: None
+AdmEmail3: None
+LastUpdate: 2015-06-19
+
+2
+CDSCode: 01100170112609
+NCESDist: 0691051
+NCESSchool: 10949
+StatusType: Closed
+County: Alameda
+District: Alameda County Office of Education
+School: Bright Star Charter School
+Street: 2000 Telegraph Ave
+StreetAbr: 2000 Telegraph Ave
+City: Oakland
+Zip: 94612-3357
+State: CA
+MailStreet: 2000 Telegraph Ave
+MailStrAbr: 2000 Telegraph Ave
+MailCity: Oakland
+MailZip: 94612
+MailState: CA
+Phone: (510) 596-8903
+Ext: None
+Website: www.brightstarcharter.org
+OpenDate: 2008-08-26
+ClosedDate: 2016-07-30
+Charter: 1
+CharterNum: 0813
+FundingType: Directly funded
+DOC: 00
+DOCType: County Office of Education (COE)
+SOC: 68
+SOCType: K-12 Schools (Public)
+EdOpsCode: TRAD
+EdOpsName: Traditional
+EILCode: MID
+EILName: Middle School
+GSoffered: 6-8
+GSserved: 6-8
+Virtual: N
+Magnet: 0
+Latitude: 37.80454
+Longitude: -122.26817
+AdmFName1: Jane
+AdmLName1: Smith
+AdmEmail1: jane.smith@brightstarcharter.org
+AdmFName2: None
+AdmLName2: None
+AdmEmail2: None
+AdmFName3: None
+AdmLName3: None
+AdmEmail3: None
+LastUpdate: 2016-08-01
+
+3
+CDSCode: 01100170112610
+NCESDist: 0691051
+NCESSchool: 10950
+StatusType: Active
+County: Alameda
+District: Alameda County Office of Education
+School: Innovation High School
+Street: 2200 Broadway
+StreetAbr: 2200 Broadway
+City: Oakland
+Zip: 94612-3358
+State: CA
+MailStreet: 2200 Broadway
+MailStrAbr: 2200 Broadway
+MailCity: Oakland
+MailZip: 94612
+MailState: CA
+Phone: (510) 596-8904
+Ext: None
+Website: www.innovationhighschool.org
+OpenDate: 2009-08-25
+ClosedDate: None
+Charter: 1
+CharterNum: 0814
+FundingType: Directly funded
+DOC: 00
+DOCType: County Office of Education (COE)
+SOC: 69
+SOCType: High Schools (Public)
+EdOpsCode: TRAD
+EdOpsName: Traditional
+EILCode: HS
+EILName: High School
+GSoffered: 9-12
+GSserved: 9-12
+Virtual: N
+Magnet: 0
+Latitude: 37.80455
+Longitude: -122.26818
+AdmFName1: Michael
+AdmLName1: Brown
+AdmEmail1: michael.brown@innovationhighschool.org
+AdmFName2: None
+AdmLName2: None
+AdmEmail2: None
+AdmFName3: None
+AdmLName3: None
+AdmEmail3: None
+LastUpdate: 2015-06-20

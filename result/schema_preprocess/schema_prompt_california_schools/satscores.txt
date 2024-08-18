@@ -1,0 +1,15 @@
+CREATE TABLE satscores (
+    cds TEXT,
+    rtype TEXT,
+    sname TEXT,
+    dname TEXT,
+    cname TEXT,
+    enroll12 INTEGER,
+    NumTstTakr INTEGER,
+    AvgScrRead INTEGER,
+    AvgScrMath INTEGER,
+    AvgScrWrite INTEGER,
+    NumGE1500 INTEGER,
+    PRIMARY KEY (cds),
+    FOREIGN KEY (cds) REFERENCES schools (CDSCode)
+);

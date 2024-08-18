@@ -1,0 +1,77 @@
+[
+    {
+        "question": "Find the average percentage of students eligible for free meals in schools located in `{County Name}` for the academic year `{Academic Year}`.",
+        "evidence": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`",
+        "ans": "SELECT AVG(`Percent (%) Eligible Free (K-12)`) AS avg_free_meal_rate\nFROM `frpm`\nWHERE `County Name` = '{County Name}' AND `Academic Year` = '{Academic Year}';"
+    },
+    {
+        "question": "List the names of schools in `{District Name}` that have an average SAT math score above `{AvgScrMath}` for the year `{Academic Year}`.",
+        "evidence": "Average SAT math score is provided in the `satscores` table.",
+        "ans": "SELECT s.`School Name`\nFROM `satscores` AS sat\nJOIN `schools` AS s ON sat.`cds` = s.`CDSCode`\nJOIN `frpm` AS f ON s.`CDSCode` = f.`CDSCode`\nWHERE f.`District Name` = '{District Name}' AND sat.`AvgScrMath` > {AvgScrMath} AND f.`Academic Year` = '{Academic Year}';"
+    },
+    {
+        "question": "Calculate the total enrollment of students in grades K-12 across all schools in `{County Name}` for the academic year `{Academic Year}`.",
+        "evidence": "Total enrollment is provided in the `frpm` table.",
+        "ans": "SELECT SUM(`Enrollment (K-12)`) AS total_enrollment\nFROM `frpm`\nWHERE `County Name` = '{County Name}' AND `Academic Year` = '{Academic Year}';"
+    },
+    {
+        "question": "Identify the top 5 schools with the highest percentage of students eligible for FRPM (K-12) in `{County Name}` for the academic year `{Academic Year}`.",
+        "evidence": "Percentage eligible for FRPM (K-12) is provided in the `frpm` table.",
+        "ans": "SELECT `School Name`, `Percent (%) Eligible FRPM (K-12)`\nFROM `frpm`\nWHERE `County Name` = '{County Name}' AND `Academic Year` = '{Academic Year}'\nORDER BY `Percent (%) Eligible FRPM (K-12)` DESC\nLIMIT 5;"
+    },
+    {
+        "question": "Find the average SAT reading score for schools in `{District Name}` that have a charter school status of `{Charter School (Y/N)}` for the academic year `{Academic Year}`.",
+        "evidence": "Average SAT reading score is provided in the `satscores` table.",
+        "ans": "SELECT AVG(sat.`AvgScrRead`) AS avg_sat_reading_score\nFROM `satscores` AS sat\nJOIN `schools` AS s ON sat.`cds` = s.`CDSCode`\nJOIN `frpm` AS f ON s.`CDSCode` = f.`CDSCode`\nWHERE f.`District Name` = '{District Name}' AND f.`Charter School (Y/N)` = {Charter School (Y/N)} AND f.`Academic Year` = '{Academic Year}';"
+    },
+    {
+        "question": "Find the average percentage of students eligible for free meals among all schools in the county with the name '{frpm.County Name}'.",
+        "evidence": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`",
+        "ans": "SELECT AVG(`Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`) AS avg_free_meal_rate\nFROM `frpm`\nWHERE `County Name` = '{frpm.County Name}';"
+    },
+    {
+        "question": "List the names of schools in the district '{frpm.District Name}' where the percentage of students eligible for free meals is above the district average.",
+        "evidence": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`",
+        "ans": "WITH DistrictAverage AS (\n    SELECT `District Name`, AVG(`Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`) AS avg_free_meal_rate\n    FROM `frpm`\n    GROUP BY `District Name`\n)\nSELECT f.`School Name`\nFROM `frpm` f\nJOIN DistrictAverage da ON f.`District Name` = da.`District Name`\nWHERE f.`Free Meal Count (Ages 5-17)` / f.`Enrollment (Ages 5-17)` > da.avg_free_meal_rate\nAND f.`District Name` = '{frpm.District Name}';"
+    },
+    {
+        "question": "Retrieve the CDSCode and school name of the school with the highest SAT average score in reading.",
+        "evidence": "The average SAT score in reading is stored in the `AvgScrRead` column of the `satscores` table.",
+        "ans": "SELECT `cds`, `sname`\nFROM `satscores`\nORDER BY `AvgScrRead` DESC\nLIMIT 1;"
+    },
+    {
+        "question": "Find the total number of students enrolled in schools that are charter schools and have a percentage of students eligible for free meals above 50%.",
+        "evidence": "Charter schools are indicated by the `Charter School (Y/N)` column in the `frpm` table, and eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`.",
+        "ans": "SELECT SUM(`Enrollment (Ages 5-17)`) AS total_enrollment\nFROM `frpm`\nWHERE `Charter School (Y/N)` = 1\nAND `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` > 0.5;"
+    },
+    {
+        "question": "List the names and district names of schools that have an average SAT math score above 600 and are located in the county '{schools.County}'.",
+        "evidence": "The average SAT math score is stored in the `AvgScrMath` column of the `satscores` table, and the county name is stored in the `County` column of the `schools` table.",
+        "ans": "SELECT s.`School`, s.`District`\nFROM `schools` s\nJOIN `satscores` ss ON s.`CDSCode` = ss.`cds`\nWHERE ss.`AvgScrMath` > 600\nAND s.`County` = '{schools.County}';"
+    },
+    {
+        "question": "Find the names of all charter schools located in a specific county (use `{frpm.County Name}` as the county name).",
+        "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the table frpm",
+        "ans": "SELECT `School Name` \nFROM `frpm` \nWHERE `Charter School (Y/N)` = 1 \nAND `County Name` = '{frpm.County Name}';"
+    },
+    {
+        "question": "Calculate the average SAT Math score for schools in a specific district (use `{satscores.dname}` as the district name).",
+        "evidence": "The average SAT Math score is stored in the `AvgScrMath` column of the `satscores` table.",
+        "ans": "SELECT AVG(`AvgScrMath`) AS average_math_score \nFROM `satscores` \nWHERE `dname` = '{satscores.dname}';"
+    },
+    {
+        "question": "List the names of schools that have an average SAT Reading score above a certain threshold (use `{satscores.AvgScrRead}` as the threshold).",
+        "evidence": "The average SAT Reading score is stored in the `AvgScrRead` column of the `satscores` table.",
+        "ans": "SELECT `sname` \nFROM `satscores` \nWHERE `AvgScrRead` > {satscores.AvgScrRead};"
+    },
+    {
+        "question": "Find the total number of students enrolled in grades K-12 in charter schools for a specific academic year (use `{frpm.Academic Year}` as the academic year).",
+        "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the table frpm",
+        "ans": "SELECT SUM(`Enrollment (K-12)`) AS total_enrollment \nFROM `frpm` \nWHERE `Charter School (Y/N)` = 1 \nAND `Academic Year` = '{frpm.Academic Year}';"
+    },
+    {
+        "question": "Identify the top 5 schools with the highest percentage of students eligible for free meals (K-12) in a specific county (use `{frpm.County Name}` as the county name).",
+        "evidence": "The percentage of students eligible for free meals (K-12) is stored in the `Percent (%) Eligible Free (K-12)` column of the `frpm` table.",
+        "ans": "SELECT `School Name` \nFROM `frpm` \nWHERE `County Name` = '{frpm.County Name}' \nORDER BY `Percent (%) Eligible Free (K-12)` DESC \nLIMIT 5;"
+    }
+]

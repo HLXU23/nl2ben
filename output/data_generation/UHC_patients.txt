@@ -1,0 +1,35 @@
+1
+patient_id: 1001
+first_name: John
+last_name: Doe
+date_of_birth: 1985-07-15
+age: 36
+gender: Male
+address: 1234 Elm St, Springfield, IL 62704
+phone_number: 217-555-1234
+email: john.doe@example.com
+emergency_contact: Jane Doe, 217-555-5678
+
+2
+patient_id: 1002
+first_name: Sarah
+last_name: Johnson
+date_of_birth: 1992-03-22
+age: 29
+gender: Female
+address: 5678 Oak St, Chicago, IL 60601
+phone_number: 312-555-4321
+email: sarah.johnson@example.com
+emergency_contact: Michael Johnson, 312-555-8765
+
+3
+patient_id: 1003
+first_name: David
+last_name: Lee
+date_of_birth: 1978-11-08
+age: 43
+gender: Male
+address: 9101 Maple St, Peoria, IL 61602
+phone_number: 309-555-9876
+email: david.lee@example.com
+emergency_contact: Emily Lee, 309-555-1357

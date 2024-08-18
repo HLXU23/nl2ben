@@ -1,0 +1,29 @@
+Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`
+
+As a professor teaching database courses, generate 3 question templates with corresponding SQL answer templates for examination.
+Requirements of question templates:
+1, As realistic as possible
+2, Evidence must be used when students answer the questions. In the other words, questions should be unsolvable without evidence information.
+3, You can use {column_name} to indicate an arbitrary value in this column. 
+For example, suggest there is a column student_id in table student. when you want to have 'student with id A0001' in question and 'WHERE student_id == A0001'in SQL answer, replacing A0001 with {student_id}.
+
+The schema of database used in the examination:
+CREATE TABLE frpm (CDSCode TEXT, Academic Year TEXT, County Code TEXT, District Code INTEGER, School Code TEXT, County Name TEXT, District Name TEXT, School Name TEXT, District Type TEXT, School Type TEXT, Educational Option Type TEXT, NSLP Provision Status TEXT, Charter School (Y/N) INTEGER, Charter School Number TEXT, Charter Funding Type TEXT, IRC INTEGER, Low Grade TEXT, High Grade TEXT, Enrollment (K-12) REAL, Free Meal Count (K-12) REAL, Percent (%) Eligible Free (K-12) REAL, FRPM Count (K-12) REAL, Percent (%) Eligible FRPM (K-12) REAL, Enrollment (Ages 5-17) REAL, Free Meal Count (Ages 5-17) REAL, Percent (%) Eligible Free (Ages 5-17) REAL, FRPM Count (Ages 5-17) REAL, Percent (%) Eligible FRPM (Ages 5-17) REAL, 2013-14 CALPADS Fall 1 Certification Status INTEGER, PRIMARY KEY (CDSCode), FOREIGN KEY (CDSCode) REFERENCES schools (CDSCode))
+CREATE TABLE schools (CDSCode TEXT, NCESDist TEXT, NCESSchool TEXT, StatusType TEXT, County TEXT, District TEXT, School TEXT, Street TEXT, StreetAbr TEXT, City TEXT, Zip TEXT, State TEXT, MailStreet TEXT, MailStrAbr TEXT, MailCity TEXT, MailZip TEXT, MailState TEXT, Phone TEXT, Ext TEXT, Website TEXT, OpenDate DATE, ClosedDate DATE, Charter INTEGER, CharterNum TEXT, FundingType TEXT, DOC TEXT, DOCType TEXT, SOC TEXT, SOCType TEXT, EdOpsCode TEXT, EdOpsName TEXT, EILCode TEXT, EILName TEXT, GSoffered TEXT, GSserved TEXT, Virtual TEXT, Magnet INTEGER, Latitude REAL, Longitude REAL, AdmFName1 TEXT, AdmLName1 TEXT, AdmEmail1 TEXT, AdmFName2 TEXT, AdmLName2 TEXT, AdmEmail2 TEXT, AdmFName3 TEXT, AdmLName3 TEXT, AdmEmail3 TEXT, LastUpdate DATE, PRIMARY KEY (CDSCode))
+CREATE TABLE satscores (cds TEXT, rtype TEXT, sname TEXT, dname TEXT, cname TEXT, enroll12 INTEGER, NumTstTakr INTEGER, AvgScrRead INTEGER, AvgScrMath INTEGER, AvgScrWrite INTEGER, NumGE1500 INTEGER, PRIMARY KEY (cds), FOREIGN KEY (cds) REFERENCES schools (CDSCode))
+
+The evidence you can choose:
+Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`
+
+Output format (NO ANY OTHER OUTPUT):
+1
+Q: {Question template}
+E: {Evidence}
+A: {SQL answer template(executable)}
+
+2
+Q: {Question template}
+E: {Evidence}
+A: {SQL answer template(executable)}
+
+...
