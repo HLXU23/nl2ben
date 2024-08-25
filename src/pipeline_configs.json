@@ -11,6 +11,15 @@
         "input_path": "../result/",
         "result_path": "../result/schema_preprocess/"
     },
+    "data_rule_generation": {
+        "engine": "deepseek-coder", 
+        "temperature": 0.5,
+        "input_path": "../result/",
+        "template_path": "../templates/data_rule_generation",
+        "output_path": "../output/data_rule_generation/",
+        "result_path": "../result/data_rule_generation/",
+        "example_value_num": 5
+    },
     "data_generation": {
         "engine": "deepseek-coder",
         "temperature": 1,
@@ -19,8 +28,8 @@
         "output_path": "../output/data_generation/",
         "result_path": "../result/data_generation/",
         "epoch": 3,
-        "row_num": 10,
-        "example_value_num": 5
+        "row_num": 3,
+        "example_value_num": 1
     },
     "temp_generation": {
         "engine": "deepseek-coder",

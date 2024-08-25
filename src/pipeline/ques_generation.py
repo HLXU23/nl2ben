@@ -26,14 +26,6 @@ def ques_generation(db_name: str, config: Dict[str, Any]):
         logging.error(f'Error loading database schema {db_name}: {e}')
         raise
 
-    try:
-        schema_prompt_path = os.path.join(input_path, f'schema_preprocess/schema_prompt_{db_name}')
-        schema_prompt = load_schema_prompt(schema, schema_prompt_path)
-        logging.debug(f'{db_name} SCHEMA PROMPT loaded')
-    except Exception as e:
-        logging.error(f'Error loading database schema prompt {db_name}: {e}')
-        raise
-
     ques_templates = []
     ques_templates_path = os.path.join(input_path, f'temp_generation/ques_templates_{db_name}')
     for file_name in os.listdir(ques_templates_path):
@@ -58,13 +50,6 @@ def ques_generation(db_name: str, config: Dict[str, Any]):
     raw_ques_path = os.path.join(result_path, f'raw_ques_{db_name}.json')
     with open(raw_ques_path, "w") as file:
         json.dump(questions, file, indent=4)
-
-def load_schema_prompt(schema, schema_prompt_path):
-    schema_prompt = dict.fromkeys(schema)
-    for table_name in schema:
-        with open(os.path.join(schema_prompt_path, f'{table_name}.txt')) as file:
-            schema_prompt[table_name] = file.read()
-    return schema_prompt
 
 def load_templates(file_path: str):
     with open(file_path, "r") as file:

@@ -122,13 +122,12 @@
         "primary_keys": [
             "CDSCode"
         ],
-        "foreign_keys": [
-            {
-                "column": "CDSCode",
+        "foreign_keys": {
+            "CDSCode": {
                 "referenced_table": "schools",
                 "referenced_column": "CDSCode"
             }
-        ]
+        }
     },
     "satscores": {
         "description": "",
@@ -181,13 +180,12 @@
         "primary_keys": [
             "cds"
         ],
-        "foreign_keys": [
-            {
-                "column": "cds",
+        "foreign_keys": {
+            "cds": {
                 "referenced_table": "schools",
                 "referenced_column": "CDSCode"
             }
-        ]
+        }
     },
     "schools": {
         "description": "",
@@ -392,6 +390,6 @@
         "primary_keys": [
             "CDSCode"
         ],
-        "foreign_keys": []
+        "foreign_keys": {}
     }
 }

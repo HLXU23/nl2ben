@@ -27,3 +27,343 @@ E: {Evidence}
 A: {SQL answer template(executable)}
 
 ...
+=========================
+
+As a database engineer, examine given schema and point out all IDENTIFIER columns in the schema.
+
+IDENTIFIER: Column with auto-incremented values used to uniquely identify records in this table 
+
+Noted that identifers of other columns should not be included
+
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
+table1.identifier1
+table2.identifier2
+...
+====================
+E.g. 
+Schema:
+
+CREATE TABLE students (
+    student_id INT,
+    name VARCHAR,
+    PRIMARY KEY (student_id)
+}
+
+CREATE TABLE teachers (
+    teacher_id INT,
+    name VARCHAR,
+    PRIMARY KEY (teacher_id)
+)
+
+CREATE TABLE courses (
+    course_id INT,
+    teacher_id INT,
+    course_name VARCHAR,
+    PRIMARY KEY (course_id)
+);
+
+CREATE TABLE scores (
+    student_id INT,
+    course_id INT,
+    score REAL,
+    PRIMARY KEY (student_id, course_id)
+)
+
+Identifier:
+students.student_id
+teachers.teacher_id
+courses.course_id
+====================
+
+Schema:
+CREATE TABLE frpm (
+    CDSCode TEXT,
+    Academic Year TEXT,
+    County Code TEXT,
+    District Code INTEGER,
+    School Code TEXT,
+    County Name TEXT,
+    District Name TEXT,
+    School Name TEXT,
+    District Type TEXT,
+    School Type TEXT,
+    Educational Option Type TEXT,
+    NSLP Provision Status TEXT,
+    Charter School (Y/N) INTEGER,
+    Charter School Number TEXT,
+    Charter Funding Type TEXT,
+    IRC INTEGER,
+    Low Grade TEXT,
+    High Grade TEXT,
+    Enrollment (K-12) REAL,
+    Free Meal Count (K-12) REAL,
+    Percent (%) Eligible Free (K-12) REAL,
+    FRPM Count (K-12) REAL,
+    Percent (%) Eligible FRPM (K-12) REAL,
+    Enrollment (Ages 5-17) REAL,
+    Free Meal Count (Ages 5-17) REAL,
+    Percent (%) Eligible Free (Ages 5-17) REAL,
+    FRPM Count (Ages 5-17) REAL,
+    Percent (%) Eligible FRPM (Ages 5-17) REAL,
+    2013-14 CALPADS Fall 1 Certification Status INTEGER,
+    PRIMARY KEY (CDSCode),
+    FOREIGN KEY (CDSCode) REFERENCES schools (CDSCode)
+);
+
+CREATE TABLE satscores (
+    cds TEXT,
+    rtype TEXT,
+    sname TEXT,
+    dname TEXT,
+    cname TEXT,
+    enroll12 INTEGER,
+    NumTstTakr INTEGER,
+    AvgScrRead INTEGER,
+    AvgScrMath INTEGER,
+    AvgScrWrite INTEGER,
+    NumGE1500 INTEGER,
+    PRIMARY KEY (cds),
+    FOREIGN KEY (cds) REFERENCES schools (CDSCode)
+);
+
+CREATE TABLE schools (
+    CDSCode TEXT,
+    NCESDist TEXT,
+    NCESSchool TEXT,
+    StatusType TEXT,
+    County TEXT,
+    District TEXT,
+    School TEXT,
+    Street TEXT,
+    StreetAbr TEXT,
+    City TEXT,
+    Zip TEXT,
+    State TEXT,
+    MailStreet TEXT,
+    MailStrAbr TEXT,
+    MailCity TEXT,
+    MailZip TEXT,
+    MailState TEXT,
+    Phone TEXT,
+    Ext TEXT,
+    Website TEXT,
+    OpenDate DATE,
+    ClosedDate DATE,
+    Charter INTEGER,
+    CharterNum TEXT,
+    FundingType TEXT,
+    DOC TEXT,
+    DOCType TEXT,
+    SOC TEXT,
+    SOCType TEXT,
+    EdOpsCode TEXT,
+    EdOpsName TEXT,
+    EILCode TEXT,
+    EILName TEXT,
+    GSoffered TEXT,
+    GSserved TEXT,
+    Virtual TEXT,
+    Magnet INTEGER,
+    Latitude REAL,
+    Longitude REAL,
+    AdmFName1 TEXT,
+    AdmLName1 TEXT,
+    AdmEmail1 TEXT,
+    AdmFName2 TEXT,
+    AdmLName2 TEXT,
+    AdmEmail2 TEXT,
+    AdmFName3 TEXT,
+    AdmLName3 TEXT,
+    AdmEmail3 TEXT,
+    LastUpdate DATE,
+    PRIMARY KEY (CDSCode)
+);
+
+Identifier:
+
+=========================
+
+As a database engineer, your task is to give all possible categories for a category column in the database based on whole schema. Categories should be as comprehensive as possible.
+
+Column name: role
+
+Database name: UHC
+
+Schema: 
+patients: Information of patients
+-(INT)patient_id*: Unique identifier for each patient
+-(VARCHAR)first_name: First name of the patient
+-(VARCHAR)last_name: Last name of the patient
+-(DATE)date_of_birth: Date of birth of the patient
+-(INT)age: Age of the patient
+-(VARCHAR)gender: Gender of the patient
+-(VARCHAR)address: Address of the patient
+-(VARCHAR)phone_number: Phone number of the patient
+-(VARCHAR)email: Email address of the patient
+-(TEXT)medical_history: Summary of the patient's medical history
+
+doctors: Information of doctors
+-(INT)doctor_id*: Unique identifier for each doctor
+-(VARCHAR)first_name: First name of the doctor
+-(VARCHAR)last_name: Last name of the doctor
+-(VARCHAR)specialization: Medical specialization of the doctor
+-(VARCHAR)phone_number: Phone number of the doctor
+-(VARCHAR)email: Email address of the doctor
+-(TEXT)biography: Brief biography of the doctor
+
+appointments: Information of appointments
+-(INT)appointment_id*: Unique identifier for each appointment
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)appointment_date: Date and time of the appointment
+-(TEXT)reason: Reason for the appointment
+-(VARCHAR)status: Status of the appointment (e.g., scheduled, completed, canceled)
+
+medical_records: Information of medical records
+-(INT)record_id*: Unique identifier for each medical record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)record_date: Date and time when the record was created
+-(TEXT)diagnosis: Diagnosis details
+-(TEXT)treatment: Treatment details
+-(TEXT)notes: Additional notes
+
+prescriptions: Information of prescriptions
+-(INT)prescription_id*: Unique identifier for each prescription
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)prescription_date: Date and time when the prescription was issued
+-(TEXT)medication: Medication details
+-(TEXT)dosage: Dosage instructions
+-(TEXT)instructions: Additional instructions
+
+billing: Information of billing
+-(INT)billing_id*: Unique identifier for each billing record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(FLOAT)amount: Amount to be billed
+-(DATE)billing_date: Date of billing
+-(VARCHAR)status: Status of the billing (e.g., paid, pending)
+-(TEXT)description: Description of the billing
+
+insurance: Information of insurance
+-(INT)insurance_id*: Unique identifier for each insurance record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(VARCHAR)provider: Insurance provider name
+-(VARCHAR)policy_number: Policy number
+-(DATE)effective_date: Effective date of the insurance
+-(DATE)expiration_date: Expiration date of the insurance
+-(TEXT)coverage_details: Details of the coverage
+
+staff: Information of staff
+-(INT)staff_id*: Unique identifier for each staff member
+-(VARCHAR)first_name: First name of the staff member
+-(VARCHAR)last_name: Last name of the staff member
+-(VARCHAR)role: Role of the staff member
+-(VARCHAR)phone_number: Phone number of the staff member
+-(VARCHAR)email: Email address of the staff member
+-(TEXT)responsibilities: Responsibilities of the staff member
+
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
+{Category1}, {Category2}, ...
+
+E.g.
+Column name: Age
+Output format:
+Male, Female, Other
+
+=================================
+
+As a database engineer, give range constraint for a numerical column in the database based on whole schema. Range constraint should consider authenticity.
+
+Table Name: patients
+Column name: blood_pressure
+Database name: UHC
+Numerical type: FLOAT
+Database schema: 
+patients: Information of patients
+-(INT)patient_id*: Unique identifier for each patient
+-(VARCHAR)first_name: First name of the patient
+-(VARCHAR)last_name: Last name of the patient
+-(DATE)date_of_birth: Date of birth of the patient
+-(INT)age: Age of the patient
+-(VARCHAR)gender: Gender of the patient
+-(VARCHAR)address: Address of the patient
+-(VARCHAR)phone_number: Phone number of the patient
+-(VARCHAR)email: Email address of the patient
+-(INT)BMI: BMI index of the patient
+-(INT)blood_pressure: Blood pressure value of the patient
+-(TEXT)medical_history: Summary of the patient's medical history
+
+doctors: Information of doctors
+-(INT)doctor_id*: Unique identifier for each doctor
+-(VARCHAR)first_name: First name of the doctor
+-(VARCHAR)last_name: Last name of the doctor
+-(VARCHAR)specialization: Medical specialization of the doctor
+-(VARCHAR)phone_number: Phone number of the doctor
+-(VARCHAR)email: Email address of the doctor
+-(TEXT)biography: Brief biography of the doctor
+
+appointments: Information of appointments
+-(INT)appointment_id*: Unique identifier for each appointment
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)appointment_date: Date and time of the appointment
+-(TEXT)reason: Reason for the appointment
+-(VARCHAR)status: Status of the appointment (e.g., scheduled, completed, canceled)
+
+medical_records: Information of medical records
+-(INT)record_id*: Unique identifier for each medical record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)record_date: Date and time when the record was created
+-(TEXT)diagnosis: Diagnosis details
+-(TEXT)treatment: Treatment details
+-(TEXT)notes: Additional notes
+
+prescriptions: Information of prescriptions
+-(INT)prescription_id*: Unique identifier for each prescription
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(INT)doctor_id(doctors.doctor_id): Reference to the doctor
+-(DATETIME)prescription_date: Date and time when the prescription was issued
+-(TEXT)medication: Medication details
+-(TEXT)dosage: Dosage instructions
+-(TEXT)instructions: Additional instructions
+
+billing: Information of billing
+-(INT)billing_id*: Unique identifier for each billing record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(FLOAT)amount: Amount to be billed
+-(DATE)billing_date: Date of billing
+-(VARCHAR)status: Status of the billing (e.g., paid, pending)
+-(TEXT)description: Description of the billing
+
+insurance: Information of insurance
+-(INT)insurance_id*: Unique identifier for each insurance record
+-(INT)patient_id(patients.patient_id): Reference to the patient
+-(VARCHAR)provider: Insurance provider name
+-(VARCHAR)policy_number: Policy number
+-(DATE)effective_date: Effective date of the insurance
+-(DATE)expiration_date: Expiration date of the insurance
+-(TEXT)coverage_details: Details of the coverage
+
+staff: Information of staff
+-(INT)staff_id*: Unique identifier for each staff member
+-(VARCHAR)first_name: First name of the staff member
+-(VARCHAR)last_name: Last name of the staff member
+-(VARCHAR)role: Role of the staff member
+-(VARCHAR)phone_number: Phone number of the staff member
+-(VARCHAR)email: Email address of the staff member
+-(TEXT)responsibilities: Responsibilities of the staff member
+
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
+Lower Limit, Upper Limit
+
+E.g.
+Table name: teachers
+Column name: age
+Database name: california schools
+Numerical type: INT
+Database schema: 
+CREATE TABLE `teachers` ("patient_id" INT, "age" INT)
+Output: 
+18, 60

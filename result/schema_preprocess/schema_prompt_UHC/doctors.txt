@@ -2,9 +2,16 @@ CREATE TABLE doctors (
     doctor_id INT,
     first_name VARCHAR,
     last_name VARCHAR,
+    date_of_birth DATE,
+    gender VARCHAR,
     specialization VARCHAR,
-    phone_number VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
     email VARCHAR,
+    license_number VARCHAR,
+    hire_date DATE,
+    active_status BOOLEAN,
     biography TEXT,
+    languages VARCHAR,
     PRIMARY KEY (doctor_id)
 );

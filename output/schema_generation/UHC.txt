@@ -2,10 +2,10 @@ As a database engineer, design schema for a database called UHC.
 Requirements:
 The database is used for health care domain.
 The database is used for university health center, collecting data of patients, doctors, etc.
-Contains at least 8 tables.
+Contains at least 5 tables.
 Contains at least 50 columns in total.
 Contains table patients(description: information of patients).
-Table patients contains at least 10 columns.
+Table patients contains at least 20 columns.
 Table patients contains column age(description: age of patients).
 Contains table doctors.
 
@@ -15,13 +15,22 @@ For tables, give name and description in format:
 
 For columns, give name, type and description in format:
 ({Column_type}){Column_name}: {Column_description}
-Optional column type: BOOLEAN, INT, FLOAT, TEXT, VARCHAR, DATE, TIME, DATETIME, TIMESTAMP
+Optional column types: 
+BOOLEAN: Column with boolean values (True / False) E.g. Active status
+CHAR: Column with fixed-length string values E.g. Phone number
+VARCHAR: Column with variable-length string values E.g. Name, Email address
+INT: Column with integer values in specific range. E.g. Age 
+REAL: Column with float values in specific range. E.g. Income, Price
+TEXT: Column with text values E.g. Instructions, Reasons, Descriptions
+DATE: Column with values in format: YYYY-MM-DD
+TIME: Column with values in format: HH:MM:SS
+TIMESTAMP: Column with values in format: YYYY-MM-DD HH:MM:SS
 
 For primary keys, column name should be followed by *
 For foreign keys, referencing column should be followed by ({referenced table}.{referenced column})
 When one column is primary key and foreign key at the same time, () should be followed by *, so * should always be followed by :
 
-Output format (NO ANY OTHER OUTPUT):
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
 
 {Table1_name}: {Table1_description}
 -({Column1.1_type}){Column1.1_name}*: {Column1.1_description}
@@ -31,6 +40,7 @@ Output format (NO ANY OTHER OUTPUT):
 -({Column2.1_type}){Column2.1_name}*: {Column2.1_description}
 -({Column2.2_type}){Column2.2_name}: {Column2.2_description}
 ====================
+```
 patients: Information of patients
 -(INT)patient_id*: Unique identifier for each patient
 -(VARCHAR)first_name: First name of the patient
@@ -39,67 +49,62 @@ patients: Information of patients
 -(INT)age: Age of the patient
 -(VARCHAR)gender: Gender of the patient
 -(VARCHAR)address: Address of the patient
--(VARCHAR)phone_number: Phone number of the patient
+-(CHAR)phone_number: Phone number of the patient
 -(VARCHAR)email: Email address of the patient
--(TEXT)medical_history: Summary of the patient's medical history
+-(VARCHAR)emergency_contact: Emergency contact name
+-(CHAR)emergency_phone: Emergency contact phone number
+-(VARCHAR)insurance_provider: Insurance provider name
+-(VARCHAR)insurance_id: Insurance ID number
+-(DATE)registration_date: Date of registration
+-(BOOLEAN)active_status: Indicates if the patient is active
+-(TEXT)medical_history: Summary of patient's medical history
+-(VARCHAR)allergies: List of allergies
+-(VARCHAR)medications: Current medications
+-(VARCHAR)blood_type: Blood type of the patient
+-(VARCHAR)preferred_language: Preferred language of the patient
+-(VARCHAR)ethnicity: Ethnicity of the patient
 
 doctors: Information of doctors
 -(INT)doctor_id*: Unique identifier for each doctor
 -(VARCHAR)first_name: First name of the doctor
 -(VARCHAR)last_name: Last name of the doctor
--(VARCHAR)specialization: Medical specialization of the doctor
--(VARCHAR)phone_number: Phone number of the doctor
+-(DATE)date_of_birth: Date of birth of the doctor
+-(VARCHAR)gender: Gender of the doctor
+-(VARCHAR)specialization: Medical specialization
+-(VARCHAR)address: Address of the doctor
+-(CHAR)phone_number: Phone number of the doctor
 -(VARCHAR)email: Email address of the doctor
--(TEXT)biography: Brief biography of the doctor
+-(VARCHAR)license_number: Medical license number
+-(DATE)hire_date: Date of hire
+-(BOOLEAN)active_status: Indicates if the doctor is active
+-(TEXT)biography: Biography of the doctor
+-(VARCHAR)languages: Languages spoken by the doctor
 
 appointments: Information of appointments
 -(INT)appointment_id*: Unique identifier for each appointment
--(INT)patient_id(patients.patient_id): Reference to the patient
--(INT)doctor_id(doctors.doctor_id): Reference to the doctor
--(DATETIME)appointment_date: Date and time of the appointment
--(TEXT)reason: Reason for the appointment
--(VARCHAR)status: Status of the appointment (e.g., scheduled, completed, canceled)
+-(INT)patient_id({patients}.patient_id): Reference to the patient
+-(INT)doctor_id({doctors}.doctor_id): Reference to the doctor
+-(TIMESTAMP)appointment_datetime: Date and time of the appointment
+-(VARCHAR)appointment_type: Type of appointment (e.g., check-up, consultation)
+-(TEXT)notes: Notes about the appointment
+-(BOOLEAN)confirmed: Indicates if the appointment is confirmed
 
 medical_records: Information of medical records
 -(INT)record_id*: Unique identifier for each medical record
--(INT)patient_id(patients.patient_id): Reference to the patient
--(INT)doctor_id(doctors.doctor_id): Reference to the doctor
--(DATETIME)record_date: Date and time when the record was created
+-(INT)patient_id({patients}.patient_id): Reference to the patient
+-(INT)doctor_id({doctors}.doctor_id): Reference to the doctor
+-(DATE)record_date: Date of the record creation
 -(TEXT)diagnosis: Diagnosis details
 -(TEXT)treatment: Treatment details
--(TEXT)notes: Additional notes
+-(TEXT)prescriptions: Prescriptions given
+-(TEXT)test_results: Results of medical tests
 
-prescriptions: Information of prescriptions
--(INT)prescription_id*: Unique identifier for each prescription
--(INT)patient_id(patients.patient_id): Reference to the patient
--(INT)doctor_id(doctors.doctor_id): Reference to the doctor
--(DATETIME)prescription_date: Date and time when the prescription was issued
--(TEXT)medication: Medication details
--(TEXT)dosage: Dosage instructions
--(TEXT)instructions: Additional instructions
-
-billing: Information of billing
+billing: Information of billing records
 -(INT)billing_id*: Unique identifier for each billing record
--(INT)patient_id(patients.patient_id): Reference to the patient
--(FLOAT)amount: Amount to be billed
+-(INT)patient_id({patients}.patient_id): Reference to the patient
+-(REAL)amount: Amount charged
 -(DATE)billing_date: Date of billing
--(VARCHAR)status: Status of the billing (e.g., paid, pending)
--(TEXT)description: Description of the billing
-
-insurance: Information of insurance
--(INT)insurance_id*: Unique identifier for each insurance record
--(INT)patient_id(patients.patient_id): Reference to the patient
--(VARCHAR)provider: Insurance provider name
--(VARCHAR)policy_number: Policy number
--(DATE)effective_date: Effective date of the insurance
--(DATE)expiration_date: Expiration date of the insurance
--(TEXT)coverage_details: Details of the coverage
-
-staff: Information of staff
--(INT)staff_id*: Unique identifier for each staff member
--(VARCHAR)first_name: First name of the staff member
--(VARCHAR)last_name: Last name of the staff member
--(VARCHAR)role: Role of the staff member
--(VARCHAR)phone_number: Phone number of the staff member
--(VARCHAR)email: Email address of the staff member
--(TEXT)responsibilities: Responsibilities of the staff member
+-(VARCHAR)payment_method: Method of payment
+-(BOOLEAN)paid: Indicates if the bill is paid
+-(TEXT)description: Description of the services provided
+```

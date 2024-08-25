@@ -1,0 +1,52 @@
+As a database engineer, examine given schema and point out all IDENTIFIER columns in the schema.
+
+IDENTIFIER: Column with auto-incremented values used to uniquely identify records in this table 
+
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
+table1.identifier1
+table1.identifier2
+table2.identifier1
+...
+====================
+E.g. 
+Schema:
+
+CREATE TABLE `students` (
+    `student_id` INT,
+    `name` VARCHAR,
+    PRIMARY KEY (`student_id`)
+);
+
+CREATE TABLE teachers (
+    `teacher_id` INT,
+    `name` VARCHAR,
+    PRIMARY KEY (`teacher_id`)
+);
+
+CREATE TABLE courses (
+    `course_id` INT,
+    `teacher_id` INT,
+    `course_name` VARCHAR,
+    PRIMARY KEY (`course_id`)
+);
+
+CREATE TABLE scores (
+    `student_id` INT,
+    `course_id` INT,
+    `score` REAL,
+    PRIMARY KEY (`student_id`, `course_id`)
+);
+
+Identifier:
+students.student_id
+teachers.teacher_id
+courses.course_id
+courses.teacher_id
+scores.student_id
+scores.course_id
+====================
+Schema:
+
+{SCHEMA}
+
+Identifier:

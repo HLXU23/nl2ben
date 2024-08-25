@@ -1,175 +1,124 @@
-As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
 
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
 CREATE TABLE appointments (
     appointment_id INT,
-    patient_id INT,
-    doctor_id INT,
-    appointment_date DATETIME,
-    reason TEXT,
-    status VARCHAR,
-    PRIMARY KEY (appointment_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
-    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
 );
 
-For foreign key, you can ONLY use values given in referenced tables as follow:
-doctors.doctor_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-patients.patient_id: 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
+Example Row:
 
 
-Here are some newest data in database, you can check their formats and values for reference.
+Here are some existed data in database, you can check their formats and values for reference.
 1
-patient_id: 26
-first_name: "Olivia"
-last_name: "Jones"
-date_of_birth: "1998-04-14"
-age: 23
-gender: "Female"
-address: "5566 Cedar St, Naperville, IL 60540"
-phone_number: "630-555-5566"
-email: "olivia.jones@example.com"
-medical_history: "None"
-
-2
-patient_id: 27
-first_name: "William"
-last_name: "Garcia"
-date_of_birth: "1973-12-25"
-age: 48
-gender: "Male"
-address: "7788 Walnut St, Joliet, IL 60435"
-phone_number: "815-555-7788"
-email: "william.garcia@example.com"
-medical_history: "Heart Disease, Sleep Apnea"
-
-3
-patient_id: 28
-first_name: "Sophia"
-last_name: "Miller"
-date_of_birth: "1992-08-08"
-age: 30
-gender: "Female"
-address: "9900 Chestnut St, Aurora, IL 60504"
-phone_number: "630-555-9900"
-email: "sophia.miller@example.com"
-medical_history: "Thyroid Issues"
-
-4
-patient_id: 29
-first_name: "James"
-last_name: "Davis"
-date_of_birth: "1987-02-18"
-age: 34
-gender: "Male"
-address: "1122 Hickory St, Champaign, IL 61820"
-phone_number: "217-555-1122"
-email: "james.davis@example.com"
-medical_history: "Gastroesophageal Reflux Disease (GERD)"
-
-5
-patient_id: 30
-first_name: "Ava"
-last_name: "Martinez"
-date_of_birth: "2000-01-01"
-age: 21
-gender: "Female"
-address: "3344 Poplar St, Waukegan, IL 60085"
-phone_number: "847-555-3344"
-email: "ava.martinez@example.com"
-medical_history: "None"
+appointment_id: 1001
+appointment_datetime: '2023-10-15 14:30:00'
+appointment_type: 'Consultation'
+notes: 'Follow-up on recent lab results'
+confirmed: TRUE
 
 
 
-Output format (NO ANY OTHER OUTPUT): 
-1
-appointment_id: {row1.appointment_id}
-patient_id: {row1.patient_id}
-doctor_id: {row1.doctor_id}
-appointment_date: {row1.appointment_date}
-reason: {row1.reason}
-status: {row1.status}
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+appointment_id: 1007
+appointment_datetime: 
+appointment_type: 
+notes: 
+confirmed: False
 
-2
-...
-
-etc.
 ====================
+AI: 
+appointment_id: 1007
+appointment_datetime: '2023-11-05 09:45:00'
+appointment_type: 'Check-up'
+notes: 'Routine annual physical examination'
+confirmed: False
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE appointments (
+    appointment_id INT,
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
 1
-appointment_id: 101
-patient_id: 26
-doctor_id: 3
-appointment_date: "2023-04-10 10:30:00"
-reason: "Annual check-up"
-status: "Completed"
+appointment_id: 1001
+appointment_datetime: '2023-10-15 14:30:00'
+appointment_type: 'Consultation'
+notes: 'Follow-up on recent lab results'
+confirmed: TRUE
 
-2
-appointment_id: 102
-patient_id: 27
-doctor_id: 5
-appointment_date: "2023-04-11 14:00:00"
-reason: "Follow-up on heart condition"
-status: "Scheduled"
 
-3
-appointment_id: 103
-patient_id: 28
-doctor_id: 2
-appointment_date: "2023-04-12 09:15:00"
-reason: "Consultation for thyroid medication adjustment"
-status: "Scheduled"
 
-4
-appointment_id: 104
-patient_id: 29
-doctor_id: 7
-appointment_date: "2023-04-13 16:30:00"
-reason: "GERD symptoms review"
-status: "Cancelled"
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+appointment_id: 1008
+appointment_datetime: 
+appointment_type: 
+notes: 
+confirmed: False
 
-5
-appointment_id: 105
-patient_id: 30
-doctor_id: 1
-appointment_date: "2023-04-14 11:00:00"
-reason: "First visit for general health assessment"
-status: "Scheduled"
+====================
+AI: 
+appointment_id: 1008
+appointment_datetime: '2023-11-05 09:45:00'
+appointment_type: 'Check-up'
+notes: 'Routine annual physical examination'
+confirmed: False
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-6
-appointment_id: 106
-patient_id: 26
-doctor_id: 4
-appointment_date: "2023-04-15 13:45:00"
-reason: "Dental cleaning appointment"
-status: "Scheduled"
+Schema:
+CREATE TABLE appointments (
+    appointment_id INT,
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
+);
 
-7
-appointment_id: 107
-patient_id: 27
-doctor_id: 6
-appointment_date: "2023-04-16 15:30:00"
-reason: "Sleep apnea device fitting"
-status: "Scheduled"
+Example Row:
 
-8
-appointment_id: 108
-patient_id: 28
-doctor_id: 8
-appointment_date: "2023-04-17 10:00:00"
-reason: "Thyroid ultrasound"
-status: "Scheduled"
 
-9
-appointment_id: 109
-patient_id: 29
-doctor_id: 9
-appointment_date: "2023-04-18 14:30:00"
-reason: "Gastroenterology consultation"
-status: "Scheduled"
+Here are some existed data in database, you can check their formats and values for reference.
+1
+appointment_id: 1001
+appointment_datetime: '2023-10-15 14:30:00'
+appointment_type: 'Consultation'
+notes: 'Follow-up on recent lab results'
+confirmed: TRUE
 
-10
-appointment_id: 110
-patient_id: 30
-doctor_id: 10
-appointment_date: "2023-04-19 08:45:00"
-reason: "Vaccination appointment"
-status: "Scheduled"
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+appointment_id: 1009
+appointment_datetime: 
+appointment_type: 
+notes: 
+confirmed: True
+
+====================
+AI: 
+appointment_id: 1009
+appointment_datetime: '2023-11-02 09:45:00'
+appointment_type: 'Check-up'
+notes: 'Routine annual physical examination'
+confirmed: True

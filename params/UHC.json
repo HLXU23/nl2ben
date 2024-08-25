@@ -1,12 +1,12 @@
 {
     "domain": "health care",
     "usage": "The database is used for university health center, collecting data of patients, doctors, etc.",
-    "min_table_num": 8,
+    "min_table_num": 5,
     "min_column_sum": 50,
     "defined_table": {
         "patients": {
             "table_description": "information of patients",
-            "min_column_num": 10,
+            "min_column_num": 20,
             "defined_column": {
                 "age": {
                     "column_description": "age of patients"

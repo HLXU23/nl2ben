@@ -79,8 +79,11 @@ def temp_generation(db_name: str, config: Dict[str, Any]):
         )[0][0]
 
         with open(os.path.join(output_path, f'{db_name}_{idx}.txt'), "w") as file:
+            file.write('\n====================\n')
+            file.write('Human: \n')
             file.write(prompt)
             file.write('\n====================\n')
+            file.write('AI: \n')
             file.write(response)
         
         ques_templates += get_templates(response)

@@ -49,8 +49,11 @@ def ques_revision(db_name: str, config: Dict[str, Any]):
         )[0][0]
 
         with open(os.path.join(output_path, f'{db_name}.txt'), "w") as file:
+            file.write('\n====================\n')
+            file.write('Human: \n')
             file.write(prompt)
             file.write('\n====================\n')
+            file.write('AI: \n')
             file.write(response)
 
         revised_questions.append({

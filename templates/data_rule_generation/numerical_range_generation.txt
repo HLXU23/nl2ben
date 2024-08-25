@@ -1,0 +1,34 @@
+As a database engineer, give range constraint for a numerical column in the database based on whole schema. Range constraint should consider authenticity.
+
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
+Lower Limit, Upper Limit
+
+Or, this column has no range constraint:
+Output format:
+0
+====================
+E.g.
+Database name: schools
+Table name: teachers
+Column name: age
+Schema: 
+
+CREATE TABLE `teachers` (
+    `teacher_id` INT, 
+    `age` INT
+)
+
+Range: 
+18, 60
+
+====================
+Database name: {DB}
+Table name: {TABLE}
+Column name: {COLUMN}
+Schema: 
+
+{SCHEMA}
+
+{EXAMPLE_ROW}
+
+Range:

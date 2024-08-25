@@ -1,5 +1,9 @@
-As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
 
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
 CREATE TABLE patients (
     patient_id INT,
     first_name VARCHAR,
@@ -8,194 +12,305 @@ CREATE TABLE patients (
     age INT,
     gender VARCHAR,
     address VARCHAR,
-    phone_number VARCHAR,
+    phone_number CHAR,
     email VARCHAR,
+    emergency_contact VARCHAR,
+    emergency_phone CHAR,
+    insurance_provider VARCHAR,
+    insurance_id VARCHAR,
+    registration_date DATE,
+    active_status BOOLEAN,
     medical_history TEXT,
+    allergies VARCHAR,
+    medications VARCHAR,
+    blood_type VARCHAR,
+    preferred_language VARCHAR,
+    ethnicity VARCHAR,
     PRIMARY KEY (patient_id)
 );
 
-Here are some newest data in database, you can check their formats and values for reference.
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
 1
-insurance_id: 6
-patient_id: 6
-provider: "Humana"
-policy_number: "HUM333333333"
-effective_date: 2023-06-15
-expiration_date: 2024-06-15
-coverage_details: "Medicare Advantage plan providing additional benefits beyond original Medicare."
-
-2
-insurance_id: 7
-patient_id: 7
-provider: "Oscar Health"
-policy_number: "OSC444444444"
-effective_date: 2023-07-25
-expiration_date: 2024-07-25
-coverage_details: "Digital-first health insurance offering telemedicine and personalized care."
-
-3
-insurance_id: 8
-patient_id: 8
-provider: "Molina Healthcare"
-policy_number: "MOL555555555"
-effective_date: 2023-08-10
-expiration_date: 2024-08-10
-coverage_details: "Medicaid managed care plan serving low-income individuals and families."
-
-4
-insurance_id: 9
-patient_id: 9
-provider: "Centene Corporation"
-policy_number: "CEN666666666"
-effective_date: 2023-09-01
-expiration_date: 2024-09-01
-coverage_details: "Multi-state health plans including Medicaid, Medicare, and commercial coverage."
-
-5
-insurance_id: 10
-patient_id: 10
-provider: "Health Net"
-policy_number: "HEN777777777"
-effective_date: 2023-10-15
-expiration_date: 2024-10-15
-coverage_details: "Wide range of health plans including HMO, PPO, and government-sponsored programs."
-
-
-
-Output format (NO ANY OTHER OUTPUT): 
-1
-patient_id: {row1.patient_id}
-first_name: {row1.first_name}
-last_name: {row1.last_name}
-date_of_birth: {row1.date_of_birth}
-age: {row1.age}
-gender: {row1.gender}
-address: {row1.address}
-phone_number: {row1.phone_number}
-email: {row1.email}
-medical_history: {row1.medical_history}
-
-2
-...
-
-etc.
-====================
-1
-patient_id: 11
-first_name: "John"
-last_name: "Doe"
-date_of_birth: "1985-04-12"
+patient_id: 1001
+first_name: Emily
+last_name: Johnson
+date_of_birth: 1985-07-12
 age: 36
-gender: "Male"
-address: "1234 Elm St, Springfield, IL 62704"
-phone_number: "217-555-1234"
-email: "john.doe@example.com"
-medical_history: "Hypertension, seasonal allergies"
+gender: Female
+address: 456 Elm St, Springfield, IL 62704
+phone_number: 2175550147
+email: emily.johnson@example.com
+emergency_contact: Michael Johnson
+emergency_phone: 2175550148
+insurance_provider: BlueCross BlueShield
+insurance_id: BCBS123456789
+registration_date: 2010-09-15
+active_status: TRUE
+medical_history: Hypertension, Asthma
+allergies: Penicillin
+medications: Lisinopril, Albuterol
+blood_type: A+
+preferred_language: English
+ethnicity: Caucasian
 
-2
-patient_id: 12
-first_name: "Jane"
-last_name: "Smith"
-date_of_birth: "1990-07-22"
-age: 31
-gender: "Female"
-address: "5678 Oak St, Lincoln, NE 68508"
-phone_number: "402-555-5678"
-email: "jane.smith@example.com"
-medical_history: "Asthma, no known allergies"
 
-3
-patient_id: 13
-first_name: "Michael"
-last_name: "Johnson"
-date_of_birth: "1978-11-03"
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+patient_id: 1004
+first_name: 
+last_name: 
+date_of_birth: 
+age: 
+gender: Female
+address: 
+phone_number: 
+email: 
+emergency_contact: 
+emergency_phone: 
+insurance_provider: BlueCross
+insurance_id: 
+registration_date: 
+active_status: False
+medical_history: 
+allergies: 
+medications: 
+blood_type: AB-
+preferred_language: Korean
+ethnicity: White
+
+====================
+AI: 
+patient_id: 1004
+first_name: Soo-Min
+last_name: Lee
+date_of_birth: 1992-04-28
+age: 29
+gender: Female
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125550123
+email: soo.min.lee@example.com
+emergency_contact: Ji-Hoon Lee
+emergency_phone: 3125550124
+insurance_provider: BlueCross
+insurance_id: BC1234567890
+registration_date: 2015-03-10
+active_status: False
+medical_history: None
+allergies: None
+medications: None
+blood_type: AB-
+preferred_language: Korean
+ethnicity: White
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    emergency_contact VARCHAR,
+    emergency_phone CHAR,
+    insurance_provider VARCHAR,
+    insurance_id VARCHAR,
+    registration_date DATE,
+    active_status BOOLEAN,
+    medical_history TEXT,
+    allergies VARCHAR,
+    medications VARCHAR,
+    blood_type VARCHAR,
+    preferred_language VARCHAR,
+    ethnicity VARCHAR,
+    PRIMARY KEY (patient_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+patient_id: 1001
+first_name: Emily
+last_name: Johnson
+date_of_birth: 1985-07-12
+age: 36
+gender: Female
+address: 456 Elm St, Springfield, IL 62704
+phone_number: 2175550147
+email: emily.johnson@example.com
+emergency_contact: Michael Johnson
+emergency_phone: 2175550148
+insurance_provider: BlueCross BlueShield
+insurance_id: BCBS123456789
+registration_date: 2010-09-15
+active_status: TRUE
+medical_history: Hypertension, Asthma
+allergies: Penicillin
+medications: Lisinopril, Albuterol
+blood_type: A+
+preferred_language: English
+ethnicity: Caucasian
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+patient_id: 1005
+first_name: 
+last_name: 
+date_of_birth: 
+age: 
+gender: Female
+address: 
+phone_number: 
+email: 
+emergency_contact: 
+emergency_phone: 
+insurance_provider: UnitedHealthcare
+insurance_id: 
+registration_date: 
+active_status: True
+medical_history: 
+allergies: 
+medications: 
+blood_type: O+
+preferred_language: English
+ethnicity: Other
+
+====================
+AI: 
+patient_id: 1005
+first_name: Samantha
+last_name: Lee
+date_of_birth: 1992-04-28
+age: 29
+gender: Female
+address: 789 Oak St, Portland, OR 97201
+phone_number: 5035550162
+email: samantha.lee@example.com
+emergency_contact: James Lee
+emergency_phone: 5035550163
+insurance_provider: UnitedHealthcare
+insurance_id: UHC987654321
+registration_date: 2015-06-20
+active_status: True
+medical_history: Migraine
+allergies: None
+medications: Sumatriptan
+blood_type: O+
+preferred_language: English
+ethnicity: Other
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    emergency_contact VARCHAR,
+    emergency_phone CHAR,
+    insurance_provider VARCHAR,
+    insurance_id VARCHAR,
+    registration_date DATE,
+    active_status BOOLEAN,
+    medical_history TEXT,
+    allergies VARCHAR,
+    medications VARCHAR,
+    blood_type VARCHAR,
+    preferred_language VARCHAR,
+    ethnicity VARCHAR,
+    PRIMARY KEY (patient_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+patient_id: 1001
+first_name: Emily
+last_name: Johnson
+date_of_birth: 1985-07-12
+age: 36
+gender: Female
+address: 456 Elm St, Springfield, IL 62704
+phone_number: 2175550147
+email: emily.johnson@example.com
+emergency_contact: Michael Johnson
+emergency_phone: 2175550148
+insurance_provider: BlueCross BlueShield
+insurance_id: BCBS123456789
+registration_date: 2010-09-15
+active_status: TRUE
+medical_history: Hypertension, Asthma
+allergies: Penicillin
+medications: Lisinopril, Albuterol
+blood_type: A+
+preferred_language: English
+ethnicity: Caucasian
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+patient_id: 1006
+first_name: 
+last_name: 
+date_of_birth: 
+age: 
+gender: Male
+address: 
+phone_number: 
+email: 
+emergency_contact: 
+emergency_phone: 
+insurance_provider: Humana
+insurance_id: 
+registration_date: 
+active_status: True
+medical_history: 
+allergies: 
+medications: 
+blood_type: B+
+preferred_language: French
+ethnicity: Black
+
+====================
+AI: 
+patient_id: 1006
+first_name: Jean
+last_name: Dupont
+date_of_birth: 1978-04-20
 age: 43
-gender: "Male"
-address: "9101 Pine St, Denver, CO 80202"
-phone_number: "303-555-9101"
-email: "michael.johnson@example.com"
-medical_history: "Type 2 diabetes, no known allergies"
-
-4
-patient_id: 14
-first_name: "Emily"
-last_name: "Williams"
-date_of_birth: "1995-02-18"
-age: 26
-gender: "Female"
-address: "1122 Maple St, Portland, OR 97205"
-phone_number: "503-555-1122"
-email: "emily.williams@example.com"
-medical_history: "Migraines, lactose intolerance"
-
-5
-patient_id: 15
-first_name: "Daniel"
-last_name: "Brown"
-date_of_birth: "1982-09-29"
-age: 39
-gender: "Male"
-address: "3344 Birch St, Atlanta, GA 30301"
-phone_number: "404-555-3344"
-email: "daniel.brown@example.com"
-medical_history: "No significant medical history"
-
-6
-patient_id: 16
-first_name: "Olivia"
-last_name: "Jones"
-date_of_birth: "1998-06-08"
-age: 23
-gender: "Female"
-address: "5566 Cedar St, Miami, FL 33101"
-phone_number: "305-555-5566"
-email: "olivia.jones@example.com"
-medical_history: "Allergic rhinitis, no known food allergies"
-
-7
-patient_id: 17
-first_name: "William"
-last_name: "Garcia"
-date_of_birth: "1973-12-14"
-age: 48
-gender: "Male"
-address: "7788 Walnut St, Seattle, WA 98101"
-phone_number: "206-555-7788"
-email: "william.garcia@example.com"
-medical_history: "High cholesterol, no known allergies"
-
-8
-patient_id: 18
-first_name: "Sophia"
-last_name: "Miller"
-date_of_birth: "2000-03-27"
-age: 21
-gender: "Female"
-address: "9900 Cherry St, Boston, MA 02108"
-phone_number: "617-555-9900"
-email: "sophia.miller@example.com"
-medical_history: "No significant medical history"
-
-9
-patient_id: 19
-first_name: "James"
-last_name: "Davis"
-date_of_birth: "1989-08-05"
-age: 32
-gender: "Male"
-address: "1122 Peach St, Austin, TX 78701"
-phone_number: "512-555-1122"
-email: "james.davis@example.com"
-medical_history: "Gout, shellfish allergy"
-
-10
-patient_id: 20
-first_name: "Ava"
-last_name: "Martinez"
-date_of_birth: "1993-05-19"
-age: 28
-gender: "Female"
-address: "3344 Plum St, San Francisco, CA 94101"
-phone_number: "415-555-3344"
-email: "ava.martinez@example.com"
-medical_history: "Depression, no known allergies"
+gender: Male
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125550159
+email: jean.dupont@example.com
+emergency_contact: Marie Dupont
+emergency_phone: 3125550160
+insurance_provider: Humana
+insurance_id: HUM123456789
+registration_date: 2015-03-10
+active_status: True
+medical_history: Diabetes, Hyperlipidemia
+allergies: Sulfa
+medications: Metformin, Atorvastatin
+blood_type: B+
+preferred_language: French
+ethnicity: Black

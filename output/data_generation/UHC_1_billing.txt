@@ -1,158 +1,136 @@
-As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
 
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
 CREATE TABLE billing (
     billing_id INT,
-    patient_id INT,
-    amount FLOAT,
+    amount REAL,
     billing_date DATE,
-    status VARCHAR,
+    payment_method VARCHAR,
+    paid BOOLEAN,
     description TEXT,
-    PRIMARY KEY (billing_id),
-    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+    PRIMARY KEY (billing_id)
 );
 
-For foreign key, you can ONLY use values given in referenced tables as follow:
-patients.patient_id: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+Example Row:
 
 
-Here are some newest data in database, you can check their formats and values for reference.
+Here are some existed data in database, you can check their formats and values for reference.
 1
-prescription_id: 6
-patient_id: 16
-doctor_id: 6
-prescription_date: "2023-10-21 08:30:00"
-medication: "Amlodipine"
-dosage: "5mg"
-instructions: "Take once daily in the morning."
-
-2
-prescription_id: 7
-patient_id: 17
-doctor_id: 7
-prescription_date: "2023-10-22 13:00:00"
-medication: "Hydrochlorothiazide"
-dosage: "25mg"
-instructions: "Take once daily in the morning."
-
-3
-prescription_id: 8
-patient_id: 18
-doctor_id: 8
-prescription_date: "2023-10-23 16:15:00"
-medication: "Sertraline"
-dosage: "50mg"
-instructions: "Take once daily in the morning."
-
-4
-prescription_id: 9
-patient_id: 19
-doctor_id: 9
-prescription_date: "2023-10-24 09:00:00"
-medication: "Montelukast"
-dosage: "10mg"
-instructions: "Take once daily in the evening."
-
-5
-prescription_id: 10
-patient_id: 20
-doctor_id: 10
-prescription_date: "2023-10-25 11:30:00"
-medication: "Prednisone"
-dosage: "5mg"
-instructions: "Take as directed by the doctor."
-
-
-
-Output format (NO ANY OTHER OUTPUT): 
-1
-billing_id: {row1.billing_id}
-patient_id: {row1.patient_id}
-amount: {row1.amount}
-billing_date: {row1.billing_date}
-status: {row1.status}
-description: {row1.description}
-
-2
-...
-
-etc.
-====================
-1
-billing_id: 101
-patient_id: 11
+billing_id: 12345
 amount: 150.75
-billing_date: "2023-10-21"
-status: "Paid"
-description: "Consultation fee for general check-up"
+billing_date: '2023-04-10'
+payment_method: 'Credit Card'
+paid: TRUE
+description: 'Monthly subscription fee for online services'
 
-2
-billing_id: 102
-patient_id: 12
-amount: 200.00
-billing_date: "2023-10-22"
-status: "Pending"
-description: "X-ray and lab tests"
 
-3
-billing_id: 103
-patient_id: 13
-amount: 75.50
-billing_date: "2023-10-23"
-status: "Paid"
-description: "Medication refill"
 
-4
-billing_id: 104
-patient_id: 14
-amount: 300.25
-billing_date: "2023-10-24"
-status: "Pending"
-description: "Specialist consultation"
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+billing_id: 12348
+amount: 
+billing_date: 
+payment_method: Check
+paid: True
+description: 
 
-5
-billing_id: 105
-patient_id: 15
-amount: 120.00
-billing_date: "2023-10-25"
-status: "Paid"
-description: "Follow-up appointment"
+====================
+AI: 
+billing_id: 12348
+amount: 250.00
+billing_date: '2023-04-15'
+payment_method: 'Check'
+paid: True
+description: 'Quarterly rent payment for office space'
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-6
-billing_id: 106
-patient_id: 16
-amount: 50.00
-billing_date: "2023-10-26"
-status: "Pending"
-description: "Prescription renewal"
+Schema:
+CREATE TABLE billing (
+    billing_id INT,
+    amount REAL,
+    billing_date DATE,
+    payment_method VARCHAR,
+    paid BOOLEAN,
+    description TEXT,
+    PRIMARY KEY (billing_id)
+);
 
-7
-billing_id: 107
-patient_id: 17
-amount: 250.50
-billing_date: "2023-10-27"
-status: "Paid"
-description: "Surgery follow-up"
+Example Row:
 
-8
-billing_id: 108
-patient_id: 18
-amount: 180.75
-billing_date: "2023-10-28"
-status: "Pending"
-description: "Dental cleaning"
 
-9
-billing_id: 109
-patient_id: 19
-amount: 90.00
-billing_date: "2023-10-29"
-status: "Paid"
-description: "Eye examination"
+Here are some existed data in database, you can check their formats and values for reference.
+1
+billing_id: 12345
+amount: 150.75
+billing_date: '2023-04-10'
+payment_method: 'Credit Card'
+paid: TRUE
+description: 'Monthly subscription fee for online services'
 
-10
-billing_id: 110
-patient_id: 20
-amount: 400.00
-billing_date: "2023-10-30"
-status: "Pending"
-description: "MRI scan"
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+billing_id: 12349
+amount: 
+billing_date: 
+payment_method: Bank Transfer
+paid: False
+description: 
+
+====================
+AI: 
+billing_id: 12349
+amount: 250.00
+billing_date: '2023-04-15'
+payment_method: 'Bank Transfer'
+paid: False
+description: 'Utility bill for March 2023'
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE billing (
+    billing_id INT,
+    amount REAL,
+    billing_date DATE,
+    payment_method VARCHAR,
+    paid BOOLEAN,
+    description TEXT,
+    PRIMARY KEY (billing_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+billing_id: 12345
+amount: 150.75
+billing_date: '2023-04-10'
+payment_method: 'Credit Card'
+paid: TRUE
+description: 'Monthly subscription fee for online services'
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+billing_id: 12350
+amount: 
+billing_date: 
+payment_method: Check
+paid: True
+description: 
+
+====================
+AI: 
+billing_id: 12350
+amount: 250.00
+billing_date: '2023-04-15'
+payment_method: 'Check'
+paid: True
+description: 'Quarterly rent payment for office space'
