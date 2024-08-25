@@ -1,0 +1,324 @@
+{
+    "patients": {
+        "description": "",
+        "attributes": {
+            "patient_id": {
+                "description": "",
+                "type": "INT",
+                "identifier": 1
+            },
+            "first_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "last_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "date_of_birth": {
+                "description": "",
+                "type": "DATE"
+            },
+            "age": {
+                "description": "",
+                "type": "INT"
+            },
+            "gender": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Male",
+                    "Female",
+                    "Other"
+                ]
+            },
+            "address": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "phone_number": {
+                "description": "",
+                "type": "CHAR"
+            },
+            "email": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "emergency_contact": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "emergency_phone": {
+                "description": "",
+                "type": "CHAR"
+            },
+            "insurance_provider": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Aetna",
+                    "BlueCross",
+                    "Cigna",
+                    "Humana",
+                    "UnitedHealthcare"
+                ]
+            },
+            "insurance_id": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "registration_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "active_status": {
+                "description": "",
+                "type": "BOOLEAN"
+            },
+            "medical_history": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "allergies": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "medications": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "blood_type": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "A+",
+                    "A-",
+                    "B+",
+                    "B-",
+                    "AB+",
+                    "AB-",
+                    "O+",
+                    "O-"
+                ]
+            },
+            "preferred_language": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "English",
+                    "Spanish",
+                    "French",
+                    "German",
+                    "Chinese",
+                    "Japanese",
+                    "Korean",
+                    "Arabic",
+                    "Russian",
+                    "Portuguese",
+                    "Italian",
+                    "Dutch",
+                    "Hindi",
+                    "Other"
+                ]
+            },
+            "ethnicity": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Asian",
+                    "Black",
+                    "Hispanic",
+                    "White",
+                    "Other"
+                ]
+            }
+        },
+        "primary_keys": [
+            "patient_id"
+        ],
+        "foreign_keys": {}
+    },
+    "doctors": {
+        "description": "",
+        "attributes": {
+            "doctor_id": {
+                "description": "",
+                "type": "INT",
+                "identifier": 1
+            },
+            "first_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "last_name": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "date_of_birth": {
+                "description": "",
+                "type": "DATE"
+            },
+            "gender": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Male",
+                    "Female",
+                    "Other"
+                ]
+            },
+            "specialization": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Cardiology",
+                    "Dermatology",
+                    "Neurology",
+                    "Pediatrics",
+                    "Psychiatry"
+                ]
+            },
+            "address": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "phone_number": {
+                "description": "",
+                "type": "CHAR"
+            },
+            "email": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "license_number": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "hire_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "active_status": {
+                "description": "",
+                "type": "BOOLEAN"
+            },
+            "biography": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "languages": {
+                "description": "",
+                "type": "VARCHAR"
+            }
+        },
+        "primary_keys": [
+            "doctor_id"
+        ],
+        "foreign_keys": {}
+    },
+    "appointments": {
+        "description": "",
+        "attributes": {
+            "appointment_id": {
+                "description": "",
+                "type": "INT",
+                "identifier": 1
+            },
+            "appointment_datetime": {
+                "description": "",
+                "type": "TIMESTAMP"
+            },
+            "appointment_type": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "notes": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "confirmed": {
+                "description": "",
+                "type": "BOOLEAN"
+            }
+        },
+        "primary_keys": [
+            "appointment_id"
+        ],
+        "foreign_keys": {}
+    },
+    "medical_records": {
+        "description": "",
+        "attributes": {
+            "record_id": {
+                "description": "",
+                "type": "INT",
+                "identifier": 1
+            },
+            "record_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "diagnosis": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "treatment": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "prescriptions": {
+                "description": "",
+                "type": "TEXT"
+            },
+            "test_results": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "record_id"
+        ],
+        "foreign_keys": {}
+    },
+    "billing": {
+        "description": "",
+        "attributes": {
+            "billing_id": {
+                "description": "",
+                "type": "INT",
+                "identifier": 1
+            },
+            "amount": {
+                "description": "",
+                "type": "REAL"
+            },
+            "billing_date": {
+                "description": "",
+                "type": "DATE"
+            },
+            "payment_method": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Credit Card",
+                    "Debit Card",
+                    "Cash",
+                    "Check",
+                    "Bank Transfer"
+                ]
+            },
+            "paid": {
+                "description": "",
+                "type": "BOOLEAN"
+            },
+            "description": {
+                "description": "",
+                "type": "TEXT"
+            }
+        },
+        "primary_keys": [
+            "billing_id"
+        ],
+        "foreign_keys": {}
+    }
+}

@@ -1,170 +1,136 @@
-As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
 
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
 CREATE TABLE medical_records (
     record_id INT,
-    patient_id INT,
-    doctor_id INT,
-    record_date DATETIME,
+    record_date DATE,
     diagnosis TEXT,
     treatment TEXT,
-    notes TEXT,
-    PRIMARY KEY (record_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
-    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+    prescriptions TEXT,
+    test_results TEXT,
+    PRIMARY KEY (record_id)
 );
 
-For foreign key, you can ONLY use values given in referenced tables as follow:
-doctors.doctor_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-patients.patient_id: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+Example Row:
 
 
-Here are some newest data in database, you can check their formats and values for reference.
+Here are some existed data in database, you can check their formats and values for reference.
 1
-staff_id: 8
-first_name: "Olivia"
-last_name: "Garcia"
-role: "Dietitian"
-phone_number: "617-555-1616"
-email: "olivia.garcia@example.com"
-responsibilities: "Nutritional assessment, meal planning, dietary counseling"
-
-2
-staff_id: 9
-first_name: "Matthew"
-last_name: "Harris"
-role: "Physical Therapist"
-phone_number: "512-555-1717"
-email: "matthew.harris@example.com"
-responsibilities: "Rehabilitation, mobility training, patient education"
-
-3
-staff_id: 10
-first_name: "Ava"
-last_name: "Young"
-role: "Social Worker"
-phone_number: "415-555-1818"
-email: "ava.young@example.com"
-responsibilities: "Counseling, crisis intervention, community resource coordination"
-
-4
-appointment_id: 1
-patient_id: 11
-doctor_id: 1
-appointment_date: "2023-10-15 10:30:00"
-reason: "Annual check-up"
-status: "Scheduled"
-
-5
-appointment_id: 10
-patient_id: 20
-doctor_id: 10
-appointment_date: "2023-10-24 14:30:00"
-reason: "Counseling session"
-status: "Confirmed"
+record_id: 1001
+record_date: '2023-04-15'
+diagnosis: 'Hypertension'
+treatment: 'Prescribed medication and advised lifestyle changes'
+prescriptions: 'Lisinopril 10mg once daily'
+test_results: 'Blood pressure: 145/95 mmHg, Cholesterol: 220 mg/dL'
 
 
 
-Output format (NO ANY OTHER OUTPUT): 
-1
-record_id: {row1.record_id}
-patient_id: {row1.patient_id}
-doctor_id: {row1.doctor_id}
-record_date: {row1.record_date}
-diagnosis: {row1.diagnosis}
-treatment: {row1.treatment}
-notes: {row1.notes}
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+record_id: 1004
+record_date: 
+diagnosis: 
+treatment: 
+prescriptions: 
+test_results: 
 
-2
-...
-
-etc.
 ====================
+AI: 
+record_id: 1004
+record_date: '2023-05-01'
+diagnosis: 'Type 2 Diabetes'
+treatment: 'Dietary management and oral medication'
+prescriptions: 'Metformin 500mg twice daily'
+test_results: 'Fasting blood sugar: 180 mg/dL, HbA1c: 7.5%'
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE medical_records (
+    record_id INT,
+    record_date DATE,
+    diagnosis TEXT,
+    treatment TEXT,
+    prescriptions TEXT,
+    test_results TEXT,
+    PRIMARY KEY (record_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
 1
-record_id: 1
-patient_id: 11
-doctor_id: 1
-record_date: "2023-10-15 11:00:00"
-diagnosis: "Hypertension"
-treatment: "Prescribed Lisinopril 10mg daily"
-notes: "Patient to follow up in 3 months"
+record_id: 1001
+record_date: '2023-04-15'
+diagnosis: 'Hypertension'
+treatment: 'Prescribed medication and advised lifestyle changes'
+prescriptions: 'Lisinopril 10mg once daily'
+test_results: 'Blood pressure: 145/95 mmHg, Cholesterol: 220 mg/dL'
 
-2
-record_id: 2
-patient_id: 12
-doctor_id: 2
-record_date: "2023-10-16 09:30:00"
-diagnosis: "Type 2 Diabetes"
-treatment: "Metformin 500mg twice daily"
-notes: "Diet and exercise regimen advised"
 
-3
-record_id: 3
-patient_id: 13
-doctor_id: 3
-record_date: "2023-10-17 14:00:00"
-diagnosis: "Asthma"
-treatment: "Albuterol inhaler as needed"
-notes: "Patient to monitor peak flow rates"
 
-4
-record_id: 4
-patient_id: 14
-doctor_id: 4
-record_date: "2023-10-18 10:00:00"
-diagnosis: "Depression"
-treatment: "Start on Escitalopram 10mg daily"
-notes: "Referred to mental health counselor"
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+record_id: 1005
+record_date: 
+diagnosis: 
+treatment: 
+prescriptions: 
+test_results: 
 
-5
-record_id: 5
-patient_id: 15
-doctor_id: 5
-record_date: "2023-10-19 15:30:00"
-diagnosis: "Osteoarthritis"
-treatment: "Prescribed Naproxen 500mg twice daily"
-notes: "Physical therapy recommended"
+====================
+AI: 
+record_id: 1005
+record_date: '2023-04-20'
+diagnosis: 'Type 2 Diabetes'
+treatment: 'Dietary management and oral medication'
+prescriptions: 'Metformin 500mg twice daily'
+test_results: 'Fasting blood sugar: 180 mg/dL, HbA1c: 7.5%'
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-6
-record_id: 6
-patient_id: 16
-doctor_id: 6
-record_date: "2023-10-20 11:30:00"
-diagnosis: "Allergic Rhinitis"
-treatment: "Fluticasone nasal spray"
-notes: "Avoidance of allergens advised"
+Schema:
+CREATE TABLE medical_records (
+    record_id INT,
+    record_date DATE,
+    diagnosis TEXT,
+    treatment TEXT,
+    prescriptions TEXT,
+    test_results TEXT,
+    PRIMARY KEY (record_id)
+);
 
-7
-record_id: 7
-patient_id: 17
-doctor_id: 7
-record_date: "2023-10-21 13:00:00"
-diagnosis: "Gastroesophageal Reflux Disease (GERD)"
-treatment: "Omeprazole 20mg daily"
-notes: "Diet modification suggested"
+Example Row:
 
-8
-record_id: 8
-patient_id: 18
-doctor_id: 8
-record_date: "2023-10-22 10:30:00"
-diagnosis: "Migraine"
-treatment: "Sumatriptan as needed"
-notes: "Keep a headache diary"
 
-9
-record_id: 9
-patient_id: 19
-doctor_id: 9
-record_date: "2023-10-23 14:30:00"
-diagnosis: "Anxiety"
-treatment: "Start on Sertraline 50mg daily"
-notes: "Referred for cognitive behavioral therapy"
+Here are some existed data in database, you can check their formats and values for reference.
+1
+record_id: 1001
+record_date: '2023-04-15'
+diagnosis: 'Hypertension'
+treatment: 'Prescribed medication and advised lifestyle changes'
+prescriptions: 'Lisinopril 10mg once daily'
+test_results: 'Blood pressure: 145/95 mmHg, Cholesterol: 220 mg/dL'
 
-10
-record_id: 10
-patient_id: 20
-doctor_id: 10
-record_date: "2023-10-24 15:00:00"
-diagnosis: "Chronic Back Pain"
-treatment: "Prescribed Tramadol 50mg twice daily"
-notes: "Follow up in 2 weeks for review"
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+record_id: 1006
+record_date: 
+diagnosis: 
+treatment: 
+prescriptions: 
+test_results: 
+
+====================
+AI: 
+record_id: 1006
+record_date: '2023-04-20'
+diagnosis: 'Type 2 Diabetes'
+treatment: 'Diet modification, oral medication'
+prescriptions: 'Metformin 500mg twice daily'
+test_results: 'Fasting blood sugar: 180 mg/dL, HbA1c: 7.5%'

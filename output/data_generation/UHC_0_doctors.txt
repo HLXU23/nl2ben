@@ -1,180 +1,213 @@
-As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
 
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
 CREATE TABLE doctors (
     doctor_id INT,
     first_name VARCHAR,
     last_name VARCHAR,
+    date_of_birth DATE,
+    gender VARCHAR,
     specialization VARCHAR,
-    phone_number VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
     email VARCHAR,
+    license_number VARCHAR,
+    hire_date DATE,
+    active_status BOOLEAN,
     biography TEXT,
+    languages VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
-Here are some newest data in database, you can check their formats and values for reference.
-1
-patient_id: 6
-first_name: Olivia
-last_name: Davis
-date_of_birth: 1989-06-18
-age: 32
-gender: Female
-address: 5566 Cedar St, Miami, FL 33101
-phone_number: 305-555-5566
-email: olivia.davis@example.com
-medical_history: Hypothyroidism
-
-2
-patient_id: 7
-first_name: William
-last_name: Miller
-date_of_birth: 1973-04-02
-age: 48
-gender: Male
-address: 7788 Walnut St, Austin, TX 78701
-phone_number: 512-555-7788
-email: william.miller@example.com
-medical_history: High Cholesterol
-
-3
-patient_id: 8
-first_name: Ava
-last_name: Wilson
-date_of_birth: 1998-12-25
-age: 23
-gender: Female
-address: 9900 Chestnut St, San Francisco, CA 94101
-phone_number: 415-555-9900
-email: ava.wilson@example.com
-medical_history: None
-
-4
-patient_id: 9
-first_name: James
-last_name: Moore
-date_of_birth: 1965-08-09
-age: 56
-gender: Male
-address: 1212 Cherry St, New York, NY 10001
-phone_number: 212-555-1212
-email: james.moore@example.com
-medical_history: Arthritis, Gout
-
-5
-patient_id: 10
-first_name: Sophia
-last_name: Taylor
-date_of_birth: 1990-02-14
-age: 31
-gender: Female
-address: 3434 Peach St, Atlanta, GA 30301
-phone_number: 404-555-3434
-email: sophia.taylor@example.com
-medical_history: Epilepsy
+Example Row:
 
 
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+doctor_id: 
+first_name: 
+last_name: 
+date_of_birth: 
+gender: 
+specialization: 
+address: 
+phone_number: 
+email: 
+license_number: 
+hire_date: 
+active_status: 
+biography: 
+languages: 
 
-Output format (NO ANY OTHER OUTPUT): 
-1
-doctor_id: {row1.doctor_id}
-first_name: {row1.first_name}
-last_name: {row1.last_name}
-specialization: {row1.specialization}
-phone_number: {row1.phone_number}
-email: {row1.email}
-biography: {row1.biography}
-
-2
-...
-
-etc.
 ====================
-1
-doctor_id: 1
-first_name: John
-last_name: Smith
-specialization: Cardiology
-phone_number: 212-555-1234
-email: john.smith@hospital.com
-biography: Dr. John Smith is a renowned cardiologist with over 20 years of experience. He specializes in heart transplants and has successfully performed over 500 surgeries.
-
-2
-doctor_id: 2
+AI: 
+doctor_id: 101
 first_name: Emily
-last_name: Johnson
-specialization: Pediatrics
-phone_number: 415-555-5678
-email: emily.johnson@hospital.com
-biography: Dr. Emily Johnson is a compassionate pediatrician dedicated to providing the best care for children. She has been recognized for her innovative treatments in childhood asthma.
+last_name: Chen
+date_of_birth: 1985-07-12
+gender: Female
+specialization: Cardiology
+address: 456 Oak St, Suite 300, Boston, MA 02115
+phone_number: 6175551234
+email: emily.chen@examplehospital.com
+license_number: MD123456
+hire_date: 2010-09-01
+active_status: TRUE
+biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
+languages: English, Spanish
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-3
-doctor_id: 3
-first_name: Michael
-last_name: Brown
-specialization: Neurology
-phone_number: 512-555-9101
-email: michael.brown@hospital.com
-biography: Dr. Michael Brown is a leading neurologist known for his research in Alzheimer's disease. He has published numerous articles and is a frequent speaker at medical conferences.
+Schema:
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    gender VARCHAR,
+    specialization VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    license_number VARCHAR,
+    hire_date DATE,
+    active_status BOOLEAN,
+    biography TEXT,
+    languages VARCHAR,
+    PRIMARY KEY (doctor_id)
+);
 
-4
-doctor_id: 4
-first_name: Sarah
-last_name: Davis
-specialization: Oncology
-phone_number: 305-555-1122
-email: sarah.davis@hospital.com
-biography: Dr. Sarah Davis is an oncologist with a focus on breast cancer research. Her work has led to significant advancements in early detection and treatment.
+Example Row:
 
-5
-doctor_id: 5
-first_name: David
-last_name: Wilson
-specialization: Orthopedics
-phone_number: 212-555-3344
-email: david.wilson@hospital.com
-biography: Dr. David Wilson is an orthopedic surgeon specializing in sports medicine. He has treated numerous professional athletes and is a team doctor for the local football team.
 
-6
-doctor_id: 6
-first_name: Laura
-last_name: Miller
-specialization: Gynecology
-phone_number: 415-555-5566
-email: laura.miller@hospital.com
-biography: Dr. Laura Miller is a dedicated gynecologist with a passion for women's health. She advocates for preventive care and has started several community health programs.
+Here are some existed data in database, you can check their formats and values for reference.
+1
+doctor_id: 101
+first_name: Emily
+last_name: Chen
+date_of_birth: 1985-07-12
+gender: Female
+specialization: Cardiology
+address: 456 Oak St, Suite 300, Boston, MA 02115
+phone_number: 6175551234
+email: emily.chen@examplehospital.com
+license_number: MD123456
+hire_date: 2010-09-01
+active_status: TRUE
+biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
+languages: English, Spanish
 
-7
-doctor_id: 7
-first_name: Christopher
-last_name: Moore
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+doctor_id: 102
+first_name: 
+last_name: 
+date_of_birth: 
+gender: Male
 specialization: Dermatology
-phone_number: 512-555-7788
-email: christopher.moore@hospital.com
-biography: Dr. Christopher Moore is a dermatologist known for his expertise in skin cancer treatment. He has developed new techniques for melanoma detection.
+address: 
+phone_number: 
+email: 
+license_number: 
+hire_date: 
+active_status: True
+biography: 
+languages: 
 
-8
-doctor_id: 8
-first_name: Amanda
-last_name: Taylor
-specialization: Psychiatry
-phone_number: 305-555-9900
-email: amanda.taylor@hospital.com
-biography: Dr. Amanda Taylor is a psychiatrist specializing in trauma and PTSD. She runs a support group for veterans and is actively involved in mental health advocacy.
+====================
+AI: 
+doctor_id: 102
+first_name: James
+last_name: Smith
+date_of_birth: 1978-04-20
+gender: Male
+specialization: Dermatology
+address: 789 Pine St, Suite 200, New York, NY 10001
+phone_number: 2125559876
+email: james.smith@examplehospital.com
+license_number: MD654321
+hire_date: 2005-06-15
+active_status: True
+biography: Dr. James Smith is a renowned dermatologist with a focus on skin cancer prevention and treatment. He earned his medical degree from Columbia University and completed his residency at New York-Presbyterian Hospital. Dr. Smith is dedicated to providing the highest quality care to his patients.
+languages: English, French
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-9
-doctor_id: 9
-first_name: Matthew
-last_name: Anderson
-specialization: Endocrinology
-phone_number: 212-555-1212
-email: matthew.anderson@hospital.com
-biography: Dr. Matthew Anderson is an endocrinologist focusing on diabetes management. He has pioneered new methods for insulin delivery and glucose monitoring.
+Schema:
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    gender VARCHAR,
+    specialization VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    license_number VARCHAR,
+    hire_date DATE,
+    active_status BOOLEAN,
+    biography TEXT,
+    languages VARCHAR,
+    PRIMARY KEY (doctor_id)
+);
 
-10
-doctor_id: 10
-first_name: Elizabeth
-last_name: White
-specialization: Radiology
-phone_number: 415-555-3434
-email: elizabeth.white@hospital.com
-biography: Dr. Elizabeth White is a radiologist with expertise in MRI and CT scans. She is involved in research to improve imaging technologies for early disease detection.
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+doctor_id: 101
+first_name: Emily
+last_name: Chen
+date_of_birth: 1985-07-12
+gender: Female
+specialization: Cardiology
+address: 456 Oak St, Suite 300, Boston, MA 02115
+phone_number: 6175551234
+email: emily.chen@examplehospital.com
+license_number: MD123456
+hire_date: 2010-09-01
+active_status: TRUE
+biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
+languages: English, Spanish
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+doctor_id: 103
+first_name: 
+last_name: 
+date_of_birth: 
+gender: Male
+specialization: Pediatrics
+address: 
+phone_number: 
+email: 
+license_number: 
+hire_date: 
+active_status: False
+biography: 
+languages: 
+
+====================
+AI: 
+doctor_id: 103
+first_name: James
+last_name: Rodriguez
+date_of_birth: 1978-04-20
+gender: Male
+specialization: Pediatrics
+address: 789 Pine St, Suite 200, Chicago, IL 60601
+phone_number: 3125556789
+email: james.rodriguez@examplehospital.com
+license_number: MD654321
+hire_date: 2005-06-15
+active_status: False
+biography: Dr. James Rodriguez is a dedicated pediatrician with a passion for child healthcare. He earned his medical degree from the University of Chicago Pritzker School of Medicine and completed his residency at Children's Hospital of Chicago. Dr. Rodriguez has been instrumental in providing compassionate care to his young patients.
+languages: English, Spanish

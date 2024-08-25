@@ -1,162 +1,114 @@
-As a data scientist, generate 10 rows data with given schema. Make data as realistic as possible.
 
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
 CREATE TABLE appointments (
     appointment_id INT,
-    patient_id INT,
-    doctor_id INT,
-    appointment_date DATETIME,
-    reason TEXT,
-    status VARCHAR,
-    PRIMARY KEY (appointment_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
-    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
 );
 
-For foreign key, you can ONLY use values given in referenced tables as follow:
-doctors.doctor_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-patients.patient_id: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+Example Row:
 
 
-Here are some newest data in database, you can check their formats and values for reference.
-1
-staff_id: 16
-first_name: Olivia
-last_name: Martinez
-role: Medical Technologist
-phone_number: 512-555-6789
-email: olivia.martinez@hospital.com
-responsibilities: Performs laboratory tests to assist in diagnosis and treatment of diseases, maintains equipment, and ensures quality control.
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+appointment_id: 
+appointment_datetime: 
+appointment_type: 
+notes: 
+confirmed: 
 
-2
-staff_id: 17
-first_name: William
-last_name: Anderson
-role: Physical Therapist
-phone_number: 305-555-7890
-email: william.anderson@hospital.com
-responsibilities: Develops and implements treatment plans to help patients recover from injuries and disabilities, focusing on mobility and function.
-
-3
-staff_id: 18
-first_name: Ava
-last_name: Taylor
-role: Dietitian
-phone_number: 212-555-8901
-email: ava.taylor@hospital.com
-responsibilities: Plans nutritional programs to help prevent and treat illnesses, provides education on healthy eating habits, and counsels patients on diet modifications.
-
-4
-staff_id: 19
-first_name: Joseph
-last_name: Thomas
-role: Security Officer
-phone_number: 415-555-9012
-email: joseph.thomas@hospital.com
-responsibilities: Ensures safety and security of hospital premises, staff, and patients, monitors access points, and responds to emergencies.
-
-5
-staff_id: 20
-first_name: Mia
-last_name: Hernandez
-role: Social Worker
-phone_number: 512-555-0123
-email: mia.hernandez@hospital.com
-responsibilities: Provides emotional support and counseling to patients and families, assists with discharge planning, and connects patients with community resources.
-
-
-
-Output format (NO ANY OTHER OUTPUT): 
-1
-appointment_id: {row1.appointment_id}
-patient_id: {row1.patient_id}
-doctor_id: {row1.doctor_id}
-appointment_date: {row1.appointment_date}
-reason: {row1.reason}
-status: {row1.status}
-
-2
-...
-
-etc.
 ====================
-```
+AI: 
+appointment_id: 1001
+appointment_datetime: '2023-10-15 14:30:00'
+appointment_type: 'Consultation'
+notes: 'Follow-up on recent lab results'
+confirmed: TRUE
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE appointments (
+    appointment_id INT,
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
 1
-appointment_id: 1
-patient_id: 1
-doctor_id: 2
-appointment_date: 2023-10-15 10:30:00
-reason: Routine check-up
-status: Scheduled
+appointment_id: 1001
+appointment_datetime: '2023-10-15 14:30:00'
+appointment_type: 'Consultation'
+notes: 'Follow-up on recent lab results'
+confirmed: TRUE
 
-2
-appointment_id: 2
-patient_id: 3
-doctor_id: 5
-appointment_date: 2023-10-16 14:00:00
-reason: Follow-up on lab results
-status: Confirmed
 
-3
-appointment_id: 3
-patient_id: 7
-doctor_id: 1
-appointment_date: 2023-10-17 09:15:00
-reason: Consultation for persistent cough
-status: Arrived
 
-4
-appointment_id: 4
-patient_id: 2
-doctor_id: 8
-appointment_date: 2023-10-18 11:30:00
-reason: Prescription refill
-status: Completed
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+appointment_id: 1002
+appointment_datetime: 
+appointment_type: 
+notes: 
+confirmed: False
 
-5
-appointment_id: 5
-patient_id: 9
-doctor_id: 4
-appointment_date: 2023-10-19 15:45:00
-reason: Post-operative check
-status: Scheduled
+====================
+AI: 
+appointment_id: 1002
+appointment_datetime: '2023-11-02 09:45:00'
+appointment_type: 'Check-up'
+notes: 'Routine annual check-up, no specific concerns'
+confirmed: False
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-6
-appointment_id: 6
-patient_id: 5
-doctor_id: 3
-appointment_date: 2023-10-20 13:00:00
-reason: Annual physical
-status: Confirmed
+Schema:
+CREATE TABLE appointments (
+    appointment_id INT,
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
+);
 
-7
-appointment_id: 7
-patient_id: 6
-doctor_id: 7
-appointment_date: 2023-10-21 16:30:00
-reason: Follow-up on medication side effects
-status: Arrived
+Example Row:
 
-8
-appointment_id: 8
-patient_id: 4
-doctor_id: 9
-appointment_date: 2023-10-22 08:45:00
-reason: Consultation for back pain
-status: Scheduled
 
-9
-appointment_id: 9
-patient_id: 8
-doctor_id: 6
-appointment_date: 2023-10-23 12:15:00
-reason: Routine eye exam
-status: Confirmed
+Here are some existed data in database, you can check their formats and values for reference.
+1
+appointment_id: 1001
+appointment_datetime: '2023-10-15 14:30:00'
+appointment_type: 'Consultation'
+notes: 'Follow-up on recent lab results'
+confirmed: TRUE
 
-10
-appointment_id: 10
-patient_id: 10
-doctor_id: 10
-appointment_date: 2023-10-24 14:30:00
-reason: Follow-up on recent surgery
-status: Scheduled
-```
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+appointment_id: 1003
+appointment_datetime: 
+appointment_type: 
+notes: 
+confirmed: False
+
+====================
+AI: 
+appointment_id: 1003
+appointment_datetime: '2023-11-02 09:45:00'
+appointment_type: 'Check-up'
+notes: 'Annual physical examination'
+confirmed: False

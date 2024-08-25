@@ -7,13 +7,22 @@ For tables, give name and description in format:
 
 For columns, give name, type and description in format:
 ({Column_type}){Column_name}: {Column_description}
-Optional column type: BOOLEAN, INT, FLOAT, TEXT, VARCHAR, DATE, TIME, DATETIME, TIMESTAMP
+Optional column types: 
+BOOLEAN: Column with boolean values (True / False) E.g. Active status
+CHAR: Column with fixed-length string values E.g. Phone number
+VARCHAR: Column with variable-length string values E.g. Name, Email address
+INT: Column with integer values in specific range. E.g. Age 
+REAL: Column with float values in specific range. E.g. Income, Price
+TEXT: Column with text values E.g. Instructions, Reasons, Descriptions
+DATE: Column with values in format: YYYY-MM-DD
+TIME: Column with values in format: HH:MM:SS
+TIMESTAMP: Column with values in format: YYYY-MM-DD HH:MM:SS
 
 For primary keys, column name should be followed by *
 For foreign keys, referencing column should be followed by ({referenced table}.{referenced column})
 When one column is primary key and foreign key at the same time, () should be followed by *, so * should always be followed by :
 
-Output format (NO ANY OTHER OUTPUT):
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
 
 {Table1_name}: {Table1_description}
 -({Column1.1_type}){Column1.1_name}*: {Column1.1_description}

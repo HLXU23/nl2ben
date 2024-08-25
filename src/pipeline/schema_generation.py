@@ -76,8 +76,11 @@ def schema_generation(db_name: str, config: Dict[str, Any]):
     )[0][0]
 
     with open(os.path.join(output_path, f'{db_name}.txt'), "w") as file:
+        file.write('\n====================\n')
+        file.write('Human: \n')
         file.write(prompt)
         file.write('\n====================\n')
+        file.write('AI: \n')
         file.write(response)
 
     schema_result = parse_response_to_schema(response)
@@ -139,7 +142,7 @@ def parse_response_to_schema(response):
                 "description": table_desc,
                 "attributes": {},
                 "primary_keys": [],
-                "foreign_keys": []
+                "foreign_keys": {}
             }
             
             columns = column_pattern.findall(table)
@@ -153,11 +156,10 @@ def parse_response_to_schema(response):
                     if foreign_key_match:
                         col_name, refer_table, refer_col = foreign_key_match.groups()
                         foreign_key_dict = {
-                            "column": col_name,
                             "referenced_table": refer_table,
                             "referenced_column": refer_col
                         }
-                        result[table_name]['foreign_keys'].append(foreign_key_dict)
+                        result[table_name]['foreign_keys'][col_name] = foreign_key_dict
                 else:
                     col_name = col_info
 
@@ -182,7 +184,7 @@ def create_db_from_schema(schema_result, result_sqlite_path):
     for table_name, table_info in schema_result.items():
         attributes = table_info.get('attributes', {})
         primary_keys = table_info.get('primary_keys', [])
-        foreign_keys = table_info.get('foreign_keys', [])
+        foreign_keys = table_info.get('foreign_keys', {})
         
         columns = []
         for attr_name, attr_info in attributes.items():
@@ -192,10 +194,9 @@ def create_db_from_schema(schema_result, result_sqlite_path):
         if primary_keys:
             columns.append(f"PRIMARY KEY ({', '.join([f'"{primary_key}"' for primary_key in primary_keys])})")
         
-        for fk in foreign_keys:
-            column = fk.get('column')
-            referenced_table = fk.get('referenced_table')
-            referenced_column = fk.get('referenced_column')
+        for column in foreign_keys:
+            referenced_table = foreign_keys[column].get('referenced_table')
+            referenced_column = foreign_keys[column].get('referenced_column')
             if column and referenced_table and referenced_column:
                 columns.append(f'FOREIGN KEY (`{column}`) REFERENCES `{referenced_table}` (`{referenced_column}`)')
         

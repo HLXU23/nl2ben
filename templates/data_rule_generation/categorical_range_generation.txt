@@ -1,0 +1,43 @@
+As a database engineer, judge whether a specific column in database is a categorical column with given information. If it is, give all possible categories for this column.
+
+Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
+Category1, Category2, ...
+
+Or, this column is not categorical column:
+Output format:
+0
+====================
+E.g.
+Database name: schools
+Table name: teachers
+Column name: gender
+Schema: 
+
+CREATE TABLE `teachers` (
+    `teacher_id` INT, 
+    `gender` VARCHAR
+)
+
+Output:
+Male, Female, Other
+
+Database name: schools
+Table name: teachers
+Column name: first_name
+Schema: 
+
+CREATE TABLE `teachers` (
+    `teacher_id` INT, 
+    `first_name` VARCHAR
+)
+
+Output:
+0
+====================
+Database name: {DB}
+Table name: {TABLE}
+Column name: {COLUMN}
+Schema: 
+
+{SCHEMA}
+{UNIQUE_VALUE}

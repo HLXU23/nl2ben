@@ -1,12 +1,10 @@
-As a data scientist, generate {ROW_NUM} rows data with given schema. Make data as realistic as possible.
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
 
-{SCHEMA}{FOREIGN_KEY_VALUE}{EXAMPLE_ROW}
+Schema:
+{SCHEMA}
 
-Output format (NO ANY OTHER OUTPUT): 
-1
-{EXAMPLE_FORMAT}
+Example Row:
+{EXAMPLE_ROW}
 
-2
-...
-
-etc.
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+{GENERATED_VALUE}

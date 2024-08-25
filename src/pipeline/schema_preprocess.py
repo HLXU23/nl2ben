@@ -60,7 +60,7 @@ def get_schema_from_sqlite(db_path):
             "description": "",
             "attributes": {},
             "primary_keys": [],
-            "foreign_keys": []
+            "foreign_keys": {}
         }
         
         # Step 2: Get attributes and primary keys
@@ -79,13 +79,12 @@ def get_schema_from_sqlite(db_path):
         cursor.execute(f"PRAGMA foreign_key_list({table_name});")
         foreign_keys = cursor.fetchall()
         for fk in foreign_keys:
-            schema[table_name]["foreign_keys"].append({
-                "column": fk[3],
-                "referenced_table": fk[2],
-                "referenced_column": fk[4]
-            })
             referenced_table = fk[2]
             referenced_column = fk[4]
+            schema[table_name]["foreign_keys"][fk[3]] = {
+                "referenced_table": referenced_table,
+                "referenced_column": referenced_column
+            }
             if referenced_table not in referenced_cols:
                 referenced_cols[referenced_table] = []
             if referenced_column not in referenced_cols[referenced_table]:
@@ -102,7 +101,7 @@ def get_schema_prompt(schema):
     for table_name, table_info in schema.items():
         attributes = table_info.get('attributes', {})
         primary_keys = table_info.get('primary_keys', [])
-        foreign_keys = table_info.get('foreign_keys', [])
+        foreign_keys = table_info.get('foreign_keys', {})
         
         columns = []
         
@@ -113,10 +112,9 @@ def get_schema_prompt(schema):
         if primary_keys:
             columns.append(f"    PRIMARY KEY ({', '.join(primary_keys)})")
         
-        for fk in foreign_keys:
-            column = fk.get('column')
-            referenced_table = fk.get('referenced_table')
-            referenced_column = fk.get('referenced_column')
+        for column in foreign_keys:
+            referenced_table = foreign_keys[column].get('referenced_table')
+            referenced_column = foreign_keys[column].get('referenced_column')
             if column and referenced_table and referenced_column:
                 columns.append(f"    FOREIGN KEY ({column}) REFERENCES {referenced_table} ({referenced_column})")
         

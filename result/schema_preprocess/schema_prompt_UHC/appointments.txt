@@ -1,11 +1,8 @@
 CREATE TABLE appointments (
     appointment_id INT,
-    patient_id INT,
-    doctor_id INT,
-    appointment_date DATETIME,
-    reason TEXT,
-    status VARCHAR,
-    PRIMARY KEY (appointment_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors (doctor_id),
-    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+    appointment_datetime TIMESTAMP,
+    appointment_type VARCHAR,
+    notes TEXT,
+    confirmed BOOLEAN,
+    PRIMARY KEY (appointment_id)
 );
