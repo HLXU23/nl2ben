@@ -1,0 +1,457 @@
+[
+    {
+        "question_id": 0,
+        "db_id": "financial",
+        "question": "What is the average loan duration for each district?",
+        "evidence": "AverageLoanDurationByDistrict: Average duration of loans in each district",
+        "SQL": "SELECT `d`.`district_id`, AVG(`l`.`duration`) AS `avg_duration`  FROM `loan` `l`  JOIN `account` `a` ON `l`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1,
+        "db_id": "financial",
+        "question": "How many clients are located in each district?",
+        "evidence": "AverageLoanDurationByDistrict: Average duration of loans in each district",
+        "SQL": "SELECT `d`.`district_id`, COUNT(`c`.`client_id`) AS `client_count`  FROM `client` `c`  JOIN `district` `d` ON `c`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 2,
+        "db_id": "financial",
+        "question": "What is the total loan amount taken by clients in each district?",
+        "evidence": "AverageLoanDurationByDistrict: Average duration of loans in each district",
+        "SQL": "SELECT `d`.`district_id`, SUM(`l`.`amount`) AS `total_loan_amount`  FROM `loan` `l`  JOIN `account` `a` ON `l`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 3,
+        "db_id": "financial",
+        "question": "What is the distribution of card types issued in each district, including the district ID, card type, and the count of each card type?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, `c`.`type`, COUNT(*) AS `count`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`, `c`.`type`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 4,
+        "db_id": "financial",
+        "question": "For a given district ID, how can you determine the total number of cards issued in that district, irrespective of the card type?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, COUNT(*) AS `total_cards`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  WHERE `d`.`district_id` = 7  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 5,
+        "db_id": "financial",
+        "question": "For a given district ID, how can you determine the total number of cards issued in that district, irrespective of the card type?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, COUNT(*) AS `total_cards`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  WHERE `d`.`district_id` = 3  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 6,
+        "db_id": "financial",
+        "question": "For a given district ID, how can you determine the total number of cards issued in that district, irrespective of the card type?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, COUNT(*) AS `total_cards`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  WHERE `d`.`district_id` = 18  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 7,
+        "db_id": "financial",
+        "question": "What is the most common card type issued in district 71?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, `c`.`type`, COUNT(*) AS `count`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  WHERE `d`.`district_id` = 71  GROUP BY `d`.`district_id`, `c`.`type`  ORDER BY `count` DESC  LIMIT 1;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 8,
+        "db_id": "financial",
+        "question": "What is the most common card type issued in the district with ID 50?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, `c`.`type`, COUNT(*) AS `count`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  WHERE `d`.`district_id` = 50  GROUP BY `d`.`district_id`, `c`.`type`  ORDER BY `count` DESC  LIMIT 1;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 9,
+        "db_id": "financial",
+        "question": "What is the most common card type issued in district 26?",
+        "evidence": "CardTypeDistributionByDistrict: Distribution of card types issued in each district",
+        "SQL": "SELECT `d`.`district_id`, `c`.`type`, COUNT(*) AS `count`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  WHERE `d`.`district_id` = 26  GROUP BY `d`.`district_id`, `c`.`type`  ORDER BY `count` DESC  LIMIT 1;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 10,
+        "db_id": "financial",
+        "question": "Question: How many account holders are there for each gender in the database?",
+        "evidence": "GenderDistributionOfAccountHolders: Distribution of gender among account holders",
+        "SQL": "SELECT cl.gender, COUNT(*) AS count  FROM disp dp  JOIN client cl ON dp.client_id = cl.client_id  WHERE dp.type = 'OWNER'  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 11,
+        "db_id": "financial",
+        "question": "What is the average transaction amount for each account, along with the account's district ID?",
+        "evidence": "AverageTransactionAmountByAccount: Average transaction amount for each account",
+        "SQL": "SELECT      t.account_id,      a.district_id,      AVG(t.amount) AS avg_amount  FROM      trans t  JOIN      account a  ON      t.account_id = a.account_id  GROUP BY      t.account_id, a.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 12,
+        "db_id": "financial",
+        "question": "What is the average transaction amount for each account that has more than 5 transactions?",
+        "evidence": "AverageTransactionAmountByAccount: Average transaction amount for each account",
+        "SQL": "SELECT      t.account_id,      AVG(t.amount) AS avg_amount  FROM      trans t  GROUP BY      t.account_id  HAVING      COUNT(t.trans_id) > 5;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 13,
+        "db_id": "financial",
+        "question": "What is the average transaction amount for each account, along with the account's creation date?",
+        "evidence": "AverageTransactionAmountByAccount: Average transaction amount for each account",
+        "SQL": "SELECT      t.account_id,      a.date AS account_creation_date,      AVG(t.amount) AS avg_amount  FROM      trans t  JOIN      account a  ON      t.account_id = a.account_id  GROUP BY      t.account_id, a.date;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 14,
+        "db_id": "financial",
+        "question": "What is the total amount of loans in default status for each district?",
+        "evidence": "LoanDefaultRateByDistrict: Percentage of loans that are in default status by district",
+        "SQL": "SELECT d.district_id, SUM(l.amount) AS total_default_amount FROM loan l JOIN account a ON l.account_id = a.account_id JOIN district d ON a.district_id = d.district_id WHERE l.status = 'D' GROUP BY d.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 15,
+        "db_id": "financial",
+        "question": "What is the average loan amount for loans in default status in each district?",
+        "evidence": "LoanDefaultRateByDistrict: Percentage of loans that are in default status by district",
+        "SQL": "SELECT d.district_id, AVG(l.amount) AS average_default_amount FROM loan l JOIN account a ON l.account_id = a.account_id JOIN district d ON a.district_id = d.district_id WHERE l.status = 'D' GROUP BY d.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 16,
+        "db_id": "financial",
+        "question": "Identify the districts with a loan default rate exceeding 5%.",
+        "evidence": "LoanDefaultRateByDistrict: Percentage of loans that are in default status by district",
+        "SQL": "SELECT d.district_id, SUM(CASE WHEN l.status = 'D' THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS default_rate FROM loan l JOIN account a ON l.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id HAVING default_rate > 0.05;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 17,
+        "db_id": "financial",
+        "question": "What is the average balance of accounts grouped by their transaction frequency?",
+        "evidence": "AverageBalanceByAccountType: Average balance of accounts by account type (frequency)",
+        "SQL": "SELECT `a`.`frequency`, AVG(`t`.`balance`) AS `avg_balance`  FROM `trans` `t`  JOIN `account` `a` ON `t`.`account_id` = `a`.`account_id`  GROUP BY `a`.`frequency`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 18,
+        "db_id": "financial",
+        "question": "Question: What is the count of clients associated with each district?",
+        "evidence": "AverageBalanceByAccountType: Average balance of accounts by account type (frequency)",
+        "SQL": "SELECT `d`.`district_id`, COUNT(`c`.`client_id`) AS `client_count`  FROM `district` `d`  JOIN `client` `c` ON `d`.`district_id` = `c`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 19,
+        "db_id": "financial",
+        "question": "What is the total loan amount distributed to clients in each district?",
+        "evidence": "AverageBalanceByAccountType: Average balance of accounts by account type (frequency)",
+        "SQL": "SELECT `d`.`district_id`, SUM(`l`.`amount`) AS `total_loan_amount`  FROM `district` `d`  JOIN `client` `c` ON `d`.`district_id` = `c`.`district_id`  JOIN `disp` `dp` ON `c`.`client_id` = `dp`.`client_id`  JOIN `account` `a` ON `dp`.`account_id` = `a`.`account_id`  JOIN `loan` `l` ON `a`.`account_id` = `l`.`account_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 20,
+        "db_id": "financial",
+        "question": "What is the distribution of transaction types in the district with ID 8?",
+        "evidence": "TransactionTypeDistributionByDistrict: Distribution of transaction types in each district",
+        "SQL": "SELECT `t`.`type`, COUNT(*) AS `count` FROM `trans` `t` JOIN `account` `a` ON `t`.`account_id` = `a`.`account_id` JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id` WHERE `d`.`district_id` = 8 GROUP BY `t`.`type`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 21,
+        "db_id": "financial",
+        "question": "What is the distribution of transaction types in district 65?",
+        "evidence": "TransactionTypeDistributionByDistrict: Distribution of transaction types in each district",
+        "SQL": "SELECT `t`.`type`, COUNT(*) AS `count` FROM `trans` `t` JOIN `account` `a` ON `t`.`account_id` = `a`.`account_id` JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id` WHERE `d`.`district_id` = 65 GROUP BY `t`.`type`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 22,
+        "db_id": "financial",
+        "question": "How can I retrieve the distribution of transaction types across all districts, including the district name, transaction type, and the count of each transaction type within each district?",
+        "evidence": "TransactionTypeDistributionByDistrict: Distribution of transaction types in each district",
+        "SQL": "SELECT `d`.`A3` AS `district_name`, `t`.`type`, COUNT(*) AS `count` FROM `trans` `t` JOIN `account` `a` ON `t`.`account_id` = `a`.`account_id` JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id` GROUP BY `d`.`district_id`, `t`.`type`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 23,
+        "db_id": "financial",
+        "question": "What is the average loan amount and its ratio to the average income for each district?",
+        "evidence": "LoanAmountToDistrictIncomeRatio: Ratio of loan amount to average district income",
+        "SQL": "SELECT d.district_id, AVG(l.amount) AS avg_loan_amount, AVG(d.A10) AS avg_district_income, AVG(l.amount) / AVG(d.A10) AS loan_to_income_ratio FROM loan l JOIN account a ON l.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 24,
+        "db_id": "financial",
+        "question": "For districts where the average loan amount is more than half of the average district income, provide the district ID, average loan amount, average district income, and the loan-to-income ratio.",
+        "evidence": "LoanAmountToDistrictIncomeRatio: Ratio of loan amount to average district income",
+        "SQL": "SELECT d.district_id, AVG(l.amount) AS avg_loan_amount, AVG(d.A10) AS avg_district_income, AVG(l.amount) / AVG(d.A10) AS loan_to_income_ratio FROM loan l JOIN account a ON l.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id HAVING AVG(l.amount) / AVG(d.A10) > 0.5;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 25,
+        "db_id": "financial",
+        "question": "Which district has the highest ratio of average loan amount to average district income, and what are the average loan amount and average district income for that district?",
+        "evidence": "LoanAmountToDistrictIncomeRatio: Ratio of loan amount to average district income",
+        "SQL": "SELECT d.district_id, AVG(l.amount) AS avg_loan_amount, AVG(d.A10) AS avg_district_income, AVG(l.amount) / AVG(d.A10) AS loan_to_income_ratio FROM loan l JOIN account a ON l.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id ORDER BY loan_to_income_ratio DESC LIMIT 1;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 26,
+        "db_id": "financial",
+        "question": "What is the average number of cards issued per account in each district?",
+        "evidence": "CardIssuanceRateByDistrict: Rate of card issuance per account in each district",
+        "SQL": "SELECT d.district_id, COUNT(c.card_id) * 1.0 / COUNT(DISTINCT a.account_id) AS issuance_rate FROM card c JOIN disp dp ON c.disp_id = dp.disp_id JOIN account a ON dp.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 27,
+        "db_id": "financial",
+        "question": "How many accounts in each district have at least one card issued?",
+        "evidence": "CardIssuanceRateByDistrict: Rate of card issuance per account in each district",
+        "SQL": "SELECT d.district_id, COUNT(DISTINCT a.account_id) AS accounts_with_cards FROM card c JOIN disp dp ON c.disp_id = dp.disp_id JOIN account a ON dp.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 28,
+        "db_id": "financial",
+        "question": "What is the total number of cards issued in each district?",
+        "evidence": "CardIssuanceRateByDistrict: Rate of card issuance per account in each district",
+        "SQL": "SELECT d.district_id, COUNT(c.card_id) AS total_cards_issued FROM card c JOIN disp dp ON c.disp_id = dp.disp_id JOIN account a ON dp.account_id = a.account_id JOIN district d ON a.district_id = d.district_id GROUP BY d.district_id;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 29,
+        "db_id": "financial",
+        "question": "What is the average number of transactions per day for account 2488 over its entire transaction history?",
+        "evidence": "AverageTransactionFrequencyByAccount: Average number of transactions per day for each account",
+        "SQL": "SELECT `t`.`account_id`, COUNT(*) * 1.0 / (MAX(`t`.`date`) - MIN(`t`.`date`) + 1) AS avg_frequency FROM `trans` t WHERE `t`.`account_id` = 2488 GROUP BY `t`.`account_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 30,
+        "db_id": "financial",
+        "question": "What is the average daily transaction frequency for the account with ID 7907 over its entire transaction history?",
+        "evidence": "AverageTransactionFrequencyByAccount: Average number of transactions per day for each account",
+        "SQL": "SELECT `t`.`account_id`, COUNT(*) * 1.0 / (MAX(`t`.`date`) - MIN(`t`.`date`) + 1) AS avg_frequency FROM `trans` t WHERE `t`.`account_id` = 7907 GROUP BY `t`.`account_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 31,
+        "db_id": "financial",
+        "question": "What is the average daily transaction frequency for the account with ID 2035 over its entire transaction history?",
+        "evidence": "AverageTransactionFrequencyByAccount: Average number of transactions per day for each account",
+        "SQL": "SELECT `t`.`account_id`, COUNT(*) * 1.0 / (MAX(`t`.`date`) - MIN(`t`.`date`) + 1) AS avg_frequency FROM `trans` t WHERE `t`.`account_id` = 2035 GROUP BY `t`.`account_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 32,
+        "db_id": "financial",
+        "question": "What are the top 5 accounts with the highest average number of transactions per day across all transactions in the database?",
+        "evidence": "AverageTransactionFrequencyByAccount: Average number of transactions per day for each account",
+        "SQL": "SELECT `t`.`account_id`, COUNT(*) * 1.0 / (MAX(`t`.`date`) - MIN(`t`.`date`) + 1) AS avg_frequency FROM `trans` t GROUP BY `t`.`account_id` ORDER BY avg_frequency DESC LIMIT 5;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 33,
+        "db_id": "financial",
+        "question": "What is the average loan payment amount for each district?",
+        "evidence": "LoanPaymentToIncomeRatioByDistrict: Ratio of loan payments to average district income",
+        "SQL": "SELECT `d`.`district_id`, AVG(`l`.`payments`) AS average_loan_payment FROM `loan` `l` JOIN `account` `a` ON `l`.`account_id` = `a`.`account_id` JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id` GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 34,
+        "db_id": "financial",
+        "question": "What is the count of clients in each district?",
+        "evidence": "LoanPaymentToIncomeRatioByDistrict: Ratio of loan payments to average district income",
+        "SQL": "SELECT `d`.`district_id`, COUNT(`c`.`client_id`) AS number_of_clients FROM `client` `c` JOIN `district` `d` ON `c`.`district_id` = `d`.`district_id` GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 35,
+        "db_id": "financial",
+        "question": "What is the total loan amount distributed in each district?",
+        "evidence": "LoanPaymentToIncomeRatioByDistrict: Ratio of loan payments to average district income",
+        "SQL": "SELECT `d`.`district_id`, SUM(`l`.`amount`) AS total_loan_amount FROM `loan` `l` JOIN `account` `a` ON `l`.`account_id` = `a`.`account_id` JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id` GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 36,
+        "db_id": "financial",
+        "question": "What is the gender distribution among card holders in the database?",
+        "evidence": "GenderDistributionOfCardHolders: Distribution of gender among card holders",
+        "SQL": "SELECT cl.gender, COUNT(*) AS count  FROM card c  JOIN disp dp ON c.disp_id = dp.disp_id  JOIN client cl ON dp.client_id = cl.client_id  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 37,
+        "db_id": "financial",
+        "question": "How many clients with issued cards are there for each gender in the database?",
+        "evidence": "GenderDistributionOfCardHolders: Distribution of gender among card holders",
+        "SQL": "SELECT cl.gender, COUNT(*) AS count  FROM card c  JOIN disp dp ON c.disp_id = dp.disp_id  JOIN client cl ON dp.client_id = cl.client_id  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 38,
+        "db_id": "financial",
+        "question": "Question: What is the count of distinct clients with at least one card, grouped by gender?",
+        "evidence": "GenderDistributionOfCardHolders: Distribution of gender among card holders",
+        "SQL": "SELECT cl.gender, COUNT(DISTINCT cl.client_id) AS count  FROM card c  JOIN disp dp ON c.disp_id = dp.disp_id  JOIN client cl ON dp.client_id = cl.client_id  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 39,
+        "db_id": "financial",
+        "question": "What is the average loan amount for each gender of account owners?",
+        "evidence": "AverageLoanAmountByGender: Average loan amount by gender of the account holder",
+        "SQL": "SELECT cl.gender, AVG(l.amount) AS avg_amount  FROM loan l  JOIN account a ON l.account_id = a.account_id  JOIN disp dp ON a.account_id = dp.account_id  JOIN client cl ON dp.client_id = cl.client_id  WHERE dp.type = 'OWNER'  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 40,
+        "db_id": "financial",
+        "question": "What is the total loan amount for each gender of account owners?",
+        "evidence": "AverageLoanAmountByGender: Average loan amount by gender of the account holder",
+        "SQL": "SELECT cl.gender, SUM(l.amount) AS total_amount  FROM loan l  JOIN account a ON l.account_id = a.account_id  JOIN disp dp ON a.account_id = dp.account_id  JOIN client cl ON dp.client_id = cl.client_id  WHERE dp.type = 'OWNER'  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 41,
+        "db_id": "financial",
+        "question": "What is the average ratio of transaction amount to account balance for each account in the database?",
+        "evidence": "TransactionAmountToBalanceRatio: Ratio of transaction amount to account balance",
+        "SQL": "SELECT `t`.`account_id`, AVG(`t`.`amount` * 1.0 / `t`.`balance`) AS amount_to_balance_ratio  FROM `trans` `t`  GROUP BY `t`.`account_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 42,
+        "db_id": "financial",
+        "question": "For accounts where the average ratio of transaction amount to account balance exceeds 0.5, provide the account IDs and their respective average ratios.",
+        "evidence": "TransactionAmountToBalanceRatio: Ratio of transaction amount to account balance",
+        "SQL": "SELECT `t`.`account_id`, AVG(`t`.`amount` * 1.0 / `t`.`balance`) AS amount_to_balance_ratio  FROM `trans` `t`  GROUP BY `t`.`account_id`  HAVING AVG(`t`.`amount` * 1.0 / `t`.`balance`) > 0.5;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 43,
+        "db_id": "financial",
+        "question": "Identify the top 5 accounts with the highest average transaction amount to balance ratio, including their average ratios.",
+        "evidence": "TransactionAmountToBalanceRatio: Ratio of transaction amount to account balance",
+        "SQL": "SELECT `t`.`account_id`, AVG(`t`.`amount` * 1.0 / `t`.`balance`) AS amount_to_balance_ratio  FROM `trans` `t`  GROUP BY `t`.`account_id`  ORDER BY amount_to_balance_ratio DESC  LIMIT 5;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 44,
+        "db_id": "financial",
+        "question": "What is the average order amount for each district?",
+        "evidence": "AverageOrderAmountByDistrict: Average order amount by district",
+        "SQL": "SELECT `d`.`district_id`, AVG(`o`.`amount`) AS `avg_amount`  FROM `order` `o`  JOIN `account` `a` ON `o`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 45,
+        "db_id": "financial",
+        "question": "What is the count of clients in each district?",
+        "evidence": "AverageOrderAmountByDistrict: Average order amount by district",
+        "SQL": "SELECT `d`.`district_id`, COUNT(`c`.`client_id`) AS `client_count`  FROM `client` `c`  JOIN `district` `d` ON `c`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 46,
+        "db_id": "financial",
+        "question": "What is the total loan amount provided in each district?",
+        "evidence": "AverageOrderAmountByDistrict: Average order amount by district",
+        "SQL": "SELECT `d`.`district_id`, SUM(`l`.`amount`) AS `total_loan_amount`  FROM `loan` `l`  JOIN `account` `a` ON `l`.`account_id` = `a`.`account_id`  JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id`  GROUP BY `d`.`district_id`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 47,
+        "db_id": "financial",
+        "question": "What is the distribution of card types by the gender of the card holders, including the count of each card type for each gender?",
+        "evidence": "CardTypeDistributionByGender: Distribution of card types by gender of the card holder",
+        "SQL": "SELECT `cl`.`gender`, `c`.`type`, COUNT(*) AS `count`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `client` `cl` ON `dp`.`client_id` = `cl`.`client_id`  GROUP BY `cl`.`gender`, `c`.`type`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 48,
+        "db_id": "financial",
+        "question": "What is the total number of cards issued for each card type?",
+        "evidence": "CardTypeDistributionByGender: Distribution of card types by gender of the card holder",
+        "SQL": "SELECT `c`.`type`, COUNT(*) AS `total_count`  FROM `card` `c`  GROUP BY `c`.`type`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 49,
+        "db_id": "financial",
+        "question": "How can you adjust the SQL query to display the distribution of card types by gender, including the district name for each card holder?",
+        "evidence": "CardTypeDistributionByGender: Distribution of card types by gender of the card holder",
+        "SQL": "SELECT `cl`.`gender`, `c`.`type`, `d`.`A2` AS `district_name`, COUNT(*) AS `count`  FROM `card` `c`  JOIN `disp` `dp` ON `c`.`disp_id` = `dp`.`disp_id`  JOIN `client` `cl` ON `dp`.`client_id` = `cl`.`client_id`  JOIN `district` `d` ON `cl`.`district_id` = `d`.`district_id`  GROUP BY `cl`.`gender`, `c`.`type`, `d`.`A2`;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 50,
+        "db_id": "financial",
+        "question": "What is the average transaction amount for each gender of account holders who are the owners of the accounts?",
+        "evidence": "AverageTransactionAmountByGender: Average transaction amount by gender of the account holder",
+        "SQL": "SELECT cl.gender, AVG(t.amount) AS avg_amount  FROM trans t  JOIN account a ON t.account_id = a.account_id  JOIN disp dp ON a.account_id = dp.account_id  JOIN client cl ON dp.client_id = cl.client_id  WHERE dp.type = 'OWNER'  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 51,
+        "db_id": "financial",
+        "question": "What is the total number of transactions made by account holders of each gender, considering only those transactions where the account holder is the owner of the account?",
+        "evidence": "AverageTransactionAmountByGender: Average transaction amount by gender of the account holder",
+        "SQL": "SELECT cl.gender, COUNT(t.trans_id) AS transaction_count  FROM trans t  JOIN account a ON t.account_id = a.account_id  JOIN disp dp ON a.account_id = dp.account_id  JOIN client cl ON dp.client_id = cl.client_id  WHERE dp.type = 'OWNER'  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 52,
+        "db_id": "financial",
+        "question": "What is the total transaction amount for each gender of account holders who are the owners of the accounts?",
+        "evidence": "AverageTransactionAmountByGender: Average transaction amount by gender of the account holder",
+        "SQL": "SELECT cl.gender, SUM(t.amount) AS total_amount  FROM trans t  JOIN account a ON t.account_id = a.account_id  JOIN disp dp ON a.account_id = dp.account_id  JOIN client cl ON dp.client_id = cl.client_id  WHERE dp.type = 'OWNER'  GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 53,
+        "db_id": "financial",
+        "question": "What is the total amount of loans in default status, categorized by the gender of the account holders?",
+        "evidence": "LoanDefaultRateByGender: Percentage of loans that are in default status by gender of the account holder",
+        "SQL": "SELECT cl.gender, SUM(l.amount) AS total_default_amount FROM loan l JOIN account a ON l.account_id = a.account_id JOIN disp dp ON a.account_id = dp.account_id JOIN client cl ON dp.client_id = cl.client_id WHERE dp.type = 'OWNER' AND l.status = 'D' GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 54,
+        "db_id": "financial",
+        "question": "How many unique accounts with defaulted loans are there, categorized by the account holder's gender?",
+        "evidence": "LoanDefaultRateByGender: Percentage of loans that are in default status by gender of the account holder",
+        "SQL": "SELECT cl.gender, COUNT(DISTINCT l.account_id) AS distinct_default_accounts FROM loan l JOIN account a ON l.account_id = a.account_id JOIN disp dp ON a.account_id = dp.account_id JOIN client cl ON dp.client_id = cl.client_id WHERE dp.type = 'OWNER' AND l.status = 'D' GROUP BY cl.gender;",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 55,
+        "db_id": "financial",
+        "question": "What is the average duration of loans in default status, categorized by the gender of the account holder?",
+        "evidence": "LoanDefaultRateByGender: Percentage of loans that are in default status by gender of the account holder",
+        "SQL": "SELECT cl.gender, AVG(l.duration) AS average_default_duration FROM loan l JOIN account a ON l.account_id = a.account_id JOIN disp dp ON a.account_id = dp.account_id JOIN client cl ON dp.client_id = cl.client_id WHERE dp.type = 'OWNER' AND l.status = 'D' GROUP BY cl.gender;"
+    },
+    {
+        "question_id": 56,
+        "db_id": "financial",
+        "question": "What is the distribution of transaction types in district 41?",
+        "evidence": "TransactionTypeDistributionByDistrict: Distribution of transaction types in each district",
+        "SQL": "SELECT `t`.`type`, COUNT(*) AS `count` FROM `trans` `t` JOIN `account` `a` ON `t`.`account_id` = `a`.`account_id` JOIN `district` `d` ON `a`.`district_id` = `d`.`district_id` WHERE `d`.`district_id` = 41 GROUP BY `t`.`type`;",
+        "difficulty": "moderate"
+    }
+]
