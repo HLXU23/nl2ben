@@ -100,4 +100,13 @@ def parse_data_for_judging(data: DataBench) -> Dict[str, str]:
     }
     return json.dumps(res)
 
+def parse_data_for_individual_judging(data: DataBench) -> List[Dict[str, str]]:
+    res = []
+    for qsql_pair in data['question_sql_pairs']:
+        single_data = {
+            "database": data['database'],
+            "question_SQL_pair": json.dumps(qsql_pair)
+        }
+        res.append(json.dumps(single_data))
+    return res
     

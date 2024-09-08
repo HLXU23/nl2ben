@@ -14,15 +14,17 @@ from openai import OpenAI
 from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
 
 from utils import (
-    DataBench, 
-    load_database_qsql, 
-    parse_data_for_judging
+    DataBench,
+    load_database_qsql,
+    parse_data_for_judging,
+    parse_data_for_individual_judging
 )
 from logger import setup_logger
 
 from config import (
     JUDGE_SYSTEM_PROMPT,
-    INSTRUCTIONS
+    INSTRUCTIONS,
+    INSTRUCTIONS_INDIVIDUAL
 )
 
 load_dotenv()
@@ -53,11 +55,12 @@ def start(
     qsql_pairs_file: str,
     output_path: Optional[str],
     evaluator: OPENAI_MODELS = 'gpt-4o',
+    distinct: bool = False,
 ):
     database_name = os.path.splitext(os.path.basename(database_file))[0]
     qsql_name = os.path.splitext(os.path.basename(qsql_pairs_file))[0]
     if not output_path:
-        output_name = database_name + '_' + qsql_name
+        output_name = database_name + '_' + qsql_name + '.json'
         output_path = os.path.join(RESULTS_DIR, output_name)
     else:
         assert output_path.endswith('.json'), "Output file should have a .json extension"
@@ -80,7 +83,7 @@ def start(
     try:
         logger.info(f"Attempting to judge {database_name} and {qsql_name}...")
         response = judge(
-            data, evaluator, logger
+            data, evaluator, logger, distinct
         )
 
     except Exception as error:
@@ -99,28 +102,53 @@ def start(
 def judge(
     data_benchmark: DataBench,
     evaluator: OPENAI_MODELS,
-    logger: Logger
+    logger: Logger,
+    distinct: bool
 ) -> json:
+    json_responses = None
 
-    formatted_data = parse_data_for_judging(data_benchmark)
-    messages = [
-        {"role": "system", "content": JUDGE_SYSTEM_PROMPT},
-        {"role": "user", "content": INSTRUCTIONS},
-        {"role": "user", "content": formatted_data}
-    ]
+    if distinct:
+        json_responses = {}
+        formatted_data_arr = parse_data_for_individual_judging(data_benchmark)
+        num_to_judge = len(formatted_data_arr)
+        for i, formatted_data in enumerate(formatted_data_arr):
+            messages = [
+                {"role": "system", "content": JUDGE_SYSTEM_PROMPT},
+                {"role": "user", "content": INSTRUCTIONS_INDIVIDUAL},
+                {"role": "user", "content": formatted_data}
+            ]
+            response = call_openai_api(evaluator, messages, logger)
+            try:
+                single_response = json.loads(response)
+                json_responses.update(single_response)
+                logger.info(f"Completed {i+1}/{num_to_judge} of question-SQL pairs.")
+            except Exception as error:
+                logger.error('=' * 80)
+                logger.error('Something wrong went converting output to JSON format.. \n')
+                logger.error(f"MODEL's OUTPUT: {response}")
+                logger.error('=' * 80)
+                raise error
 
-    response = call_openai_api(evaluator, messages, logger)
+    else:
+        formatted_data = parse_data_for_judging(data_benchmark)
+        messages = [
+            {"role": "system", "content": JUDGE_SYSTEM_PROMPT},
+            {"role": "user", "content": INSTRUCTIONS},
+            {"role": "user", "content": formatted_data}
+        ]
 
-    try:
-        json_response = json.loads(response)
-    except Exception as error:
-        logger.error('=' * 80)
-        logger.error('Something wrong went converting output to JSON format.. \n')
-        logger.error(f"MODEL's OUTPUT: {response}")
-        logger.error('=' * 80)
-        raise error
+        response = call_openai_api(evaluator, messages, logger)
+
+        try:
+            json_responses = json.loads(response)
+        except Exception as error:
+            logger.error('=' * 80)
+            logger.error('Something wrong went converting output to JSON format.. LIKELY due to insufficient token limit..\n')
+            logger.error(f"MODEL's OUTPUT: {response}")
+            logger.error('=' * 80)
+            raise error
     
-    return json_response
+    return json_responses
 
 
 def call_openai_api(

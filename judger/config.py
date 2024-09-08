@@ -58,3 +58,32 @@ Your output should be a JSON object where each key is a question_id and each val
 
 Ensure that your assessments are accurate and consistent with the scoring criteria provided. Only output the JSON object and nothing else.
 """
+
+INSTRUCTIONS_INDIVIDUAL = """
+Instructions:
+You will receive input in the form of a JSON object with the following structure:
+{
+    "database": "<stringified JSON object>",
+    "question_SQL_pair": {
+        "question_id": <integer>,
+        "db_id": <string>,
+        "question": <string>,
+        "evidence": <string>,
+        "SQL: <string>,
+        "difficulty": enum
+    }
+    
+}
+
+You are required to evaluate the question-SQL pair based on the provided dimensions: Computational Complexity, Data Integration Needs, and Difficulty of Business Understanding. Each dimension should be scored on a scale from 0 to 4, according to the criteria outlined above.
+Your output should be a JSON object where the key is a question_id and the value is a dictionary containing the scores for the three dimensions. The structure of the output should look like this:
+{
+    "<question_id>": {
+        "computational_complexity": <integer_between_0_and_4>,
+        "data_integration_needs": <integer_between_0_and_4>,
+        "business_understanding_difficulty": <integer_between_0_and_4>
+    }
+}
+
+Ensure that your assessments are accurate and consistent with the scoring criteria provided. Only output the JSON object and nothing else.
+"""
