@@ -7,7 +7,7 @@ import numbers
 from logging import Logger
 import os
 from pathlib import Path
-from typing import Dict, List, Literal, _TypedDictMeta, get_type_hints, Optional
+from typing import Dict, List, Literal, _TypedDictMeta, get_type_hints, Optional, Union
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -28,7 +28,6 @@ from config import (
 )
 
 load_dotenv()
-CLIENT = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
 # Note I only considered JSON-supported models
 OPENAI_MODELS = Literal[
@@ -38,11 +37,16 @@ OPENAI_MODELS = Literal[
     'gpt-3.5-turbo',
 ]
 
+DEEPSEEK_MODEL = Literal[
+    'deepseek-chat'
+]
+
 ALLOWED_MODELS = {
     'gpt-4o',
     'gpt-4o-mini',
     'gpt-4-turbo',
     'gpt-3.5-turbo',
+    'deepseek-chat',
 }
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -54,7 +58,7 @@ def start(
     database_file: str,
     qsql_pairs_file: str,
     output_path: Optional[str],
-    evaluator: OPENAI_MODELS = 'gpt-4o',
+    evaluator: Union[OPENAI_MODELS, DEEPSEEK_MODEL] = 'gpt-4o',
     distinct: bool = False,
 ):
     database_name = os.path.splitext(os.path.basename(database_file))[0]
@@ -101,11 +105,18 @@ def start(
 
 def judge(
     data_benchmark: DataBench,
-    evaluator: OPENAI_MODELS,
+    evaluator: Union[OPENAI_MODELS, DEEPSEEK_MODEL],
     logger: Logger,
     distinct: bool
 ) -> json:
     json_responses = None
+
+    selected_api = None
+    if evaluator == 'deepseek-chat':
+        selected_api = lambda x,y,z: call_deepseek_api(x, y, z)
+    else:
+        # right now, only support deepseek or openai
+        selected_api = lambda x,y,z: call_openai_api(x, y, z)
 
     if distinct:
         json_responses = {}
@@ -117,7 +128,7 @@ def judge(
                 {"role": "user", "content": INSTRUCTIONS_INDIVIDUAL},
                 {"role": "user", "content": formatted_data}
             ]
-            response = call_openai_api(evaluator, messages, logger)
+            response = selected_api(evaluator, messages, logger)
             try:
                 single_response = json.loads(response)
                 json_responses.update(single_response)
@@ -137,7 +148,7 @@ def judge(
             {"role": "user", "content": formatted_data}
         ]
 
-        response = call_openai_api(evaluator, messages, logger)
+        response = selected_api(evaluator, messages, logger)
 
         try:
             json_responses = json.loads(response)
@@ -156,6 +167,8 @@ def call_openai_api(
     messages: List[Dict[str, str]],
     logger: Logger,
 ):
+    CLIENT = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
+
     assert model in ALLOWED_MODELS, "Pick model that supports JSON object"
     # Refer to https://platform.openai.com/docs/guides/json-mode for models that support json_object.
     response = CLIENT.chat.completions.create(
@@ -169,24 +182,36 @@ def call_openai_api(
     output = response.choices[0].message.content
     return output
 
+def call_deepseek_api(
+    model: str,
+    messages: List[Dict[str, str]],
+    logger: Logger,
+):
+    # temp sol to parse response
+    def parse_response(input_string: str) -> Dict:
+        start = input_string.find('{')
+        end = input_string.rfind('}')
+        
+        # Check if both '{' and '}' are present in the string
+        if start != -1 and end != -1 and start < end:
+            # Return the substring that includes everything between and including '{' and '}'
+            return input_string[start:end + 1]
+        else:
+            return input_string
+    
+    CLIENT = OpenAI(api_key=os.environ.get('DEEPSEEK_API_KEY'), base_url="https://api.deepseek.com")
 
-# def parse_response(response: str, typed_dict_cls: _TypedDictMeta) -> Dict:
-#     response = dict.fromkeys(get_type_hints(typed_dict_cls).keys())
+    response = CLIENT.chat.completions.create(
+        model=model,
+        messages=messages,
+        n=1,
+        temperature=0.05,
+        stream=False
+    )
 
-#     json_start = response.rfind('{')  # Find { starting from the back
-#     json_end = response.rfind('}') + 1  # Find } starting from the back
-#     json_string = response[json_start:json_end]  # Get the JSON string
+    output = response.choices[0].message.content
+    return parse_response(output)
 
-#     response = json.loads(json_string)
-
-#     for key, hint in get_type_hints(typed_dict_cls).items():
-#         if key not in response:
-#             raise Exception(f"key '{key}' not found in the response.")
-
-#         if not isinstance(response[key], hint):
-#             raise Exception(f"scores['{key}'] is not a {hint.__name__}.")
-
-#     return response
 
 
 if __name__ == '__main__':
