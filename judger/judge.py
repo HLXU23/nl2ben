@@ -59,7 +59,7 @@ def start(
     qsql_pairs_file: str,
     output_path: Optional[str],
     evaluator: Union[OPENAI_MODELS, DEEPSEEK_MODEL] = 'gpt-4o',
-    distinct: bool = False,
+    distinct: Optional[bool] = False,
 ):
     database_name = os.path.splitext(os.path.basename(database_file))[0]
     qsql_name = os.path.splitext(os.path.basename(qsql_pairs_file))[0]

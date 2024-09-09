@@ -25,53 +25,50 @@ def database_to_json(db_path: str) -> str:
     cursor = conn.cursor()
 
     try:
-        # Get the list of tables in the database
+        # get the list of tables in the database
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = cursor.fetchall()
 
         db_dict = {}
         for table_name in tables:
             table_name = table_name[0]
+            # get column information
 
-            # Get the table schema (columns) with types and primary keys
-            cursor.execute(f"PRAGMA table_info({table_name})")
+            cursor.execute(f'PRAGMA table_info("{table_name}")') # table name in quotes to handle names that coincide with keywords
             columns_info = cursor.fetchall()
+
             columns = [
                 {
                     "name": col[1],
-                    "type": col[2],
+                    "type": col[2], 
+                    "not_null": col[3] == 1,
                     "primary_key": col[5] == 1
                 }
                 for col in columns_info
             ]
 
-            # Get foreign key information
-            cursor.execute(f"PRAGMA foreign_key_list({table_name})")
+            cursor.execute(f'PRAGMA foreign_key_list("{table_name}")')
             foreign_keys_info = cursor.fetchall()
             foreign_keys = [
                 {
-                    "column": fk[3],
-                    "references_table": fk[2],
-                    "references_column": fk[4]
+                    "column": fk[3],              # Column that has the foreign key
+                    "references_table": fk[2],    # Referenced table
+                    "references_column": fk[4]    # Referenced column
                 }
                 for fk in foreign_keys_info
             ]
 
-            # Get all data from the table
-            cursor.execute(f"SELECT * FROM {table_name}")
-            rows = cursor.fetchall()
-
-            # Add table data and schema information to the dictionary
             db_dict[table_name] = {
                 "columns": columns,
-                "foreign_keys": foreign_keys,
-                "data": [dict(zip([col["name"] for col in columns], row)) for row in rows]
+                "foreign_keys": foreign_keys
             }
 
         return json.dumps(db_dict, indent=4)
+
     finally:
         cursor.close()
         conn.close()
+
 
 
 def load_database_qsql(database_path: str, question_sql_path: str) -> DataBench:

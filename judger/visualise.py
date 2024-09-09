@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 #####################################################################
-filenames = ['results/UHC_revised_ques_financial_gpt4.json', 'results/UHC_revised_ques_financial_individual.json']
-labels = ['Combined_judge', 'Invididual_judge']
+filenames = ['results/financial_revised_ques_financial_gpt_4o_mini.json', 
+             'results/financial_revised_ques_financial_individual_gpt_4o_mini.json', 
+             'results/financial_revised_ques_financial_individual_deepseek.json']
+labels = ['GPT4o_combined', 'GPT4o_individual', 'Deepseek_individual']
 #####################################################################
 
 def main():
     num_files = len(filenames)
     if num_files > 3:
         print("WARNING: Too many files may result in poor visualisation!")
-    plt.figure(figsize=(12, 4*num_files))
+    plt.figure(figsize=(12, 3*num_files))
     for i in range(num_files):
         file = filenames[i]
         label = labels[i]
@@ -33,7 +35,7 @@ def visualize_single_file(filename, label):
                           var_name="metric", 
                           value_name="level")
 
-    sns.scatterplot(data=melted_data, x="index", y="level", style="metric", s=80, 
+    sns.scatterplot(data=melted_data, x="index", y="level", style="metric", s=60, 
                     markers={"computational_complexity": "o",    # Circle (hollow)
                              "data_integration_needs": "X",       # X
                              "business_understanding_difficulty": "s"},  # Square (hollow)

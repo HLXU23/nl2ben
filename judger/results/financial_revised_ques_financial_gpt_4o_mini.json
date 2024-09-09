@@ -1,16 +1,16 @@
 {
     "0": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "1": {
         "computational_complexity": 1,
-        "data_integration_needs": 2,
+        "data_integration_needs": 1,
         "business_understanding_difficulty": 1
     },
     "2": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
@@ -21,17 +21,17 @@
     },
     "4": {
         "computational_complexity": 1,
-        "data_integration_needs": 2,
+        "data_integration_needs": 3,
         "business_understanding_difficulty": 1
     },
     "5": {
         "computational_complexity": 1,
-        "data_integration_needs": 2,
+        "data_integration_needs": 3,
         "business_understanding_difficulty": 1
     },
     "6": {
         "computational_complexity": 1,
-        "data_integration_needs": 2,
+        "data_integration_needs": 3,
         "business_understanding_difficulty": 1
     },
     "7": {
@@ -41,8 +41,8 @@
     },
     "8": {
         "computational_complexity": 2,
-        "data_integration_needs": 2,
-        "business_understanding_difficulty": 1
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
     },
     "9": {
         "computational_complexity": 2,
@@ -55,8 +55,8 @@
         "business_understanding_difficulty": 1
     },
     "11": {
-        "computational_complexity": 1,
-        "data_integration_needs": 1,
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "12": {
@@ -70,34 +70,34 @@
         "business_understanding_difficulty": 1
     },
     "14": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "15": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "16": {
         "computational_complexity": 2,
         "data_integration_needs": 2,
-        "business_understanding_difficulty": 1
+        "business_understanding_difficulty": 2
     },
     "17": {
-        "computational_complexity": 1,
-        "data_integration_needs": 1,
-        "business_understanding_difficulty": 1
-    },
-    "18": {
         "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
+    "18": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
     "19": {
-        "computational_complexity": 2,
-        "data_integration_needs": 3,
-        "business_understanding_difficulty": 2
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
     },
     "20": {
         "computational_complexity": 1,
@@ -131,38 +131,38 @@
     },
     "26": {
         "computational_complexity": 2,
-        "data_integration_needs": 2,
-        "business_understanding_difficulty": 1
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
     },
     "27": {
-        "computational_complexity": 2,
-        "data_integration_needs": 2,
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
         "business_understanding_difficulty": 1
     },
     "28": {
-        "computational_complexity": 2,
-        "data_integration_needs": 2,
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
         "business_understanding_difficulty": 1
     },
     "29": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
         "business_understanding_difficulty": 1
     },
     "30": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
         "business_understanding_difficulty": 1
     },
     "31": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
         "business_understanding_difficulty": 1
     },
     "32": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
-        "business_understanding_difficulty": 2
+        "business_understanding_difficulty": 1
     },
     "33": {
         "computational_complexity": 1,
@@ -171,11 +171,11 @@
     },
     "34": {
         "computational_complexity": 1,
-        "data_integration_needs": 2,
+        "data_integration_needs": 1,
         "business_understanding_difficulty": 1
     },
     "35": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
@@ -195,38 +195,38 @@
         "business_understanding_difficulty": 1
     },
     "39": {
-        "computational_complexity": 2,
-        "data_integration_needs": 3,
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "40": {
-        "computational_complexity": 2,
-        "data_integration_needs": 3,
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "41": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
-        "business_understanding_difficulty": 2
+        "business_understanding_difficulty": 1
     },
     "42": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
-        "business_understanding_difficulty": 2
+        "business_understanding_difficulty": 1
     },
     "43": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 1,
-        "business_understanding_difficulty": 2
+        "business_understanding_difficulty": 1
     },
     "44": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "45": {
         "computational_complexity": 1,
-        "data_integration_needs": 2,
+        "data_integration_needs": 1,
         "business_understanding_difficulty": 1
     },
     "46": {
@@ -235,9 +235,9 @@
         "business_understanding_difficulty": 1
     },
     "47": {
-        "computational_complexity": 1,
-        "data_integration_needs": 2,
-        "business_understanding_difficulty": 1
+        "computational_complexity": 2,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
     },
     "48": {
         "computational_complexity": 1,
@@ -245,13 +245,13 @@
         "business_understanding_difficulty": 1
     },
     "49": {
-        "computational_complexity": 1,
-        "data_integration_needs": 2,
-        "business_understanding_difficulty": 1
-    },
-    "50": {
         "computational_complexity": 2,
         "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "50": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "51": {
@@ -260,9 +260,9 @@
         "business_understanding_difficulty": 1
     },
     "52": {
-        "computational_complexity": 2,
-        "data_integration_needs": 3,
-        "business_understanding_difficulty": 2
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
     },
     "53": {
         "computational_complexity": 1,
@@ -270,12 +270,12 @@
         "business_understanding_difficulty": 1
     },
     "54": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
     "55": {
-        "computational_complexity": 2,
+        "computational_complexity": 1,
         "data_integration_needs": 2,
         "business_understanding_difficulty": 1
     },
