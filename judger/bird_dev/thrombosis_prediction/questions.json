@@ -1,0 +1,1306 @@
+[
+    {
+        "question_id": 1149,
+        "db_id": "thrombosis_prediction",
+        "question": "Are there more in-patient or outpatient who were male? What is the deviation in percentage?",
+        "evidence": "male refers to SEX = 'M'; in-patient refers to Admission = '+'; outpatient refers to Admission = '-'; SUBTRACT(COUNT(ID) where SEX = 'M' and Admission = '+', COUNT(ID) where SEX  = 'M' and Admission = '-')",
+        "SQL": "SELECT CAST(SUM(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) AS REAL) * 100 / SUM(CASE WHEN Admission = '-' THEN 1 ELSE 0 END) FROM Patient WHERE SEX = 'M'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1150,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the percentage of female patient were born after 1930?",
+        "evidence": "female refers to Sex = 'F'; patient who were born after 1930 refers to year(Birthday) > '1930'; calculation = DIVIDE(COUNT(ID) where year(Birthday) > '1930' and SEX = 'F'), (COUNT(ID) where SEX = 'F')",
+        "SQL": "SELECT CAST(SUM(CASE WHEN STRFTIME('%Y', Birthday) > '1930' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) FROM Patient WHERE SEX = 'F'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1151,
+        "db_id": "thrombosis_prediction",
+        "question": "For patient born between Year 1930 to 1940, how many percent of them were inpatient?",
+        "evidence": "patient born between Year 1930 to 1940 refers to year(Birthday) BETWEEN '1930-01-01' AND '1940-12-31'; inpatient refers to Admission = '+'",
+        "SQL": "SELECT CAST(SUM(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) FROM Patient WHERE STRFTIME('%Y', Birthday) BETWEEN '1930' AND '1940'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1152,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the ratio of outpatient to inpatient followed up treatment among all the 'SLE' diagnosed patient?",
+        "evidence": "'SLE' refers to diagnosis; inpatient refers to Admission = '+'; outpatient refers to Admission = '-'; DIVIDE(COUNT(ID) where Diagnosis = 'SLE' and Admission = '+', COUNT(ID) where Diagnosis = 'SLE' and Admission = '-')",
+        "SQL": "SELECT SUM(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) / SUM(CASE WHEN Admission = '-' THEN 1 ELSE 0 END) FROM Patient WHERE Diagnosis = 'SLE'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1153,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the disease patient '30609' diagnosed with. List all the date of laboratory tests done for this patient.",
+        "evidence": "'30609' is an ID; disease means diagnosis",
+        "SQL": "SELECT T1.Diagnosis, T2.Date FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.ID = 30609",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1154,
+        "db_id": "thrombosis_prediction",
+        "question": "State the sex and birthday of patient ID '163109'. When was the examination taken and what symptom does the patient had.",
+        "evidence": "When was the examination taken refers to `Examination Date`",
+        "SQL": "SELECT T1.SEX, T1.Birthday, T2.`Examination Date`, T2.Symptoms FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.ID = 163109",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1155,
+        "db_id": "thrombosis_prediction",
+        "question": "List the patient ID, sex and birthday of patient with LDH beyond normal range.",
+        "evidence": "LDH beyond normal range refers to LDH > '500'",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.LDH > 500",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1156,
+        "db_id": "thrombosis_prediction",
+        "question": "State the ID and age of patient with positive degree of coagulation.",
+        "evidence": "age refers to SUBTRACT(year(current_timestamp), year(Birthday)); positive degree of coagulation refers to RVVT = '+'",
+        "SQL": "SELECT DISTINCT T1.ID, STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.RVVT = '+'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1157,
+        "db_id": "thrombosis_prediction",
+        "question": "For patients with severe degree of thrombosis, list their ID, sex and dieseas the patient is diagnosed with.",
+        "evidence": "severe degree of thrombosis refers to thrombosis = 2; disease refers to diagnosis",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Diagnosis FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Thrombosis = 2",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1158,
+        "db_id": "thrombosis_prediction",
+        "question": "List all patients who were born in 1937 whose total cholesterol was beyond the normal range.",
+        "evidence": "who were born in 1937 refers to year(birthday) = '1937'; total cholesterol was beyond the normal range refers to `T-CHO` > = '250'",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T1.Birthday) = '1937' AND T2.`T-CHO` >= 250",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1159,
+        "db_id": "thrombosis_prediction",
+        "question": "For patient with albumin level lower than 3.5, list their ID, sex and diagnosis.",
+        "evidence": "albumin level lower than 3.5 refers to ALB < 3.5;",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.ALB < 3.5",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1160,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the percentage of female patient had total protein not within the normal range?",
+        "evidence": "female refers to sex = 'F'; total protein not within the normal range refers to TP < '6.0' or TP > '8.5'; calculation = DIVIDE((ID where sex = 'F' and TP < '6.0' or TP > '8.5'), COUNT(ID)) * 100",
+        "SQL": "SELECT CAST(SUM(CASE WHEN T1.SEX = 'F' AND (T2.TP < 6.0 OR T2.TP > 8.5) THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1161,
+        "db_id": "thrombosis_prediction",
+        "question": "For in-patient age 50 and above, what is their average anti-cardiolipin antibody (IgG) concentration?",
+        "evidence": "in-patient refers to Admission = '+'; age 50 and above refers to SUBTRACT(year(current_timestamp), year(Birthday)) >= '50'; average anti-cardiolipin antibody (IgG) concentration refers to AVG(aCL IgG)",
+        "SQL": "SELECT AVG(T2.`aCL IgG`) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) >= 50 AND T1.Admission = '+'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1162,
+        "db_id": "thrombosis_prediction",
+        "question": "How many female patients who came at the hospital in 1997 was immediately followed at the outpatient clinic?",
+        "evidence": "female refers to sex = 'F'; came at the hospital in 1997 refers to year(Description) = '1997'; followed at the outpatient clinic refers to Admission = '-'",
+        "SQL": "SELECT COUNT(*) FROM Patient WHERE STRFTIME('%Y', Description) = '1997' AND SEX = 'F' AND Admission = '-'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1163,
+        "db_id": "thrombosis_prediction",
+        "question": "What was the age of the youngest patient when they initially arrived at the hospital?",
+        "evidence": "age refers to SUBTRACT(YEAR(Birthday), YEAR(`First Date`))",
+        "SQL": "SELECT MIN(STRFTIME('%Y', `First Date`) - STRFTIME('%Y', Birthday)) FROM Patient",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1164,
+        "db_id": "thrombosis_prediction",
+        "question": "How many of the patients with the most serious thrombosis cases examined in 1997 are women?",
+        "evidence": "the most serious thrombosis refers to Thrombosis = '1' (the most severe one); women refers to sex = 'F'",
+        "SQL": "SELECT CAST(SUM(CASE WHEN T1.SEX = 'F' THEN 1 ELSE 0 END) AS REAL) / COUNT(*) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T2.`Examination Date`) = '1997' AND T2.Thrombosis = 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1165,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the age gap between the youngest and oldest patient with a normal triglyceride recorded?",
+        "evidence": "age gap refers to SUBTRACT(MAX(year(Birthday)) - MIN(year(Birthday))); normal triglyceride refers to tg > = 200",
+        "SQL": "SELECT STRFTIME('%Y', MAX(T1.Birthday)) - STRFTIME('%Y', MIN(T1.Birthday)) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TG >= 200",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1166,
+        "db_id": "thrombosis_prediction",
+        "question": "What are the symptoms observed by the youngest patient to ever did a medical examination? Identify their diagnosis.",
+        "evidence": "the youngest patient refers to MIN(BIRTHDAY);",
+        "SQL": "SELECT T2.Symptoms, T1.Diagnosis FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Symptoms IS NOT NULL ORDER BY T1.Birthday DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1167,
+        "db_id": "thrombosis_prediction",
+        "question": "For the year that concluded on December 31, 1998, how many male patients on average were tested in the lab each month?",
+        "evidence": "the year that concluded on December 31, 1998 refers to Date BETWEEN '1998-01-01' AND '1998-12-31'; male refers to SEX = 'M'; calculation = DIVIDE(COUNT(ID), 12)",
+        "SQL": "SELECT CAST(COUNT(T1.ID) AS REAL) / 12 FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T2.Date) = '1998' AND T1.SEX = 'M'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1168,
+        "db_id": "thrombosis_prediction",
+        "question": "The oldest SJS patient's medical laboratory work was completed on what date, and what age was the patient when they initially arrived at the hospital?",
+        "evidence": "The oldest patient refers to MAX(Birthday); 'SJS' refers to diagnosis; (SUBTRACT(year(`First Date`)), year(Birthday)); age of the patients when they initially arrived at the hospital refers to year(Birthday)",
+        "SQL": "SELECT T1.Date, STRFTIME('%Y', T2.`First Date`) - STRFTIME('%Y', T2.Birthday) FROM Laboratory AS T1 INNER JOIN Patient AS T2 ON T1.ID = T2.ID WHERE T2.Diagnosis = 'SJS' AND T2.Birthday IS NOT NULL ORDER BY T2.Birthday ASC LIMIT 1",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1169,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the ratio of male to female patients among all those with abnormal uric acid counts?",
+        "evidence": "male refers to SEX = 'M'; female refers to SEX = 'F'; abnormal uric acid refers to UA < = '8.0' where SEX = 'M', UA < = '6.5' where SEX = 'F'; calculation = DIVIDE(SUM(UA <= '8.0' and SEX = 'M'), SUM(UA <= '6.5 and SEX = 'F'))",
+        "SQL": "SELECT CAST(SUM(CASE WHEN T2.UA <= 8.0 AND T1.SEX = 'M' THEN 1 ELSE 0 END) AS REAL) / SUM(CASE WHEN T2.UA <= 6.5 AND T1.SEX = 'F' THEN 1 ELSE 0 END) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1170,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients hadn't undergone a medical examination until at least a year following their initial hospital visit?",
+        "evidence": "hadn't undergone a medical examination until at least a year refers to SUBTRACT(year(`Examination Date`), year(`First Date`)) > = 1",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.Admission = '+' AND STRFTIME('%Y', T2.`Examination Date`) - STRFTIME('%Y', T1.`First Date`) >= 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1171,
+        "db_id": "thrombosis_prediction",
+        "question": "How many underage patients were examined during the course of the three-year period from 1990 to 1993?",
+        "evidence": "underage patients refers to year(Birthday) < 18; three-year period from 1990 to 1993 refers to `Examination Date` between '1990-01-01' and '1993-12-31'",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T2.`Examination Date`) BETWEEN '1990' AND '1993' AND STRFTIME('%Y', T2.`Examination Date`) - STRFTIME('%Y', T1.Birthday) < '18'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1172,
+        "db_id": "thrombosis_prediction",
+        "question": "How many male patients have elevated total bilirubin count?",
+        "evidence": "male refers to SEX = 'M'; elevated means above the normal range; total bilirubin above the normal range refers to `T-BIL` > '2.0'",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`T-BIL` >= 2.0 AND T1.SEX = 'M'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1173,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the most common illness that doctors identified among the patients whose lab work was done between 1/1/1985, and 12/31/1995?",
+        "evidence": "the most common illness refers to MAX(COUNT(Diagnosis)); lab work between 1/1/1985 and 12/31/1995 refers to `Examination Date` between '1985-01-01' and '1995-12-31 '",
+        "SQL": "SELECT T2.Diagnosis FROM Examination AS T1 INNER JOIN Patient AS T2 ON T1.ID = T2.ID WHERE T1.`Examination Date` BETWEEN '1985-01-01' AND '1995-12-31' GROUP BY T2.Diagnosis ORDER BY COUNT(T2.Diagnosis) DESC LIMIT 1",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1174,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the average age of patients examined in the laboratory for the October of the year 1991?",
+        "evidence": "average age for first half of 1999 refers to AVG(SUBTRACT('1999', year(Birthday))); October of 1991 refers to Date BETWEEN '1991-10-01' AND '1991-10-30'",
+        "SQL": "SELECT AVG('1999' - STRFTIME('%Y', T2.Birthday)) FROM Laboratory AS T1 INNER JOIN Patient AS T2 ON T1.ID = T2.ID WHERE T1.Date BETWEEN '1991-10-01' AND '1991-10-30'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1175,
+        "db_id": "thrombosis_prediction",
+        "question": "How old was the patient who had the highest hemoglobin count at the time of the examination, and what is the doctor's diagnosis?",
+        "evidence": "How old the patient refers to SUBTRACT(year(`Examination Date`), year(Birthday)); the highest hemoglobin count refers to MAX(HGB)",
+        "SQL": "SELECT STRFTIME('%Y', T2.Date) - STRFTIME('%Y', T1.Birthday), T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID ORDER BY T2.HGB DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1176,
+        "db_id": "thrombosis_prediction",
+        "question": "What was the anti-nucleus antibody concentration level for the patient id 3605340 on 1996/12/2?",
+        "evidence": "anti-nucleus antibody refers to ANA; 1996/12/2 refers to `Examination Date` = '1996-12-02'",
+        "SQL": "SELECT ANA FROM Examination WHERE ID = 3605340 AND `Examination Date` = '1996-12-02'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1177,
+        "db_id": "thrombosis_prediction",
+        "question": "Was the total cholesterol status for the patient id 2927464 on 1995-9-4 at the normal level?",
+        "evidence": "total cholesterol normal level refers to N < 250",
+        "SQL": "SELECT CASE WHEN `T-CHO` < 250 THEN 'Normal' ELSE 'Abnormal' END FROM Laboratory WHERE ID = 2927464 AND Date = '1995-09-04'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1178,
+        "db_id": "thrombosis_prediction",
+        "question": "What was the gender of the first AORTITIS diagnosed patient?",
+        "evidence": "gender means SEX; 'AORTITIS' refers to Diagnosis;",
+        "SQL": "SELECT SEX FROM Patient WHERE Diagnosis = 'AORTITIS' AND `First Date` IS NOT NULL ORDER BY `First Date` ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1179,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient who was diagnosed with SLE on 1994/2/19, what was his/her anti-Cardiolipin antibody concentration status on 1993/11/12?",
+        "evidence": "'SLE' refers to Diagnosis; 1994/2/19 refers to Description = '1994-02-19'; anti-Cardiolipin refers to aCL IgM; 1993/11/12 refers to Description = '1993/11/12'",
+        "SQL": "SELECT `aCL IgA`, `aCL IgG`, `aCL IgM` FROM Examination WHERE ID IN ( SELECT ID FROM Patient WHERE Diagnosis = 'SLE' AND Description = '1994-02-19' ) AND `Examination Date` = '1993-11-12'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1180,
+        "db_id": "thrombosis_prediction",
+        "question": "Was the patient a man or a women whose ALT glutamic pylvic transaminase status got 9 on 1992-6-12?",
+        "evidence": "man refers to SEX = 'M'; women refers to SEX = 'F'; ALT glutamic pylvic transaminase status got 9 GPT = '9'; 1992/6/12 refers to Date = '1992-06-12'",
+        "SQL": "SELECT T1.SEX FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT = 9.0 AND T2.Date = '1992-06-12'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1181,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient who got the laboratory test of uric acid level as 8.4 on 1991-10-21, how old was he/she at that time?",
+        "evidence": "how old at that time refers to SUBTRACT('1992', year(Birthday)); uric acid level as 8.4 refers to UA = '8.4'; 1991/10/21 refers to Date = '1991-10-21'",
+        "SQL": "SELECT STRFTIME('%Y', T2.Date) - STRFTIME('%Y', T1.Birthday) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.UA = 8.4 AND T2.Date = '1991-10-21'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1182,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient who first came to the hospital on 1991/6/13 who was diagnosed with SJS, what is the total number of his/her Laboratory tests in 1995?",
+        "evidence": "1991/6/13 refers to `First Date` = '1991-06-13'; 'SJS' refers to Diagnosis; total number of his/her Laboratory tests refers to COUNT(ID); 1995 refers to Date",
+        "SQL": "SELECT COUNT(*) FROM Laboratory WHERE ID = ( SELECT ID FROM Patient WHERE `First Date` = '1991-06-13' AND Diagnosis = 'SJS' ) AND STRFTIME('%Y', Date) = '1995'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1183,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient who was diagnosed SLE on 1997/1/27, what was his/her original diagnose when he/she came to the hospital for the first time?",
+        "evidence": "'SLE' AND original diagnose refers to diagnosis; 1997/1/27 refer to `Examination Date` = '1997-01-27'; first came to the hospital refers to patient.`First Date`",
+        "SQL": "SELECT T1.Diagnosis FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.ID = ( SELECT ID FROM Examination WHERE `Examination Date` = '1997-01-27' AND Diagnosis = 'SLE' ) AND T2.`Examination Date` = T1.`First Date`",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1184,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient whose birthday was 1959/3/1, what symptoms did he/she have during the examination on 1993/9/27?",
+        "evidence": "",
+        "SQL": "SELECT T2.Symptoms FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.Birthday = '1959-03-01' AND T2.`Examination Date` = '1993-09-27'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1185,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient who was born on 1959/2/18, what is the decrease rate for his/her total cholesterol from November to December in 1981?",
+        "evidence": "born on 1959/2/18 refers to Birthday = '1959-02-18'; calculation = SUBTRACT(SUM(Birthday = '1959-02-18' and Date like '1981-11-%' THEN `T-CHO`), SUM(Birthday = '1959-02-18' and Date like '1981-12-%' THEN `T-CHO`))",
+        "SQL": "SELECT CAST((SUM(CASE WHEN T2.Date LIKE '1981-11-%' THEN T2.`T-CHO` ELSE 0 END) - SUM(CASE WHEN T2.Date LIKE '1981-12-%' THEN T2.`T-CHO` ELSE 0 END)) AS REAL) / SUM(CASE WHEN T2.Date LIKE '1981-12-%' THEN T2.`T-CHO` ELSE 0 END) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Birthday = '1959-02-18'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1186,
+        "db_id": "thrombosis_prediction",
+        "question": "Lists all patients by ID who were diagnosed with Behcet's and had their exams between 01/01/197 and 12/31/1997.",
+        "evidence": "'Behcet' refers to diagnosis; exam between 01/01/1997 and 12/31/1997 refers to YEAR(Description) > = '1997-1-1' AND YEAR(Description) < '1998-1-1'",
+        "SQL": "SELECT ID FROM Examination WHERE `Examination Date` BETWEEN '1997-01-01' AND '1997-12-31' AND Diagnosis = 'Behcet'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1187,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients who were examined between 1987/7/6 and 1996/1/31 had a GPT level greater than 30 and an ALB level less than 4? List them by their ID.",
+        "evidence": "examined between 1987/7/6 and 1996/1/31 refers to Date BETWEEN '1987-07-06' AND '1996-01-31'; GPT level greater than 30 refers to GPT > 30; ALB level less than 4 ALB < 4",
+        "SQL": "SELECT DISTINCT ID FROM Laboratory WHERE Date BETWEEN '1987-07-06' AND '1996-01-31' AND GPT > 30 AND ALB < 4",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1188,
+        "db_id": "thrombosis_prediction",
+        "question": "How many female patients born in 1964 were admitted to the hospital? List them by ID.",
+        "evidence": "female refers to SEX = 'F'; born in 1964 refers to YEAR(Birthday) = 1964; admitted to the hospital refers to Admission = '+'",
+        "SQL": "SELECT ID FROM Patient WHERE STRFTIME('%Y', Birthday) = '1964' AND SEX = 'F' AND Admission = '+'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1189,
+        "db_id": "thrombosis_prediction",
+        "question": "What number of patients with a degree of thrombosis level 2 and ANA pattern of only S, have a level of anti-Cardiolip in antibody (IgM) 20% higher than average?",
+        "evidence": "thrombosis level 2 refers to Thrombosis = 2; ANA pattern of only S refers to ANA = 'S'; average anti-Cardiolip in antibody (IgM) refers to AVG(`aCL IgM`); calculation = MULTIPLY(AVG + AVG, 0.2)",
+        "SQL": "SELECT COUNT(*) FROM Examination WHERE Thrombosis = 2 AND `ANA Pattern` = 'S' AND `aCL IgM` > (SELECT AVG(`aCL IgM`) * 1.2 FROM Examination WHERE Thrombosis = 2 AND `ANA Pattern` = 'S')",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1190,
+        "db_id": "thrombosis_prediction",
+        "question": "What percentage of patients with a proteinuria level within the normal range have a uric acid level below the normal range?",
+        "evidence": "proteinuria level within the normal range refers to `U-PRO` > 0 AND `U-PRO` < 30; uric acid level below the normal range refers to UA < = 6.5; calculation = MULTIPLY(DIVIDE(UA < = 6.5, `U-PRO` > 0 AND `U-PRO` < 30)，100)",
+        "SQL": "SELECT CAST(SUM(CASE WHEN UA <= 6.5 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID) FROM Laboratory WHERE `U-PRO` > 0 AND `U-PRO` < 30",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1191,
+        "db_id": "thrombosis_prediction",
+        "question": "What percentage of male patients who first presented to the hospital in 1981 were diagnosed with BEHCET?",
+        "evidence": "male refers to SEX = 'M'; first presented to the hospital in 1981 refers to YEAR(`FIRST DATE`) = '1981'; BEHCET refers to diagnosis; calculation = DIVIDE(SUM(DIAGNOSIS = 'BEHCET') where YEAR(`FIRST DATE`) = '1981', MULTIPLY(COUNT(YEAR(`FIRST DATE`) = '1981')), 100)",
+        "SQL": "SELECT CAST(SUM(CASE WHEN Diagnosis = 'BEHCET' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID) FROM Patient WHERE STRFTIME('%Y', `First Date`) = '1981' AND SEX = 'M'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1192,
+        "db_id": "thrombosis_prediction",
+        "question": "List all patients who were followed up at the outpatient clinic who underwent a laboratory test in October 1991 and had a total blood bilirubin level within the normal range.",
+        "evidence": "followed up at the outpatient clinic refers to Admission = '-'; laboratory test in April 1981 refers to Date like '1991-10%'; blood bilirubin level within the normal range refers to T-BIL < 2.0",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Admission = '-' AND T2.`T-BIL` < 2.0 AND STRFTIME('%Y', T2.Date) = '1991' AND STRFTIME('%m', T2.Date) = '10'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1193,
+        "db_id": "thrombosis_prediction",
+        "question": "Excluding all P only ANA Pattern patients, how many of the remainder are women born between 1980 and 1989?",
+        "evidence": "Excluding all P only ANA Pattern refers to `ANA Pattern`! = 'p'; women refers to SEX = 'F'; born between 1980 and 1989 refers to BIRTHDAY",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.`ANA Pattern` != 'P' AND STRFTIME('%Y', T1.Birthday) BETWEEN '1980' AND '1989' AND T1.SEX = 'F'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1194,
+        "db_id": "thrombosis_prediction",
+        "question": "What sex is the patient who in a medical examination was diagnosed with PSS and in a laboratory examination had a blood level of C-reactive protein de 2+, createnine 1 and LDH 123?",
+        "evidence": "PSS' refers to diagnosis; blood level of C-reactive protein de 2+refers to CRP > 2; createnine 1 refers to CRE = 1; LDH 123 refers to LDH = 123",
+        "SQL": "SELECT T1.SEX FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID INNER JOIN Laboratory AS T3 ON T3.ID = T2.ID WHERE T2.Diagnosis = 'PSS' AND T3.CRP = '2+' AND T3.CRE = 1.0 AND T3.LDH = 123",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1195,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the average blood albumin level for female patients with a PLT greater than 400 who have been diagnosed with SLE?",
+        "evidence": "average blood albumin level refers to AVG(ALB); female refers to SEX = 'F'; PLT greater than 400 refers to PLT > 400; 'SLE' refers to diagnosis",
+        "SQL": "SELECT AVG(T2.ALB) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.PLT > 400 AND T1.Diagnosis = 'SLE' AND T1.SEX = 'F'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1196,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the most common sign of patients with SLE disease?",
+        "evidence": "the most common sign refers to MAX(symptoms); 'SLE' refers to diagnosis",
+        "SQL": "SELECT Symptoms FROM Examination WHERE Diagnosis = 'SLE' GROUP BY Symptoms ORDER BY COUNT(Symptoms) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1197,
+        "db_id": "thrombosis_prediction",
+        "question": "When was the medical information on patient number 48473 first documented, and what disease did she have?",
+        "evidence": "medical information first documented refers to Description; disease refers to diagnosis; patient number refers to id",
+        "SQL": "SELECT `First Date`, Diagnosis FROM Patient WHERE ID = 48473",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1198,
+        "db_id": "thrombosis_prediction",
+        "question": "How many female patients were given an APS diagnosis?",
+        "evidence": "female refers to SEX = 'F'; 'APS' refers to diagnosis",
+        "SQL": "SELECT COUNT(ID) FROM Patient WHERE SEX = 'F' AND Diagnosis = 'APS'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1199,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients who underwent testing in 1997 had protein levels outside the normal range?",
+        "evidence": "underwent testing in 1997 refers to YEAR(DATE) = '1997'; protein levels within the normal range refers to tp > 6 and tp < 8.5",
+        "SQL": "SELECT COUNT(ID) FROM Laboratory WHERE ALB <= 6.0 OR ALB >= 8.5 AND STRFTIME('%Y', Date) = '1997'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1200,
+        "db_id": "thrombosis_prediction",
+        "question": "What proportion of patients who had signs of thrombocytopenia had SLE diagnosed?",
+        "evidence": "thrombocytopenia' refers to symptoms; 'SLE' refers to diagnosis; calculation =   DIVIDE(SUM(DIAGNOSIS LIKE '%ITP%'), SUM(DIAGNOSIS LIKE '%SLE%')) MULTIPLY 100",
+        "SQL": "SELECT CAST(SUM(CASE WHEN Diagnosis = 'SLE' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID) FROM Examination WHERE Symptoms = 'thrombocytopenia'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1201,
+        "db_id": "thrombosis_prediction",
+        "question": "What percentage of patients who were born in 1980 and were diagnosed with RA are women?",
+        "evidence": "born in 1980 refers to YEAR(BIRTHDAY) = '1980'; 'RA' refers to diagnosis; women refers to SEX = 'F'; calculation = DIVIDE((SEX = 'F'), COUNT(SEX)) where YEAR(BIRTHDAY) = '1980' AND diagnosis = 'RA' MULTIPLY 100",
+        "SQL": "SELECT CAST(SUM(CASE WHEN SEX = 'F' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID) FROM Patient WHERE Diagnosis = 'RA' AND STRFTIME('%Y', Birthday) = '1980'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1202,
+        "db_id": "thrombosis_prediction",
+        "question": "How many male patients who underwent testing between 1995 and 1997 and were subsequently diagnosed with BEHCET disease did not stay in the hospital for treatment?",
+        "evidence": "male refers to SEX = 'M'; underwent testing between 1995 and 1997 refers to `Examination Date` between '1995' and '1997'; BEHCET refers to diagnosis; did not stay in the hospital refers to Admission = '-'",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Diagnosis = 'Behcet' AND T1.SEX = 'M' AND STRFTIME('%Y', T2.`Examination Date`) BETWEEN '1995' AND '1997' AND T1.Admission = '-'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1203,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients who were female got white blood cells that were below 3.5?",
+        "evidence": "female refers to SEX = 'F'; white blood cells that were below 3.5 refers to WBC < 3.5",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.WBC < 3.5 AND T1.SEX = 'F'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1204,
+        "db_id": "thrombosis_prediction",
+        "question": "How long did it take after patient number 821298 arrived at the hospital for the first time before her evaluation began?",
+        "evidence": "DATEDIFF(`Examination Date`, `First Date`)",
+        "SQL": "SELECT STRFTIME('%d', T3.`Examination Date`) - STRFTIME('%d', T1.`First Date`) FROM Patient AS T1 INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T1.ID = 821298",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1205,
+        "db_id": "thrombosis_prediction",
+        "question": "Was the patient with the number 57266's uric acid within a normal range?",
+        "evidence": "uric acid within a normal range refers to UA > 8.0 and SEX = 'M'; UA > 6.5 and SEX = 'F'",
+        "SQL": "SELECT CASE WHEN (T1.SEX = 'F' AND T2.UA > 6.5) OR (T1.SEX = 'M' AND T2.UA < 8.0) THEN true ELSE false END FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.ID = 57266",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1206,
+        "db_id": "thrombosis_prediction",
+        "question": "When is the laboratory examination of patient '48473' where his/her AST glutamic oxaloacetic transaminase (GOT) index is above the normal range.",
+        "evidence": "AST glutamic oxaloacetic transaminase (GOT) index is above the normal range refers to GOT > = 60; when refers to DATE",
+        "SQL": "SELECT Date FROM Laboratory WHERE ID = 48473 AND GOT >= 60",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1207,
+        "db_id": "thrombosis_prediction",
+        "question": "List all patients with their sex and date of birthday, whose AST glutamic oxaloacetic transaminase (GOT) index is within normal range for loboratory examination in 1994.",
+        "evidence": "AST glutamic oxaloacetic transaminase (GOT) index is within normal range refers to GOT < 60; examination in 1994 refers to year(Date) = 1994",
+        "SQL": "SELECT DISTINCT T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GOT < 60 AND STRFTIME('%Y', T2.Date) = '1994'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1208,
+        "db_id": "thrombosis_prediction",
+        "question": "Provide IDs for male patients with ALT glutamic pylvic transaminase (GPT) that have history of ALT glutamic pylvic transaminase (GPT) exceed the normal range.",
+        "evidence": "male refers to SEX = 'M'; ALT glutamic pylvic transaminase (GPT) exceed the normal range refers to GPT > = 60",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'M' AND T2.GPT >= 60",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1209,
+        "db_id": "thrombosis_prediction",
+        "question": "Please provide the diagnosis of patients with ALT glutamic pylvic transaminase beyond the normal range by ascending order of their date of birth.",
+        "evidence": "ALT glutamic pylvic transaminase beyond the normal range refers to GPT > 60; ascending order of their date of birth refers to MAX(Birthday)",
+        "SQL": "SELECT DISTINCT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT > 60 ORDER BY T1.Birthday ASC",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1210,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the average index of the lactate dehydrogenase (LDH) for all patients with lactate dehydrogenase (LDH) within the normal range.",
+        "evidence": "average index of the lactate dehydrogenase (LDH) refers to AVG(LDH); (LDH) within the normal range refers to LDH < 500",
+        "SQL": "SELECT AVG(LDH) FROM Laboratory WHERE LDH < 500",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1211,
+        "db_id": "thrombosis_prediction",
+        "question": "Provide the ID and age of patient with lactate dehydrogenase (LDH) between 100-300 index above the normal range.",
+        "evidence": "age refers to SUBTRACT(year(current_timestamp), year(Birthday)); lactate dehydrogenase (LDH) between 100-300 index above the normal range refers to LDH between 600 and 800;",
+        "SQL": "SELECT DISTINCT T1.ID, STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.LDH > 600 AND T2.LDH < 800",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1212,
+        "db_id": "thrombosis_prediction",
+        "question": "For patients with alkaliphophatase (ALP) within normal range, were they treated as inpatient or outpatient?",
+        "evidence": "alkaliphophatase (ALP) within normal range refers to ALP < 300; inpatient refers to admission = '+'; outpatient refers to admission = '-'",
+        "SQL": "SELECT T1.Admission FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.ALP < 300",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1213,
+        "db_id": "thrombosis_prediction",
+        "question": "Name the ID of the patient who is born on the April 1st, 1982. Is his/her alkaliphophatase (ALP) within normal range?",
+        "evidence": "alkaliphophatase (ALP) within normal range refers to ALP < 300",
+        "SQL": "SELECT T1.ID , CASE WHEN T2.ALP < 300 THEN 'normal' ELSE 'abNormal' END FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Birthday = '1982-04-01'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1214,
+        "db_id": "thrombosis_prediction",
+        "question": "List ID, sex and date of birth of patient whose total protein (TP) below the lower range of the normal index.",
+        "evidence": "total protein (TP) below the lower range of the normal index refers to TP < 6.0",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TP < 6.0",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1215,
+        "db_id": "thrombosis_prediction",
+        "question": "For all female patient with total protein (TP) beyond the normal index, what is the deviation of their TP idex from the normal.",
+        "evidence": "female refers to SEX = 'F'; total protein (TP) beyond the normal index refers to TP > 8.5;\ndeviation of TP index from normal refers to SUBTRACT(TP, 8.5)",
+        "SQL": "SELECT T2.TP - 8.5 FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F' AND T2.TP > 8.5",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1216,
+        "db_id": "thrombosis_prediction",
+        "question": "Sort in descending order all patients by birthday for male patient with albumin not within range.",
+        "evidence": "male = SEX = 'M'; albumin not within range refers to ALB < = 3.5 or ALB > = 5.5",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'M' AND (T2.ALB <= 3.5 OR T2.ALB >= 5.5) ORDER BY T1.Birthday",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1217,
+        "db_id": "thrombosis_prediction",
+        "question": "For all patient born in 1982, state if their albumin is within normal range.",
+        "evidence": "Year(Birthday) = '1982'; albumin is within normal range refers to ALB between 3.5 and 5.5",
+        "SQL": "SELECT CASE WHEN T2.ALB >= 3.5 AND T2.ALB <= 5.5 THEN 'normal' ELSE 'abnormal' END FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T1.Birthday) = '1982'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1218,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the percentage of the female patient whose uric acid (UA) beyond the normal range?",
+        "evidence": "uric acid (UA) beyond the normal range refers to UA > 8.0 and SEX = 'M' or UA > 6.5 and SEX = 'F'; female refers to Sex = 'F'",
+        "SQL": "SELECT CAST(SUM(CASE WHEN T2.UA > 6.5 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1219,
+        "db_id": "thrombosis_prediction",
+        "question": "For all patients with normal uric acid (UA), what is the average UA index based on their latest laboratory examination result?",
+        "evidence": "uric acid (UA) with normal range refers to UA < 8.0 and SEX = 'M' or UA < 6.5 and SEX = 'F'; average UA index refers to AVG(UA)",
+        "SQL": "SELECT AVG(T2.UA) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE (T2.UA > 6.5 AND T1.SEX = 'F') OR (T2.UA > 8.0 AND T1.SEX = 'M') AND T2.Date = ( SELECT MAX(Date) FROM Laboratory )",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1220,
+        "db_id": "thrombosis_prediction",
+        "question": "Provide all ID, sex and birthday of patients whose urea nitrogen (UN) just within the borderline of passing?",
+        "evidence": "urea nitrogen (UN) just within the borderline of passing refers to UN = 29",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.UN = 29",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1221,
+        "db_id": "thrombosis_prediction",
+        "question": "Provide the ID, sex, birthday of all patients diagnosed with 'RA' that are within the UN normal index.",
+        "evidence": "within the UN normal index refers to UN < 30; Diagnosis = 'RA'",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.UN < 30 AND T1.Diagnosis = 'RA'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1222,
+        "db_id": "thrombosis_prediction",
+        "question": "How many male patients are are with creatinine index out of the normal range?",
+        "evidence": "creatinine (CRE) out of the normal range refers to CRE > = 1.5; Male refers to Sex = 'M'",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.CRE >= 1.5 AND T1.SEX = 'M'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1223,
+        "db_id": "thrombosis_prediction",
+        "question": "Are there more male patients with creatinine not within the normal range than female? True or False?",
+        "evidence": "creatinine (CRE) not within the normal range refers to CRE > = 1.5; male refers to Sex = 'M'; female refers to Sex = 'F'; calculation = (SUM(SEX = 'M') > SUM(SEX = 'F')) where CRE > = 1.5",
+        "SQL": "SELECT CASE WHEN SUM(CASE WHEN T1.SEX = 'M' THEN 1 ELSE 0 END) > SUM(CASE WHEN T1.SEX = 'F' THEN 1 ELSE 0 END) THEN 'True' ELSE 'False' END FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.CRE >= 1.5",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1224,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the highest total bilirubin level recorded? List out the patient details with ID, sex and birthday with that index.",
+        "evidence": "the highest total bilirubin refers to MAX(T-BIL)",
+        "SQL": "SELECT T2.`T-BIL`, T1.ID, T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID ORDER BY T2.`T-BIL` DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1225,
+        "db_id": "thrombosis_prediction",
+        "question": "List and group all patients by sex for total bilirubin (T-BIL) level not within the normal range.",
+        "evidence": "total bilirubin (T-BIL) not within normal range refers to T-BIL > = 2.0",
+        "SQL": "SELECT DISTINCT CASE WHEN T1.SEX = 'F' THEN T1.ID END , CASE WHEN T1.SEX = 'M' THEN T1.ID END FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`T-BIL` >= 2.0",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1226,
+        "db_id": "thrombosis_prediction",
+        "question": "Who is the oldest patient with the highest total cholesterol (T-CHO). State the patient ID and T-CHO index.",
+        "evidence": "oldest patient refers to MIN(birthday); highest total cholesterol refers to MAX(T-CHO);",
+        "SQL": "SELECT T1.ID, T2.`T-CHO` FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID ORDER BY T2.`T-CHO` DESC, T1.Birthday ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1227,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the average age of the male patient with high cholesterol?",
+        "evidence": "average age = DIVIDE(SUM(SUBTRACT(YEAR(NOW()), YEAR(birthday))), COUNT(ID)); male patient refers to gender = 'M'; high cholesterol refers to `T-CHO` > = 250;",
+        "SQL": "SELECT AVG(STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday)) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`T-CHO` >= 250 AND T1.SEX = 'M'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1228,
+        "db_id": "thrombosis_prediction",
+        "question": "Provide list of patients and their diagnosis with triglyceride (TG) index greater than 100 of the normal range?",
+        "evidence": "triglyceride (TG) index greater than 100 of the normal range refers to TG > 300;",
+        "SQL": "SELECT T1.ID, T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TG > 300",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1229,
+        "db_id": "thrombosis_prediction",
+        "question": "For all patients with triglyceride (TG) level beyond the normal range, how many are age more than 50 years?",
+        "evidence": "triglyceride (TG) level beyond the normal range refers to TG > = 200; more than 50 years of age = SUBTRACT(year(current_timestamp), year(Birthday)) > 50;",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TG >= 200 AND STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) > 50",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1230,
+        "db_id": "thrombosis_prediction",
+        "question": "List all outpatient within normal range of creatinine phosphokinase. Give me the distinct ids.",
+        "evidence": "outpatient refers to Admission = '-'; normal range of creatinine phosphokinase refers to CPK < 250;",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.CPK < 250 AND T1.Admission = '-'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1231,
+        "db_id": "thrombosis_prediction",
+        "question": "For patient born between 1936-1956, how many male patients have creatinine phosphokinase beyond the normal range?",
+        "evidence": "born between 1936-1956 refers to year(Birthday) BETWEEN '1936' AND '1956'; male patients refers to sex = 'M'; creatinine phosphokinase beyond the normal range refers to CPK > = 250;",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T1.Birthday) BETWEEN '1936' AND '1956' AND T1.SEX = 'M' AND T2.CPK >= 250",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1232,
+        "db_id": "thrombosis_prediction",
+        "question": "Provide ID, sex and age of patient who has blood glucose (GLU) not within normal range but with total cholesterol(T-CHO) within normal range.",
+        "evidence": "age = SUBTRACT(year(current_timestamp), year(Birthday)); blood glucose (GLU) not within normal range refers to GLU > = 180; total cholesterol(T-CHO) within normal range refers to `T-CHO` < 250;",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX , STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GLU >= 180 AND T2.`T-CHO` < 250",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1233,
+        "db_id": "thrombosis_prediction",
+        "question": "List each patient's ID and blood glucose (GLU) index that were within normal range for patient's whose data was first recorded in 1991.",
+        "evidence": "blood glucose (GLU) index that were within normal range refers to GLU < 180; data that was first recorded in 1991 refers to year(Description) > = 1991;",
+        "SQL": "SELECT DISTINCT T1.ID, T2.GLU FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T1.`First Date`) = '1991' AND T2.GLU < 180",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1234,
+        "db_id": "thrombosis_prediction",
+        "question": "List the patient ID, sex and birthday who has abnormal white blood cell count. Group them by sex and list the patient by age in ascending order.",
+        "evidence": "abnormal white blood cell count refers to WBC < = 3.5 or WBC > = 9.0;",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX, T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.WBC <= 3.5 OR T2.WBC >= 9.0 GROUP BY T1.SEX,T1.ID ORDER BY T1.Birthday ASC",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1235,
+        "db_id": "thrombosis_prediction",
+        "question": "What are the patient's diagnosis for those who has lower red blood blood cell? State their ID and age.",
+        "evidence": "patient's diagnosis refers to Diagnosis; lower red blood cell refers to RBC < 3.5; age = SUBTRACT(year(current_timestamp), year(Birthday));",
+        "SQL": "SELECT T1.Diagnosis, T1.ID , STRFTIME('%Y', CURRENT_TIMESTAMP) -STRFTIME('%Y', T1.Birthday) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.RBC < 3.5",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1236,
+        "db_id": "thrombosis_prediction",
+        "question": "For all the female patient age 50 and above, who has abnormal red blood cell count. State if they were admitted to hospital.",
+        "evidence": "female patient refers to Sex = 'F'; age 50 and above = SUBTRACT(year(current_timestamp), year(Birthday)) > = 50; abnormal red blood cell count refers to RBC < = 3.5 or RBC > = 6.0; Admission = '+' means the patient was admitted to the hospital; Admission = '-' means the patient was not admitted to the hospital;",
+        "SQL": "SELECT DISTINCT T1.ID, T1.Admission FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F' AND (T2.RBC <= 3.5 OR T2.RBC >= 6.0) AND STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) >= 50",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1237,
+        "db_id": "thrombosis_prediction",
+        "question": "Among all outpatients, list out those have low hemoglobin level. State the different IDs and their sex.",
+        "evidence": "outpatients refers to Admission = '-'; low hemoglobin level refers to HBG < 10;",
+        "SQL": "SELECT DISTINCT T1.ID, T1.SEX FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.HGB < 10 AND T1.Admission = '-'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1238,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients who were diagnosed with SLE, who is the oldest with normal hemoglobin level. Provide the ID and sex.",
+        "evidence": "diagnosed with SLE refers to Diagnosis = 'SLE'; oldest refers to MIN(Birthday); normal hemoglobin level refers to 10 < HGB < 17;",
+        "SQL": "SELECT T1.ID, T1.SEX FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'SLE' AND T2.HGB > 10 AND T2.HGB < 17 ORDER BY T1.Birthday ASC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1239,
+        "db_id": "thrombosis_prediction",
+        "question": "Name the ID and age of patient with two or more laboratory examinations which show their hematoclit level exceeded the normal range.",
+        "evidence": "age = SUBTRACT(year(current_timestamp), year(Birthday)); patient with two or more laboratory examinations refers to COUNT(ID) > 2; hematoclit level exceeded the normal range refers to HCT > = 52;",
+        "SQL": "SELECT DISTINCT T1.ID, STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.ID IN ( SELECT ID FROM Laboratory WHERE HCT >= 52 GROUP BY ID HAVING COUNT(ID) >= 2 )",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1240,
+        "db_id": "thrombosis_prediction",
+        "question": "From laboratory examinations in 1991, what is the average hematoclit level that is lower than the normal range.",
+        "evidence": "laboratory examinations in 1991 refers to Date like '1991%'; average hematoclit level = AVG(HCT); hematoclit level that is lower than the normal range refers to HCT < 29;",
+        "SQL": "SELECT AVG(T2.HCT) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.HCT < 29 AND STRFTIME('%Y', T2.Date) = '1991'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1241,
+        "db_id": "thrombosis_prediction",
+        "question": "For patients with abnormal platelet level, state the number of patients with lower than normal range. How is it compare to the number of patients with higher than normal range?",
+        "evidence": "abnormal platelet level refers to PLT < 100; platelet level lower than normal range refers to PLT < 100; how much = SUBTRACT(SUM(PLT < 100), SUM(PLT > 400)); platelet level higher than normal range refers to PLT > 400;",
+        "SQL": "SELECT SUM(CASE WHEN T2.PLT < 100 THEN 1 ELSE 0 END) - SUM(CASE WHEN T2.PLT > 400 THEN 1 ELSE 0 END) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1242,
+        "db_id": "thrombosis_prediction",
+        "question": "For laboratory examinations take in 1984, list all patients below 50 years old with normal platelet level.",
+        "evidence": "laboratory examinations take in 1984 refers to Date like '1984%'; below 50 years old = SUBTRACT(year(current_timestamp), year(Birthday)) < 50; normal platelet level refers to PLT between 100 and 400;",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.PLT BETWEEN 100 AND 400 AND STRFTIME('%Y', T2.Date) - STRFTIME('%Y', T1.Birthday) < 50 AND STRFTIME('%Y', T2.Date) = '1984'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1243,
+        "db_id": "thrombosis_prediction",
+        "question": "For all patients who are older than 55 years old, what is the percentage of female who has abnormal prothrombin time (PT)?",
+        "evidence": "older than 55 years old = SUBTRACT(year(current_timestamp), year(Birthday)) > 55; percentage = MULTIPLY(DIVIDE(SUM(PT > = 14 AND SEX = 'F'), SUM(PT > = 14)), 1.0); female refers to Sex = 'F'; abnormal prothrombin time (PT) refers to PT > = 14;",
+        "SQL": "SELECT CAST(SUM(CASE WHEN T2.PT >= 14 AND T1.SEX = 'F' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) > 55",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1244,
+        "db_id": "thrombosis_prediction",
+        "question": "List all patients who first came to the hospital after year 1992 with prothrombin time (PT) level that are normal.",
+        "evidence": "first came to the hospital after year 1992 refers to year(`First Date`) > 1992; prothrombin time (PT) level that are normal refers to PT < 14;",
+        "SQL": "SELECT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T1.`First Date`) > '1992' AND T2.PT < 14",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1245,
+        "db_id": "thrombosis_prediction",
+        "question": "For the examinations done after 1997/1/1, how many of them have the result of an inactivated partial prothrom bin time?",
+        "evidence": "examinations done after 1997/1/1 refers to `Examination Date` > '1997-01-01'; normal activated partial prothrom bin time refesr to APTT < 45;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.Date > '1997-01-01' AND T2.APTT >= 45",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1246,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients with an abnormal activated partial prothrom bin time, how many of them have a mild thrombosis?",
+        "evidence": "abnormal activated partial prothrom bin time refers to APTT > 45; mild thrombosis refers to Thrombosis = 3; Only count ones without repetitive.",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T3.ID = T2.ID WHERE T3.Thrombosis = 3 AND T2.APTT > 45",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1247,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the male patients who have a normal level of white blood cells, how many of them have an abnormal fibrinogen level?",
+        "evidence": "male patients refers to Sex = 'M'; normal level of white blood cells refers to WBC between 3.5 and 9.0; abnormal fibrinogen level refers to FG < = 150 or FG > = 450; Don't compute repetitive ones.",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.FG <= 150 OR T2.FG >= 450 AND T2.WBC > 3.5 AND T2.WBC < 9.0 AND T1.SEX = 'M'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1248,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients born after 1980/1/1 have an abnormal fibrinogen level?",
+        "evidence": "born after 1980/1/1 refers to Birthday > '1980-01-01'; normal fibrinogen level refers to FG between 150 and 450; Should return the number of distinct patients.",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.FG <= 150 OR T2.FG >= 450 AND T1.Birthday > '1980-01-01'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1249,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the disease names of the patients that have a proteinuria level higher than normal.",
+        "evidence": "disease names refers to Diagnosis; proteinuria level higher than normal refers to `U-PRO` > = 30;",
+        "SQL": "SELECT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`U-PRO` >= 30",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1250,
+        "db_id": "thrombosis_prediction",
+        "question": "Which patient has a normal proteinuria level and is diagnosed with SLE? Please give his or her patient ID.",
+        "evidence": "normal proteinuria level refers to 0 < `U-PRO` < 30; diagnosed with SLE refers to Diagnosis = 'SLE';",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`U-PRO` > 0 AND T2.`U-PRO` < 30 AND T1.Diagnosis = 'SLE'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1251,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with an Ig G lower than normal has the symptom of abortion?",
+        "evidence": "Ig G lower than normal refers to IGG < 900; symptom of abortion refers to Symptoms = 'abortion';",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T3.ID = T2.ID WHERE T2.IGG < 900 AND T3.Symptoms = 'abortion'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1252,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients with a normal Ig G level, how many of them have symptoms?",
+        "evidence": "normal Ig G level refers to IGG BETWEEN 900 AND 2000; have symptoms refers to Symptoms IS NOT NULL;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T3.ID = T2.ID WHERE T2.IGG BETWEEN 900 AND 2000 AND T3.Symptoms IS NOT NULL",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1253,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient who has the highest Ig A within the normal range, what is his or her diagnosis?",
+        "evidence": "highest Ig A within the normal range refers to MAX(IGA BETWEEN 80 AND 500);",
+        "SQL": "SELECT patientData.Diagnosis FROM Patient AS patientData INNER JOIN Laboratory AS labData ON patientData.ID = labData.ID WHERE labData.IGA BETWEEN 80 AND 500 ORDER BY labData.IGA DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1254,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with a normal Ig A level came to the hospital after 1990/1/1?",
+        "evidence": "normal Ig A level refers to IGA BETWEEN 80 AND 500; came to the hospital after 1990/1/1 refers to YEAR(`First Date`) > = 1990;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.IGA BETWEEN 80 AND 500 AND T1.`First Date` > '1990-01-01'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1255,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients with an abnormal Ig M level, what is the most common disease they are diagnosed with?",
+        "evidence": "abnormal Ig M level refers to IGM NOT BETWEEN 40 AND 400; most common disease refers to MAX(COUNT(Diagnosis));",
+        "SQL": "SELECT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.IGM NOT BETWEEN 40 AND 400 GROUP BY T1.Diagnosis ORDER BY COUNT(T1.Diagnosis) DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1256,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with a normal C-reactive protein don't have their data recorded?",
+        "evidence": "normal C-reactive protein refers to CRP LIKE '+' OR CRP LIKE '-' OR CRP < 1.0; don't have data recorded refers to Description IS NULL;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE (T2.CRP = '-' OR T2.CRP = '+-' OR T2.CRP < 1.0) AND T1.Description IS NULL",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1257,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients whose C-reactive protein level is abnormal, how many of them aren't 18 yet?",
+        "evidence": "C-reactive protein level is abnormal refers to CRP NOT IN('+-', '-') AND CRP > = 1.0; aren't 18 refers = CRP > = 1.0 AND SUBTRACT((YEAR(CURDATE()), YEAR(Birthday))) < 18; Should compute the number of distinct ones.",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE (T2.CRP != '-' AND T2.CRP != '+-') AND T2.CRP >= 1.0 AND STRFTIME('%Y', Date('now')) - STRFTIME('%Y', T1.Birthday) < '18'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1258,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with a normal Rhuematoid Factor has a positive measure of degree of coagulation?",
+        "evidence": "normal Rhuematoid Factor refers TO RA IN('-', '+-'); positive measure of degree of coagulation refers to KCT = '+'; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T3.ID = T2.ID WHERE (T2.RA = '-' OR T2.RA = '+-') AND T3.KCT = '+'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1259,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the diseases of the patients born after 1995-1-1 and have a normal Rhuematoid Factor.",
+        "evidence": "diseases refers to Diagnosis; born after 1995/1/1 refers to YEAR(Birthday) > = 1995; normal Rhuematoid Factor refers to RA IN('-', '+-');",
+        "SQL": "SELECT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE (T2.RA = '-' OR T2.RA = '+-') AND T1.Birthday > 1995-01-01",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1260,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the ID of the patient whose RF is normal and who is older than 60.",
+        "evidence": "RF is normal refers to RF < 20; older than 60 = SUBTRACT((YEAR(CURDATE()), YEAR(Birthday))) > 60;",
+        "SQL": "SELECT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.RF < 20 AND STRFTIME('%Y', DATE('now')) - STRFTIME('%Y', T1.Birthday) > 60",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1261,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with a normal RF don't have thrombosis?",
+        "evidence": "normal RF refers to RF < 20; don't have thrombosis refers to Thrombosis = '0';",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.RF < 20 AND T1.Thrombosis = 0",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1262,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with a normal level of complement 3 have a P pattern observed in the sheet of ANA examination?",
+        "evidence": "normal level of complement 3 refers to C3 > 35; have a P pattern observed in the sheet of ANA examination refers to ANA Pattern = 'P'; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.C3 > 35 AND T1.`ANA Pattern` = 'P'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1263,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients whose level of Hematoclit isn't normal, which patient has the highest anti-Cardiolipin antibody concentration? Please list his or her ID.",
+        "evidence": "Hematoclit is normal refers to 29 < N < 52; highest anti-Cardiolipin antibody concentration refers to MAX(`aCL IgA`);",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID INNER JOIN Laboratory AS T3 on T1.ID = T3.ID WHERE (T3.HCT >= 52 OR T3.HCT <= 29) ORDER BY T2.`aCL IgA` DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1264,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients have blood clots in veins, how many of them have a normal level of complement 4?",
+        "evidence": "APS will result in Blood Clots in veins; normal level of complement 4 refers to C4 > 10; Should compute the number of different ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.C4 > 10 AND T1.Diagnosis = 'APS'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1265,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients have a normal level of anti-ribonuclear protein and have been admitted to the hospital?",
+        "evidence": "normal level of anti-ribonuclear protein refers to RNP = '-', '+-'; And'-' means 'negative'; '+-' refers to '0'; admitted to the hospital refers to Admission = '+'; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.RNP = 'negative' OR T2.RNP = '0' AND T1.Admission = '+'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1266,
+        "db_id": "thrombosis_prediction",
+        "question": "Which is the youngest patient with an abnormal anti-ribonuclear protein level? Please list his or her date of birth.",
+        "evidence": "youngest patient refers to MAX(Birthday); abnormal anti-ribonuclear protein level refers to RNP NOT IN('-', '+-'); date of birth refers to Birthday;",
+        "SQL": "SELECT T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.RNP != '-' OR '+-' ORDER BY T1.Birthday DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1267,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients with normal anti-SM, how many of them have the most severe degree of thrombosis?",
+        "evidence": "normal anti-SM refers to SM IN('-', '+-'); SM = 'negative' means '-'; SM = '0' means '+-'; SM = '1' means '+'; most severe degree of thrombosis refers to Thrombosis = '1';",
+        "SQL": "SELECT COUNT(T1.ID) FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SM IN ('negative','0') AND T1.Thrombosis = 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1268,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients with an abnormal anti-SM, please list the IDs of the three youngest ones.",
+        "evidence": "abnormal anti-SM refers to SM NOT IN('-', '+-'); youngest refers to MAX(Birthday);",
+        "SQL": "SELECT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SM NOT IN ('negative','0') ORDER BY T1.Birthday DESC LIMIT 3",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1269,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the IDs of the patients who had the examination done after 1997/1/1 and had a normal anti-scl70.",
+        "evidence": "examination done after 1997/1/1 refers to `Examination Date` > = 1997-01-01; normal anti-scl70 refers to SC170 IN('-', '+-');",
+        "SQL": "SELECT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SC170 IN ('negative','0') AND T2.Date > 1997-01-01",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1270,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients who has a normal anti-scl70, how many of them are male and have the symptom of vertigo?",
+        "evidence": "normal anti-scl70 refers to SC170 IN('-', '+-'); male refers to Sex = 'M'; symptom of vertigo refers to symptoms = 'vertigo'; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T3.ID = T2.ID WHERE (T2.SC170 = '-' OR T2.SC170 = '+-') AND T1.SEX = 'M' AND T3.Symptoms = 'vertigo'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1271,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with a normal anti-SSA came to the hospital before 1990?",
+        "evidence": "normal anti-SSA refers to SSA IN('-','+-'); came to the hospital before 1990 refers to YEAR(`First Date`) < 1990; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SSA IN ('negative', '0') AND STRFTIME('%Y', T2.Date) < '1990'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1272,
+        "db_id": "thrombosis_prediction",
+        "question": "Which patient is the first patient with an abnormal anti-SSA to come to the hospital? Please give his or her ID.",
+        "evidence": "first patient refers to ID with MIN(`First Date`); abnormal anti-SSA refers to SSA NOT IN('-', '+-');",
+        "SQL": "SELECT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.`First Date` IS NOT NULL AND T2.SSA NOT IN ('negative', '0') ORDER BY T1.`First Date` ASC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1273,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients have a normal anti-SSB and are diagnosed with SLE in the examination?",
+        "evidence": "normal anti-SSB refers to SSB IN('-', '+-'); '-' is expressed as 'negative' and '+-' is expressed as '0' in the database ; diagnosed with SLE refers to Diagnosis = 'SLE'; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SSB = 'negative' OR '0' AND T1.Diagnosis = 'SLE'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1274,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients whose anti-SSB are normal, how many of them have other symptoms observed in their examination?",
+        "evidence": "anti-SSB are normal refers to SSB IN('-', '+-'); have other symptoms refers to Symptoms IS NOT NULL; Should compute the number of distinct ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SSB = 'negative' OR '0' AND T1.Symptoms IS NOT NULL",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1275,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients who has a normal level of anti-centromere and a normal level of anti-SSB, how many of them are male?",
+        "evidence": "normal level of anti-centromere refers to CENTROMEA IN('-', '+-'); normal level of anti-SSB refers to SSB IN('-', '+-'); male refers to Sex = 'M';",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.CENTROMEA IN ('negative', '0') AND T2.SSB IN ('negative', '0') AND T1.SEX = 'M'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1276,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients who have an abnormal level of anti-DNA, please list the diseases they are diagnosed with.",
+        "evidence": "abnormal level of anti-DNA refers to DNA > = 8; diseases refers to Diagnosis;",
+        "SQL": "SELECT DISTINCT(T1.Diagnosis) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.DNA >= 8",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1277,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients have a normal anti-DNA level, yet their data are not recorded.",
+        "evidence": "normal anti-DNA level refers to DNA < 8; data are not recorded refers to Description IS NULL; Should compute the number of unique ones",
+        "SQL": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.DNA < 8 AND T1.Description IS NULL",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1278,
+        "db_id": "thrombosis_prediction",
+        "question": "Of the patients with an abnormal level of anti-DNA-II, how many of them admitted to the hospital?",
+        "evidence": "normal level of anti-DNA-II refers to DNA-II < 8; admitted to the hospital refers to Admission = '+';",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`DNA-II` >= 8 AND T1.Admission = '+'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1279,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the percentage of patient who has a abnormal level of glutamic oxaloacetic transaminase level, yet he or she is diagnosed with SLE?",
+        "evidence": "abnormal level of glutamic oxaloacetic transaminase refers to GOT > = 60; percentage = MULTIPLY(DIVIDE(COUNT(ID WHERE GOT > = 60 AND Diagnosis = 'SLE'), COUNT(ID WHERE GOT > = 60)), 1.0);",
+        "SQL": "SELECT COUNT(CASE WHEN T1.Diagnosis LIKE '%SLE%' THEN T1.ID ELSE 0 END) / COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`GOT` >= 60",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1280,
+        "db_id": "thrombosis_prediction",
+        "question": "How many male patients have their glutamic oxaloacetic transaminase in the normal range?",
+        "evidence": "male refers to Sex = 'M'; glutamic oxaloacetic transaminase in the normal range refers to GOT < 60;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GOT < 60 AND T1.SEX = 'M'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1281,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients who have an abnormal level of glutamic oxaloacetic transaminase, when was the youngest of them born?",
+        "evidence": "abnormal level of glutamic oxaloacetic transaminase refers to GOT > = 60; youngest refers to MAX(Birthday);",
+        "SQL": "SELECT T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GOT >= 60 ORDER BY T1.Birthday DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1282,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the top three patients' birthdays with the highest glutamic pylvic transaminase in the normal range.",
+        "evidence": "highest glutamic pylvic transaminase in the normal range refers to MAX(GPT < 60);",
+        "SQL": "SELECT T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT < 60 ORDER BY T2.GPT DESC LIMIT 3",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1283,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients with the normal glutamic pylvic transaminase level, how many of them are male?",
+        "evidence": "normal glutamic pylvic transaminase level refers to GOT < 60; male refers to Sex = 'M';",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GOT < 60 AND T1.SEX = 'M'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1284,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient with the highest lactate dehydrogenase in the normal range, when was his or her data first recorded?",
+        "evidence": "highest lactate dehydrogenase in the normal range refers to MAX(LDH < 500); when the data first recorded refers to MIN(First Date);",
+        "SQL": "SELECT T1.`First Date` FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.LDH < 500 ORDER BY T2.LDH DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1285,
+        "db_id": "thrombosis_prediction",
+        "question": "When is the latest patient's medical data recorded? This patient should have an abnormal level of lactate dehydrogenase.",
+        "evidence": "latest patient refers to ID with MAX('First Date'); abnormal level of lactate dehydrogenase refers to LDH > = 500;",
+        "SQL": "SELECT T1.`First Date` FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.LDH >= 500 ORDER BY T1.`First Date` DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1286,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patient with an abnormal alkaliphophatase level, how many of them are admitted to the hospital?",
+        "evidence": "abnormal alkaliphophatase level refers to ALP > = 300; admitted to the hospital refers to Admission = '+';",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.ALP >= 300 AND T1.Admission = '+'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1287,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients followed at the outpatient clinic, how many of them have a normal level of alkaliphophatase?",
+        "evidence": "followed at the outpatient clinic refers to Admission = '-'; normal level of alkaliphophatase refers to ALP < 300;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.ALP < 300 AND T1.Admission = '-'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1288,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the diagnosis of the patients whose total protein is lower than normal.",
+        "evidence": "total protein is lower than normal refers to TP < 6.0;",
+        "SQL": "SELECT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TP < 6.0",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1289,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients who are diagnosed with SJS, how many of them have a normal level of total protein?",
+        "evidence": "diagnosed with SJS refers to Diagnosis = 'SJS'; normal level of total protein refers to TP > 6.0 and TP < 8.5;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'SJS' AND T2.TP > 6.0 AND T2.TP < 8.5",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1290,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the examination date of the patient whose albumin is the highest in the normal range?",
+        "evidence": "examination date refers to Date; albumin is the highest in the normal range refers to MAX(ALB > 3.5 and ALB < 5.5);",
+        "SQL": "SELECT Date FROM Laboratory WHERE ALB BETWEEN 3.5 AND 5.5 ORDER BY ALB DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1291,
+        "db_id": "thrombosis_prediction",
+        "question": "How many male patients have a normal level of both albumin and total protein?",
+        "evidence": "male refers to Sex = 'M'; normal level of both albumin and total protein refers to ALB > 3.5 and ALB < 5.5 AND TP between 6.0 and 8.5;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'M' AND T2.ALB BETWEEN 3.5 AND 5.5 AND T2.TP BETWEEN 6.0 AND 8.5",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1292,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the anti Cardiolipin antibody concentration of the female patient with the highest uric acid level in the normal range?",
+        "evidence": "anti Cardiolipin antibody concentration refers to `aCL IgG`, `aCL IgM`, `aCL IgA`; female patient refers to Sex = F'; highest uric acid level in the normal range refers to MAX(UA > 6.50);",
+        "SQL": "SELECT T3.`aCL IgG`, T3.`aCL IgM`, T3.`aCL IgA` FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T3.ID = T2.ID WHERE T1.SEX = 'F' AND T2.UA > 6.5 ORDER BY T2.UA DESC LIMIT 1",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1293,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the highest anti-nucleus antibody concentration level of a patient with a normal creatinine level?",
+        "evidence": "highest anti-nucleus antibody concentration level refers to MAX(ANA); normal creatinine level refers to CRE < 1.5;",
+        "SQL": "SELECT T2.ANA FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID INNER JOIN Laboratory AS T3 ON T1.ID = T3.ID WHERE T3.CRE < 1.5 ORDER BY T2.ANA DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1294,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the patient's ID whose creatinine level is normal and whose anti Cardiolipin antibody concentration level is the highest.",
+        "evidence": "creatinine level is normal refers to CRE < 1.5; anti Cardiolipin antibody concentration level is the highest refers to MAX(aCL IgA);",
+        "SQL": "SELECT T2.ID FROM Laboratory AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.CRE < 1.5 ORDER BY T2.`aCL IgA` DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1295,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients whose total bilirubin is over the normal range, how many of them have a peripheral pattern observed in the sheet of ANA examination?",
+        "evidence": "total bilirubin is over the normal range refers to `T-BIL` > = 2.0; peripheral pattern is observed in the sheet of ANA examination refers to that ANA Pattern contains 'P';",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.`T-BIL` >= 2 AND T3.`ANA Pattern` LIKE '%P%'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1296,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the anti-nucleus antibody concentration of the patient whose total bilirubin is the highest in the normal range?",
+        "evidence": "anti-nucleus antibody concentration refers to ANA; total bilirubin is the highest in the normal range refers to MAX(`T-BIL` < 2.0);",
+        "SQL": "SELECT T3.ANA FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.`T-BIL` < 2.0 ORDER BY T2.`T-BIL` DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1297,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients whose total cholesterol is higher than normal, how many of them have a negative measure of degree of coagulation?",
+        "evidence": "total cholesterol is higher than normal refers to `T-CHO` > = 250; negative measure of degree of coagulation refers to KCT = '-' ;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.`T-CHO` >= 250 AND T3.KCT = '-'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1298,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients whose total cholesterol is within the normal range, how many of them have a P pattern observed in the sheet of ANA examination?",
+        "evidence": "total cholesterol is within the normal range refers to `T-CHO` < 250; P pattern observed in the sheet of ANA examination refers to ANA Pattern = 'P';",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T3.`ANA Pattern` = 'P' AND T2.`T-CHO` < 250",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1299,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients with the normal level of triglyceride, how many of them have other symptoms observed?",
+        "evidence": "normal level of triglyceride refers to TG < 200; have other symptoms refers to Symptoms is not null;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TG < 200 AND T1.Symptoms IS NOT NULL",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1300,
+        "db_id": "thrombosis_prediction",
+        "question": "What is the disease name of the patient who has the highest level of triglyceride within the normal range?",
+        "evidence": "disease name referse to Diagnosis; highest level of triglyceride within the normal range refers to MAX(TG < 200);",
+        "SQL": "SELECT T1.Diagnosis FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TG < 200 ORDER BY T2.TG DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1301,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the IDs of the patients with no thrombosis and an abnormal level of creatinine phosphokinase.",
+        "evidence": "no thrombosis refers to Thrombosis = 0 ; abnormal level of creatinine phosphokinase refers to CPK < 250;",
+        "SQL": "SELECT DISTINCT T1.ID FROM Laboratory AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Thrombosis = 0 AND T1.CPK < 250",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1302,
+        "db_id": "thrombosis_prediction",
+        "question": "For the patients with a normal range of creatinine phosphokinase, how many of them have a positive measure of degree of coagulation?",
+        "evidence": "normal range of creatinine phosphokinase refers to CPK < 250; positive measure of degree of coagulation refers to KCT = '+' or RVVT = '+' or LAC = '+' ;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.CPK < 250 AND (T3.KCT = '+' OR T3.RVVT = '+' OR T3.LAC = '+')",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1303,
+        "db_id": "thrombosis_prediction",
+        "question": "When is the birthday of the oldest patient whose blood glucose is abnormal?",
+        "evidence": "oldest patient refers to MIN(Birthday); blood glucose is abnormal refers to GLU > 180;",
+        "SQL": "SELECT T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GLU > 180 ORDER BY T1.Birthday ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1304,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients with a normal blood glucose, how many of them don't have thrombosis?",
+        "evidence": "normal blood glucose refers to GLU < 180; don't have thrombosis refers to Thrombosis = 0;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.GLU < 180 AND T3.Thrombosis = 0",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1305,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients accepted to the hospital have a normal level of white blood cells?",
+        "evidence": "accepted to the hospital refers to Admission = '+'; normal level of white blood cells refers to WBC between 3.5 and 9.0;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.WBC BETWEEN 3.5 AND 9 AND T1.Admission = '+'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1306,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients diagnosed with SLE have a normal white blood cell level?",
+        "evidence": "diagnosed with SLE refers to Diagnosis = 'SLE'; normal white blood cell level refers to WBC between 3.5 and 9.0;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'SLE' AND T2.WBC BETWEEN 3.5 AND 9",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1307,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list the patient's ID if he or she has an abnormal level of red blood cell and is followed at the outpatient clinic.",
+        "evidence": "RBC < = 3.5 or RBC > = 6.0 means the patient has an abnormal level of red blood cell; 3.5 < RBC < 6.0 means the patient has a normal level of red blood cell; followed at the outpatient clinic refers to Admission = '-';",
+        "SQL": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE (T2.RBC <= 3.5 OR T2.RBC >= 6) AND T1.Admission = '-'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1308,
+        "db_id": "thrombosis_prediction",
+        "question": "Among the patients who have a normal platelet level, how many of them have other symptoms observed?",
+        "evidence": "normal platelet level refers to PLT > 100 and PLT < 400; have other symptoms refers to Diagnosis is not null;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.PLT BETWEEN 100 AND 400 AND T1.Diagnosis IS NOT NULL",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1309,
+        "db_id": "thrombosis_prediction",
+        "question": "Please list a patient's platelet level if it is within the normal range and if he or she is diagnosed with MCTD.",
+        "evidence": "PLT > 100 and PLT < 400 means platelet level is within the normal range; PLT < 100 and PLT > 400 means platelet level is not within the normal range; diagnosed with MCTD refers to Diagnosis = 'MCTD';",
+        "SQL": "SELECT T2.PLT FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'MCTD' AND T2.PLT BETWEEN 100 AND 400",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1310,
+        "db_id": "thrombosis_prediction",
+        "question": "For the male patients that have a normal prothrombin time, what is their average prothrombin time?",
+        "evidence": "male refers to Sex = 'M'; normal prothrombin time refer to PT < 14; average prothrombin time = AVG(PT);",
+        "SQL": "SELECT AVG(T2.PT) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.PT < 14 AND T1.SEX = 'M'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1311,
+        "db_id": "thrombosis_prediction",
+        "question": "How many patients with severe thrombosis have a normal prothrombin time?",
+        "evidence": "severe thrombosis refers to Thrombosis = 2 or 1; normal prothrombin time refers to PT < 14;",
+        "SQL": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.PT < 14 AND T3.Thrombosis < 3 AND T3.Thrombosis > 0",
+        "difficulty": "moderate"
+    }
+]

@@ -3,12 +3,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 
-#####################################################################
-filenames = ['results/financial_revised_ques_financial_gpt_4o_mini.json', 
-             'results/financial_revised_ques_financial_individual_gpt_4o_mini.json', 
-             'results/financial_revised_ques_financial_individual_deepseek.json']
-labels = ['GPT4o_combined', 'GPT4o_individual', 'Deepseek_individual']
-#####################################################################
+#########################################################################################
+filenames = ['results/bird_dev/california_schools_questions.json',           
+             'results/bird_dev/card_games_questions.json']       
+labels = ['california_schools', 'card_games']
+#########################################################################################
 
 def main():
     num_files = len(filenames)

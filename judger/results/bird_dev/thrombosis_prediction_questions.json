@@ -1,0 +1,817 @@
+{
+    "1149": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1150": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1151": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1152": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 2
+    },
+    "1153": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1154": {
+        "computational_complexity": 0,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 0
+    },
+    "1155": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1156": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1157": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1158": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1159": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1160": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1161": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1162": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1163": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1164": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1165": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1166": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1167": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1168": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1169": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1170": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1171": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1172": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1173": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1174": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1175": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1176": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 0
+    },
+    "1177": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1178": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1179": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1180": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1181": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1182": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1183": {
+        "computational_complexity": 2,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1184": {
+        "computational_complexity": 0,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1185": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1186": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 2
+    },
+    "1187": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 2
+    },
+    "1188": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1189": {
+        "computational_complexity": 2,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 2
+    },
+    "1190": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 2
+    },
+    "1191": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 2
+    },
+    "1192": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1193": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1194": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1195": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1196": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 2
+    },
+    "1197": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1198": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1199": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1200": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1201": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 2
+    },
+    "1202": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1203": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1204": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1205": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1206": {
+        "computational_complexity": 0,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1207": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 2
+    },
+    "1208": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1209": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1210": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1211": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1212": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1213": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1214": {
+        "computational_complexity": 0,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1215": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1216": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1217": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1218": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1219": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1220": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1221": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1222": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1223": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1224": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1225": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1226": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1227": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1228": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1229": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1230": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1231": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1232": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1233": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1234": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1235": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1236": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1237": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1238": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1239": {
+        "computational_complexity": 2,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1240": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 2
+    },
+    "1241": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 2
+    },
+    "1242": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1243": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1244": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1245": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1246": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1247": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1248": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1249": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1250": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1251": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1252": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1253": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1254": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1255": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1256": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1257": {
+        "computational_complexity": 2,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1258": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1259": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1260": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1261": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1262": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1263": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1264": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1265": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1266": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1267": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1268": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1269": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1270": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1271": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1272": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1273": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1274": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1275": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1276": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1277": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1278": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1279": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1280": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1281": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1282": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 2
+    },
+    "1283": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1284": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1285": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1286": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1287": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1288": {
+        "computational_complexity": 0,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1289": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1290": {
+        "computational_complexity": 1,
+        "data_integration_needs": 0,
+        "business_understanding_difficulty": 1
+    },
+    "1291": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1292": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1293": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1294": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1295": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1296": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1297": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1298": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1299": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1300": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1301": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1302": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1303": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1304": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    },
+    "1305": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 1
+    },
+    "1306": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1307": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1308": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1309": {
+        "computational_complexity": 1,
+        "data_integration_needs": 2,
+        "business_understanding_difficulty": 2
+    },
+    "1310": {
+        "computational_complexity": 1,
+        "data_integration_needs": 1,
+        "business_understanding_difficulty": 1
+    },
+    "1311": {
+        "computational_complexity": 1,
+        "data_integration_needs": 3,
+        "business_understanding_difficulty": 2
+    }
+}
