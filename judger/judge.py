@@ -76,7 +76,7 @@ def start(
     # Load synthetic database and question-sql pairs
     data: DataBench = load_database_qsql(database_file, qsql_pairs_file)
 
-    logger.debug(f"Size of {database_name}: {len(data['database'].keys())}")
+    logger.debug(f"Size (number of tables) of {database_name}: {len(data['database'].keys())}")
     logger.debug(f"Number of question-sql pairs to evaluate in {qsql_name}: {len(data['question_sql_pairs'])}")
 
     # pairs_failed = set()
