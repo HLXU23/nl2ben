@@ -1,0 +1,514 @@
+[
+    {
+        "question_id": 1470,
+        "db_id": "debit_card_specializing",
+        "question": "How many gas stations in CZE has Premium gas?",
+        "evidence": "",
+        "SQL": "SELECT COUNT(GasStationID) FROM gasstations WHERE Country = 'CZE' AND Segment = 'Premium'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1471,
+        "db_id": "debit_card_specializing",
+        "question": "What is the ratio of costumers who pay in EUR against customers who pay in CZK?",
+        "evidence": "ratio of costumers who pay in EUR against customers who pay in CZK = count(Currency = 'EUR') / count(Currency = 'CZK').",
+        "SQL": "SELECT CAST(SUM(IIF(Currency = 'EUR', 1, 0)) AS FLOAT) / SUM(IIF(Currency = 'CZK', 1, 0)) FROM customers",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1472,
+        "db_id": "debit_card_specializing",
+        "question": "In 2012, who had the least consumption in LAM?",
+        "evidence": "Year 2012 can be presented as Between 201201 And 201212, which means between January and December in 2012",
+        "SQL": "SELECT T1.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Segment = 'LAM' AND T2.date BETWEEN 201201 AND 201212 GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) ASC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1473,
+        "db_id": "debit_card_specializing",
+        "question": "What was the average monthly consumption of customers in SME for the year 2013?",
+        "evidence": "Average Monthly consumption = AVG(Consumption) / 12; Year 2013 can be presented as Between 201301 And 201312, which means between January and December in 2013",
+        "SQL": "SELECT AVG(T2.Consumption) / 12 FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE SUBSTRING(T2.Date, 1, 4) = '2013' AND T1.Segment = 'SME'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1474,
+        "db_id": "debit_card_specializing",
+        "question": "Which customers, paying in CZK, consumed the most gas in 2011?",
+        "evidence": "Year 2011 can be presented as Between 201101 And 201112, which means between January and December in 2011",
+        "SQL": "SELECT T1.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Currency = 'CZK' AND T2.Date BETWEEN 201101 AND 201112 GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1475,
+        "db_id": "debit_card_specializing",
+        "question": "How many customers in KAM had a consumption of less than 30,000 for the year 2012?",
+        "evidence": "Year 2012 can be presented as Between 201201 And 201212, which means between January and December in 2012",
+        "SQL": "SELECT COUNT(*) FROM ( SELECT T2.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Segment = 'KAM' AND SUBSTRING(T2.Date, 1, 4) = '2012' GROUP BY T2.CustomerID HAVING SUM(T2.Consumption) < 30000 ) AS t1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1476,
+        "db_id": "debit_card_specializing",
+        "question": "What was the difference in gas consumption between CZK-paying customers and EUR-paying customers in 2012?",
+        "evidence": "Year 2012 can be presented as Between 201201 And 201212, which means between January and December in 2012; Difference in Consumption = CZK customers consumption in 2012 - EUR customers consumption in 2012",
+        "SQL": "SELECT SUM(IIF(T1.Currency = 'CZK', T2.Consumption, 0)) - SUM(IIF(T1.Currency = 'EUR', T2.Consumption, 0)) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE SUBSTRING(T2.Date, 1, 4) = '2012'",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1477,
+        "db_id": "debit_card_specializing",
+        "question": "Which year recorded the most gas use paid in EUR?",
+        "evidence": "",
+        "SQL": "SELECT SUBSTRING(T2.Date, 1, 4) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Currency = 'EUR' GROUP BY SUBSTRING(T2.Date, 1, 4) ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1478,
+        "db_id": "debit_card_specializing",
+        "question": "Which segment had the least consumption?",
+        "evidence": "",
+        "SQL": "SELECT T1.Segment FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID GROUP BY T1.Segment ORDER BY SUM(T2.Consumption) ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1479,
+        "db_id": "debit_card_specializing",
+        "question": "Which year recorded the most consumption of gas paid in CZK?",
+        "evidence": "The first 4 strings of the values in the table yearmonth can represent year.",
+        "SQL": "SELECT SUBSTRING(T2.Date, 1, 4) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Currency = 'CZK' GROUP BY SUBSTRING(T2.Date, 1, 4) ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1480,
+        "db_id": "debit_card_specializing",
+        "question": "What was the gas consumption peak month for SME customers in 2013?",
+        "evidence": "'in 2013' refers to the first 4 strings of yearmonth.date = '2013', The 5th and 6th string of the date can refer to month.",
+        "SQL": "SELECT SUBSTRING(T2.Date, 5, 2) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE SUBSTRING(T2.Date, 1, 4) = '2013' AND T1.Segment = 'SME' GROUP BY SUBSTRING(T2.Date, 5, 2) ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1481,
+        "db_id": "debit_card_specializing",
+        "question": "What is the difference in the annual average consumption of the customers with the least amount of consumption paid in CZK for 2013 between SME and LAM, LAM and KAM, and KAM and SME?",
+        "evidence": "annual average consumption of customer with the lowest consumption in each segment = total consumption per year / the number of customer with lowest consumption in each segment; Difference in annual average = SME's annual average - LAM's annual average; Difference in annual average = LAM's annual average - KAM's annual average; Year 2013 can be presented as Between 201301 And 201312; First 4 strings of Date represents the year.",
+        "SQL": "SELECT CAST(SUM(IIF(T1.Segment = 'SME', T2.Consumption, 0)) AS FLOAT) / COUNT(T1.CustomerID) - CAST(SUM(IIF(T1.Segment = 'LAM', T2.Consumption, 0)) AS FLOAT) / COUNT(T1.CustomerID) , CAST(SUM(IIF(T1.Segment = 'LAM', T2.Consumption, 0)) AS FLOAT) / COUNT(T1.CustomerID) - CAST(SUM(IIF(T1.Segment = 'KAM', T2.Consumption, 0)) AS FLOAT) / COUNT(T1.CustomerID) , CAST(SUM(IIF(T1.Segment = 'KAM', T2.Consumption, 0)) AS FLOAT) / COUNT(T1.CustomerID) - CAST(SUM(IIF(T1.Segment = 'SME', T2.Consumption, 0)) AS FLOAT) / COUNT(T1.CustomerID) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Currency = 'CZK' AND T2.Consumption = ( SELECT MIN(Consumption) FROM yearmonth ) AND T2.Date BETWEEN 201301 AND 201312",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1482,
+        "db_id": "debit_card_specializing",
+        "question": "Which of the three segments—SME, LAM and KAM—has the biggest and lowest percentage increases in consumption paid in EUR between 2012 and 2013?",
+        "evidence": "Increase or Decrease = consumption for 2013 - consumption for 2012; Percentage of Increase = (Increase or Decrease / consumption for 2013) * 100%; Between 2012 And 2013 can be represented by Between 201201 And 201312; First 4 strings of Date represents the year.",
+        "SQL": "SELECT CAST((SUM(IIF(T1.Segment = 'SME' AND T2.Date LIKE '2013%', T2.Consumption, 0)) - SUM(IIF(T1.Segment = 'SME' AND T2.Date LIKE '2012%', T2.Consumption, 0))) AS FLOAT) * 100 / SUM(IIF(T1.Segment = 'SME' AND T2.Date LIKE '2012%', T2.Consumption, 0)), CAST(SUM(IIF(T1.Segment = 'LAM' AND T2.Date LIKE '2013%', T2.Consumption, 0)) - SUM(IIF(T1.Segment = 'LAM' AND T2.Date LIKE '2012%', T2.Consumption, 0)) AS FLOAT) * 100 / SUM(IIF(T1.Segment = 'LAM' AND T2.Date LIKE '2012%', T2.Consumption, 0)) , CAST(SUM(IIF(T1.Segment = 'KAM' AND T2.Date LIKE '2013%', T2.Consumption, 0)) - SUM(IIF(T1.Segment = 'KAM' AND T2.Date LIKE '2012%', T2.Consumption, 0)) AS FLOAT) * 100 / SUM(IIF(T1.Segment = 'KAM' AND T2.Date LIKE '2012%', T2.Consumption, 0)) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1483,
+        "db_id": "debit_card_specializing",
+        "question": "How much did customer 6 consume in total between August and November 2013?",
+        "evidence": "Between August And November 2013 refers to Between 201308 And 201311; First 4 strings of Date represents the year.",
+        "SQL": "SELECT SUM(Consumption) FROM yearmonth WHERE CustomerID = 6 AND Date BETWEEN '201308' AND '201311'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1484,
+        "db_id": "debit_card_specializing",
+        "question": "How many more \"discount\" gas stations does the Czech Republic have compared to Slovakia?",
+        "evidence": "Computation of more discount = Total no. of discount gas stations in Czech Republic - Total no. of discount gas stations in Slovakia",
+        "SQL": "SELECT SUM(IIF(Country = 'CZE', 1, 0)) - SUM(IIF(Country = 'SVK', 1, 0)) FROM gasstations WHERE Segment = 'Discount'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1485,
+        "db_id": "debit_card_specializing",
+        "question": "How much more was customer 7 consuming in April 2013 than customer 5?",
+        "evidence": "April 2013 refers to 201304 in the yearmonth.date",
+        "SQL": "SELECT SUM(IIF(CustomerID = 7, Consumption, 0)) - SUM(IIF(CustomerID = 5, Consumption, 0)) FROM yearmonth WHERE Date = '201304'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1486,
+        "db_id": "debit_card_specializing",
+        "question": "Is it true that more SMEs pay in Czech koruna than in euros? If so, how many more?",
+        "evidence": "Amount of more SMEs = Total of SMEs uses Czech Koruna - Total of SMEs uses Euro",
+        "SQL": "SELECT SUM(Currency = 'CZK') - SUM(Currency = 'EUR') FROM customers WHERE Segment = 'SME'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1487,
+        "db_id": "debit_card_specializing",
+        "question": "Which LAM customer used the Euro as their currency and had the highest consumption in October 2013?",
+        "evidence": "October 2013 refers to 201310 in the yearmonth.date",
+        "SQL": "SELECT T1.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Segment = 'LAM' AND T2.Date = '201310' AND T1.Currency = 'EUR' GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1488,
+        "db_id": "debit_card_specializing",
+        "question": "Who among KAM's customers consumed the most? How much did it consume?",
+        "evidence": "",
+        "SQL": "SELECT T2.CustomerID, SUM(T2.Consumption) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Segment = 'KAM' GROUP BY T2.CustomerID ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1489,
+        "db_id": "debit_card_specializing",
+        "question": "How much did the KAM customers consume in total in May 2013?",
+        "evidence": "May 2013 refers to yearmonth.date = 201305",
+        "SQL": "SELECT SUM(T2.Consumption) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.Date = '201305' AND T1.Segment = 'KAM'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1490,
+        "db_id": "debit_card_specializing",
+        "question": "How many percent of LAM customer consumed more than 46.73?",
+        "evidence": "Percentage of LAM customer consumed more than 46.73 = (Total no. of LAM customers who consumed more than 46.73 / Total no. of LAM customers) * 100%.",
+        "SQL": "SELECT CAST(SUM(IIF(T2.Consumption > 46.73, 1, 0)) AS FLOAT) * 100 / COUNT(T1.CustomerID) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Segment = 'LAM'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1491,
+        "db_id": "debit_card_specializing",
+        "question": "Which country has more \"value for money\" gas stations? Please give a total number of \"value for money\" gas stations in each country.",
+        "evidence": "",
+        "SQL": "SELECT Country , ( SELECT COUNT(GasStationID) FROM gasstations WHERE Segment = 'Value for money' ) FROM gasstations WHERE Segment = 'Value for money' GROUP BY Country ORDER BY COUNT(GasStationID) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1492,
+        "db_id": "debit_card_specializing",
+        "question": "What percentage of KAM customers pay in euros?",
+        "evidence": "Percentage of KAM uses Euro = (Total of KAM uses Euro / Total of KAM) * 100%.",
+        "SQL": "SELECT CAST(SUM(Currency = 'EUR') AS FLOAT) * 100 / COUNT(CustomerID) FROM customers WHERE Segment = 'KAM'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1493,
+        "db_id": "debit_card_specializing",
+        "question": "In February 2012, what percentage of customers consumed more than 528.3?",
+        "evidence": "February 2012 refers to '201202' in yearmonth.date",
+        "SQL": "SELECT CAST(SUM(IIF(Consumption > 528.3, 1, 0)) AS FLOAT) * 100 / COUNT(CustomerID) FROM yearmonth WHERE Date = '201202'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1494,
+        "db_id": "debit_card_specializing",
+        "question": "What percentage of Slovakian gas stations are premium?",
+        "evidence": "Percentage of premium gas station = (Total of premium gas station in Slovakia / Total of gas station in Slovakia) * 100%.",
+        "SQL": "SELECT CAST(SUM(IIF(Segment = 'Premium', 1, 0)) AS FLOAT) * 100 / COUNT(GasStationID) FROM gasstations WHERE Country = 'SVK'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1495,
+        "db_id": "debit_card_specializing",
+        "question": "Which client ID consumed the most in September 2013?",
+        "evidence": "September 2013 refers to yearmonth.date = '201309'",
+        "SQL": "SELECT T1.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.Date = '201309' GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1496,
+        "db_id": "debit_card_specializing",
+        "question": "Which client segment consumed the least in September 2013?",
+        "evidence": "September 2013 refers to yearmonth.date = '201309'",
+        "SQL": "SELECT T1.Segment FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.Date = '201309' GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1497,
+        "db_id": "debit_card_specializing",
+        "question": "Which SME customer consumed the least in June 2012?",
+        "evidence": "June 2012 refers to yearmonth.date = '201206'",
+        "SQL": "SELECT T1.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.Date = '201206' AND T1.Segment = 'SME' GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1498,
+        "db_id": "debit_card_specializing",
+        "question": "What is the highest monthly consumption in the year 2012?",
+        "evidence": "The first 4 strings of yearmonth.date can represent the year.",
+        "SQL": "SELECT SUM(Consumption) FROM yearmonth WHERE SUBSTRING(Date, 1, 4) = '2012' GROUP BY SUBSTRING(Date, 5, 2) ORDER BY SUM(Consumption) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1499,
+        "db_id": "debit_card_specializing",
+        "question": "What is the biggest monthly consumption of the customers who use euro as their currency?",
+        "evidence": "Monthly consumption = SUM(consumption) / 12",
+        "SQL": "SELECT SUM(T2.Consumption) / 12 AS MonthlyConsumption FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Currency = 'EUR' GROUP BY T1.CustomerID ORDER BY MonthlyConsumption DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1500,
+        "db_id": "debit_card_specializing",
+        "question": "Please list the product description of the products consumed in September, 2013.",
+        "evidence": "September 2013 refers to 201309; First 4 strings represent the year",
+        "SQL": "SELECT T3.Description FROM transactions_1k AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID INNER JOIN products AS T3 ON T1.ProductID = T3.ProductID WHERE T2.Date = '201309'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1501,
+        "db_id": "debit_card_specializing",
+        "question": "Please list the countries of the gas stations with transactions taken place in June, 2013.",
+        "evidence": "June 2013 refers to '201306'; First 4 strings represent the year",
+        "SQL": "SELECT T2.Country FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN yearmonth AS T3 ON T1.CustomerID = T3.CustomerID WHERE T3.Date = '201306'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1502,
+        "db_id": "debit_card_specializing",
+        "question": "Please list the chains of the gas stations with transactions in euro.",
+        "evidence": "",
+        "SQL": "SELECT DISTINCT T3.ChainID FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID INNER JOIN gasstations AS T3 ON T1.GasStationID = T3.GasStationID WHERE T2.Currency = 'EUR'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1503,
+        "db_id": "debit_card_specializing",
+        "question": "Please list the product description of the products bought in transactions in euro.",
+        "evidence": "",
+        "SQL": "SELECT DISTINCT T1.ProductID, T3.Description FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID INNER JOIN products AS T3 ON T1.ProductID = T3.ProductID WHERE T2.Currency = 'EUR'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1504,
+        "db_id": "debit_card_specializing",
+        "question": "What is the average total price of the transactions taken place in January, 2012?",
+        "evidence": "In January, 2012 means Date contains '2012-01'",
+        "SQL": "SELECT AVG(Amount) FROM transactions_1k WHERE Date LIKE '2012-01%'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1505,
+        "db_id": "debit_card_specializing",
+        "question": "Among the customers who paid in euro, how many of them have a monthly consumption of over 1000?",
+        "evidence": "",
+        "SQL": "SELECT COUNT(*) FROM yearmonth AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.Currency = 'EUR' AND T1.Consumption > 1000.00",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1506,
+        "db_id": "debit_card_specializing",
+        "question": "Please list the product descriptions of the transactions taken place in the gas stations in the Czech Republic.",
+        "evidence": "Gas station in the Czech Republic implies that Country = CZE",
+        "SQL": "SELECT T3.Description FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN products AS T3 ON T1.ProductID = T3.ProductID WHERE T2.Country = 'CZE'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1507,
+        "db_id": "debit_card_specializing",
+        "question": "Please list the disparate time of the transactions taken place in the gas stations from chain no. 11.",
+        "evidence": "",
+        "SQL": "SELECT DISTINCT T1.Time FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T2.ChainID = 11",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1508,
+        "db_id": "debit_card_specializing",
+        "question": "How many transactions taken place in the gas station in the Czech Republic are with a price of over 1000?",
+        "evidence": "Gas station in the Czech Republic implies that Country = 'CZE'",
+        "SQL": "SELECT COUNT(T1.TransactionID) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T2.Country = 'CZE' AND T1.Price > 1000",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1509,
+        "db_id": "debit_card_specializing",
+        "question": "Among the transactions made in the gas stations in the Czech Republic, how many of them are taken place after 2012/1/1?",
+        "evidence": "Gas station in the Czech Republic implies that Country = 'CZE'",
+        "SQL": "SELECT COUNT(T1.TransactionID) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T2.Country = 'CZE' AND strftime('%Y', T1.Date) >= '2012'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1510,
+        "db_id": "debit_card_specializing",
+        "question": "What is the average total price of the transactions taken place in gas stations in the Czech Republic?",
+        "evidence": "Gas station in the Czech Republic implies that Country = 'CZE'",
+        "SQL": "SELECT AVG(T1.Price) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T2.Country = 'CZE'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1511,
+        "db_id": "debit_card_specializing",
+        "question": "For the customers who paid in the euro, what is their average total price of the transactions?",
+        "evidence": "",
+        "SQL": "SELECT AVG(T1.Price) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN customers AS T3 ON T1.CustomerID = T3.CustomerID WHERE T3.Currency = 'EUR'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1512,
+        "db_id": "debit_card_specializing",
+        "question": "Which customer paid the most in 2012/8/25?",
+        "evidence": "'2012/8/25' can be represented by '2012-08-25'",
+        "SQL": "SELECT CustomerID FROM transactions_1k WHERE Date = '2012-08-25' GROUP BY CustomerID ORDER BY SUM(Price) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1513,
+        "db_id": "debit_card_specializing",
+        "question": "Which country's gas station had the first paid cusomer in 2012/8/25?",
+        "evidence": "'2012/8/25' can be represented by '2012-08-25'",
+        "SQL": "SELECT T2.Country FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-25' ORDER BY T1.Time DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1514,
+        "db_id": "debit_card_specializing",
+        "question": "What kind of currency did the customer paid at 16:25:00 in 2012/8/24?",
+        "evidence": "'2012/8/24' can be represented by '2012-08-24'",
+        "SQL": "SELECT T3.Currency FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN customers AS T3 ON T1.CustomerID = T3.CustomerID WHERE T1.Date = '2012-08-24' AND T1.Time = '16:25:00'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1515,
+        "db_id": "debit_card_specializing",
+        "question": "What segment did the customer have at 2012/8/23 21:20:00?",
+        "evidence": "'2012/8/23 21:20:00' can refer to date = '2012-08-23' AND T1.time = '21:20:00' in the database",
+        "SQL": "SELECT T2.Segment FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.date = '2012-08-23' AND T1.time = '21:20:00'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1516,
+        "db_id": "debit_card_specializing",
+        "question": "How many transactions were paid in EUR in the morning of 2012/8/26?",
+        "evidence": "'2012/8/26' can be represented by '2012-08-26'; The morning refers to the time before '13:00:00'",
+        "SQL": "SELECT COUNT(T1.TransactionID) FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '2012-08-26' AND T1.Time < '13:00:00' AND T2.Currency = 'EUR'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1517,
+        "db_id": "debit_card_specializing",
+        "question": "For the earliest customer, what segment did he/she have?",
+        "evidence": "",
+        "SQL": "SELECT T2.Segment FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID ORDER BY Date ASC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1518,
+        "db_id": "debit_card_specializing",
+        "question": "For the deal happened at 2012/8/24 12:42:00, which country was it?",
+        "evidence": "'2012/8/24 12:42:00' can refer to date = '2012-08-24' AND T1.time = '12:42:00' in the database",
+        "SQL": "SELECT T2.Country FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-24' AND T1.Time = '12:42:00'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1519,
+        "db_id": "debit_card_specializing",
+        "question": "What was the product id of the transaction happened at 2012/8/23 21:20:00?",
+        "evidence": "'2012/8/23 21:20:00' can refer to date = '2012-08-23' AND T1.time = '21:20:00' in the database",
+        "SQL": "SELECT T1.ProductID FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-23' AND T1.Time = '21:20:00'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1520,
+        "db_id": "debit_card_specializing",
+        "question": "For the customer who paid 124.05 in 2012/8/24, how much did he/she spend during the January of 2012? And what is the date and expenses exactly?",
+        "evidence": "'2012/8/24' can be represented by '2012-08-24'; expense and the consumption has the similar meaning.",
+        "SQL": "SELECT T1.CustomerID, T2.Date, T2.Consumption FROM transactions_1k AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '2012-08-24' AND T1.Price = 124.05 AND T2.Date = '201201'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1521,
+        "db_id": "debit_card_specializing",
+        "question": "For all the transactions happened during 8:00-9:00 in 2012/8/26, how many happened in CZE?",
+        "evidence": "Gas station in the Czech Republic implies that Country = CZE; '2012/8/26' can be represented by '2012-08-26'",
+        "SQL": "SELECT COUNT(T1.TransactionID) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-26' AND T1.Time BETWEEN '08:00:00' AND '09:00:00' AND T2.Country = 'CZE'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1522,
+        "db_id": "debit_card_specializing",
+        "question": "There's one customer spent 214582.17 in the June of 2013, which currency did he/she use?",
+        "evidence": "June of 2013 means Date contains '201306' in the yearmonth.date of the database",
+        "SQL": "SELECT T2.Currency FROM yearmonth AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '201306' AND T1.Consumption = 214582.17",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1523,
+        "db_id": "debit_card_specializing",
+        "question": "Which country was the card owner of No.667467 in?",
+        "evidence": "",
+        "SQL": "SELECT T2.Country FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.CardID = '667467'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1524,
+        "db_id": "debit_card_specializing",
+        "question": "What's the nationality of the customer who spent 548.4 in 2012/8/24?",
+        "evidence": "'2012/8/24' can be represented by '2012-08-24'",
+        "SQL": "SELECT T2.Country FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-24' AND T1.Price = 548.4",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1525,
+        "db_id": "debit_card_specializing",
+        "question": "What is the percentage of the customers who used EUR in 2012/8/25?",
+        "evidence": "'2012/8/25' can be represented by '2012-08-25'",
+        "SQL": "SELECT CAST(SUM(IIF(T2.Currency = 'EUR', 1, 0)) AS FLOAT) * 100 / COUNT(T1.CustomerID) FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '2012-08-25'",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1526,
+        "db_id": "debit_card_specializing",
+        "question": "For the customer who paid 634.8 in 2012/8/25, what was the consumption decrease rate from Year 2012 to 2013?",
+        "evidence": "'2012/8/24' can be represented by '2012-08-24'; Consumption decrease rate = (consumption_2012 - consumption_2013) / consumption_2012",
+        "SQL": "SELECT CAST(SUM(IIF(SUBSTRING(Date, 1, 4) = '2012', Consumption, 0)) - SUM(IIF(SUBSTRING(Date, 1, 4) = '2013', Consumption, 0)) AS FLOAT) / SUM(IIF(SUBSTRING(Date, 1, 4) = '2012', Consumption, 0)) FROM yearmonth WHERE CustomerID = ( SELECT T1.CustomerID FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-25' AND T1.Price = 634.8 )",
+        "difficulty": "challenging"
+    },
+    {
+        "question_id": 1527,
+        "db_id": "debit_card_specializing",
+        "question": "Which gas station has the highest amount of revenue?",
+        "evidence": "",
+        "SQL": "SELECT GasStationID FROM transactions_1k GROUP BY GasStationID ORDER BY SUM(Price) DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1528,
+        "db_id": "debit_card_specializing",
+        "question": "What is the percentage of \"premium\" against the overall segment in \"SVK\"?",
+        "evidence": "",
+        "SQL": "SELECT CAST(SUM(IIF(Country = 'SVK' AND Segment = 'Premium', 1, 0)) AS FLOAT) * 100 / SUM(IIF(Country = 'SVK', 1, 0)) FROM gasstations",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1529,
+        "db_id": "debit_card_specializing",
+        "question": "What is the amount spent by customer \"38508\" at the gas stations? How much had the customer spent in January 2012?",
+        "evidence": "January 2012 refers '201201' in the table transactions_1k",
+        "SQL": "SELECT SUM(T1.Price) , SUM(IIF(T3.Date = '201201', T1.Price, 0)) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN yearmonth AS T3 ON T1.CustomerID = T3.CustomerID WHERE T1.CustomerID = '38508'",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1530,
+        "db_id": "debit_card_specializing",
+        "question": "Which are the top five best selling products? Please state the full name of them.",
+        "evidence": "Description of products contains full name",
+        "SQL": "SELECT T2.Description FROM transactions_1k AS T1 INNER JOIN products AS T2 ON T1.ProductID = T2.ProductID ORDER BY T1.Amount DESC LIMIT 5",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1531,
+        "db_id": "debit_card_specializing",
+        "question": "Who is the top spending customer and how much is the average price per single item purchased by this customer? What currency was being used?",
+        "evidence": "verage price per single item = price / amount",
+        "SQL": "SELECT T2.CustomerID, SUM(T2.Price / T2.Amount), T1.Currency FROM customers AS T1 INNER JOIN transactions_1k AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.CustomerID = ( SELECT CustomerID FROM yearmonth ORDER BY Consumption DESC LIMIT 1 ) GROUP BY T2.CustomerID, T1.Currency",
+        "difficulty": "moderate"
+    },
+    {
+        "question_id": 1532,
+        "db_id": "debit_card_specializing",
+        "question": "Which country had the gas station that sold the most expensive product id No.2 for one unit?",
+        "evidence": "",
+        "SQL": "SELECT T2.Country FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.ProductID = 2 ORDER BY T1.Price DESC LIMIT 1",
+        "difficulty": "simple"
+    },
+    {
+        "question_id": 1533,
+        "db_id": "debit_card_specializing",
+        "question": "For all the people who paid more than 29.00 per unit of product id No.5. Give their consumption status in the August of 2012.",
+        "evidence": "August of 2012 means Date contains '201208' in the yearmonth.date of the database; Price per unit of product = Price / Amount",
+        "SQL": "SELECT T2.Consumption FROM transactions_1k AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Price / T1.Amount > 29.00 AND T1.ProductID = 5 AND T2.Date = '201208'",
+        "difficulty": "moderate"
+    }
+]

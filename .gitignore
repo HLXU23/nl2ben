@@ -162,3 +162,6 @@ cython_debug/
 output/
 
 test.txt
+
+# judger (ignore huge db files)
+judger/bird_dev/**/*.sqlite
