@@ -4,6 +4,6 @@ CREATE TABLE medical_records (
     diagnosis TEXT,
     treatment TEXT,
     prescriptions TEXT,
-    test_results TEXT,
+    notes TEXT,
     PRIMARY KEY (record_id)
 );

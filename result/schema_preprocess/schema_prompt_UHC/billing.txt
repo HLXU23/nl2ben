@@ -1,9 +1,9 @@
 CREATE TABLE billing (
     billing_id INT,
-    amount REAL,
+    amount_due REAL,
+    amount_paid REAL,
     billing_date DATE,
     payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
+    paid_in_full BOOLEAN,
     PRIMARY KEY (billing_id)
 );

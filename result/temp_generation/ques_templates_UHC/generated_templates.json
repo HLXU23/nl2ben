@@ -1,102 +1,152 @@
 [
     {
-        "question": "Find the full name and phone number of the patient with ID {patients.patient_id}.",
-        "evidence": "The patient's ID is provided as evidence.",
-        "ans": "SELECT `first_name`, `last_name`, `phone_number` \nFROM `patients` \nWHERE `patient_id` = {patients.patient_id};"
+        "question": "How many patients are there for each gender in the database?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `gender`, COUNT(*) AS `count` FROM `patients` GROUP BY `gender`;"
     },
     {
-        "question": "List all appointments scheduled for the doctor with ID {doctors.doctor_id} on {appointments.appointment_date}.",
-        "evidence": "The doctor's ID and the appointment date are provided as evidence.",
-        "ans": "SELECT * \nFROM `appointments` \nWHERE `doctor_id` = {doctors.doctor_id} \nAND `appointment_date` = '{appointments.appointment_date}';"
+        "question": "What is the distribution of patients by gender who have an active status?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `gender`, COUNT(*) AS `count` FROM `patients` WHERE `active_status` = TRUE GROUP BY `gender`;"
     },
     {
-        "question": "Retrieve the diagnosis and treatment for the medical record with ID {medical_records.record_id}.",
-        "evidence": "The medical record ID is provided as evidence.",
-        "ans": "SELECT `diagnosis`, `treatment` \nFROM `medical_records` \nWHERE `record_id` = {medical_records.record_id};"
+        "question": "How many patients of each gender have registered after a specific date, say {patients.registration_date}?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `gender`, COUNT(*) AS `count` FROM `patients` WHERE `registration_date` > '{patients.registration_date}' GROUP BY `gender`;"
     },
     {
-        "question": "Find the total amount billed for the patient with ID {patients.patient_id}.",
-        "evidence": "The patient's ID is provided as evidence.",
-        "ans": "SELECT SUM(`amount`) AS total_amount \nFROM `billing` \nWHERE `patient_id` = {patients.patient_id};"
+        "question": "What is the average age of patients who have had at least one appointment in the year 2022, grouped by their ethnicity?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `patients`.`ethnicity`, AVG(`patients`.`age`) AS average_age\nFROM `patients`\nJOIN `appointments` ON `patients`.`patient_id` = `appointments`.`patient_id`\nWHERE YEAR(`appointments`.`appointment_date`) = 2022\nGROUP BY `patients`.`ethnicity`;"
     },
     {
-        "question": "List all medications prescribed to the patient with ID {patients.patient_id}.",
-        "evidence": "The patient's ID is provided as evidence.",
-        "ans": "SELECT `medication` \nFROM `prescriptions` \nWHERE `patient_id` = {patients.patient_id};"
+        "question": "For patients who have a preferred language of 'English', what is the average age of those who have had at least one appointment, grouped by their ethnicity?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `patients`.`ethnicity`, AVG(`patients`.`age`) AS average_age\nFROM `patients`\nJOIN `appointments` ON `patients`.`patient_id` = `appointments`.`patient_id`\nWHERE `patients`.`preferred_language` = 'English'\nGROUP BY `patients`.`ethnicity`;"
     },
     {
-        "question": "Retrieve the full name and specialization of the doctor with ID {doctors.doctor_id}.",
-        "evidence": "The doctor's ID is provided as evidence.",
-        "ans": "SELECT `first_name`, `last_name`, `specialization` \nFROM `doctors` \nWHERE `doctor_id` = {doctors.doctor_id};"
+        "question": "What is the average age of patients who have had at least one appointment with a doctor in the 'Cardiology' department, grouped by their ethnicity?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `patients`.`ethnicity`, AVG(`patients`.`age`) AS average_age\nFROM `patients`\nJOIN `appointments` ON `patients`.`patient_id` = `appointments`.`patient_id`\nJOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`doctor_id`\nWHERE `doctors`.`specialization` = 'Cardiology'\nGROUP BY `patients`.`ethnicity`;"
     },
     {
-        "question": "Find the insurance provider and policy number for the patient with ID {patients.patient_id}.",
-        "evidence": "The patient's ID is provided as evidence.",
-        "ans": "SELECT `provider`, `policy_number` \nFROM `insurance` \nWHERE `patient_id` = {patients.patient_id};"
+        "question": "How many active patients are there for each insurance provider?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `insurance_provider`, COUNT(*) AS `count` \nFROM `patients` \nWHERE `active_status` = TRUE \nGROUP BY `insurance_provider`;"
     },
     {
-        "question": "List all staff members with the role of {staff.role}.",
-        "evidence": "The staff role is provided as evidence.",
-        "ans": "SELECT `first_name`, `last_name` \nFROM `staff` \nWHERE `role` = '{staff.role}';"
+        "question": "List the insurance providers along with the number of active patients they have, but only include providers that have more than 100 active patients.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `insurance_provider`, COUNT(*) AS `count` \nFROM `patients` \nWHERE `active_status` = TRUE \nGROUP BY `insurance_provider` \nHAVING COUNT(*) > 100;"
     },
     {
-        "question": "Retrieve the appointment date and status for the appointment with ID {appointments.appointment_id}.",
-        "evidence": "The appointment ID is provided as evidence.",
-        "ans": "SELECT `appointment_date`, `status` \nFROM `appointments` \nWHERE `appointment_id` = {appointments.appointment_id};"
+        "question": "For each insurance provider, find the total number of active patients and the average age of these patients.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `insurance_provider`, COUNT(*) AS `count`, AVG(`age`) AS `average_age` \nFROM `patients` \nWHERE `active_status` = TRUE \nGROUP BY `insurance_provider`;"
     },
     {
-        "question": "Find the total number of patients born after {patients.date_of_birth}.",
-        "evidence": "The date of birth is provided as evidence.",
-        "ans": "SELECT COUNT(*) AS total_patients \nFROM `patients` \nWHERE `date_of_birth` > '{patients.date_of_birth}';"
+        "question": "What is the Appointment Completion Rate for the month of January 2023?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT (COUNT(CASE WHEN `completed` = TRUE THEN 1 END) * 100.0 / COUNT(*)) AS completion_rate \nFROM `appointments` \nWHERE `appointment_date` BETWEEN '2023-01-01' AND '2023-01-31';"
     },
     {
-        "question": "List all appointments that were scheduled for the patient with ID {patients.patient_id} in the year {appointments.appointment_date}.",
-        "evidence": "The patient's ID and the year are provided as evidence.",
-        "ans": "SELECT * \nFROM `appointments` \nWHERE `patient_id` = {patients.patient_id} \nAND YEAR(`appointment_date`) = {appointments.appointment_date};"
+        "question": "How many appointments were completed by {doctors.first_name} {doctors.last_name} in the year 2022?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT COUNT(*) AS completed_appointments \nFROM `appointments` \nJOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`doctor_id` \nWHERE `completed` = TRUE \nAND `appointment_date` BETWEEN '2022-01-01' AND '2022-12-31' \nAND `doctors`.`first_name` = '{doctors.first_name}' \nAND `doctors`.`last_name` = '{doctors.last_name}';"
     },
     {
-        "question": "Retrieve the full name and email of the staff member with ID {staff.staff_id}.",
-        "evidence": "The staff member's ID is provided as evidence.",
-        "ans": "SELECT `first_name`, `last_name`, `email` \nFROM `staff` \nWHERE `staff_id` = {staff.staff_id};"
+        "question": "What is the average number of appointments per patient for patients who have completed at least one appointment?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT AVG(appointment_count) AS avg_appointments_per_patient \nFROM (\n    SELECT `patients`.`patient_id`, COUNT(*) AS appointment_count \n    FROM `appointments` \n    JOIN `patients` ON `appointments`.`patient_id` = `patients`.`patient_id` \n    WHERE `completed` = TRUE \n    GROUP BY `patients`.`patient_id`\n) AS patient_appointments;"
     },
     {
-        "question": "Find the total number of doctors specialized in {doctors.specialization}.",
-        "evidence": "The specialization is provided as evidence.",
-        "ans": "SELECT COUNT(*) AS total_doctors \nFROM `doctors` \nWHERE `specialization` = '{doctors.specialization}';"
+        "question": "How many doctors are there in each specialization?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `specialization`, COUNT(*) AS `count` FROM `doctors` GROUP BY `specialization`;"
     },
     {
-        "question": "List all medical records created by the doctor with ID {doctors.doctor_id}.",
-        "evidence": "The doctor's ID is provided as evidence.",
-        "ans": "SELECT * \nFROM `medical_records` \nWHERE `doctor_id` = {doctors.doctor_id};"
+        "question": "List the specializations and the number of doctors in each specialization, but only include specializations that have more than 5 doctors.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `specialization`, COUNT(*) AS `count` FROM `doctors` GROUP BY `specialization` HAVING COUNT(*) > 5;"
     },
     {
-        "question": "Retrieve the full name and address of the patient who has the billing record with ID {billing.billing_id}.",
-        "evidence": "The billing record ID is provided as evidence.",
-        "ans": "SELECT `first_name`, `last_name`, `address` \nFROM `patients` \nJOIN `billing` ON `patients`.`patient_id` = `billing`.`patient_id` \nWHERE `billing`.`billing_id` = {billing.billing_id};"
+        "question": "For a given doctor with ID {doctors.doctor_id}, find their specialization and the total number of doctors in the same specialization.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `specialization`, COUNT(*) AS `count` \nFROM `doctors` \nWHERE `specialization` = (SELECT `specialization` FROM `doctors` WHERE `doctor_id` = {doctors.doctor_id})\nGROUP BY `specialization`;"
     },
     {
-        "question": "Find the total number of appointments that were canceled.",
-        "evidence": "The status of appointments is provided as evidence.",
-        "ans": "SELECT COUNT(*) AS total_canceled_appointments \nFROM `appointments` \nWHERE `status` = 'Canceled';"
+        "question": "What is the percentage of bills that are not paid in full in the `billing` table?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT (COUNT(CASE WHEN `paid_in_full` = FALSE THEN 1 END) * 100.0 / COUNT(*)) AS unpaid_percentage FROM `billing`;"
     },
     {
-        "question": "List all prescriptions issued by the doctor with ID {doctors.doctor_id}.",
-        "evidence": "The doctor's ID is provided as evidence.",
-        "ans": "SELECT * \nFROM `prescriptions` \nWHERE `doctor_id` = {doctors.doctor_id};"
+        "question": "How many patients have an unpaid bill in the `billing` table?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT COUNT(DISTINCT `patient_id`) \nFROM `billing` \nWHERE `paid_in_full` = FALSE;"
     },
     {
-        "question": "Retrieve the full name and phone number of the patient who has the insurance record with ID {insurance.insurance_id}.",
-        "evidence": "The insurance record ID is provided as evidence.",
-        "ans": "SELECT `first_name`, `last_name`, `phone_number` \nFROM `patients` \nJOIN `insurance` ON `patients`.`patient_id` = `insurance`.`patient_id` \nWHERE `insurance`.`insurance_id` = {insurance.insurance_id};"
+        "question": "List the names of patients who have at least one unpaid bill in the `billing` table.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT DISTINCT `first_name`, `last_name` \nFROM `patients` \nWHERE `patient_id` IN (\n    SELECT `patient_id` \n    FROM `billing` \n    WHERE `paid_in_full` = FALSE\n);"
     },
     {
-        "question": "Find the total number of medical records for the patient with ID {patients.patient_id}.",
-        "evidence": "The patient's ID is provided as evidence.",
-        "ans": "SELECT COUNT(*) AS total_medical_records \nFROM `medical_records` \nWHERE `patient_id` = {patients.patient_id};"
+        "question": "How many patients have reported allergies in the database?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT COUNT(*) AS count FROM `patients` WHERE `allergies` IS NOT NULL AND `allergies` != '';"
     },
     {
-        "question": "List all appointments that were scheduled for the doctor with ID {doctors.doctor_id} in the month of {appointments.appointment_date}.",
-        "evidence": "The doctor's ID and the month are provided as evidence.",
-        "ans": "SELECT * \nFROM `appointments` \nWHERE `doctor_id` = {doctors.doctor_id} \nAND MONTH(`appointment_date`) = {appointments.appointment_date};"
+        "question": "List the names of patients who have reported allergies and are currently active in the system.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `first_name`, `last_name` FROM `patients` WHERE `allergies` IS NOT NULL AND `allergies` != '' AND `active_status` = TRUE;"
+    },
+    {
+        "question": "Retrieve the total number of appointments scheduled for patients who have reported allergies.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT COUNT(*) AS total_appointments FROM `appointments` WHERE `appointment_id` IN (\n    SELECT `patient_id` FROM `patients` WHERE `allergies` IS NOT NULL AND `allergies` != ''\n);"
+    },
+    {
+        "question": "What is the average age of doctors who are currently active in the hospital?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT AVG(age) AS average_age \nFROM (\n    SELECT DATE_PART('year', CURRENT_DATE) - DATE_PART('year', `date_of_birth`) AS age \n    FROM `doctors` \n    WHERE `active_status` = TRUE\n) AS doctor_ages;"
+    },
+    {
+        "question": "How many doctors are there in the hospital who speak a specific language, say {doctors.languages_spoken}?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT COUNT(*) AS number_of_doctors \nFROM `doctors` \nWHERE `languages_spoken` LIKE '%{doctors.languages_spoken}%';"
+    },
+    {
+        "question": "What is the total amount due from patients who have not paid their bills in full?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT SUM(`amount_due`) AS total_amount_due \nFROM `billing` \nWHERE `paid_in_full` = FALSE;"
+    },
+    {
+        "question": "How many active doctors are there in each department?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `department`, COUNT(*) AS `count` \nFROM `doctors` \nWHERE `active_status` = TRUE \nGROUP BY `department`;"
+    },
+    {
+        "question": "List the departments that have more than 5 active doctors.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `department`, COUNT(*) AS `count` \nFROM `doctors` \nWHERE `active_status` = TRUE \nGROUP BY `department` \nHAVING COUNT(*) > 5;"
+    },
+    {
+        "question": "For each department, find the number of active doctors and the total number of doctors (active and inactive).",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `department`, \n       SUM(CASE WHEN `active_status` = TRUE THEN 1 ELSE 0 END) AS `active_doctors`,\n       COUNT(*) AS `total_doctors`\nFROM `doctors`\nGROUP BY `department`;"
+    },
+    {
+        "question": "How many patients speak each preferred language in the database?",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `preferred_language`, COUNT(*) AS `count` \nFROM `patients` \nGROUP BY `preferred_language`;"
+    },
+    {
+        "question": "List the number of patients grouped by their preferred language, but only include languages spoken by more than 10 patients.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `preferred_language`, COUNT(*) AS `count` \nFROM `patients` \nGROUP BY `preferred_language` \nHAVING COUNT(*) > 10;"
+    },
+    {
+        "question": "For each preferred language, find the total number of patients and also include the language if there are no patients speaking that language.",
+        "evidence": "PatientsByPreferredLanguage: Number of patients grouped by preferred language.",
+        "ans": "SELECT `preferred_language`, COUNT(`patient_id`) AS `count` \nFROM (\n    SELECT DISTINCT `preferred_language` FROM `patients`\n    UNION ALL\n    SELECT `preferred_language` FROM `patients`\n) AS `languages`\nLEFT JOIN `patients` ON `languages`.`preferred_language` = `patients`.`preferred_language`\nGROUP BY `languages`.`preferred_language`;"
     }
 ]

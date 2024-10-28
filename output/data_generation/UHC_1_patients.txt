@@ -14,18 +14,18 @@ CREATE TABLE patients (
     address VARCHAR,
     phone_number CHAR,
     email VARCHAR,
-    emergency_contact VARCHAR,
-    emergency_phone CHAR,
+    emergency_contact_name VARCHAR,
+    emergency_contact_phone CHAR,
     insurance_provider VARCHAR,
-    insurance_id VARCHAR,
+    insurance_policy_number VARCHAR,
     registration_date DATE,
     active_status BOOLEAN,
     medical_history TEXT,
     allergies VARCHAR,
     medications VARCHAR,
-    blood_type VARCHAR,
     preferred_language VARCHAR,
     ethnicity VARCHAR,
+    marital_status VARCHAR,
     PRIMARY KEY (patient_id)
 );
 
@@ -34,32 +34,32 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-patient_id: 1001
-first_name: Emily
-last_name: Johnson
+patient_id: 10000001
+first_name: Jamie
+last_name: Nguyen
 date_of_birth: 1985-07-12
-age: 36
-gender: Female
-address: 456 Elm St, Springfield, IL 62704
-phone_number: 2175550147
-email: emily.johnson@example.com
-emergency_contact: Michael Johnson
-emergency_phone: 2175550148
-insurance_provider: BlueCross BlueShield
-insurance_id: BCBS123456789
-registration_date: 2010-09-15
-active_status: TRUE
-medical_history: Hypertension, Asthma
-allergies: Penicillin
-medications: Lisinopril, Albuterol
-blood_type: A+
+age: 38
+gender: Other
+address: 456 Elm St, Apt 3B, Springfield, IL 62701
+phone_number: (217) 555-1234
+email: jamie.nguyen@example.com
+emergency_contact_name: Emily Nguyen
+emergency_contact_phone: (217) 555-5678
+insurance_provider: Humana
+insurance_policy_number: HUM123456789
+registration_date: 2020-03-15
+active_status: False
+medical_history: Hypertension, Migraines
+allergies: Penicillin, Latex
+medications: Lisinopril, Sumatriptan
 preferred_language: English
-ethnicity: Caucasian
+ethnicity: Asian
+marital_status: Married
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-patient_id: 1004
+patient_id: 10000004
 first_name: 
 last_name: 
 date_of_birth: 
@@ -68,42 +68,42 @@ gender: Female
 address: 
 phone_number: 
 email: 
-emergency_contact: 
-emergency_phone: 
-insurance_provider: BlueCross
-insurance_id: 
+emergency_contact_name: 
+emergency_contact_phone: 
+insurance_provider: Cigna
+insurance_policy_number: 
 registration_date: 
 active_status: False
 medical_history: 
 allergies: 
 medications: 
-blood_type: AB-
-preferred_language: Korean
-ethnicity: White
+preferred_language: English
+ethnicity: 
+marital_status: Divorced
 
 ====================
 AI: 
-patient_id: 1004
-first_name: Soo-Min
-last_name: Lee
-date_of_birth: 1992-04-28
-age: 29
+patient_id: 10000004
+first_name: Emily
+last_name: Rodriguez
+date_of_birth: 1978-09-23
+age: 45
 gender: Female
-address: 789 Oak St, Chicago, IL 60601
-phone_number: 3125550123
-email: soo.min.lee@example.com
-emergency_contact: Ji-Hoon Lee
-emergency_phone: 3125550124
-insurance_provider: BlueCross
-insurance_id: BC1234567890
-registration_date: 2015-03-10
+address: 789 Oak St, Apt 5C, Chicago, IL 60601
+phone_number: (312) 555-4321
+email: emily.rodriguez@example.com
+emergency_contact_name: Carlos Rodriguez
+emergency_contact_phone: (312) 555-8765
+insurance_provider: Cigna
+insurance_policy_number: CIG987654321
+registration_date: 2019-11-10
 active_status: False
-medical_history: None
-allergies: None
-medications: None
-blood_type: AB-
-preferred_language: Korean
-ethnicity: White
+medical_history: Diabetes, Hyperlipidemia
+allergies: Sulfa, Pollen
+medications: Metformin, Atorvastatin
+preferred_language: English
+ethnicity: Hispanic
+marital_status: Divorced
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -119,18 +119,18 @@ CREATE TABLE patients (
     address VARCHAR,
     phone_number CHAR,
     email VARCHAR,
-    emergency_contact VARCHAR,
-    emergency_phone CHAR,
+    emergency_contact_name VARCHAR,
+    emergency_contact_phone CHAR,
     insurance_provider VARCHAR,
-    insurance_id VARCHAR,
+    insurance_policy_number VARCHAR,
     registration_date DATE,
     active_status BOOLEAN,
     medical_history TEXT,
     allergies VARCHAR,
     medications VARCHAR,
-    blood_type VARCHAR,
     preferred_language VARCHAR,
     ethnicity VARCHAR,
+    marital_status VARCHAR,
     PRIMARY KEY (patient_id)
 );
 
@@ -139,137 +139,32 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-patient_id: 1001
-first_name: Emily
-last_name: Johnson
+patient_id: 10000001
+first_name: Jamie
+last_name: Nguyen
 date_of_birth: 1985-07-12
-age: 36
-gender: Female
-address: 456 Elm St, Springfield, IL 62704
-phone_number: 2175550147
-email: emily.johnson@example.com
-emergency_contact: Michael Johnson
-emergency_phone: 2175550148
-insurance_provider: BlueCross BlueShield
-insurance_id: BCBS123456789
-registration_date: 2010-09-15
-active_status: TRUE
-medical_history: Hypertension, Asthma
-allergies: Penicillin
-medications: Lisinopril, Albuterol
-blood_type: A+
+age: 38
+gender: Other
+address: 456 Elm St, Apt 3B, Springfield, IL 62701
+phone_number: (217) 555-1234
+email: jamie.nguyen@example.com
+emergency_contact_name: Emily Nguyen
+emergency_contact_phone: (217) 555-5678
+insurance_provider: Humana
+insurance_policy_number: HUM123456789
+registration_date: 2020-03-15
+active_status: False
+medical_history: Hypertension, Migraines
+allergies: Penicillin, Latex
+medications: Lisinopril, Sumatriptan
 preferred_language: English
-ethnicity: Caucasian
+ethnicity: Asian
+marital_status: Married
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-patient_id: 1005
-first_name: 
-last_name: 
-date_of_birth: 
-age: 
-gender: Female
-address: 
-phone_number: 
-email: 
-emergency_contact: 
-emergency_phone: 
-insurance_provider: UnitedHealthcare
-insurance_id: 
-registration_date: 
-active_status: True
-medical_history: 
-allergies: 
-medications: 
-blood_type: O+
-preferred_language: English
-ethnicity: Other
-
-====================
-AI: 
-patient_id: 1005
-first_name: Samantha
-last_name: Lee
-date_of_birth: 1992-04-28
-age: 29
-gender: Female
-address: 789 Oak St, Portland, OR 97201
-phone_number: 5035550162
-email: samantha.lee@example.com
-emergency_contact: James Lee
-emergency_phone: 5035550163
-insurance_provider: UnitedHealthcare
-insurance_id: UHC987654321
-registration_date: 2015-06-20
-active_status: True
-medical_history: Migraine
-allergies: None
-medications: Sumatriptan
-blood_type: O+
-preferred_language: English
-ethnicity: Other
-====================
-Human: 
-As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
-
-Schema:
-CREATE TABLE patients (
-    patient_id INT,
-    first_name VARCHAR,
-    last_name VARCHAR,
-    date_of_birth DATE,
-    age INT,
-    gender VARCHAR,
-    address VARCHAR,
-    phone_number CHAR,
-    email VARCHAR,
-    emergency_contact VARCHAR,
-    emergency_phone CHAR,
-    insurance_provider VARCHAR,
-    insurance_id VARCHAR,
-    registration_date DATE,
-    active_status BOOLEAN,
-    medical_history TEXT,
-    allergies VARCHAR,
-    medications VARCHAR,
-    blood_type VARCHAR,
-    preferred_language VARCHAR,
-    ethnicity VARCHAR,
-    PRIMARY KEY (patient_id)
-);
-
-Example Row:
-
-
-Here are some existed data in database, you can check their formats and values for reference.
-1
-patient_id: 1001
-first_name: Emily
-last_name: Johnson
-date_of_birth: 1985-07-12
-age: 36
-gender: Female
-address: 456 Elm St, Springfield, IL 62704
-phone_number: 2175550147
-email: emily.johnson@example.com
-emergency_contact: Michael Johnson
-emergency_phone: 2175550148
-insurance_provider: BlueCross BlueShield
-insurance_id: BCBS123456789
-registration_date: 2010-09-15
-active_status: TRUE
-medical_history: Hypertension, Asthma
-allergies: Penicillin
-medications: Lisinopril, Albuterol
-blood_type: A+
-preferred_language: English
-ethnicity: Caucasian
-
-
-
-Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-patient_id: 1006
+patient_id: 10000005
 first_name: 
 last_name: 
 date_of_birth: 
@@ -278,39 +173,144 @@ gender: Male
 address: 
 phone_number: 
 email: 
-emergency_contact: 
-emergency_phone: 
+emergency_contact_name: 
+emergency_contact_phone: 
+insurance_provider: Kaiser
+insurance_policy_number: 
+registration_date: 
+active_status: False
+medical_history: 
+allergies: 
+medications: 
+preferred_language: Other
+ethnicity: 
+marital_status: Widowed
+
+====================
+AI: 
+patient_id: 10000005
+first_name: Michael
+last_name: Thompson
+date_of_birth: 1960-11-25
+age: 62
+gender: Male
+address: 789 Oak St, Apt 5C, Chicago, IL 60601
+phone_number: (312) 555-4321
+email: michael.thompson@example.com
+emergency_contact_name: Sarah Thompson
+emergency_contact_phone: (312) 555-8765
+insurance_provider: Kaiser
+insurance_policy_number: KAIS123456789
+registration_date: 2018-09-10
+active_status: False
+medical_history: Diabetes, Hypertension, Arthritis
+allergies: Sulfa, Pollen
+medications: Metformin, Lisinopril, Celecoxib
+preferred_language: Other
+ethnicity: Caucasian
+marital_status: Widowed
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE patients (
+    patient_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    age INT,
+    gender VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    emergency_contact_name VARCHAR,
+    emergency_contact_phone CHAR,
+    insurance_provider VARCHAR,
+    insurance_policy_number VARCHAR,
+    registration_date DATE,
+    active_status BOOLEAN,
+    medical_history TEXT,
+    allergies VARCHAR,
+    medications VARCHAR,
+    preferred_language VARCHAR,
+    ethnicity VARCHAR,
+    marital_status VARCHAR,
+    PRIMARY KEY (patient_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+patient_id: 10000001
+first_name: Jamie
+last_name: Nguyen
+date_of_birth: 1985-07-12
+age: 38
+gender: Other
+address: 456 Elm St, Apt 3B, Springfield, IL 62701
+phone_number: (217) 555-1234
+email: jamie.nguyen@example.com
+emergency_contact_name: Emily Nguyen
+emergency_contact_phone: (217) 555-5678
 insurance_provider: Humana
-insurance_id: 
+insurance_policy_number: HUM123456789
+registration_date: 2020-03-15
+active_status: False
+medical_history: Hypertension, Migraines
+allergies: Penicillin, Latex
+medications: Lisinopril, Sumatriptan
+preferred_language: English
+ethnicity: Asian
+marital_status: Married
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+patient_id: 10000006
+first_name: 
+last_name: 
+date_of_birth: 
+age: 
+gender: Other
+address: 
+phone_number: 
+email: 
+emergency_contact_name: 
+emergency_contact_phone: 
+insurance_provider: Aetna
+insurance_policy_number: 
 registration_date: 
 active_status: True
 medical_history: 
 allergies: 
 medications: 
-blood_type: B+
 preferred_language: French
-ethnicity: Black
+ethnicity: 
+marital_status: Divorced
 
 ====================
 AI: 
-patient_id: 1006
-first_name: Jean
-last_name: Dupont
-date_of_birth: 1978-04-20
-age: 43
-gender: Male
-address: 789 Oak St, Chicago, IL 60601
-phone_number: 3125550159
-email: jean.dupont@example.com
-emergency_contact: Marie Dupont
-emergency_phone: 3125550160
-insurance_provider: Humana
-insurance_id: HUM123456789
-registration_date: 2015-03-10
+patient_id: 10000006
+first_name: Aisha
+last_name: Patel
+date_of_birth: 1978-04-22
+age: 45
+gender: Other
+address: 789 Oak St, Apt 5C, Chicago, IL 60601
+phone_number: (312) 555-9876
+email: aisha.patel@example.com
+emergency_contact_name: Raj Patel
+emergency_contact_phone: (312) 555-4321
+insurance_provider: Aetna
+insurance_policy_number: AET987654321
+registration_date: 2019-11-05
 active_status: True
 medical_history: Diabetes, Hyperlipidemia
-allergies: Sulfa
+allergies: Sulfa, Pollen
 medications: Metformin, Atorvastatin
-blood_type: B+
 preferred_language: French
-ethnicity: Black
+ethnicity: South Asian
+marital_status: Divorced

@@ -1,0 +1,12 @@
+{
+    "UHC": {
+        "schema_generation": 0,
+        "schema_preprocess": 0,
+        "data_rule_generation": 0,
+        "data_generation": 0,
+        "evidence_generation": 1,
+        "temp_generation": 1,
+        "ques_generation": 1,
+        "ques_revision": 1
+    }
+}

@@ -6,8 +6,9 @@ import os
 import json
 import csv
 import sqlite3
+import asyncio
 
-from llm.models import async_llm_call
+from llm.models import batch_llm_call_async
 
 def schema_generation(db_name: str, config: Dict[str, Any]):
     """
@@ -62,23 +63,21 @@ def schema_generation(db_name: str, config: Dict[str, Any]):
         logging.error(f"Error loading parameter: {e}")
         raise
     
-    prompt = template.replace('{NAME}', db_name) \
-                     .replace('{REQUIREMENTS}', requirements)
+    prompts = [template.replace('{NAME}', db_name) \
+                       .replace('{REQUIREMENTS}', requirements)]
 
-    request_kwargs = f'[Schema Generation]{db_name}'
+    step = f'[Schema Generation]{db_name}'
 
-    response = async_llm_call(
-        prompt=prompt,
+    response = asyncio.run(batch_llm_call_async(
+        prompts=prompts,
         config=config,
-        request_list=[request_kwargs],
-        step="schema_generation",
-        sampling_count=1
-    )[0][0]
-
-    with open(os.path.join(output_path, f'{db_name}.txt'), "w") as file:
+        step=step
+    ))[0][0]
+    
+    with open(os.path.join(output_path, f'{db_name}.txt'), "w", encoding="utf-8") as file:
         file.write('\n====================\n')
         file.write('Human: \n')
-        file.write(prompt)
+        file.write(prompts[0])
         file.write('\n====================\n')
         file.write('AI: \n')
         file.write(response)

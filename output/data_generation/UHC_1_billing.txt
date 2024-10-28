@@ -6,11 +6,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE billing (
     billing_id INT,
-    amount REAL,
+    amount_due REAL,
+    amount_paid REAL,
     billing_date DATE,
     payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
+    paid_in_full BOOLEAN,
     PRIMARY KEY (billing_id)
 );
 
@@ -19,31 +19,31 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-billing_id: 12345
-amount: 150.75
-billing_date: '2023-04-10'
-payment_method: 'Credit Card'
-paid: TRUE
-description: 'Monthly subscription fee for online services'
+billing_id: 10000001
+amount_due: 150.75
+amount_paid: 150.75
+billing_date: 2023-10-01
+payment_method: Online Transfer
+paid_in_full: True
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-billing_id: 12348
-amount: 
+billing_id: 10000004
+amount_due: 
+amount_paid: 
 billing_date: 
-payment_method: Check
-paid: True
-description: 
+payment_method: Debit Card
+paid_in_full: True
 
 ====================
 AI: 
-billing_id: 12348
-amount: 250.00
-billing_date: '2023-04-15'
-payment_method: 'Check'
-paid: True
-description: 'Quarterly rent payment for office space'
+billing_id: 10000004
+amount_due: 200.50
+amount_paid: 200.50
+billing_date: 2023-10-05
+payment_method: Debit Card
+paid_in_full: True
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -51,11 +51,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE billing (
     billing_id INT,
-    amount REAL,
+    amount_due REAL,
+    amount_paid REAL,
     billing_date DATE,
     payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
+    paid_in_full BOOLEAN,
     PRIMARY KEY (billing_id)
 );
 
@@ -64,31 +64,31 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-billing_id: 12345
-amount: 150.75
-billing_date: '2023-04-10'
-payment_method: 'Credit Card'
-paid: TRUE
-description: 'Monthly subscription fee for online services'
+billing_id: 10000001
+amount_due: 150.75
+amount_paid: 150.75
+billing_date: 2023-10-01
+payment_method: Online Transfer
+paid_in_full: True
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-billing_id: 12349
-amount: 
+billing_id: 10000005
+amount_due: 
+amount_paid: 
 billing_date: 
-payment_method: Bank Transfer
-paid: False
-description: 
+payment_method: Debit Card
+paid_in_full: False
 
 ====================
 AI: 
-billing_id: 12349
-amount: 250.00
-billing_date: '2023-04-15'
-payment_method: 'Bank Transfer'
-paid: False
-description: 'Utility bill for March 2023'
+billing_id: 10000005
+amount_due: 200.50
+amount_paid: 100.25
+billing_date: 2023-10-05
+payment_method: Debit Card
+paid_in_full: False
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -96,11 +96,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE billing (
     billing_id INT,
-    amount REAL,
+    amount_due REAL,
+    amount_paid REAL,
     billing_date DATE,
     payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
+    paid_in_full BOOLEAN,
     PRIMARY KEY (billing_id)
 );
 
@@ -109,28 +109,28 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-billing_id: 12345
-amount: 150.75
-billing_date: '2023-04-10'
-payment_method: 'Credit Card'
-paid: TRUE
-description: 'Monthly subscription fee for online services'
+billing_id: 10000001
+amount_due: 150.75
+amount_paid: 150.75
+billing_date: 2023-10-01
+payment_method: Online Transfer
+paid_in_full: True
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-billing_id: 12350
-amount: 
+billing_id: 10000006
+amount_due: 
+amount_paid: 
 billing_date: 
-payment_method: Check
-paid: True
-description: 
+payment_method: Credit Card
+paid_in_full: False
 
 ====================
 AI: 
-billing_id: 12350
-amount: 250.00
-billing_date: '2023-04-15'
-payment_method: 'Check'
-paid: True
-description: 'Quarterly rent payment for office space'
+billing_id: 10000006
+amount_due: 200.50
+amount_paid: 100.25
+billing_date: 2023-10-05
+payment_method: Credit Card
+paid_in_full: False

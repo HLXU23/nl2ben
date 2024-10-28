@@ -8,8 +8,9 @@ import json
 import random
 import shutil
 import sqlite3
+import asyncio
 
-from llm.models import async_llm_call
+from llm.models import batch_llm_call_async
 
 def data_rule_generation(db_name: str, config: Dict[str, Any]):
     """
@@ -76,21 +77,20 @@ def data_rule_generation(db_name: str, config: Dict[str, Any]):
         os.makedirs(result_path_root)
 
     # Identifier selection
-    prompt = templates['identifier_selection'].replace('{SCHEMA}', schema_prompt_total)
-    request_kwargs = f'[Identifier Selection]{db_name}'
+    prompts = [templates['identifier_selection'].replace('{SCHEMA}', schema_prompt_total)]
+    
+    step = f'[Identifier Selection]{db_name}'
 
-    response = async_llm_call(
-        prompt=prompt,
+    response = asyncio.run(batch_llm_call_async(
+        prompts=prompts,
         config=config,
-        request_list=[request_kwargs],
-        step="data_rule_generation",
-        sampling_count=1
-    )[0][0]
+        step=step
+    ))[0][0]
 
     with open(os.path.join(output_path, f'{db_name}/identifier_{db_name}.txt'), "w") as file:
         file.write('\n====================\n')
         file.write('Human: \n')
-        file.write(prompt)
+        file.write(prompts[0])
         file.write('\n====================\n')
         file.write('AI: \n')
         file.write(response)
@@ -99,12 +99,15 @@ def data_rule_generation(db_name: str, config: Dict[str, Any]):
     for row in rows:
         try: 
             table_name, col_name = row.split('.')
+            table_name = table_name.strip()
+            col_name = col_name.strip()
             if col_name in schema[table_name]['primary_keys']:
+                logging.info(f'Found identifier column: {col_name}')
                 schema[table_name]['attributes'][col_name]['identifier'] = 1
         except:
+            logging.info(f'Identifier column not primary: {col_name}')
             pass
 
-    # Categorical / Numerical
     for table_name in schema:
         output_categorical_path = os.path.join(output_path, f'{db_name}/categorical_{table_name}.txt')
         if os.path.exists(output_categorical_path):
@@ -112,6 +115,10 @@ def data_rule_generation(db_name: str, config: Dict[str, Any]):
         output_numerical_path = os.path.join(output_path, f'{db_name}/numerical_{table_name}.txt')
         if os.path.exists(output_numerical_path):
             os.remove(output_numerical_path)
+
+        # Categorical columns
+        prompts = []
+        cols = []
         for col_name in schema[table_name]['attributes']:
             col_type = schema[table_name]['attributes'][col_name]['type']
             if not 'identifier' in schema[table_name]['attributes'][col_name]:
@@ -120,75 +127,88 @@ def data_rule_generation(db_name: str, config: Dict[str, Any]):
                                          else f'There are {unique_cnt} unique values in this column right now.\n' + \
                                               f'Example Values: {', '.join(unique_values)}'
                 if unique_cnt >= 20: continue
-                prompt = templates['categorical_range_generation'].replace('{DB}', db_name) \
-                                                                  .replace('{TABLE}', table_name) \
-                                                                  .replace('{COLUMN}', col_name) \
-                                                                  .replace('{SCHEMA}', schema_prompt[table_name]) \
-                                                                  .replace('{UNIQUE_VALUE}', unique_value_prompt)
+                cols += [col_name]
+                prompts += [templates['categorical_range_generation'].replace('{DB}', db_name) \
+                                                                     .replace('{TABLE}', table_name) \
+                                                                     .replace('{COLUMN}', col_name) \
+                                                                     .replace('{SCHEMA}', schema_prompt[table_name]) \
+                                                                     .replace('{UNIQUE_VALUE}', unique_value_prompt)]
                 
-                request_kwargs = f'[Categorical]{db_name}{table_name}{col_name}'
+        step = f'[Categorical]{db_name}{table_name}'
 
-                response = async_llm_call(
-                    prompt=prompt,
-                    config=config,
-                    request_list=[request_kwargs],
-                    step="data_rule_generation",
-                    sampling_count=1
-                )[0][0]
-
+        responses = asyncio.run(batch_llm_call_async(
+            prompts=prompts,
+            config=config,
+            step=step
+        ))
                 
-                with open(output_categorical_path, "a") as file:
-                    file.write('\n====================\n')
-                    file.write('Human: \n')
-                    file.write(prompt)
-                    file.write('\n====================\n')
-                    file.write('AI: \n')
-                    file.write(response)
+        for i in range(len(prompts)):
+            col_name = cols[i]
+            prompt = prompts[i]
+            response = responses[i][0]
 
-                if ',' in response:
-                    categories = response.split(', ')
-                    schema[table_name]['attributes'][col_name]['categorical'] = categories
-                    continue
+            with open(output_categorical_path, "a", encoding="utf-8") as file:
+                file.write('\n====================\n')
+                file.write('Human: \n')
+                file.write(prompt)
+                file.write('\n====================\n')
+                file.write('AI: \n')
+                file.write(response)
+
+            if ',' in response:
+                categories = [category.strip() for category in response.split(',')]
+                schema[table_name]['attributes'][col_name]['categorical'] = categories
+                continue
+
+        # Numerical columns
+        prompts = []
+        cols = []
+        for col_name in schema[table_name]['attributes']:
+            col_type = schema[table_name]['attributes'][col_name]['type']
 
             if not 'identifier' in schema[table_name]['attributes'][col_name] and \
                not 'categorical' in schema[table_name]['attributes'][col_name] and \
                col_type in ['INT', 'INTEGER', 'FLOAT', 'REAL']:
                 example_row_prompt = get_example_row_prompt(db_path, table_name, example_value_num)
-                prompt = templates['numerical_range_generation'].replace('{DB}', db_name) \
-                                                                .replace('{TABLE}', table_name) \
-                                                                .replace('{COLUMN}', col_name) \
-                                                                .replace('{SCHEMA}', schema_prompt[table_name]) \
-                                                                .replace('{EXAMPLE_ROW}', example_row_prompt)
-                request_kwargs = f'[Numerical]{db_name}{table_name}{col_name}'
+                cols += [col_name]
+                prompts += [templates['numerical_range_generation'].replace('{DB}', db_name) \
+                                                                   .replace('{TABLE}', table_name) \
+                                                                   .replace('{COLUMN}', col_name) \
+                                                                   .replace('{SCHEMA}', schema_prompt[table_name]) \
+                                                                   .replace('{EXAMPLE_ROW}', example_row_prompt)]
+        step = f'[Numerical]{db_name}{table_name}'
 
-                response = async_llm_call(
-                    prompt=prompt,
-                    config=config,
-                    request_list=[request_kwargs],
-                    step="data_rule_generation",
-                    sampling_count=1
-                )[0][0]
+        responses = asyncio.run(batch_llm_call_async(
+            prompts=prompts,
+            config=config,
+            step=step
+        ))
 
-                with open(output_numerical_path, "a") as file:
-                    file.write('\n====================\n')
-                    file.write('Human: \n')
-                    file.write(prompt)
-                    file.write('\n====================\n')
-                    file.write('AI: \n')
-                    file.write(response)
+        for i in range(len(prompts)):
+            col_name = cols[i]
+            prompt = prompts[i]
+            response = responses[i][0]
 
-                lower = get_min_value(db_path, table_name, col_name)
-                upper = get_max_value(db_path, table_name, col_name)
-                if ',' in response:
-                    l, u = response.split(', ', 1)
-                    try:
-                        lower = min(l, lower)
-                        upper = max(u, upper)
-                    except:
-                        pass
-                if isinstance(lower, str) and isinstance(upper, str):
-                    schema[table_name]['attributes'][col_name]['numerical'] = [float(lower), float(upper)]
-                continue
+            with open(output_numerical_path, "a") as file:
+                file.write('\n====================\n')
+                file.write('Human: \n')
+                file.write(prompt)
+                file.write('\n====================\n')
+                file.write('AI: \n')
+                file.write(response)
+
+            lower = get_min_value(db_path, table_name, col_name)
+            upper = get_max_value(db_path, table_name, col_name)
+            if ',' in response:
+                l, u = response.split(', ', 1)
+                try:
+                    lower = min(l, lower)
+                    upper = max(u, upper)
+                except:
+                    pass
+            if isinstance(lower, str) and isinstance(upper, str):
+                schema[table_name]['attributes'][col_name]['numerical'] = [float(lower), float(upper)]
+            continue
             
     result_schema_path = os.path.join(result_path, f'schema_{db_name}.json')
     with open(result_schema_path, "w") as file:

@@ -6,8 +6,9 @@ import os
 import json
 import random
 import sqlite3
+import asyncio
 
-from llm.models import async_llm_call
+from llm.models import batch_llm_call_async
 
 def ques_revision(db_name: str, config: Dict[str, Any]):
 
@@ -32,23 +33,30 @@ def ques_revision(db_name: str, config: Dict[str, Any]):
         raise
 
     revised_questions = []
+    prompts = []
+
     for raw_question in raw_questions:
         evid = raw_question['evidence']
         ans = raw_question['ans']
-        prompt = template.replace('{QUESTION}', raw_question['question']) \
-                         .replace('{EVIDENCE}', evid) \
-                         .replace('{ANS}', ans)
-        request_kwargs = f'[Ques Revision]{db_name}'
+        prompts += [template.replace('{QUESTION}', raw_question['question']) \
+                           .replace('{EVIDENCE}', evid) \
+                           .replace('{ANS}', ans)]
 
-        response = async_llm_call(
-            prompt=prompt,
-            config=config,
-            request_list=[request_kwargs],
-            step="ques_revision",
-            sampling_count=1
-        )[0][0]
+    step = f'[Ques Revision]{db_name}'
 
-        with open(os.path.join(output_path, f'{db_name}.txt'), "w") as file:
+    responses = asyncio.run(batch_llm_call_async(
+        prompts=prompts,
+        config=config,
+        step=step
+    ))
+
+    for i in range(len(prompts)):
+        evid = raw_questions[i]['evidence']
+        ans = raw_questions[i]['ans']
+        prompt = prompts[i]
+        response = responses[i][0]
+
+        with open(os.path.join(output_path, f'{db_name}.txt'), "a", encoding="utf-8") as file:
             file.write('\n====================\n')
             file.write('Human: \n')
             file.write(prompt)
@@ -56,11 +64,11 @@ def ques_revision(db_name: str, config: Dict[str, Any]):
             file.write('AI: \n')
             file.write(response)
 
-        revised_questions.append({
-            "question": response,
-            "evidence": evid,
-            "ans": ans
-        })
+            revised_questions.append({
+                "question": response,
+                "evidence": evid,
+                "ans": ans
+            })
 
     revised_ques_path = os.path.join(result_path, f'revised_ques_{db_name}.json')
     with open(revised_ques_path, "w") as file:

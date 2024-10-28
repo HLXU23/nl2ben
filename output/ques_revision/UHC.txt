@@ -11,3 +11,236 @@ WHERE `patient_id` = 4;
 Return rewroted question directly. NO ANY OTHER OUTPUT
 ====================
 Find the total number of medical records for the patient with ID 4.
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many patients are there for each gender in the database?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `gender`, COUNT(*) AS `count` FROM `patients` GROUP BY `gender`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many patients are there for each gender in the database?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many patients of each gender have registered after a specific date, say {patients.registration_date}?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `gender`, COUNT(*) AS `count` FROM `patients` WHERE `registration_date` > '2019-11-05' GROUP BY `gender`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many patients of each gender registered after November 5, 2019?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many patients of each gender have registered after a specific date, say {patients.registration_date}?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `gender`, COUNT(*) AS `count` FROM `patients` WHERE `registration_date` > '2018-09-10' GROUP BY `gender`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many patients of each gender registered after September 10, 2018?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many patients of each gender have registered after a specific date, say {patients.registration_date}?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `gender`, COUNT(*) AS `count` FROM `patients` WHERE `registration_date` > '2019-08-10' GROUP BY `gender`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many patients of each gender registered after August 10, 2019?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many doctors are there in each specialization?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `specialization`, COUNT(*) AS `count` FROM `doctors` GROUP BY `specialization`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many doctors are there in each specialization?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: For a given doctor with ID {doctors.doctor_id}, find their specialization and the total number of doctors in the same specialization.
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `specialization`, COUNT(*) AS `count` 
+FROM `doctors` 
+WHERE `specialization` = (SELECT `specialization` FROM `doctors` WHERE `doctor_id` = 10000001)
+GROUP BY `specialization`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+For a given doctor with ID 10000001, find their specialization and the total number of doctors in the same specialization.
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: For a given doctor with ID {doctors.doctor_id}, find their specialization and the total number of doctors in the same specialization.
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `specialization`, COUNT(*) AS `count` 
+FROM `doctors` 
+WHERE `specialization` = (SELECT `specialization` FROM `doctors` WHERE `doctor_id` = 10000002)
+GROUP BY `specialization`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+For a given doctor with ID 10000002, find their specialization and the total number of doctors in the same specialization.
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: For a given doctor with ID {doctors.doctor_id}, find their specialization and the total number of doctors in the same specialization.
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `specialization`, COUNT(*) AS `count` 
+FROM `doctors` 
+WHERE `specialization` = (SELECT `specialization` FROM `doctors` WHERE `doctor_id` = 10000008)
+GROUP BY `specialization`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+For a given doctor with ID 10000008, find their specialization and the total number of doctors in the same specialization.
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many patients have reported allergies in the database?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT COUNT(*) AS count FROM `patients` WHERE `allergies` IS NOT NULL AND `allergies` != '';
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many patients in the database have reported having allergies?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: Retrieve the total number of appointments scheduled for patients who have reported allergies.
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT COUNT(*) AS total_appointments FROM `appointments` WHERE `appointment_id` IN (
+    SELECT `patient_id` FROM `patients` WHERE `allergies` IS NOT NULL AND `allergies` != ''
+);
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+Get the total number of appointments for patients with reported allergies.
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many doctors are there in the hospital who speak a specific language, say {doctors.languages_spoken}?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT COUNT(*) AS number_of_doctors 
+FROM `doctors` 
+WHERE `languages_spoken` LIKE '%English, Spanish%';
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many doctors in the hospital speak both English and Spanish?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many doctors are there in the hospital who speak a specific language, say {doctors.languages_spoken}?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT COUNT(*) AS number_of_doctors 
+FROM `doctors` 
+WHERE `languages_spoken` LIKE '%English, French%';
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many doctors in the hospital speak both English and French?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many doctors are there in the hospital who speak a specific language, say {doctors.languages_spoken}?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT COUNT(*) AS number_of_doctors 
+FROM `doctors` 
+WHERE `languages_spoken` LIKE '%English, Spanish, French%';
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many doctors at the hospital speak English, Spanish, or French?
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: For each department, find the number of active doctors and the total number of doctors (active and inactive).
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `department`, 
+       SUM(CASE WHEN `active_status` = TRUE THEN 1 ELSE 0 END) AS `active_doctors`,
+       COUNT(*) AS `total_doctors`
+FROM `doctors`
+GROUP BY `department`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+For each department, determine the count of active doctors and the overall count of doctors (both active and inactive).
+====================
+Human: 
+Given a question-SQL pair, you should:
+1, Fill placeholders in the question to correctly describe what the SQL answer does.
+2, Rewrite the question to improve its readability
+
+Question: How many patients speak each preferred language in the database?
+Evidence: PatientsByPreferredLanguage: Number of patients grouped by preferred language.
+SQL answer: SELECT `preferred_language`, COUNT(*) AS `count` 
+FROM `patients` 
+GROUP BY `preferred_language`;
+
+Return rewroted question directly. NO ANY OTHER OUTPUT
+====================
+AI: 
+How many patients speak each language in the database, grouped by their preferred language?

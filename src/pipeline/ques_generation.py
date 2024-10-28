@@ -7,8 +7,6 @@ import json
 import random
 import sqlite3
 
-from llm.models import async_llm_call
-
 def ques_generation(db_name: str, config: Dict[str, Any]):
 
     input_path = config['input_path']
@@ -88,8 +86,7 @@ def generate_ques_on_template(ques_template: str, schema: Dict[str, Any], db_pat
     ques_with_res_cnt = 0
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    for _ in range(ques_per_template * 10):
-
+    for idx in range(ques_per_template * 10):
         ans, related_tables = replace_placeholders_randomly(ans_temp, 'TABLE', [table_name for table_name in schema])
         cols = []
         for table_name in related_tables:
@@ -115,7 +112,8 @@ def generate_ques_on_template(ques_template: str, schema: Dict[str, Any], db_pat
         try: 
             cursor.execute(ans)
             exec_result = cursor.fetchall()
-        except Exception:
+        except Exception as e:
+            logging.debug(f'Run {ans} fail: {e}')
             continue
         
         if (not exec_result) or \

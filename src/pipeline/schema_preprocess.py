@@ -64,7 +64,7 @@ def get_schema_from_sqlite(db_path):
         }
         
         # Step 2: Get attributes and primary keys
-        cursor.execute(f"PRAGMA table_info({table_name});")
+        cursor.execute(f"PRAGMA table_info(`{table_name}`);")
         columns = cursor.fetchall()
         for col in columns:
             col_name = col[1]
@@ -76,7 +76,7 @@ def get_schema_from_sqlite(db_path):
                 schema[table_name]["primary_keys"].append(col_name)
         
         # Step 3: Get foreign keys
-        cursor.execute(f"PRAGMA foreign_key_list({table_name});")
+        cursor.execute(f"PRAGMA foreign_key_list(`{table_name}`);")
         foreign_keys = cursor.fetchall()
         for fk in foreign_keys:
             referenced_table = fk[2]

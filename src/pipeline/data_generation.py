@@ -8,8 +8,9 @@ import json
 import random
 import shutil
 import sqlite3
+import asyncio
 
-from llm.models import async_llm_call
+from llm.models import batch_llm_call_async
 
 def data_generation(db_name: str, config: Dict[str, Any]):
     """
@@ -80,27 +81,29 @@ def data_generation(db_name: str, config: Dict[str, Any]):
             if os.path.exists(output_sql_path):
                 os.remove(output_sql_path)
 
-            for _ in range(row_num):
-                try:
-                    new_row = get_new_row(db_path, table_name, schema[table_name])
-                except Exception as e:
-                    logging.error(f'Generating {table_name} data fail: {e}')
-                    raise
+            prompts = []
+            try:
+                new_rows = get_k_new_rows(row_num, db_path, table_name, schema[table_name])
+            except Exception as e:
+                logging.error(f'Generating {table_name} data fail: {e}')
+                raise
+            for i in range(len(new_rows)):
                 example_row_prompt = get_example_row_prompt(db_path, table_name, example_value_num)
-                prompt = template.replace('{SCHEMA}', schema_prompt[table_name]) \
+                prompts += [template.replace('{SCHEMA}', schema_prompt[table_name]) \
                                  .replace('{EXAMPLE_ROW}', example_row_prompt) \
-                                 .replace('{GENERATED_VALUE}', ''.join([f'{col_name}: {str(new_row[col_name])}\n' for col_name in new_row]))
-                request_kwargs = f'[Data Generation]{db_name}{table_name}'
+                                 .replace('{GENERATED_VALUE}', ''.join([f'{col_name}: {str(new_rows[i][col_name])}\n' for col_name in new_rows[i]]))]
+            step = f'[Data Generation]{db_name}{table_name}'
 
-                response = async_llm_call(
-                    prompt=prompt,
-                    config=config,
-                    request_list=[request_kwargs],
-                    step="data_generation",
-                    sampling_count=1
-                )[0][0]
+            responses = asyncio.run(batch_llm_call_async(
+                prompts=prompts,
+                config=config,
+                step=step
+            ))
 
-                with open(output_ai_path, "a") as file:
+            for i in range(len(prompts)):
+                prompt = prompts[i]
+                response = responses[i][0]
+                with open(output_ai_path, "a", encoding="utf-8") as file:
                     file.write('\n====================\n')
                     file.write('Human: \n')
                     file.write(prompt)
@@ -160,45 +163,47 @@ def get_topo_order(schema):
     
     return topo_order
 
-def get_new_row(db_path, table_name, schema_table):
-    new_row = dict.fromkeys(schema_table['attributes'], '')
-    for col_name in new_row:
-        col_type = schema_table['attributes'][col_name]['type']
-        if 'identifier' in schema_table['attributes'][col_name]:
-            if col_name in schema_table['foreign_keys']:
+def get_k_new_rows(k, db_path, table_name, schema_table):
+    new_rows = []
+    for i in range(k):
+        new_row = dict.fromkeys(schema_table['attributes'], '')
+        for col_name in new_row:
+            col_type = schema_table['attributes'][col_name]['type']
+            if 'identifier' in schema_table['attributes'][col_name]:
+                if col_name in schema_table['foreign_keys']:
+                    try:
+                        referenced_table = schema_table['foreign_keys'][col_name]['referenced_table']
+                        referenced_col = schema_table['foreign_keys'][col_name]['referenced_column']
+                        get_foreign_identifier(db_path, table_name, col_name, referenced_table, referenced_col)
+                    except Exception as e:
+                        logging.error(f'get new foreign identifier error: {e}')
+                        return new_rows
                 try:
-                    referenced_table = schema_table['foreign_keys'][col_name]['referenced_table']
-                    referenced_col = schema_table['foreign_keys'][col_name]['referenced_column']
-                    get_foreign_identifier(db_path, table_name, col_name, referenced_table, referenced_col)
+                    new_row[col_name] = get_new_identifier(db_path, table_name, col_name) + i
                 except Exception as e:
-                    logging.error('get_new_identifier error')
-                    return new_row
-
-            try:
-                new_row[col_name] = get_new_identifier(db_path, table_name, col_name)
-            except Exception as e:
-                logging.error('get_new_identifier error')
-                return new_row
-        elif col_name in schema_table['foreign_keys']:
-            try:
-                random_value = get_random_value(db_path, table_name, col_name)
-            except Exception as e:
-                logging.error('get_random_value error')
-            if random_value:
-                new_row[col_name] = random_value
-                continue
-        elif col_type == 'BOOLEAN':
-            new_row[col_name] = random.choice([True, False])
-        elif 'categorical' in schema_table['attributes'][col_name]:
-            new_row[col_name] = random.choice(schema_table['attributes'][col_name]['categorical'])
-        elif 'numerical' in schema_table['attributes'][col_name]:
-            l, u = schema_table['attributes'][col_name]['numerical']
-            temp = random.uniform(l, u)
-            if col_type in ['INT', 'INTEGER']:
-                new_row[col_name] = int(temp)
-            else:
-                new_row[col_name] = temp
-    return new_row
+                    logging.error(f'get new primary identifier error: {e}')
+                    return new_rows
+            elif col_name in schema_table['foreign_keys']:
+                try:
+                    random_value = get_random_value(db_path, table_name, col_name)
+                except Exception as e:
+                    logging.error(f'get random value error: {e}')
+                if random_value:
+                    new_row[col_name] = random_value
+                    continue
+            elif col_type == 'BOOLEAN':
+                new_row[col_name] = random.choice([True, False])
+            elif 'categorical' in schema_table['attributes'][col_name]:
+                new_row[col_name] = random.choice(schema_table['attributes'][col_name]['categorical'])
+            elif 'numerical' in schema_table['attributes'][col_name]:
+                l, u = schema_table['attributes'][col_name]['numerical']
+                temp = random.uniform(l, u)
+                if col_type in ['INT', 'INTEGER']:
+                    new_row[col_name] = int(temp)
+                else:
+                    new_row[col_name] = temp
+        new_rows.append(new_row)
+    return new_rows
 
 def get_max_value(db_path, table_name, col_name):
     conn = sqlite3.connect(db_path)
@@ -239,7 +244,7 @@ def get_foreign_identifier(db_path, table_name, col_name, referenced_table, refe
 
 def get_new_identifier(db_path, table_name, col_name):
     max_value = get_max_value(db_path, table_name, col_name)
-    return (int(max_value) or 10000000) + 1
+    return ((max_value) or 10000000) + 1
 
 def get_random_value(db_path, table_name, col_name):
     conn = sqlite3.connect(db_path)
@@ -301,6 +306,11 @@ def write_response_into_db(table_name, response, db_new_path):
     
     try:
         col_values = [line.split(': ', 1) for line in row_data]
+        col_values = [(
+            col_name.strip(), 
+            re.sub(r"^['\"]|['\"]$", '', col_value.strip())
+        ) for col_name, col_value in col_values]
+
         placeholders = ", ".join(["?" for _ in col_values])
         sql = f'INSERT INTO `{table_name}` ({', '.join([f'`{col_value[0]}`' for col_value in col_values])}) VALUES ({placeholders})'
         values = [col_value[1] for col_value in col_values]

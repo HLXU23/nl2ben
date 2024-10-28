@@ -31,6 +31,15 @@
         "row_num": 3,
         "example_value_num": 1
     },
+    "evidence_generation": {
+        "engine": "deepseek-coder",
+        "temperature": 1,
+        "input_path": "../result/",
+        "template_path": "../templates/evidence_generation.txt",
+        "output_path": "../output/evidence_generation/",
+        "result_path": "../result/evidence_generation/",
+        "evidence_num": 10
+    },
     "temp_generation": {
         "engine": "deepseek-coder",
         "temperature": 0.5,
@@ -39,7 +48,7 @@
         "evidence_path": "../params/",
         "output_path": "../output/temp_generation/",
         "result_path": "../result/temp_generation/",
-        "ques_template_num": 20,
+        "ques_template_num": 3,
         "example_value_num": 3
     },
     "ques_generation": {

@@ -10,7 +10,7 @@ CREATE TABLE medical_records (
     diagnosis TEXT,
     treatment TEXT,
     prescriptions TEXT,
-    test_results TEXT,
+    notes TEXT,
     PRIMARY KEY (record_id)
 );
 
@@ -18,21 +18,21 @@ Example Row:
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-record_id: 
+record_id: 10000001
 record_date: 
 diagnosis: 
 treatment: 
 prescriptions: 
-test_results: 
+notes: 
 
 ====================
 AI: 
-record_id: 1001
-record_date: '2023-04-15'
-diagnosis: 'Hypertension'
-treatment: 'Prescribed medication and advised lifestyle changes'
-prescriptions: 'Lisinopril 10mg once daily'
-test_results: 'Blood pressure: 145/95 mmHg, Cholesterol: 220 mg/dL'
+record_id: 10000001
+record_date: 2023-10-05
+diagnosis: Hypertension
+treatment: Lifestyle modifications, including diet and exercise
+prescriptions: Lisinopril 10mg once daily
+notes: Patient advised to monitor blood pressure regularly and follow up in 4 weeks.
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -44,40 +44,29 @@ CREATE TABLE medical_records (
     diagnosis TEXT,
     treatment TEXT,
     prescriptions TEXT,
-    test_results TEXT,
+    notes TEXT,
     PRIMARY KEY (record_id)
 );
 
 Example Row:
 
 
-Here are some existed data in database, you can check their formats and values for reference.
-1
-record_id: 1001
-record_date: '2023-04-15'
-diagnosis: 'Hypertension'
-treatment: 'Prescribed medication and advised lifestyle changes'
-prescriptions: 'Lisinopril 10mg once daily'
-test_results: 'Blood pressure: 145/95 mmHg, Cholesterol: 220 mg/dL'
-
-
-
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-record_id: 1002
+record_id: 10000002
 record_date: 
 diagnosis: 
 treatment: 
 prescriptions: 
-test_results: 
+notes: 
 
 ====================
 AI: 
-record_id: 1002
-record_date: '2023-04-16'
-diagnosis: 'Type 2 Diabetes'
-treatment: 'Dietary management and oral medication'
-prescriptions: 'Metformin 500mg twice daily'
-test_results: 'Fasting blood sugar: 180 mg/dL, HbA1c: 7.5%'
+record_id: 10000002
+record_date: 2023-09-15
+diagnosis: Hypertension
+treatment: Lifestyle modifications, including diet and exercise
+prescriptions: Lisinopril 10mg once daily
+notes: Patient advised to monitor blood pressure regularly and follow up in 3 months.
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -89,37 +78,26 @@ CREATE TABLE medical_records (
     diagnosis TEXT,
     treatment TEXT,
     prescriptions TEXT,
-    test_results TEXT,
+    notes TEXT,
     PRIMARY KEY (record_id)
 );
 
 Example Row:
 
 
-Here are some existed data in database, you can check their formats and values for reference.
-1
-record_id: 1001
-record_date: '2023-04-15'
-diagnosis: 'Hypertension'
-treatment: 'Prescribed medication and advised lifestyle changes'
-prescriptions: 'Lisinopril 10mg once daily'
-test_results: 'Blood pressure: 145/95 mmHg, Cholesterol: 220 mg/dL'
-
-
-
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-record_id: 1003
+record_id: 10000003
 record_date: 
 diagnosis: 
 treatment: 
 prescriptions: 
-test_results: 
+notes: 
 
 ====================
 AI: 
-record_id: 1003
-record_date: '2023-04-16'
-diagnosis: 'Type 2 Diabetes'
-treatment: 'Dietary management and oral medication'
-prescriptions: 'Metformin 500mg twice daily'
-test_results: 'Fasting blood sugar: 180 mg/dL, HbA1c: 7.5%'
+record_id: 10000003
+record_date: 2023-09-28
+diagnosis: Hypertension
+treatment: Lifestyle modifications, including diet and exercise
+prescriptions: Lisinopril 10mg once daily
+notes: Patient advised to monitor blood pressure regularly and follow up in 4 weeks.

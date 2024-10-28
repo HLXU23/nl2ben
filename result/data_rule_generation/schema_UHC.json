@@ -44,11 +44,11 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "emergency_contact": {
+            "emergency_contact_name": {
                 "description": "",
                 "type": "VARCHAR"
             },
-            "emergency_phone": {
+            "emergency_contact_phone": {
                 "description": "",
                 "type": "CHAR"
             },
@@ -60,10 +60,11 @@
                     "BlueCross",
                     "Cigna",
                     "Humana",
+                    "Kaiser",
                     "UnitedHealthcare"
                 ]
             },
-            "insurance_id": {
+            "insurance_policy_number": {
                 "description": "",
                 "type": "VARCHAR"
             },
@@ -87,20 +88,6 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "blood_type": {
-                "description": "",
-                "type": "VARCHAR",
-                "categorical": [
-                    "A+",
-                    "A-",
-                    "B+",
-                    "B-",
-                    "AB+",
-                    "AB-",
-                    "O+",
-                    "O-"
-                ]
-            },
             "preferred_language": {
                 "description": "",
                 "type": "VARCHAR",
@@ -110,26 +97,21 @@
                     "French",
                     "German",
                     "Chinese",
-                    "Japanese",
-                    "Korean",
-                    "Arabic",
-                    "Russian",
-                    "Portuguese",
-                    "Italian",
-                    "Dutch",
-                    "Hindi",
                     "Other"
                 ]
             },
             "ethnicity": {
                 "description": "",
+                "type": "VARCHAR"
+            },
+            "marital_status": {
+                "description": "",
                 "type": "VARCHAR",
                 "categorical": [
-                    "Asian",
-                    "Black",
-                    "Hispanic",
-                    "White",
-                    "Other"
+                    "Single",
+                    "Married",
+                    "Divorced",
+                    "Widowed"
                 ]
             }
         },
@@ -175,7 +157,10 @@
                     "Dermatology",
                     "Neurology",
                     "Pediatrics",
-                    "Psychiatry"
+                    "Orthopedics",
+                    "Psychiatry",
+                    "Radiology",
+                    "Surgery"
                 ]
             },
             "address": {
@@ -202,13 +187,24 @@
                 "description": "",
                 "type": "BOOLEAN"
             },
-            "biography": {
+            "qualifications": {
                 "description": "",
                 "type": "TEXT"
             },
-            "languages": {
+            "languages_spoken": {
                 "description": "",
                 "type": "VARCHAR"
+            },
+            "department": {
+                "description": "",
+                "type": "VARCHAR",
+                "categorical": [
+                    "Cardiology",
+                    "Dermatology",
+                    "Neurology",
+                    "Pediatrics",
+                    "Orthopedics"
+                ]
             }
         },
         "primary_keys": [
@@ -224,19 +220,29 @@
                 "type": "INT",
                 "identifier": 1
             },
-            "appointment_datetime": {
+            "appointment_date": {
                 "description": "",
-                "type": "TIMESTAMP"
+                "type": "DATE"
+            },
+            "appointment_time": {
+                "description": "",
+                "type": "TIME"
             },
             "appointment_type": {
                 "description": "",
-                "type": "VARCHAR"
+                "type": "VARCHAR",
+                "categorical": [
+                    "Routine Checkup",
+                    "Follow-up",
+                    "Emergency",
+                    "Consultation"
+                ]
             },
             "notes": {
                 "description": "",
                 "type": "TEXT"
             },
-            "confirmed": {
+            "completed": {
                 "description": "",
                 "type": "BOOLEAN"
             }
@@ -270,7 +276,7 @@
                 "description": "",
                 "type": "TEXT"
             },
-            "test_results": {
+            "notes": {
                 "description": "",
                 "type": "TEXT"
             }
@@ -288,7 +294,11 @@
                 "type": "INT",
                 "identifier": 1
             },
-            "amount": {
+            "amount_due": {
+                "description": "",
+                "type": "REAL"
+            },
+            "amount_paid": {
                 "description": "",
                 "type": "REAL"
             },
@@ -304,16 +314,12 @@
                     "Debit Card",
                     "Cash",
                     "Check",
-                    "Bank Transfer"
+                    "Online Transfer"
                 ]
             },
-            "paid": {
+            "paid_in_full": {
                 "description": "",
                 "type": "BOOLEAN"
-            },
-            "description": {
-                "description": "",
-                "type": "TEXT"
             }
         },
         "primary_keys": [

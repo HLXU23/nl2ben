@@ -6,11 +6,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE billing (
     billing_id INT,
-    amount REAL,
+    amount_due REAL,
+    amount_paid REAL,
     billing_date DATE,
     payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
+    paid_in_full BOOLEAN,
     PRIMARY KEY (billing_id)
 );
 
@@ -18,21 +18,21 @@ Example Row:
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-billing_id: 
-amount: 
+billing_id: 10000001
+amount_due: 
+amount_paid: 
 billing_date: 
-payment_method: 
-paid: 
-description: 
+payment_method: Online Transfer
+paid_in_full: True
 
 ====================
 AI: 
-billing_id: 12345
-amount: 150.75
-billing_date: '2023-04-10'
-payment_method: 'Credit Card'
-paid: TRUE
-description: 'Monthly subscription fee for online services'
+billing_id: 10000001
+amount_due: 150.75
+amount_paid: 150.75
+billing_date: 2023-10-01
+payment_method: Online Transfer
+paid_in_full: True
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -40,86 +40,64 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE billing (
     billing_id INT,
-    amount REAL,
+    amount_due REAL,
+    amount_paid REAL,
     billing_date DATE,
     payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
+    paid_in_full BOOLEAN,
     PRIMARY KEY (billing_id)
 );
 
 Example Row:
 
 
-Here are some existed data in database, you can check their formats and values for reference.
-1
-billing_id: 12345
-amount: 150.75
-billing_date: '2023-04-10'
-payment_method: 'Credit Card'
-paid: TRUE
-description: 'Monthly subscription fee for online services'
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+billing_id: 10000002
+amount_due: 
+amount_paid: 
+billing_date: 
+payment_method: Online Transfer
+paid_in_full: False
 
+====================
+AI: 
+billing_id: 10000002
+amount_due: 150.75
+amount_paid: 100.00
+billing_date: 2023-10-05
+payment_method: Online Transfer
+paid_in_full: False
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE billing (
+    billing_id INT,
+    amount_due REAL,
+    amount_paid REAL,
+    billing_date DATE,
+    payment_method VARCHAR,
+    paid_in_full BOOLEAN,
+    PRIMARY KEY (billing_id)
+);
+
+Example Row:
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-billing_id: 12346
-amount: 
+billing_id: 10000003
+amount_due: 
+amount_paid: 
 billing_date: 
 payment_method: Check
-paid: False
-description: 
+paid_in_full: False
 
 ====================
 AI: 
-billing_id: 12346
-amount: 200.00
-billing_date: '2023-04-15'
-payment_method: 'Check'
-paid: False
-description: 'Utility bill for March 2023'
-====================
-Human: 
-As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
-
-Schema:
-CREATE TABLE billing (
-    billing_id INT,
-    amount REAL,
-    billing_date DATE,
-    payment_method VARCHAR,
-    paid BOOLEAN,
-    description TEXT,
-    PRIMARY KEY (billing_id)
-);
-
-Example Row:
-
-
-Here are some existed data in database, you can check their formats and values for reference.
-1
-billing_id: 12345
-amount: 150.75
-billing_date: '2023-04-10'
-payment_method: 'Credit Card'
-paid: TRUE
-description: 'Monthly subscription fee for online services'
-
-
-
-Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-billing_id: 12347
-amount: 
-billing_date: 
-payment_method: Cash
-paid: True
-description: 
-
-====================
-AI: 
-billing_id: 12347
-amount: 75.00
-billing_date: '2023-04-12'
-payment_method: Cash
-paid: True
-description: 'Utility bill payment for water services'
+billing_id: 10000003
+amount_due: 150.75
+amount_paid: 100.00
+billing_date: 2023-10-05
+payment_method: Check
+paid_in_full: False

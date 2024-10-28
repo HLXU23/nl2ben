@@ -17,8 +17,9 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
@@ -27,55 +28,58 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 107
+doctor_id: 10000007
 first_name: 
 last_name: 
 date_of_birth: 
-gender: Female
-specialization: Pediatrics
+gender: Other
+specialization: Dermatology
 address: 
 phone_number: 
 email: 
 license_number: 
 hire_date: 
-active_status: False
-biography: 
-languages: 
+active_status: True
+qualifications: 
+languages_spoken: 
+department: Neurology
 
 ====================
 AI: 
-doctor_id: 107
-first_name: Sophia
-last_name: Rodriguez
-date_of_birth: 1990-04-20
-gender: Female
-specialization: Pediatrics
-address: 789 Pine St, Suite 200, Chicago, IL 60601
+doctor_id: 10000007
+first_name: Alex
+last_name: Rivera
+date_of_birth: 1982-11-28
+gender: Other
+specialization: Dermatology
+address: 789 Oak St, Chicago, IL 60601
 phone_number: 3125559876
-email: sophia.rodriguez@examplehospital.com
-license_number: MD654321
-hire_date: 2015-06-15
-active_status: False
-biography: Dr. Sophia Rodriguez is a dedicated pediatrician who has been caring for children since she graduated from the University of Chicago Pritzker School of Medicine. She completed her residency at the Children's Hospital of Chicago, where she focused on childhood developmental disorders.
-languages: English, Spanish, French
+email: alexrivera@example.com
+license_number: IL-87654321
+hire_date: 2015-09-15
+active_status: True
+qualifications: MD, Dermatology Residency at Northwestern Memorial Hospital
+languages_spoken: English, French
+department: Neurology
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -94,8 +98,9 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
@@ -104,29 +109,30 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 108
+doctor_id: 10000008
 first_name: 
 last_name: 
 date_of_birth: 
-gender: Male
+gender: Female
 specialization: Cardiology
 address: 
 phone_number: 
@@ -134,25 +140,27 @@ email:
 license_number: 
 hire_date: 
 active_status: False
-biography: 
-languages: 
+qualifications: 
+languages_spoken: 
+department: Cardiology
 
 ====================
 AI: 
-doctor_id: 108
-first_name: James
-last_name: Smith
-date_of_birth: 1978-04-20
-gender: Male
+doctor_id: 10000008
+first_name: Emily
+last_name: Rodriguez
+date_of_birth: 1982-11-28
+gender: Female
 specialization: Cardiology
-address: 789 Pine St, Suite 200, Boston, MA 02116
-phone_number: 6175552345
-email: james.smith@examplehospital.com
-license_number: MD234567
-hire_date: 2005-06-15
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125559876
+email: emilyrodriguez@example.com
+license_number: IL-87654321
+hire_date: 2015-09-15
 active_status: False
-biography: Dr. James Smith is a renowned cardiologist who has dedicated his career to advancing the field of cardiovascular medicine. He earned his medical degree from Yale School of Medicine and completed his fellowship at Brigham and Women's Hospital. Dr. Smith has published numerous articles in leading medical journals and has been a keynote speaker at several international conferences.
-languages: English, French
+qualifications: MD, Cardiology Fellowship at Northwestern Memorial Hospital
+languages_spoken: English, Spanish, French
+department: Cardiology
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -171,8 +179,9 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
@@ -181,52 +190,55 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 109
+doctor_id: 10000009
 first_name: 
 last_name: 
 date_of_birth: 
-gender: Male
-specialization: Psychiatry
+gender: Female
+specialization: Neurology
 address: 
 phone_number: 
 email: 
 license_number: 
 hire_date: 
-active_status: False
-biography: 
-languages: 
+active_status: True
+qualifications: 
+languages_spoken: 
+department: Orthopedics
 
 ====================
 AI: 
-doctor_id: 109
-first_name: James
-last_name: Wilson
-date_of_birth: 1978-04-25
-gender: Male
-specialization: Psychiatry
-address: 789 Pine St, Suite 200, San Francisco, CA 94109
-phone_number: 4155552345
-email: james.wilson@examplehospital.com
-license_number: PSY654321
-hire_date: 2005-06-15
-active_status: False
-biography: Dr. James Wilson is a renowned psychiatrist with expertise in cognitive behavioral therapy and psychopharmacology. He earned his medical degree from Stanford University School of Medicine and completed his residency at the University of California, San Francisco.
-languages: English, French
+doctor_id: 10000009
+first_name: Emily
+last_name: Rodriguez
+date_of_birth: 1982-11-28
+gender: Female
+specialization: Neurology
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125559876
+email: emily.rodriguez@example.com
+license_number: IL-87654321
+hire_date: 2015-09-15
+active_status: True
+qualifications: MD, Neurology Residency at Northwestern Memorial Hospital, Fellowship in Neuro-Oncology
+languages_spoken: English, Spanish, French
+department: Orthopedics

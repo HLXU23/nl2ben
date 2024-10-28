@@ -1,3 +1,6 @@
+
+====================
+Human: 
 As a database engineer, design schema for a database called UHC.
 Requirements:
 The database is used for health care domain.
@@ -40,7 +43,7 @@ Output format (NO EXPLANATION! NO ANY OTHER OUTPUT!):
 -({Column2.1_type}){Column2.1_name}*: {Column2.1_description}
 -({Column2.2_type}){Column2.2_name}: {Column2.2_description}
 ====================
-```
+AI: 
 patients: Information of patients
 -(INT)patient_id*: Unique identifier for each patient
 -(VARCHAR)first_name: First name of the patient
@@ -51,18 +54,18 @@ patients: Information of patients
 -(VARCHAR)address: Address of the patient
 -(CHAR)phone_number: Phone number of the patient
 -(VARCHAR)email: Email address of the patient
--(VARCHAR)emergency_contact: Emergency contact name
--(CHAR)emergency_phone: Emergency contact phone number
--(VARCHAR)insurance_provider: Insurance provider name
--(VARCHAR)insurance_id: Insurance ID number
--(DATE)registration_date: Date of registration
+-(VARCHAR)emergency_contact_name: Name of the emergency contact
+-(CHAR)emergency_contact_phone: Phone number of the emergency contact
+-(VARCHAR)insurance_provider: Name of the insurance provider
+-(VARCHAR)insurance_policy_number: Insurance policy number
+-(DATE)registration_date: Date of registration at the health center
 -(BOOLEAN)active_status: Indicates if the patient is active
--(TEXT)medical_history: Summary of patient's medical history
+-(TEXT)medical_history: Summary of the patient's medical history
 -(VARCHAR)allergies: List of allergies
--(VARCHAR)medications: Current medications
--(VARCHAR)blood_type: Blood type of the patient
+-(VARCHAR)medications: List of current medications
 -(VARCHAR)preferred_language: Preferred language of the patient
 -(VARCHAR)ethnicity: Ethnicity of the patient
+-(VARCHAR)marital_status: Marital status of the patient
 
 doctors: Information of doctors
 -(INT)doctor_id*: Unique identifier for each doctor
@@ -70,41 +73,43 @@ doctors: Information of doctors
 -(VARCHAR)last_name: Last name of the doctor
 -(DATE)date_of_birth: Date of birth of the doctor
 -(VARCHAR)gender: Gender of the doctor
--(VARCHAR)specialization: Medical specialization
+-(VARCHAR)specialization: Medical specialization of the doctor
 -(VARCHAR)address: Address of the doctor
 -(CHAR)phone_number: Phone number of the doctor
 -(VARCHAR)email: Email address of the doctor
 -(VARCHAR)license_number: Medical license number
--(DATE)hire_date: Date of hire
+-(DATE)hire_date: Date of hiring
 -(BOOLEAN)active_status: Indicates if the doctor is active
--(TEXT)biography: Biography of the doctor
--(VARCHAR)languages: Languages spoken by the doctor
+-(TEXT)qualifications: Summary of the doctor's qualifications
+-(VARCHAR)languages_spoken: Languages spoken by the doctor
+-(VARCHAR)department: Department the doctor is associated with
 
 appointments: Information of appointments
 -(INT)appointment_id*: Unique identifier for each appointment
--(INT)patient_id({patients}.patient_id): Reference to the patient
--(INT)doctor_id({doctors}.doctor_id): Reference to the doctor
--(TIMESTAMP)appointment_datetime: Date and time of the appointment
+-(INT)patient_id({patients}.patient_id): Foreign key referencing the patient
+-(INT)doctor_id({doctors}.doctor_id): Foreign key referencing the doctor
+-(DATE)appointment_date: Date of the appointment
+-(TIME)appointment_time: Time of the appointment
 -(VARCHAR)appointment_type: Type of appointment (e.g., check-up, consultation)
 -(TEXT)notes: Notes about the appointment
--(BOOLEAN)confirmed: Indicates if the appointment is confirmed
+-(BOOLEAN)completed: Indicates if the appointment is completed
 
 medical_records: Information of medical records
 -(INT)record_id*: Unique identifier for each medical record
--(INT)patient_id({patients}.patient_id): Reference to the patient
--(INT)doctor_id({doctors}.doctor_id): Reference to the doctor
--(DATE)record_date: Date of the record creation
--(TEXT)diagnosis: Diagnosis details
--(TEXT)treatment: Treatment details
--(TEXT)prescriptions: Prescriptions given
--(TEXT)test_results: Results of medical tests
+-(INT)patient_id({patients}.patient_id): Foreign key referencing the patient
+-(INT)doctor_id({doctors}.doctor_id): Foreign key referencing the doctor
+-(DATE)record_date: Date of the medical record
+-(TEXT)diagnosis: Diagnosis provided by the doctor
+-(TEXT)treatment: Treatment prescribed by the doctor
+-(TEXT)prescriptions: Prescriptions given to the patient
+-(TEXT)notes: Additional notes about the medical record
 
 billing: Information of billing records
 -(INT)billing_id*: Unique identifier for each billing record
--(INT)patient_id({patients}.patient_id): Reference to the patient
--(REAL)amount: Amount charged
--(DATE)billing_date: Date of billing
--(VARCHAR)payment_method: Method of payment
--(BOOLEAN)paid: Indicates if the bill is paid
--(TEXT)description: Description of the services provided
-```
+-(INT)patient_id({patients}.patient_id): Foreign key referencing the patient
+-(INT)appointment_id({appointments}.appointment_id): Foreign key referencing the appointment
+-(REAL)amount_due: Amount due for the billing
+-(REAL)amount_paid: Amount paid by the patient
+-(DATE)billing_date: Date of the billing
+-(VARCHAR)payment_method: Method of payment (e.g., cash, credit card)
+-(BOOLEAN)paid_in_full: Indicates if the bill is paid in full

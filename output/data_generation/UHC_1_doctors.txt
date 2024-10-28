@@ -17,8 +17,9 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
@@ -27,206 +28,217 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 104
+doctor_id: 10000004
 first_name: 
 last_name: 
 date_of_birth: 
 gender: Female
-specialization: Cardiology
-address: 
-phone_number: 
-email: 
-license_number: 
-hire_date: 
-active_status: False
-biography: 
-languages: 
-
-====================
-AI: 
-doctor_id: 104
-first_name: Samantha
-last_name: Lee
-date_of_birth: 1978-04-25
-gender: Female
-specialization: Cardiology
-address: 789 Pine St, Suite 200, Boston, MA 02116
-phone_number: 6175552345
-email: samantha.lee@examplehospital.com
-license_number: MD234567
-hire_date: 2005-06-15
-active_status: False
-biography: Dr. Samantha Lee is a renowned cardiologist who has dedicated her career to advancing the field of cardiovascular medicine. She earned her medical degree from Yale School of Medicine and completed her fellowship at Brigham and Women's Hospital. Dr. Lee has published numerous articles in prestigious medical journals and has been a keynote speaker at several international conferences.
-languages: English, Mandarin
-====================
-Human: 
-As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
-
-Schema:
-CREATE TABLE doctors (
-    doctor_id INT,
-    first_name VARCHAR,
-    last_name VARCHAR,
-    date_of_birth DATE,
-    gender VARCHAR,
-    specialization VARCHAR,
-    address VARCHAR,
-    phone_number CHAR,
-    email VARCHAR,
-    license_number VARCHAR,
-    hire_date DATE,
-    active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
-    PRIMARY KEY (doctor_id)
-);
-
-Example Row:
-
-
-Here are some existed data in database, you can check their formats and values for reference.
-1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
-
-
-
-Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 105
-first_name: 
-last_name: 
-date_of_birth: 
-gender: Female
-specialization: Cardiology
-address: 
-phone_number: 
-email: 
-license_number: 
-hire_date: 
-active_status: False
-biography: 
-languages: 
-
-====================
-AI: 
-doctor_id: 105
-first_name: Samantha
-last_name: Lee
-date_of_birth: 1978-04-25
-gender: Female
-specialization: Cardiology
-address: 789 Pine St, Suite 200, Boston, MA 02116
-phone_number: 6175552345
-email: samantha.lee@examplehospital.com
-license_number: MD234567
-hire_date: 2005-06-15
-active_status: False
-biography: Dr. Samantha Lee is a renowned cardiologist who has dedicated her career to advancing the field of cardiovascular medicine. She earned her medical degree from Yale School of Medicine and completed her fellowship at Brigham and Women's Hospital. Dr. Lee has published numerous articles in prestigious medical journals and has been a keynote speaker at several international conferences.
-languages: English, French
-====================
-Human: 
-As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
-
-Schema:
-CREATE TABLE doctors (
-    doctor_id INT,
-    first_name VARCHAR,
-    last_name VARCHAR,
-    date_of_birth DATE,
-    gender VARCHAR,
-    specialization VARCHAR,
-    address VARCHAR,
-    phone_number CHAR,
-    email VARCHAR,
-    license_number VARCHAR,
-    hire_date DATE,
-    active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
-    PRIMARY KEY (doctor_id)
-);
-
-Example Row:
-
-
-Here are some existed data in database, you can check their formats and values for reference.
-1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
-
-
-
-Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 106
-first_name: 
-last_name: 
-date_of_birth: 
-gender: Female
-specialization: Pediatrics
+specialization: Dermatology
 address: 
 phone_number: 
 email: 
 license_number: 
 hire_date: 
 active_status: True
-biography: 
-languages: 
+qualifications: 
+languages_spoken: 
+department: Neurology
 
 ====================
 AI: 
-doctor_id: 106
-first_name: Sophia
+doctor_id: 10000004
+first_name: Emily
+last_name: Johnson
+date_of_birth: 1982-09-22
+gender: Female
+specialization: Dermatology
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125559876
+email: emilyjohnson@example.com
+license_number: IL-87654321
+hire_date: 2015-04-15
+active_status: True
+qualifications: MD, Dermatology Residency at Northwestern Memorial Hospital
+languages_spoken: English, French
+department: Neurology
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    gender VARCHAR,
+    specialization VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    license_number VARCHAR,
+    hire_date DATE,
+    active_status BOOLEAN,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
+    PRIMARY KEY (doctor_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+doctor_id: 10000005
+first_name: 
+last_name: 
+date_of_birth: 
+gender: Other
+specialization: Radiology
+address: 
+phone_number: 
+email: 
+license_number: 
+hire_date: 
+active_status: True
+qualifications: 
+languages_spoken: 
+department: Neurology
+
+====================
+AI: 
+doctor_id: 10000005
+first_name: Alex
+last_name: Rivers
+date_of_birth: 1982-11-28
+gender: Other
+specialization: Radiology
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125559876
+email: alexrivers@example.com
+license_number: IL-87654321
+hire_date: 2015-09-15
+active_status: True
+qualifications: MD, Radiology Residency at Northwestern Memorial Hospital
+languages_spoken: English, French
+department: Neurology
+====================
+Human: 
+As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
+
+Schema:
+CREATE TABLE doctors (
+    doctor_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    date_of_birth DATE,
+    gender VARCHAR,
+    specialization VARCHAR,
+    address VARCHAR,
+    phone_number CHAR,
+    email VARCHAR,
+    license_number VARCHAR,
+    hire_date DATE,
+    active_status BOOLEAN,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
+    PRIMARY KEY (doctor_id)
+);
+
+Example Row:
+
+
+Here are some existed data in database, you can check their formats and values for reference.
+1
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
+
+
+
+Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
+doctor_id: 10000006
+first_name: 
+last_name: 
+date_of_birth: 
+gender: Female
+specialization: Orthopedics
+address: 
+phone_number: 
+email: 
+license_number: 
+hire_date: 
+active_status: False
+qualifications: 
+languages_spoken: 
+department: Neurology
+
+====================
+AI: 
+doctor_id: 10000006
+first_name: Emily
 last_name: Rodriguez
-date_of_birth: 1990-04-25
+date_of_birth: 1982-11-28
 gender: Female
-specialization: Pediatrics
-address: 789 Pine St, Suite 200, New York, NY 10001
-phone_number: 2125559876
-email: sophia.rodriguez@examplehospital.com
-license_number: MD654321
-hire_date: 2015-06-15
-active_status: True
-biography: Dr. Sophia Rodriguez is a compassionate pediatrician dedicated to providing comprehensive care for children of all ages. She earned her medical degree from Columbia University College of Physicians and Surgeons and completed her residency at NewYork-Presbyterian Hospital.
-languages: English, Spanish, French
+specialization: Orthopedics
+address: 789 Oak St, Chicago, IL 60601
+phone_number: 3125559876
+email: emilyrodriguez@example.com
+license_number: IL-87654321
+hire_date: 2015-09-15
+active_status: False
+qualifications: MD, Orthopedic Surgery Residency at Northwestern Memorial Hospital
+languages_spoken: English, Spanish, French
+department: Neurology

@@ -1,8 +1,9 @@
 CREATE TABLE appointments (
     appointment_id INT,
-    appointment_datetime TIMESTAMP,
+    appointment_date DATE,
+    appointment_time TIME,
     appointment_type VARCHAR,
     notes TEXT,
-    confirmed BOOLEAN,
+    completed BOOLEAN,
     PRIMARY KEY (appointment_id)
 );

@@ -38,11 +38,11 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "emergency_contact": {
+            "emergency_contact_name": {
                 "description": "",
                 "type": "VARCHAR"
             },
-            "emergency_phone": {
+            "emergency_contact_phone": {
                 "description": "",
                 "type": "CHAR"
             },
@@ -50,7 +50,7 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "insurance_id": {
+            "insurance_policy_number": {
                 "description": "",
                 "type": "VARCHAR"
             },
@@ -74,15 +74,15 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "blood_type": {
-                "description": "",
-                "type": "VARCHAR"
-            },
             "preferred_language": {
                 "description": "",
                 "type": "VARCHAR"
             },
             "ethnicity": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "marital_status": {
                 "description": "",
                 "type": "VARCHAR"
             }
@@ -143,11 +143,15 @@
                 "description": "",
                 "type": "BOOLEAN"
             },
-            "biography": {
+            "qualifications": {
                 "description": "",
                 "type": "TEXT"
             },
-            "languages": {
+            "languages_spoken": {
+                "description": "",
+                "type": "VARCHAR"
+            },
+            "department": {
                 "description": "",
                 "type": "VARCHAR"
             }
@@ -164,9 +168,13 @@
                 "description": "",
                 "type": "INT"
             },
-            "appointment_datetime": {
+            "appointment_date": {
                 "description": "",
-                "type": "TIMESTAMP"
+                "type": "DATE"
+            },
+            "appointment_time": {
+                "description": "",
+                "type": "TIME"
             },
             "appointment_type": {
                 "description": "",
@@ -176,7 +184,7 @@
                 "description": "",
                 "type": "TEXT"
             },
-            "confirmed": {
+            "completed": {
                 "description": "",
                 "type": "BOOLEAN"
             }
@@ -209,7 +217,7 @@
                 "description": "",
                 "type": "TEXT"
             },
-            "test_results": {
+            "notes": {
                 "description": "",
                 "type": "TEXT"
             }
@@ -226,7 +234,11 @@
                 "description": "",
                 "type": "INT"
             },
-            "amount": {
+            "amount_due": {
+                "description": "",
+                "type": "REAL"
+            },
+            "amount_paid": {
                 "description": "",
                 "type": "REAL"
             },
@@ -238,13 +250,9 @@
                 "description": "",
                 "type": "VARCHAR"
             },
-            "paid": {
+            "paid_in_full": {
                 "description": "",
                 "type": "BOOLEAN"
-            },
-            "description": {
-                "description": "",
-                "type": "TEXT"
             }
         },
         "primary_keys": [

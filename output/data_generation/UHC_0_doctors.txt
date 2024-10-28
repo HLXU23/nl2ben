@@ -17,8 +17,9 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
@@ -26,37 +27,39 @@ Example Row:
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 
+doctor_id: 10000001
 first_name: 
 last_name: 
 date_of_birth: 
-gender: 
-specialization: 
+gender: Male
+specialization: Psychiatry
 address: 
 phone_number: 
 email: 
 license_number: 
 hire_date: 
-active_status: 
-biography: 
-languages: 
+active_status: False
+qualifications: 
+languages_spoken: 
+department: Cardiology
 
 ====================
 AI: 
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
+doctor_id: 10000001
+first_name: John
+last_name: Doe
+date_of_birth: 1975-03-15
+gender: Male
+specialization: Psychiatry
+address: 456 Elm St, Springfield, IL 62701
+phone_number: 2175551234
+email: johndoe@example.com
+license_number: IL-12345678
+hire_date: 2010-07-01
+active_status: False
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Cardiology
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -75,65 +78,49 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
 Example Row:
 
 
-Here are some existed data in database, you can check their formats and values for reference.
-1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
-
-
-
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 102
+doctor_id: 10000002
 first_name: 
 last_name: 
 date_of_birth: 
-gender: Male
-specialization: Dermatology
+gender: Other
+specialization: Pediatrics
 address: 
 phone_number: 
 email: 
 license_number: 
 hire_date: 
 active_status: True
-biography: 
-languages: 
+qualifications: 
+languages_spoken: 
+department: Neurology
 
 ====================
 AI: 
-doctor_id: 102
-first_name: James
-last_name: Smith
-date_of_birth: 1978-04-20
-gender: Male
-specialization: Dermatology
-address: 789 Pine St, Suite 200, New York, NY 10001
-phone_number: 2125559876
-email: james.smith@examplehospital.com
-license_number: MD654321
-hire_date: 2005-06-15
+doctor_id: 10000002
+first_name: Alex
+last_name: Rivers
+date_of_birth: 1985-07-15
+gender: Other
+specialization: Pediatrics
+address: 456 Elm St, Springfield, IL 62701
+phone_number: (217) 555-1234
+email: alex.rivers@examplehospital.com
+license_number: IL-1234567
+hire_date: 2010-09-01
 active_status: True
-biography: Dr. James Smith is a renowned dermatologist with a focus on skin cancer prevention and treatment. He earned his medical degree from Columbia University and completed his residency at New York-Presbyterian Hospital. Dr. Smith is dedicated to providing the highest quality care to his patients.
-languages: English, French
+qualifications: MD, Pediatric Residency, University of Illinois
+languages_spoken: English, Spanish
+department: Neurology
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -152,62 +139,46 @@ CREATE TABLE doctors (
     license_number VARCHAR,
     hire_date DATE,
     active_status BOOLEAN,
-    biography TEXT,
-    languages VARCHAR,
+    qualifications TEXT,
+    languages_spoken VARCHAR,
+    department VARCHAR,
     PRIMARY KEY (doctor_id)
 );
 
 Example Row:
 
 
-Here are some existed data in database, you can check their formats and values for reference.
-1
-doctor_id: 101
-first_name: Emily
-last_name: Chen
-date_of_birth: 1985-07-12
-gender: Female
-specialization: Cardiology
-address: 456 Oak St, Suite 300, Boston, MA 02115
-phone_number: 6175551234
-email: emily.chen@examplehospital.com
-license_number: MD123456
-hire_date: 2010-09-01
-active_status: TRUE
-biography: Dr. Emily Chen is a board-certified cardiologist with over a decade of experience in treating cardiovascular diseases. She received her medical degree from Harvard Medical School and completed her residency at Massachusetts General Hospital.
-languages: English, Spanish
-
-
-
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-doctor_id: 103
+doctor_id: 10000003
 first_name: 
 last_name: 
 date_of_birth: 
-gender: Male
-specialization: Pediatrics
+gender: Other
+specialization: Psychiatry
 address: 
 phone_number: 
 email: 
 license_number: 
 hire_date: 
 active_status: False
-biography: 
-languages: 
+qualifications: 
+languages_spoken: 
+department: Orthopedics
 
 ====================
 AI: 
-doctor_id: 103
-first_name: James
-last_name: Rodriguez
-date_of_birth: 1978-04-20
-gender: Male
-specialization: Pediatrics
-address: 789 Pine St, Suite 200, Chicago, IL 60601
-phone_number: 3125556789
-email: james.rodriguez@examplehospital.com
-license_number: MD654321
-hire_date: 2005-06-15
+doctor_id: 10000003
+first_name: Alex
+last_name: Rivers
+date_of_birth: 1985-07-15
+gender: Other
+specialization: Psychiatry
+address: 456 Elm St, Apt 3B, Springfield, IL 62701
+phone_number: (217) 555-7890
+email: alex.rivers@example.com
+license_number: PSY123456789
+hire_date: 2018-03-22
 active_status: False
-biography: Dr. James Rodriguez is a dedicated pediatrician with a passion for child healthcare. He earned his medical degree from the University of Chicago Pritzker School of Medicine and completed his residency at Children's Hospital of Chicago. Dr. Rodriguez has been instrumental in providing compassionate care to his young patients.
-languages: English, Spanish
+qualifications: MD, Psychiatry Residency at Springfield General Hospital
+languages_spoken: English, Spanish
+department: Orthopedics

@@ -6,10 +6,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE appointments (
     appointment_id INT,
-    appointment_datetime TIMESTAMP,
+    appointment_date DATE,
+    appointment_time TIME,
     appointment_type VARCHAR,
     notes TEXT,
-    confirmed BOOLEAN,
+    completed BOOLEAN,
     PRIMARY KEY (appointment_id)
 );
 
@@ -18,28 +19,31 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-appointment_id: 1001
-appointment_datetime: '2023-10-15 14:30:00'
-appointment_type: 'Consultation'
-notes: 'Follow-up on recent lab results'
-confirmed: TRUE
+appointment_id: 10000001
+appointment_date: 2023-10-15
+appointment_time: 14:30:00
+appointment_type: Routine Checkup
+notes: Patient reports feeling well with no new symptoms. Blood pressure checked and found to be within normal range.
+completed: True
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-appointment_id: 1007
-appointment_datetime: 
-appointment_type: 
+appointment_id: 10000007
+appointment_date: 
+appointment_time: 
+appointment_type: Consultation
 notes: 
-confirmed: False
+completed: False
 
 ====================
 AI: 
-appointment_id: 1007
-appointment_datetime: '2023-11-05 09:45:00'
-appointment_type: 'Check-up'
-notes: 'Routine annual physical examination'
-confirmed: False
+appointment_id: 10000007
+appointment_date: 2023-11-05
+appointment_time: 10:15:00
+appointment_type: Consultation
+notes: Patient scheduled for follow-up after recent surgery. No complications reported.
+completed: False
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -47,10 +51,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE appointments (
     appointment_id INT,
-    appointment_datetime TIMESTAMP,
+    appointment_date DATE,
+    appointment_time TIME,
     appointment_type VARCHAR,
     notes TEXT,
-    confirmed BOOLEAN,
+    completed BOOLEAN,
     PRIMARY KEY (appointment_id)
 );
 
@@ -59,28 +64,31 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-appointment_id: 1001
-appointment_datetime: '2023-10-15 14:30:00'
-appointment_type: 'Consultation'
-notes: 'Follow-up on recent lab results'
-confirmed: TRUE
+appointment_id: 10000001
+appointment_date: 2023-10-15
+appointment_time: 14:30:00
+appointment_type: Routine Checkup
+notes: Patient reports feeling well with no new symptoms. Blood pressure checked and found to be within normal range.
+completed: True
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-appointment_id: 1008
-appointment_datetime: 
-appointment_type: 
+appointment_id: 10000008
+appointment_date: 
+appointment_time: 
+appointment_type: Consultation
 notes: 
-confirmed: False
+completed: True
 
 ====================
 AI: 
-appointment_id: 1008
-appointment_datetime: '2023-11-05 09:45:00'
-appointment_type: 'Check-up'
-notes: 'Routine annual physical examination'
-confirmed: False
+appointment_id: 10000008
+appointment_date: 2023-11-02
+appointment_time: 10:15:00
+appointment_type: Consultation
+notes: Patient seeking advice on managing chronic pain. Discussed potential treatment options and scheduled follow-up appointment.
+completed: True
 ====================
 Human: 
 As a data scientist, generate 1 row data with given schema. Make data as realistic as possible.
@@ -88,10 +96,11 @@ As a data scientist, generate 1 row data with given schema. Make data as realist
 Schema:
 CREATE TABLE appointments (
     appointment_id INT,
-    appointment_datetime TIMESTAMP,
+    appointment_date DATE,
+    appointment_time TIME,
     appointment_type VARCHAR,
     notes TEXT,
-    confirmed BOOLEAN,
+    completed BOOLEAN,
     PRIMARY KEY (appointment_id)
 );
 
@@ -100,25 +109,28 @@ Example Row:
 
 Here are some existed data in database, you can check their formats and values for reference.
 1
-appointment_id: 1001
-appointment_datetime: '2023-10-15 14:30:00'
-appointment_type: 'Consultation'
-notes: 'Follow-up on recent lab results'
-confirmed: TRUE
+appointment_id: 10000001
+appointment_date: 2023-10-15
+appointment_time: 14:30:00
+appointment_type: Routine Checkup
+notes: Patient reports feeling well with no new symptoms. Blood pressure checked and found to be within normal range.
+completed: True
 
 
 
 Now please generate based on given values by filling blanks following(NO ANY OTHER OUTPUT):
-appointment_id: 1009
-appointment_datetime: 
-appointment_type: 
+appointment_id: 10000009
+appointment_date: 
+appointment_time: 
+appointment_type: Routine Checkup
 notes: 
-confirmed: True
+completed: False
 
 ====================
 AI: 
-appointment_id: 1009
-appointment_datetime: '2023-11-02 09:45:00'
-appointment_type: 'Check-up'
-notes: 'Routine annual physical examination'
-confirmed: True
+appointment_id: 10000009
+appointment_date: 2023-11-05
+appointment_time: 10:15:00
+appointment_type: Routine Checkup
+notes: Patient scheduled for annual physical. Please review last year's lab results and update vaccinations if necessary.
+completed: False
