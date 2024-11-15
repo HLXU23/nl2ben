@@ -65,7 +65,10 @@ def data_generation(db_name: str, config: Dict[str, Any]):
 
     db_source = os.path.join(input_path, f'schema_generation/{db_name}.sqlite')
     db_path = os.path.join(result_path, f'{db_name}.sqlite')
+    db_new_path = os.path.join(result_path, f'{db_name}_new.sqlite')
     shutil.copy(db_source, db_path)
+    shutil.copy(db_source, db_new_path)
+    clear_db(db_new_path)
     
     topo_order = get_topo_order(schema)
     logging.debug(topo_order)
@@ -111,8 +114,8 @@ def data_generation(db_name: str, config: Dict[str, Any]):
                     file.write('AI: \n')
                     file.write(response)
 
-                col_values, executed_sql = write_response_into_db(table_name, response, db_path)
-                with open(output_sql_path, "a") as file:
+                col_values, executed_sql = write_response_into_db(table_name, response, db_path, db_new_path)
+                with open(output_sql_path, "a", encoding="utf-8") as file:
                     file.write(executed_sql)
                 if col_values:
                     logging.info(f'Generation success.')
@@ -130,6 +133,19 @@ def load_schema_prompt(schema, schema_prompt_path):
         with open(os.path.join(schema_prompt_path, f'{table_name}.txt')) as file:
             schema_prompt[table_name] = file.read()
     return schema_prompt
+
+def clear_db(db_new_path):
+    conn = sqlite3.connect(db_new_path)
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = cursor.fetchall()
+
+    for table_name in tables:
+        cursor.execute(f"DELETE FROM {table_name[0]};")
+
+    conn.commit()
+    conn.close()
     
 def get_topo_order(schema):
 
@@ -297,37 +313,84 @@ def get_example_row(db_path, table_name, example_value_num):
     conn.close()
     return example_rows
 
-def write_response_into_db(table_name, response, db_new_path):
-    conn = sqlite3.connect(db_new_path)
-    cursor = conn.cursor()
+def write_response_into_db(table_name, response, db_path, db_new_path):
 
     executed_sql = ''
     row_data = response.split("\n")
     
     try:
-        col_values = [line.split(': ', 1) for line in row_data]
-        col_values = [(
-            col_name.strip(), 
-            re.sub(r"^['\"]|['\"]$", '', col_value.strip())
-        ) for col_name, col_value in col_values]
+        with sqlite3.connect(db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute(f"PRAGMA table_info({table_name})")
+            table_columns = {row[1] for row in cursor.fetchall()}
+
+        col_values = []
+        current_col_name = None
+        current_col_value = []
+
+        for line in row_data:
+            if ': ' in line:
+                col_name, col_value = line.split(': ', 1)
+                col_name = col_name.strip()
+
+                # Check if col_name is in the table columns
+                if col_name in table_columns:
+                    # Store the previous col_value if any
+                    if current_col_name:
+                        col_values.append((current_col_name, ' '.join(current_col_value).strip()))
+
+                    # Start a new col_value collection
+                    current_col_name = col_name
+                    current_col_value = [col_value.strip()]
+                else:
+                    # Treat it as part of the current col_value if col_name is not valid
+                    if current_col_name:
+                        current_col_value.append(line.strip())
+            else:
+                # No `: ` detected, append line to current col_value
+                if current_col_name:
+                    current_col_value.append(line.strip())
+
+        # Append the last col_value if any
+        if current_col_name:
+            col_values.append((current_col_name, ' '.join(current_col_value).strip()))
 
         placeholders = ", ".join(["?" for _ in col_values])
-        sql = f'INSERT INTO `{table_name}` ({', '.join([f'`{col_value[0]}`' for col_value in col_values])}) VALUES ({placeholders})'
-        values = [col_value[1] for col_value in col_values]
+        sql = f'INSERT INTO `{table_name}` ({", ".join([f"`{col[0]}`" for col in col_values])}) VALUES ({placeholders})'
+        values = [col[1] for col in col_values]
     except: 
         executed_sql = 'SQL Generation Failed.\n\n'
         return False, executed_sql
     executed_sql += f'{sql}\n'
     executed_sql += f'VALUE: {', '.join(values)}\n'
+
+    # Insert into original database
+    logging.debug(f'Run data insertion on original database: \n[SQL command]{sql}\n[VALUE]{values}')
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
     try:
-        logging.debug(f'Run data insertion SQL command:\n{sql}\nVALUE: {values}')
         cursor.execute(sql, values)
-        executed_sql += f'Exec success.\n\n'
+        conn.commit()
+        executed_sql += 'Exec success on original database.\n\n'
     except Exception as e:
-        executed_sql += f'Exec fail.\n{e}\n\n'
+        executed_sql += f'Exec fail on original database.\n{e}\n\n'
         col_values = False
-    
-    conn.commit()
-    conn.close()
+    finally:
+        conn.close()
+
+    # Insert into new database
+    logging.debug(f'Run data insertion on new database: \n[SQL command]{sql}\n[VALUE]{values}')
+    conn = sqlite3.connect(db_new_path)
+    cursor = conn.cursor()
+    try:
+        cursor.execute(sql, values)
+        conn.commit()
+        executed_sql += 'Exec success on new database.\n\n'
+    except Exception as e:
+        executed_sql += f'Exec fail on new database.\n{e}\n\n'
+        col_values = False
+    finally:
+        conn.close()
+
     return col_values, executed_sql
 

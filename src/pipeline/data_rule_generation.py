@@ -189,7 +189,7 @@ def data_rule_generation(db_name: str, config: Dict[str, Any]):
             prompt = prompts[i]
             response = responses[i][0]
 
-            with open(output_numerical_path, "a") as file:
+            with open(output_numerical_path, "a", encoding="utf-8") as file:
                 file.write('\n====================\n')
                 file.write('Human: \n')
                 file.write(prompt)

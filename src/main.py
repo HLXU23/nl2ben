@@ -48,9 +48,9 @@ def main():
 
     db_name = next(iter(run_configs))
 
-    history_folder_name = f'{db_name}-{current_time}'
-    os.makedirs(os.path.join(history_root, history_folder_name), exist_ok=True)
-    history_log_path = os.path.join(history_root, history_folder_name, f'{history_folder_name}.log')
+    folder_name = f'{db_name}-{current_time}'
+    os.makedirs(os.path.join(history_root, folder_name), exist_ok=True)
+    history_log_path = os.path.join(history_root, folder_name, f'{folder_name}.log')
     
     for handler in logging.root.handlers[:]:
         logging.root.removeHandler(handler)
@@ -63,7 +63,10 @@ def main():
             logging.StreamHandler()
         ]
     )
-        
+    
+    os.makedirs(os.path.join(output_root, folder_name), exist_ok=True)
+    os.makedirs(os.path.join(result_root, folder_name), exist_ok=True)
+
     for pipeline_step in run_configs[db_name]:
         
         if pipeline_step not in pipeline_step_mapping:
@@ -71,7 +74,15 @@ def main():
             continue
 
         if run_configs[db_name][pipeline_step] == 1:
+            
             pipeline_config = pipeline_configs[pipeline_step]
+
+            pipeline_config['output_path'] = os.path.join(output_root, folder_name, pipeline_step)
+            pipeline_config['result_path'] = os.path.join(result_root, folder_name, pipeline_step)
+
+            os.makedirs(pipeline_config['output_path'], exist_ok=True)
+            os.makedirs(pipeline_config['result_path'], exist_ok=True)
+
             logging.info(f'########### [{db_name}][{pipeline_step}] ###########')
             try: 
                 pipeline_step_mapping[pipeline_step](db_name, pipeline_config)

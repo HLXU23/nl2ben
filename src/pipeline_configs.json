@@ -3,21 +3,16 @@
         "engine": "deepseek-coder",
         "temperature": 0.5,
         "params_root": "../params/",
-        "template_path": "../templates/schema_generation.txt",
-        "output_path": "../output/schema_generation/",
-        "result_path": "../result/schema_generation/"
+        "template_path": "../templates/schema_generation.txt"
     },
     "schema_preprocess": {
-        "input_path": "../result/",
-        "result_path": "../result/schema_preprocess/"
+        "input_path": "../result/"
     },
     "data_rule_generation": {
         "engine": "deepseek-coder", 
         "temperature": 0.5,
         "input_path": "../result/",
         "template_path": "../templates/data_rule_generation",
-        "output_path": "../output/data_rule_generation/",
-        "result_path": "../result/data_rule_generation/",
         "example_value_num": 5
     },
     "data_generation": {
@@ -25,10 +20,8 @@
         "temperature": 1,
         "input_path": "../result/",
         "template_path": "../templates/data_generation.txt",
-        "output_path": "../output/data_generation/",
-        "result_path": "../result/data_generation/",
-        "epoch": 3,
-        "row_num": 3,
+        "epoch": 1,
+        "row_num": 10,
         "example_value_num": 1
     },
     "evidence_generation": {
@@ -36,8 +29,6 @@
         "temperature": 1,
         "input_path": "../result/",
         "template_path": "../templates/evidence_generation.txt",
-        "output_path": "../output/evidence_generation/",
-        "result_path": "../result/evidence_generation/",
         "evidence_num": 10
     },
     "temp_generation": {
@@ -46,22 +37,17 @@
         "input_path": "../result/",
         "template_path": "../templates/temp_generation.txt",
         "evidence_path": "../params/",
-        "output_path": "../output/temp_generation/",
-        "result_path": "../result/temp_generation/",
         "ques_template_num": 3,
         "example_value_num": 3
     },
     "ques_generation": {
         "input_path": "../result/",
-        "result_path": "../result/ques_generation/",
         "ques_per_template": 3
     },
     "ques_revision": {
         "engine": "deepseek-coder",
         "temperature": 0,
         "input_path": "../result/",
-        "template_path": "../templates/ques_revision.txt",
-        "output_path": "../output/ques_revision/",
-        "result_path": "../result/ques_revision/"
+        "template_path": "../templates/ques_revision.txt"
     }
 }

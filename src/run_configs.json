@@ -1,12 +1,12 @@
 {
-    "UHC": {
+    "card_games": {
         "schema_generation": 0,
         "schema_preprocess": 0,
         "data_rule_generation": 0,
-        "data_generation": 0,
-        "evidence_generation": 1,
-        "temp_generation": 1,
-        "ques_generation": 1,
-        "ques_revision": 1
+        "data_generation": 1,
+        "evidence_generation": 0,
+        "temp_generation": 0,
+        "ques_generation": 0,
+        "ques_revision": 0
     }
 }
