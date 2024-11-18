@@ -65,7 +65,7 @@ def main():
     )
     
     os.makedirs(os.path.join(output_root, folder_name), exist_ok=True)
-    os.makedirs(os.path.join(result_root, folder_name), exist_ok=True)
+    os.makedirs(os.path.join(result_root, db_name), exist_ok=True)
 
     for pipeline_step in run_configs[db_name]:
         
@@ -78,7 +78,8 @@ def main():
             pipeline_config = pipeline_configs[pipeline_step]
 
             pipeline_config['output_path'] = os.path.join(output_root, folder_name, pipeline_step)
-            pipeline_config['result_path'] = os.path.join(result_root, folder_name, pipeline_step)
+            pipeline_config['result_path'] = os.path.join(result_root, db_name, pipeline_step)
+            pipeline_config['input_path'] = os.path.join(result_root, db_name)
 
             os.makedirs(pipeline_config['output_path'], exist_ok=True)
             os.makedirs(pipeline_config['result_path'], exist_ok=True)

@@ -6,19 +6,16 @@
         "template_path": "../templates/schema_generation.txt"
     },
     "schema_preprocess": {
-        "input_path": "../result/"
     },
     "data_rule_generation": {
         "engine": "deepseek-coder", 
         "temperature": 0.5,
-        "input_path": "../result/",
         "template_path": "../templates/data_rule_generation",
         "example_value_num": 5
     },
     "data_generation": {
         "engine": "deepseek-coder",
         "temperature": 1,
-        "input_path": "../result/",
         "template_path": "../templates/data_generation.txt",
         "epoch": 1,
         "row_num": 10,
@@ -27,27 +24,23 @@
     "evidence_generation": {
         "engine": "deepseek-coder",
         "temperature": 1,
-        "input_path": "../result/",
         "template_path": "../templates/evidence_generation.txt",
         "evidence_num": 10
     },
     "temp_generation": {
         "engine": "deepseek-coder",
         "temperature": 0.5,
-        "input_path": "../result/",
         "template_path": "../templates/temp_generation.txt",
         "evidence_path": "../params/",
         "ques_template_num": 3,
         "example_value_num": 3
     },
     "ques_generation": {
-        "input_path": "../result/",
         "ques_per_template": 3
     },
     "ques_revision": {
         "engine": "deepseek-coder",
         "temperature": 0,
-        "input_path": "../result/",
         "template_path": "../templates/ques_revision.txt"
     }
 }

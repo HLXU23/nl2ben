@@ -228,7 +228,7 @@ def get_max_value(db_path, table_name, col_name):
     cursor.execute(query)
     max_value = cursor.fetchone()[0]
     conn.close()
-    return max_value
+    return int(max_value)
 
 def get_min_value(db_path, table_name, col_name):
     conn = sqlite3.connect(db_path)
